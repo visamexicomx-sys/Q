@@ -1,6 +1,551 @@
 {
   "version": 1,
   "skills": {
+    "AI Engineer": {
+      "source": "/tmp/agency-skills/engineering-engineering-ai-engineer",
+      "sourceType": "local",
+      "computedHash": "501df350d9609b38d4c756856cb0faaf3e28c6bcbf79cffee3c3a3d78a4a6b50"
+    },
+    "API Tester": {
+      "source": "/tmp/agency-skills/testing-testing-api-tester",
+      "sourceType": "local",
+      "computedHash": "3e86056a65c98becac55dd59887e4844e5cc50f26a7c173198418305c40b556b"
+    },
+    "Accessibility Auditor": {
+      "source": "/tmp/agency-skills/testing-testing-accessibility-auditor",
+      "sourceType": "local",
+      "computedHash": "175e67b9b4a506aa2c5ea7f0950c373c7a2bd4ef9b7fd9a1e120f0637b2c2c57"
+    },
+    "Accounts Payable Agent": {
+      "source": "/tmp/agency-skills/specialized-accounts-payable-agent",
+      "sourceType": "local",
+      "computedHash": "54e9f5e970d728b54d1f8a3cba5417bc82973f627253363a69c7ab164691951b"
+    },
+    "Ad Creative Strategist": {
+      "source": "/tmp/agency-skills/paid-media-paid-media-creative-strategist",
+      "sourceType": "local",
+      "computedHash": "c6c3e7c5b562a8a5467bedd4a986731733ecb256ee43facbf10205dd95e17f09"
+    },
+    "Agentic Identity & Trust Architect": {
+      "source": "/tmp/agency-skills/specialized-agentic-identity-trust",
+      "sourceType": "local",
+      "computedHash": "0dff0040ebe1b9c20f800fccc4bcc8d9618023a6e792aa8994a7f9208aaed7c1"
+    },
+    "Agents Orchestrator": {
+      "source": "/tmp/agency-skills/specialized-agents-orchestrator",
+      "sourceType": "local",
+      "computedHash": "2912b8f5328a75d55a5623e6f3db00e0f101e43aeed11e45b7cecce78f410362"
+    },
+    "Analytics Reporter": {
+      "source": "/tmp/agency-skills/support-support-analytics-reporter",
+      "sourceType": "local",
+      "computedHash": "d50feeddbeb933ce118e725d98c5072daa62a8cc2f23d1d614739aa6f3ed7e08"
+    },
+    "App Store Optimizer": {
+      "source": "/tmp/agency-skills/marketing-marketing-app-store-optimizer",
+      "sourceType": "local",
+      "computedHash": "ef843d95bee5ffc09db594919de2d5284a8c44834d59aafdb8074dfc0338f28c"
+    },
+    "Autonomous Optimization Architect": {
+      "source": "/tmp/agency-skills/engineering-engineering-autonomous-optimization-architect",
+      "sourceType": "local",
+      "computedHash": "f7eeccd306f9d5792122e35a2d1fafded0dc9c4367dd21a548e478ab3ad2858d"
+    },
+    "Backend Architect": {
+      "source": "/tmp/agency-skills/integrations-mcp-memory-backend-architect-with-memory",
+      "sourceType": "local",
+      "computedHash": "cd3a03ce1bf940bcc0f881ad9e477649d201cab3a7d563b36b37366dbddaf5a9"
+    },
+    "Baidu SEO Specialist": {
+      "source": "/tmp/agency-skills/marketing-marketing-baidu-seo-specialist",
+      "sourceType": "local",
+      "computedHash": "4cd77cdb1bf57d16864b408afb7d41a55a0bb13edd7e7f7f136e64bc0b95a67f"
+    },
+    "Behavioral Nudge Engine": {
+      "source": "/tmp/agency-skills/product-product-behavioral-nudge-engine",
+      "sourceType": "local",
+      "computedHash": "566de9b4f47b7ddde6c745142fc96b93f6fb7136a97ad03a7c18470df8ed2713"
+    },
+    "Bilibili Content Strategist": {
+      "source": "/tmp/agency-skills/marketing-marketing-bilibili-content-strategist",
+      "sourceType": "local",
+      "computedHash": "a802a8dfe8d927046dc3d9e8aa1bedd8964bbb7617cc067286ff5636021c383a"
+    },
+    "Blockchain Security Auditor": {
+      "source": "/tmp/agency-skills/specialized-blockchain-security-auditor",
+      "sourceType": "local",
+      "computedHash": "447365758a57d864ae3f178ad931351c72ff006ebb38d21acd49e69999811cc0"
+    },
+    "Brand Guardian": {
+      "source": "/tmp/agency-skills/design-design-brand-guardian",
+      "sourceType": "local",
+      "computedHash": "ec43c9950925aa4c8c12d28e50d8a7cdc09db5c626035cdbe55997ab653c664b"
+    },
+    "Carousel Growth Engine": {
+      "source": "/tmp/agency-skills/marketing-marketing-carousel-growth-engine",
+      "sourceType": "local",
+      "computedHash": "463906000d4a9c424634201e3149a0f382d6327e36fbd5f8578ec5c19e9e5aba"
+    },
+    "China E-Commerce Operator": {
+      "source": "/tmp/agency-skills/marketing-marketing-china-ecommerce-operator",
+      "sourceType": "local",
+      "computedHash": "db42103cdc572d89cd21aef5aea57585604cba8ab40370d392494bb68d3341ed"
+    },
+    "Compliance Auditor": {
+      "source": "/tmp/agency-skills/specialized-compliance-auditor",
+      "sourceType": "local",
+      "computedHash": "729fb828239dc3c58cf61a0ca5aa47b2a8bc39e1a23c120ea82351dc962a77bd"
+    },
+    "Content Creator": {
+      "source": "/tmp/agency-skills/marketing-marketing-content-creator",
+      "sourceType": "local",
+      "computedHash": "4460c20048aa8b439862770467a8466eecc78865786009e7a2c448630ee85660"
+    },
+    "Cultural Intelligence Strategist": {
+      "source": "/tmp/agency-skills/specialized-specialized-cultural-intelligence-strategist",
+      "sourceType": "local",
+      "computedHash": "9bf86ce51c5c30f7dfb977a1f7c3db8a275aa144d1798de62d416524f2688d91"
+    },
+    "Data Analytics Reporter": {
+      "source": "/tmp/agency-skills/specialized-data-analytics-reporter",
+      "sourceType": "local",
+      "computedHash": "f7d11c793ba5d76f39c038831f0ba6b497dfadcbbe754d8c5e7a9fb5cbcc9fa0"
+    },
+    "Data Consolidation Agent": {
+      "source": "/tmp/agency-skills/specialized-data-consolidation-agent",
+      "sourceType": "local",
+      "computedHash": "603ddf04cd9c3aee8fdc9f3c78ffa02a5657a30561889e4ca5bb62f3109c637a"
+    },
+    "Data Engineer": {
+      "source": "/tmp/agency-skills/engineering-engineering-data-engineer",
+      "sourceType": "local",
+      "computedHash": "fb1588189a4b62b7a27262ac0d50a9346d63cceef23f6bb7d94ee20b34eb5056"
+    },
+    "DevOps Automator": {
+      "source": "/tmp/agency-skills/engineering-engineering-devops-automator",
+      "sourceType": "local",
+      "computedHash": "ea8c63609abaa9898cb959a5fcd36d8742712f9e69596064cc647dcc71dba700"
+    },
+    "Developer Advocate": {
+      "source": "/tmp/agency-skills/specialized-specialized-developer-advocate",
+      "sourceType": "local",
+      "computedHash": "671b71369bb54303cd2191aa540408cae9de03bb0e3609aae6b0a624b963a559"
+    },
+    "Embedded Firmware Engineer": {
+      "source": "/tmp/agency-skills/engineering-engineering-embedded-firmware-engineer",
+      "sourceType": "local",
+      "computedHash": "7df9e28ae4a173c72749c7992bd3131f05c274457e71a6a836c4aecf71849fa4"
+    },
+    "Evidence Collector": {
+      "source": "/tmp/agency-skills/testing-testing-evidence-collector",
+      "sourceType": "local",
+      "computedHash": "54242816a4172c3348a8d61dd104a2a3901e870dd8fff68e5802d6a05b347c31"
+    },
+    "Executive Summary Generator": {
+      "source": "/tmp/agency-skills/support-support-executive-summary-generator",
+      "sourceType": "local",
+      "computedHash": "c672ac7ec3b6209b167e67336c527ab8cf4d679879c439ddb407caac793ee40f"
+    },
+    "Experiment Tracker": {
+      "source": "/tmp/agency-skills/project-management-project-management-experiment-tracker",
+      "sourceType": "local",
+      "computedHash": "9e8da3611b629f4e520c5510fa173e2c7fe84da449c2581e46352238a07025eb"
+    },
+    "Feedback Synthesizer": {
+      "source": "/tmp/agency-skills/product-product-feedback-synthesizer",
+      "sourceType": "local",
+      "computedHash": "c780ec52576f3d0f5b62a53541c7e39a01160b03bd20d581031a60a22447a842"
+    },
+    "Finance Tracker": {
+      "source": "/tmp/agency-skills/support-support-finance-tracker",
+      "sourceType": "local",
+      "computedHash": "161518a80ae5c94df712b3507e9897ec070fcb5ba001e1a65319d18c47a3c973"
+    },
+    "Frontend Developer": {
+      "source": "/tmp/agency-skills/engineering-engineering-frontend-developer",
+      "sourceType": "local",
+      "computedHash": "b690851cb351d074207c1226c9f222fc3e31b0bddd9a8643fb801ed3a6d2a024"
+    },
+    "Game Audio Engineer": {
+      "source": "/tmp/agency-skills/game-development-game-audio-engineer",
+      "sourceType": "local",
+      "computedHash": "6b7f40d9a99c4587a6d444ce5d1f0ff76c0a8da6a6bdebe251fc3526ab255a80"
+    },
+    "Game Designer": {
+      "source": "/tmp/agency-skills/game-development-game-designer",
+      "sourceType": "local",
+      "computedHash": "bc0ec4a3674e32170e4325f13b090bc5171ca21332d4208f416be20e4d36466c"
+    },
+    "Godot Gameplay Scripter": {
+      "source": "/tmp/agency-skills/game-development-godot-godot-gameplay-scripter",
+      "sourceType": "local",
+      "computedHash": "1660e6b43720d2c038ae8f81f34db8ff951f08a85d029a6c1d4ee537f72d8934"
+    },
+    "Godot Multiplayer Engineer": {
+      "source": "/tmp/agency-skills/game-development-godot-godot-multiplayer-engineer",
+      "sourceType": "local",
+      "computedHash": "e624a146d2b395685d9ad5c40c4cc746b8c370c8ed628fe5cb3e7093c2d3ce78"
+    },
+    "Godot Shader Developer": {
+      "source": "/tmp/agency-skills/game-development-godot-godot-shader-developer",
+      "sourceType": "local",
+      "computedHash": "13e2a7428a9ffd21aae80e4192ba9bf70449a05d8808606a97adf06cb521c7b2"
+    },
+    "Growth Hacker": {
+      "source": "/tmp/agency-skills/marketing-marketing-growth-hacker",
+      "sourceType": "local",
+      "computedHash": "7c7f155c6b90e50715b356335b2b9cd8bd9205a282d78ee16e8659b120199028"
+    },
+    "Identity Graph Operator": {
+      "source": "/tmp/agency-skills/specialized-identity-graph-operator",
+      "sourceType": "local",
+      "computedHash": "a5cfcc2e6d878ec6003c185834a6847202e45b918ab1cbb474479e94adb9c1a0"
+    },
+    "Image Prompt Engineer": {
+      "source": "/tmp/agency-skills/design-design-image-prompt-engineer",
+      "sourceType": "local",
+      "computedHash": "9fd4857116dfca280456a97c9ed5c15aea424e03cb0d48e4e0a9dd31aedbe8e1"
+    },
+    "Incident Response Commander": {
+      "source": "/tmp/agency-skills/engineering-engineering-incident-response-commander",
+      "sourceType": "local",
+      "computedHash": "c331786569b1c50efafbff3caa275b7fd3a02dc26195b61931d8c34e22df2b03"
+    },
+    "Inclusive Visuals Specialist": {
+      "source": "/tmp/agency-skills/design-design-inclusive-visuals-specialist",
+      "sourceType": "local",
+      "computedHash": "df28481aec9aa128c3275a23e76bdf83940b48720cf099b03e853d526e579fd4"
+    },
+    "Infrastructure Maintainer": {
+      "source": "/tmp/agency-skills/support-support-infrastructure-maintainer",
+      "sourceType": "local",
+      "computedHash": "9a3950c5ae5cee02d49756157c675d34962f7180c96262057ae1465b7d5e7790"
+    },
+    "Instagram Curator": {
+      "source": "/tmp/agency-skills/marketing-marketing-instagram-curator",
+      "sourceType": "local",
+      "computedHash": "4a5f2a53ada5cf9581f22ac7b2639e27f69f63090cf60d536182000c5460c018"
+    },
+    "Jira Workflow Steward": {
+      "source": "/tmp/agency-skills/project-management-project-management-jira-workflow-steward",
+      "sourceType": "local",
+      "computedHash": "54b838dd7b6168f7255bee9fcbd7e4e15605a31120313e4aa605919bacbe793b"
+    },
+    "Kuaishou Strategist": {
+      "source": "/tmp/agency-skills/marketing-marketing-kuaishou-strategist",
+      "sourceType": "local",
+      "computedHash": "98c6c4364839ec4bfa2edcfba105c8c21650063b19918576bc69e4002a25b906"
+    },
+    "LSP/Index Engineer": {
+      "source": "/tmp/agency-skills/specialized-lsp-index-engineer",
+      "sourceType": "local",
+      "computedHash": "952ec99b4ae94aa6cc41a733c6e31051263d84132e231ae94c2651de677ba231"
+    },
+    "Legal Compliance Checker": {
+      "source": "/tmp/agency-skills/support-support-legal-compliance-checker",
+      "sourceType": "local",
+      "computedHash": "91cc4758f61f2cd1b390a6538ff3c3ad568724caeb35d08d0b077d918488dd9b"
+    },
+    "Level Designer": {
+      "source": "/tmp/agency-skills/game-development-level-designer",
+      "sourceType": "local",
+      "computedHash": "b8f12a35eff2c2f45a73f181eaaf67d9e8bf9523ff892df14f22c51666125506"
+    },
+    "Mobile App Builder": {
+      "source": "/tmp/agency-skills/engineering-engineering-mobile-app-builder",
+      "sourceType": "local",
+      "computedHash": "1c197a3a29f2f44f8f13db8acb822e04420b0514d5e8d9ef7af3ff4b71888c7a"
+    },
+    "Model QA Specialist": {
+      "source": "/tmp/agency-skills/specialized-specialized-model-qa",
+      "sourceType": "local",
+      "computedHash": "1bd237b4b22a8dffa754ee511189b8efa9c3ecc106c1e452d5df0220742e93ee"
+    },
+    "Narrative Designer": {
+      "source": "/tmp/agency-skills/game-development-narrative-designer",
+      "sourceType": "local",
+      "computedHash": "fbb5133fa0f93db8d4ed8542df8b2628ea502ca04bde690013316081714f8675"
+    },
+    "PPC Campaign Strategist": {
+      "source": "/tmp/agency-skills/paid-media-paid-media-ppc-strategist",
+      "sourceType": "local",
+      "computedHash": "372980575d83e6694ef998af6f7f03e491b31d06ba500dc99ec8b6662c21b15c"
+    },
+    "Paid Media Auditor": {
+      "source": "/tmp/agency-skills/paid-media-paid-media-auditor",
+      "sourceType": "local",
+      "computedHash": "719f159c34756dff5c538c3c49c96617f56558f9fb4f6d6dc80a2bb412cef5aa"
+    },
+    "Paid Social Strategist": {
+      "source": "/tmp/agency-skills/paid-media-paid-media-paid-social-strategist",
+      "sourceType": "local",
+      "computedHash": "141d3f819a31abdc9c276622e25bb7ffecdad394ec00d88a76219c0d7db270b9"
+    },
+    "Performance Benchmarker": {
+      "source": "/tmp/agency-skills/testing-testing-performance-benchmarker",
+      "sourceType": "local",
+      "computedHash": "e4c7f468203a9dca2cd84d81bfa3ac5ce2c55951e78b4b8d40a30e1852001070"
+    },
+    "Programmatic & Display Buyer": {
+      "source": "/tmp/agency-skills/paid-media-paid-media-programmatic-buyer",
+      "sourceType": "local",
+      "computedHash": "3b710c449c22de33abeac8265449d62c8efcdd6e249e5859811d5f4cc9ffa1b4"
+    },
+    "Project Shepherd": {
+      "source": "/tmp/agency-skills/project-management-project-management-project-shepherd",
+      "sourceType": "local",
+      "computedHash": "ede84759bded710b2ad698efc21c2890e541ec5f870b037135af46d0b3aa8098"
+    },
+    "Rapid Prototyper": {
+      "source": "/tmp/agency-skills/engineering-engineering-rapid-prototyper",
+      "sourceType": "local",
+      "computedHash": "d2dac079952dedcf9cbfa2493d45c51ff30a735b51bd8dca583e97133f2ff855"
+    },
+    "Reality Checker": {
+      "source": "/tmp/agency-skills/testing-testing-reality-checker",
+      "sourceType": "local",
+      "computedHash": "59d1920eb21021dd097324d9d49c22b501a92d9e2a2df1d8299582d173b2fe18"
+    },
+    "Reddit Community Builder": {
+      "source": "/tmp/agency-skills/marketing-marketing-reddit-community-builder",
+      "sourceType": "local",
+      "computedHash": "9e0e3f1c38127a18e46e8b309313fd5a1292e467d32f41ffd66b47c7248437b8"
+    },
+    "Report Distribution Agent": {
+      "source": "/tmp/agency-skills/specialized-report-distribution-agent",
+      "sourceType": "local",
+      "computedHash": "375c207e3fd58dcb05893e7f204450aceb36c2eaa6afd93e9bf74eabf54f3857"
+    },
+    "Roblox Avatar Creator": {
+      "source": "/tmp/agency-skills/game-development-roblox-studio-roblox-avatar-creator",
+      "sourceType": "local",
+      "computedHash": "c277b0ae709d70433982cd1a29d5940c05054eaaafd46142fef01f1358a9e8c0"
+    },
+    "Roblox Experience Designer": {
+      "source": "/tmp/agency-skills/game-development-roblox-studio-roblox-experience-designer",
+      "sourceType": "local",
+      "computedHash": "e14dca1cf144955a0058fb329317fd9dee3402b6611835040c9c083a6b01b586"
+    },
+    "Roblox Systems Scripter": {
+      "source": "/tmp/agency-skills/game-development-roblox-studio-roblox-systems-scripter",
+      "sourceType": "local",
+      "computedHash": "f591abf1e58feb897be9ef6cd2a958c12e4271e5cb74d859cc8ab0c9995dcd29"
+    },
+    "SEO Specialist": {
+      "source": "/tmp/agency-skills/marketing-marketing-seo-specialist",
+      "sourceType": "local",
+      "computedHash": "aec57a7ba4a5979bb47b38752a0e6d2ff2be0f3d4f2badc64faf625e974a45bf"
+    },
+    "Sales Data Extraction Agent": {
+      "source": "/tmp/agency-skills/specialized-sales-data-extraction-agent",
+      "sourceType": "local",
+      "computedHash": "dbac02f22be7d025de3048d7fdb6a9bc27ab218d54f343dee621cb2b3a8c566f"
+    },
+    "Search Query Analyst": {
+      "source": "/tmp/agency-skills/paid-media-paid-media-search-query-analyst",
+      "sourceType": "local",
+      "computedHash": "9c809d04ad26fbe6e64a1ef02fb4b8276f452e192ce33102f2fd69f13b179693"
+    },
+    "Security Engineer": {
+      "source": "/tmp/agency-skills/engineering-engineering-security-engineer",
+      "sourceType": "local",
+      "computedHash": "5365bfa59b0a3d8c404310b6c6d80ff380b0e4ae505319beb82c5270acf62c2a"
+    },
+    "Senior Developer": {
+      "source": "/tmp/agency-skills/engineering-engineering-senior-developer",
+      "sourceType": "local",
+      "computedHash": "1c2099fa89dc2a63202a1d044d57f983523c8482b84425a817351a6beb0697ef"
+    },
+    "Senior Project Manager": {
+      "source": "/tmp/agency-skills/project-management-project-manager-senior",
+      "sourceType": "local",
+      "computedHash": "bc4284582011f90e8807a4f35f563761fe905484900411c3b438fc6722b5dd9e"
+    },
+    "Social Media Strategist": {
+      "source": "/tmp/agency-skills/marketing-marketing-social-media-strategist",
+      "sourceType": "local",
+      "computedHash": "2e2df5ca17f50c8243a1c2d65e39aceac692db3fc7c9d857c4760a8ff5abc208"
+    },
+    "Solidity Smart Contract Engineer": {
+      "source": "/tmp/agency-skills/engineering-engineering-solidity-smart-contract-engineer",
+      "sourceType": "local",
+      "computedHash": "2ebf05fa91912cc08b97f0efe10f33dc64273364011a07810e8d757dd7a96e36"
+    },
+    "Sprint Prioritizer": {
+      "source": "/tmp/agency-skills/product-product-sprint-prioritizer",
+      "sourceType": "local",
+      "computedHash": "3544cfd198b523c6126ec2acfe1d15a631bfc0846e6081e49c6079d25f3f8d20"
+    },
+    "Studio Operations": {
+      "source": "/tmp/agency-skills/project-management-project-management-studio-operations",
+      "sourceType": "local",
+      "computedHash": "eec0142200cdff5fadac5dca58e5bffde91bb3bec230292edb86859773973b30"
+    },
+    "Studio Producer": {
+      "source": "/tmp/agency-skills/project-management-project-management-studio-producer",
+      "sourceType": "local",
+      "computedHash": "b9fed66f99b2a7a831b3fa09bc5cdd20ef8a5f19b1b438284a845569c9856811"
+    },
+    "Support Responder": {
+      "source": "/tmp/agency-skills/support-support-support-responder",
+      "sourceType": "local",
+      "computedHash": "990071d189b40966e834158b225562657934811792f0b99fb1e9f9ba47950a8b"
+    },
+    "Technical Artist": {
+      "source": "/tmp/agency-skills/game-development-technical-artist",
+      "sourceType": "local",
+      "computedHash": "2cd14245af00812b4e147ec96bd91d9c543c59430ccb3ccf9a4541fb0d32ae1d"
+    },
+    "Technical Writer": {
+      "source": "/tmp/agency-skills/engineering-engineering-technical-writer",
+      "sourceType": "local",
+      "computedHash": "36c03e9e723becaaee93ee1b6cd535c083fe42c03749905f060b93eb6d2c81a9"
+    },
+    "Terminal Integration Specialist": {
+      "source": "/tmp/agency-skills/spatial-computing-terminal-integration-specialist",
+      "sourceType": "local",
+      "computedHash": "98d71cb9e02071c8662e0ad1ed83a9063240cebf33f15573d95f21453923369d"
+    },
+    "Test Results Analyzer": {
+      "source": "/tmp/agency-skills/testing-testing-test-results-analyzer",
+      "sourceType": "local",
+      "computedHash": "8f9e9863abaf9a67ae21dd7eba831588dc85b10576594554174e2e1ed454959a"
+    },
+    "Threat Detection Engineer": {
+      "source": "/tmp/agency-skills/engineering-engineering-threat-detection-engineer",
+      "sourceType": "local",
+      "computedHash": "574f2450d447cdac3c32981ff7ea244d70dbf733af8b087cfe2f1a6652573158"
+    },
+    "TikTok Strategist": {
+      "source": "/tmp/agency-skills/marketing-marketing-tiktok-strategist",
+      "sourceType": "local",
+      "computedHash": "2373009f7993f117a71badd182e571b0f2acfa0f79d7631b4c89265e4c93ebdd"
+    },
+    "Tool Evaluator": {
+      "source": "/tmp/agency-skills/testing-testing-tool-evaluator",
+      "sourceType": "local",
+      "computedHash": "8cfcef2524ba4cbb144f564f29cb02d9f91569ac7141dbd2a16b327db11ec50b"
+    },
+    "Tracking & Measurement Specialist": {
+      "source": "/tmp/agency-skills/paid-media-paid-media-tracking-specialist",
+      "sourceType": "local",
+      "computedHash": "15a2f177b84f82454b14dbd27ca1a04af8a29fb1b0a6bc6c5a7d78b78efe638b"
+    },
+    "Trend Researcher": {
+      "source": "/tmp/agency-skills/product-product-trend-researcher",
+      "sourceType": "local",
+      "computedHash": "52a57a066be2e210e44000842546c0dcfb4a525cb5b90f7c7e6673ee55e9b9ad"
+    },
+    "Twitter Engager": {
+      "source": "/tmp/agency-skills/marketing-marketing-twitter-engager",
+      "sourceType": "local",
+      "computedHash": "adb4ccc64337ebd35d01175cb5f5792cce528a2180dbc80ed0754fd85ef1a9fb"
+    },
+    "UI Designer": {
+      "source": "/tmp/agency-skills/design-design-ui-designer",
+      "sourceType": "local",
+      "computedHash": "b3ab4a0f67d823aebc2e8fa54a87d4f82fc046ad988c48a56321a7bb9a089d18"
+    },
+    "UX Architect": {
+      "source": "/tmp/agency-skills/design-design-ux-architect",
+      "sourceType": "local",
+      "computedHash": "79e26b7645bef8da944439b63f3fd64a80c824e412fbb44cc86f3604c9b10ea3"
+    },
+    "UX Researcher": {
+      "source": "/tmp/agency-skills/design-design-ux-researcher",
+      "sourceType": "local",
+      "computedHash": "81aa76ddb34288f6552f61782d7bf0965b1e3267869eb6fdcbc92a944e7ad00b"
+    },
+    "Unity Architect": {
+      "source": "/tmp/agency-skills/game-development-unity-unity-architect",
+      "sourceType": "local",
+      "computedHash": "efd0c37540af0a78cbd30c158b939ac4ea2c196b9349d0b10234486a269f8084"
+    },
+    "Unity Editor Tool Developer": {
+      "source": "/tmp/agency-skills/game-development-unity-unity-editor-tool-developer",
+      "sourceType": "local",
+      "computedHash": "5c089098b7e2ca6d12e8e3d6baf8c2f9d0b9ca0820e104a96466c0bd6e2fee95"
+    },
+    "Unity Multiplayer Engineer": {
+      "source": "/tmp/agency-skills/game-development-unity-unity-multiplayer-engineer",
+      "sourceType": "local",
+      "computedHash": "ad6cf7368a44f3acee7a9d63c793367244fb5a603f4ee936e84f200279c6ea58"
+    },
+    "Unity Shader Graph Artist": {
+      "source": "/tmp/agency-skills/game-development-unity-unity-shader-graph-artist",
+      "sourceType": "local",
+      "computedHash": "2f190488952e98e33aec379bdcf83d7b2098bdc084bfab6267db8de2d2ff6e10"
+    },
+    "Unreal Multiplayer Architect": {
+      "source": "/tmp/agency-skills/game-development-unreal-engine-unreal-multiplayer-architect",
+      "sourceType": "local",
+      "computedHash": "edac8152197bb7d455a82defcaa187b3ef8294e5c556eb630c69828144d5d6a1"
+    },
+    "Unreal Systems Engineer": {
+      "source": "/tmp/agency-skills/game-development-unreal-engine-unreal-systems-engineer",
+      "sourceType": "local",
+      "computedHash": "b7572bd880750061d956867e0d6e650e3154ef52cb407bda55036f3715243ed1"
+    },
+    "Unreal Technical Artist": {
+      "source": "/tmp/agency-skills/game-development-unreal-engine-unreal-technical-artist",
+      "sourceType": "local",
+      "computedHash": "9094a40e72744cb2e331e50df226b5f62cc41dea3d3607370955d1dbd84e248e"
+    },
+    "Unreal World Builder": {
+      "source": "/tmp/agency-skills/game-development-unreal-engine-unreal-world-builder",
+      "sourceType": "local",
+      "computedHash": "d1b2fd3ab312243034d4d34b8a75d7d13ebff07b7025fa87ec3a5c74d03f5312"
+    },
+    "Visual Storyteller": {
+      "source": "/tmp/agency-skills/design-design-visual-storyteller",
+      "sourceType": "local",
+      "computedHash": "ce27983a083679c13e8f674e340cb44135a7ef5c8db2d51ebe30cec3574cb558"
+    },
+    "WeChat Mini Program Developer": {
+      "source": "/tmp/agency-skills/engineering-engineering-wechat-mini-program-developer",
+      "sourceType": "local",
+      "computedHash": "78a8f10d1111b0d4b3f8f636e645d48be0ff7ec3f3d8a066890f73ca57053853"
+    },
+    "WeChat Official Account Manager": {
+      "source": "/tmp/agency-skills/marketing-marketing-wechat-official-account",
+      "sourceType": "local",
+      "computedHash": "ccbe86e2df5174d4d4fe7bbabafe9677d9b5a42fdd973521bd0d9d64a117fe1a"
+    },
+    "Whimsy Injector": {
+      "source": "/tmp/agency-skills/design-design-whimsy-injector",
+      "sourceType": "local",
+      "computedHash": "30a9596c1e21776004678bf68353ba44fa1662d4a67ec457136f9afec2c3a67c"
+    },
+    "Workflow Optimizer": {
+      "source": "/tmp/agency-skills/testing-testing-workflow-optimizer",
+      "sourceType": "local",
+      "computedHash": "e9e802575c628419324d40a3f83f60bacc1a3bbe50847384a744fa58a7aff73f"
+    },
+    "XR Cockpit Interaction Specialist": {
+      "source": "/tmp/agency-skills/spatial-computing-xr-cockpit-interaction-specialist",
+      "sourceType": "local",
+      "computedHash": "fc524cd56fef0e515e4ab5dd2a62f26801e814e6f19e9bd21f7663070d08438a"
+    },
+    "XR Immersive Developer": {
+      "source": "/tmp/agency-skills/spatial-computing-xr-immersive-developer",
+      "sourceType": "local",
+      "computedHash": "30e9c30b51e99778a1ff0cec99f7eb31ee6ac8622240e997a4238da4cbfdc5ba"
+    },
+    "XR Interface Architect": {
+      "source": "/tmp/agency-skills/spatial-computing-xr-interface-architect",
+      "sourceType": "local",
+      "computedHash": "110b97d6c086c5780129a32e63fe6389400ca87ff2796c9daa19d36acbaa1ea7"
+    },
+    "Xiaohongshu Specialist": {
+      "source": "/tmp/agency-skills/marketing-marketing-xiaohongshu-specialist",
+      "sourceType": "local",
+      "computedHash": "2c19fb1f5813574443d2655abd853fd2b7841bd7e34cafcc1e4ab84817ca16df"
+    },
+    "Zhihu Strategist": {
+      "source": "/tmp/agency-skills/marketing-marketing-zhihu-strategist",
+      "sourceType": "local",
+      "computedHash": "2a1ce770d9272244b5ce8f604fd44c0e9c3f9b06f682be93e019a0226e90ddfe"
+    },
     "ab-test-setup": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
@@ -75,6 +620,11 @@
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
       "computedHash": "5d74a25820c4f36d58dd90bafa2f3bfe0350806b699d6a16d2afad53ec7a02fe"
+    },
+    "macOS Spatial/Metal Engineer": {
+      "source": "/tmp/agency-skills/spatial-computing-macos-spatial-metal-engineer",
+      "sourceType": "local",
+      "computedHash": "42d9f822bc94ccfb6752363a078c947743479cbb5cb5c82b89fe6fe511f79a62"
     },
     "marketing-ideas": {
       "source": "coreyhaines31/marketingskills",
@@ -180,6 +730,11 @@
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
       "computedHash": "2e9088a7333666d8c2833b8ff58bd51b955501c42b4c7244f72b4cbf22dafcc4"
+    },
+    "visionOS Spatial Engineer": {
+      "source": "/tmp/agency-skills/spatial-computing-visionos-spatial-engineer",
+      "sourceType": "local",
+      "computedHash": "d148377aa49be337b90be04b3d77d8910da3fe2261e06f4ffae002f4158d876e"
     },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
