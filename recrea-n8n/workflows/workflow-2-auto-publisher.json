@@ -1,0 +1,418 @@
+{
+  "name": "RECREA — 2. Instagram Auto-Publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 0,
+              "weekdays": [1]
+            },
+            {
+              "triggerAtHour": 11,
+              "triggerAtMinute": 0,
+              "weekdays": [3]
+            },
+            {
+              "triggerAtHour": 10,
+              "triggerAtMinute": 0,
+              "weekdays": [5]
+            }
+          ]
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000001",
+      "name": "Schedule: Optimal Post Times",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Content Queue",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "approved"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000002",
+      "name": "Sheets: Get Approved Post",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [460, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-row-id",
+              "leftValue": "={{ $json['Row ID'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            },
+            {
+              "id": "check-image-url",
+              "leftValue": "={{ $json['Image URL'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000003",
+      "name": "IF: Content + Image Ready?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the full caption: Caption + Hashtags\nconst row = $input.first().json;\n\nconst captionOnly = row['Caption Only'] || row['Caption (Full)'] || '';\nconst hashtags = row['Hashtags'] || '';\n\n// Combine with blank line separator\nconst fullCaption = hashtags\n  ? `${captionOnly}\\n\\n${hashtags}`\n  : captionOnly;\n\n// Truncate to Instagram's 2200 char limit\nconst finalCaption = fullCaption.length > 2200\n  ? fullCaption.substring(0, 2197) + '...'\n  : fullCaption;\n\nreturn [\n  {\n    json: {\n      rowId: row['Row ID'],\n      sheetRow: row['Row Number'],\n      imageUrl: row['Image URL'],\n      caption: finalCaption,\n      postType: row['Post Type'] || 'IMAGE',\n      location: row['Location Tag'] || '',\n      charCount: finalCaption.length\n    }\n  }\n];"
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000004",
+      "name": "Code: Prepare Caption",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 220]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v19.0/YOUR_IG_USER_ID/media",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "image_url",
+              "value": "={{ $json.imageUrl }}"
+            },
+            {
+              "name": "caption",
+              "value": "={{ $json.caption }}"
+            },
+            {
+              "name": "access_token",
+              "value": "YOUR_INSTAGRAM_ACCESS_TOKEN"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000005",
+      "name": "HTTP: Create IG Media Container",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 220]
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000006",
+      "name": "Wait: 30 sec (IG processes image)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1340, 220],
+      "webhookId": "wait-webhook-publish"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the creation_id from Instagram's response\nconst igResponse = $('HTTP: Create IG Media Container').first().json;\nconst preparedData = $('Code: Prepare Caption').first().json;\n\nif (!igResponse.id) {\n  throw new Error('Instagram did not return a creation_id. Response: ' + JSON.stringify(igResponse));\n}\n\nreturn [\n  {\n    json: {\n      creationId: igResponse.id,\n      rowId: preparedData.rowId,\n      sheetRow: preparedData.sheetRow,\n      caption: preparedData.caption\n    }\n  }\n];"
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000007",
+      "name": "Code: Extract Creation ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1560, 220]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v19.0/YOUR_IG_USER_ID/media_publish",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "creation_id",
+              "value": "={{ $json.creationId }}"
+            },
+            {
+              "name": "access_token",
+              "value": "YOUR_INSTAGRAM_ACCESS_TOKEN"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000008",
+      "name": "HTTP: Publish to Instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1780, 220]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepare the status update data\nconst publishResponse = $('HTTP: Publish to Instagram').first().json;\nconst creationData = $('Code: Extract Creation ID').first().json;\n\nconst now = new Date();\nconst postedAt = now.toISOString();\n\nif (!publishResponse.id) {\n  throw new Error('Publish failed. Response: ' + JSON.stringify(publishResponse));\n}\n\nreturn [\n  {\n    json: {\n      instagramPostId: publishResponse.id,\n      rowId: creationData.rowId,\n      sheetRow: creationData.sheetRow,\n      postedAt: postedAt,\n      status: 'published'\n    }\n  }\n];"
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000009",
+      "name": "Code: Confirm Publish",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2000, 220]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Content Queue",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Row ID": "={{ $json.rowId }}",
+            "Status": "published",
+            "Instagram Post ID": "={{ $json.instagramPostId }}",
+            "Posted At": "={{ $json.postedAt }}"
+          }
+        },
+        "options": {
+          "locationDefine": {
+            "values": {
+              "rangeDefine": "row",
+              "rowNumber": "={{ $json.sheetRow }}"
+            }
+          }
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000010",
+      "name": "Sheets: Update Status to Published",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [2220, 220],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=✅ *RECREA — Post Publicado!*\n\n📸 El contenido fue publicado en Instagram exitosamente.\n\n*Post ID:* `{{ $('Code: Confirm Publish').first().json.instagramPostId }}`\n*Publicado:* {{ $('Code: Confirm Publish').first().json.postedAt }}\n\n👀 Revísalo en Instagram: https://www.instagram.com/p/{{ $('Code: Confirm Publish').first().json.instagramPostId }}/\n\n⏳ Recuerda responder comentarios en los primeros 60 minutos para máximo alcance!",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000011",
+      "name": "Telegram: Published Notification",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [2440, 220],
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CRED_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=⚠️ *RECREA Content Farm — Sin contenido*\n\nEl publisher corrió pero no hay posts con status *approved* en Google Sheets.\n\n👉 Abre Google Sheets → Content Queue y cambia el status de algún post a `approved` para que se publique la próxima vez.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "b2c3d4e5-0002-0002-0002-000000000012",
+      "name": "Telegram: No Content Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [900, 440],
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CRED_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule: Optimal Post Times": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Get Approved Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Get Approved Post": {
+      "main": [
+        [
+          {
+            "node": "IF: Content + Image Ready?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Content + Image Ready?": {
+      "main": [
+        [
+          {
+            "node": "Code: Prepare Caption",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram: No Content Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Prepare Caption": {
+      "main": [
+        [
+          {
+            "node": "HTTP: Create IG Media Container",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP: Create IG Media Container": {
+      "main": [
+        [
+          {
+            "node": "Wait: 30 sec (IG processes image)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait: 30 sec (IG processes image)": {
+      "main": [
+        [
+          {
+            "node": "Code: Extract Creation ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Extract Creation ID": {
+      "main": [
+        [
+          {
+            "node": "HTTP: Publish to Instagram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP: Publish to Instagram": {
+      "main": [
+        [
+          {
+            "node": "Code: Confirm Publish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Confirm Publish": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Update Status to Published",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Update Status to Published": {
+      "main": [
+        [
+          {
+            "node": "Telegram: Published Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "errorWorkflow": "RECREA — Error Handler"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": ["RECREA", "content-farm", "instagram", "publisher"]
+}

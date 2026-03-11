@@ -1,0 +1,324 @@
+{
+  "name": "RECREA — 1. AI Content Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 0,
+              "weekdays": [1, 3, 5]
+            }
+          ]
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Schedule: Mon/Wed/Fri 7am",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Content Briefs",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "pending"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000002",
+      "name": "Sheets: Read Next Brief",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [460, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build Claude prompt from the content brief\nconst brief = $input.first().json;\n\nconst postType = brief['Post Type'] || 'feed post';\nconst topic = brief['Topic'] || 'luxury construction in Riviera Maya';\nconst tone = brief['Tone'] || 'professional and trustworthy';\nconst cta = brief['CTA'] || 'DM us to start your project';\nconst location = brief['Location Focus'] || 'Riviera Maya';\nconst audience = brief['Audience'] || 'foreign investors';\n\nconst systemPrompt = `You are a social media expert for RECREA Construcción, a luxury construction company with 18 years of experience and 196 completed projects in the Riviera Maya, Mexico. 85% of their clients are foreign investors.\n\nYou write Instagram captions that:\n- Start with a powerful hook in the first line (no hashtags in the hook)\n- Are genuine, trustworthy, and professional\n- Include specific numbers and facts when relevant\n- Drive DM engagement and leads\n- Feel human, not corporate\n- End with a clear CTA\n\nAlways include 20-25 relevant hashtags grouped at the end, separated by a blank line.`;\n\nconst userPrompt = `Write an Instagram ${postType} caption for RECREA Construcción about: ${topic}\n\nTone: ${tone}\nLocation focus: ${location}\nTarget audience: ${audience}\nCTA to include: ${cta}\nRow ID: ${brief['Row ID'] || 'N/A'}\n\nReturn ONLY the caption text + hashtags. No explanations, no \"Here's your caption:\", nothing else.`;\n\nreturn [\n  {\n    json: {\n      rowId: brief['Row ID'],\n      sheetRow: brief['Row Number'],\n      topic: topic,\n      postType: postType,\n      systemPrompt: systemPrompt,\n      userPrompt: userPrompt,\n      originalBrief: brief\n    }\n  }\n];"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000003",
+      "name": "Code: Build Claude Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": []
+        },
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-sonnet-4-6\",\n  \"max_tokens\": 1024,\n  \"system\": \"{{ $json.systemPrompt }}\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json.userPrompt }}\"\n    }\n  ]\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000004",
+      "name": "HTTP: Call Claude API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_ANTHROPIC_CRED_ID",
+          "name": "Anthropic API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse Claude's response and prepare data for Google Sheets\nconst claudeResponse = $input.first().json;\nconst prevData = $('Code: Build Claude Prompt').first().json;\n\nconst caption = claudeResponse.content[0].text;\n\n// Split caption from hashtags\nconst parts = caption.split('\\n\\n');\nconst hashtagLine = parts.find(p => p.trim().startsWith('#'));\nconst captionOnly = parts.filter(p => !p.trim().startsWith('#')).join('\\n\\n').trim();\nconst hashtags = hashtagLine ? hashtagLine.trim() : '';\n\n// Count hashtags\nconst hashtagCount = (hashtags.match(/#/g) || []).length;\n\n// Extract first line as hook\nconst hook = captionOnly.split('\\n')[0];\n\nconst now = new Date();\nconst dateStr = now.toISOString().split('T')[0];\nconst timeStr = now.toTimeString().split(' ')[0];\n\nreturn [\n  {\n    json: {\n      rowId: prevData.rowId,\n      sheetRow: prevData.sheetRow,\n      topic: prevData.topic,\n      postType: prevData.postType,\n      captionFull: caption,\n      captionOnly: captionOnly,\n      hashtags: hashtags,\n      hashtagCount: hashtagCount,\n      hook: hook,\n      charCount: caption.length,\n      generatedDate: dateStr,\n      generatedTime: timeStr,\n      status: 'review_needed',\n      inputTokens: claudeResponse.usage?.input_tokens || 0,\n      outputTokens: claudeResponse.usage?.output_tokens || 0\n    }\n  }\n];"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000005",
+      "name": "Code: Parse Claude Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Content Queue",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Row ID": "={{ $json.rowId }}",
+            "Topic": "={{ $json.topic }}",
+            "Post Type": "={{ $json.postType }}",
+            "Hook": "={{ $json.hook }}",
+            "Caption (Full)": "={{ $json.captionFull }}",
+            "Caption Only": "={{ $json.captionOnly }}",
+            "Hashtags": "={{ $json.hashtags }}",
+            "Hashtag Count": "={{ $json.hashtagCount }}",
+            "Char Count": "={{ $json.charCount }}",
+            "Generated Date": "={{ $json.generatedDate }}",
+            "Generated Time": "={{ $json.generatedTime }}",
+            "Status": "review_needed",
+            "Approved By": "",
+            "Scheduled Date": "",
+            "Scheduled Time": "",
+            "Instagram Post ID": "",
+            "Posted At": "",
+            "Likes": "",
+            "Comments": "",
+            "Reach": "",
+            "Input Tokens": "={{ $json.inputTokens }}",
+            "Output Tokens": "={{ $json.outputTokens }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000006",
+      "name": "Sheets: Save to Content Queue",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [1340, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Content Briefs",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Row ID": "={{ $('Code: Parse Claude Response').first().json.rowId }}",
+            "Status": "generated"
+          }
+        },
+        "options": {
+          "locationDefine": {
+            "values": {
+              "rangeDefine": "row",
+              "rowNumber": "={{ $('Code: Parse Claude Response').first().json.sheetRow }}"
+            }
+          }
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000007",
+      "name": "Sheets: Mark Brief as Done",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [1560, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=🤖 *RECREA Content Farm*\n\n✅ Nueva caption generada y lista para revisión:\n\n*Topic:* {{ $('Code: Parse Claude Response').first().json.topic }}\n*Type:* {{ $('Code: Parse Claude Response').first().json.postType }}\n*Hook:* {{ $('Code: Parse Claude Response').first().json.hook }}\n*Chars:* {{ $('Code: Parse Claude Response').first().json.charCount }}\n*Hashtags:* {{ $('Code: Parse Claude Response').first().json.hashtagCount }}\n\n👉 Revisa y aprueba en Google Sheets → Content Queue\n\nCambia el status a *approved* cuando esté lista para publicar.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000008",
+      "name": "Telegram: Notify for Review",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1780, 300],
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CRED_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule: Mon/Wed/Fri 7am": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Read Next Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Read Next Brief": {
+      "main": [
+        [
+          {
+            "node": "Code: Build Claude Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Build Claude Prompt": {
+      "main": [
+        [
+          {
+            "node": "HTTP: Call Claude API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP: Call Claude API": {
+      "main": [
+        [
+          {
+            "node": "Code: Parse Claude Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Parse Claude Response": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Save to Content Queue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Save to Content Queue": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Mark Brief as Done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Mark Brief as Done": {
+      "main": [
+        [
+          {
+            "node": "Telegram: Notify for Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "errorWorkflow": "RECREA — Error Handler"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": ["RECREA", "content-farm", "instagram"]
+}

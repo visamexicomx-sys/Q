@@ -1,0 +1,466 @@
+{
+  "name": "RECREA — 4. Daily Engagement Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10,
+              "triggerAtMinute": 30,
+              "weekdays": [1, 2, 3, 4, 5]
+            }
+          ]
+        }
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000001",
+      "name": "Schedule: Daily 10:30am (Weekdays)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Define the target hashtags to engage with today\n// Rotates through sets daily to avoid spam detection\nconst allHashtagSets = [\n  // Set A — Real estate investors\n  ['TulumRealEstate', 'RivieraMayaInvestment', 'MexicoRealEstate', 'InvestInMexico', 'ForeignInvestorMexico'],\n  // Set B — Expats and lifestyle\n  ['ExpatMexico', 'LivingInMexico', 'MexicoLiving', 'ExpatLife', 'MovingToMexico'],\n  // Set C — Luxury construction\n  ['LuxuryVilla', 'LuxuryConstruction', 'VillaConstruction', 'LuxuryHomes', 'CustomHome'],\n  // Set D — Tulum and Playa\n  ['Tulum', 'TulumMexico', 'PlayaDelCarmen', 'TulumVilla', 'TulumStyle'],\n  // Set E — General construction\n  ['ConstructionMexico', 'BuildInMexico', 'MexicoConstruction', 'ContractorMexico', 'ConstructionLife']\n];\n\n// Rotate set based on day of week (0=Sun, 1=Mon, ...)\nconst today = new Date();\nconst dayOfWeek = today.getDay();\nconst setIndex = dayOfWeek % allHashtagSets.length;\nconst todayHashtags = allHashtagSets[setIndex];\n\nconst dateStr = today.toISOString().split('T')[0];\n\nreturn todayHashtags.map(hashtag => ({\n  json: {\n    hashtag: hashtag,\n    date: dateStr,\n    dayIndex: dayOfWeek\n  }\n}));"
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000002",
+      "name": "Code: Select Today's Hashtags",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://graph.facebook.com/v19.0/ig_hashtag_search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "user_id",
+              "value": "YOUR_IG_USER_ID"
+            },
+            {
+              "name": "q",
+              "value": "={{ $json.hashtag }}"
+            },
+            {
+              "name": "access_token",
+              "value": "YOUR_INSTAGRAM_ACCESS_TOKEN"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000003",
+      "name": "HTTP: Search Hashtag ID",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get recent posts from the hashtag\nconst searchResult = $input.first().json;\nconst prevData = $('Code: Select Today\\'s Hashtags').first().json;\n\nconst hashtagId = searchResult.data?.[0]?.id;\nif (!hashtagId) {\n  return [{ json: { skip: true, hashtag: prevData.hashtag, reason: 'Hashtag ID not found' } }];\n}\n\nreturn [\n  {\n    json: {\n      hashtagId: hashtagId,\n      hashtag: prevData.hashtag,\n      date: prevData.date\n    }\n  }\n];"
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000004",
+      "name": "Code: Extract Hashtag ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://graph.facebook.com/v19.0/{{ $json.hashtagId }}/recent_media",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "user_id",
+              "value": "YOUR_IG_USER_ID"
+            },
+            {
+              "name": "fields",
+              "value": "id,media_type,timestamp,like_count,comments_count"
+            },
+            {
+              "name": "limit",
+              "value": "10"
+            },
+            {
+              "name": "access_token",
+              "value": "YOUR_INSTAGRAM_ACCESS_TOKEN"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000005",
+      "name": "HTTP: Get Recent Posts in Hashtag",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Select top posts to engage with (not too many — avoid spam)\nconst response = $input.first().json;\nconst hashtagData = $('Code: Extract Hashtag ID').first().json;\n\nconst posts = response.data || [];\nif (posts.length === 0) {\n  return [{ json: { skip: true, hashtag: hashtagData.hashtag, reason: 'No posts found' } }];\n}\n\n// Take top 3 most engaged posts (avoid liking everything = spam)\nconst sorted = posts\n  .filter(p => p.media_type === 'IMAGE' || p.media_type === 'CAROUSEL_ALBUM')\n  .sort((a, b) => (b.like_count || 0) - (a.like_count || 0))\n  .slice(0, 3);\n\nreturn sorted.map(post => ({\n  json: {\n    postId: post.id,\n    hashtag: hashtagData.hashtag,\n    date: hashtagData.date,\n    likeCount: post.like_count,\n    commentsCount: post.comments_count,\n    mediaType: post.media_type\n  }\n}));"
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000006",
+      "name": "Code: Select Posts to Engage",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v19.0/{{ $json.postId }}/likes",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "YOUR_INSTAGRAM_ACCESS_TOKEN"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 10000,
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000007",
+      "name": "HTTP: Like Post",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 180]
+    },
+    {
+      "parameters": {
+        "amount": 5,
+        "unit": "seconds"
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000008",
+      "name": "Wait: 5s between actions",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1780, 180],
+      "webhookId": "wait-webhook-engagement"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Select a contextual comment from the library\nconst post = $('Code: Select Posts to Engage').first().json;\n\n// Comment library — authentic, non-spammy\nconst comments = [\n  '🔥 Amazing space! The Riviera Maya never disappoints.',\n  '🌴 Beautiful! This is exactly why we love building in Mexico.',\n  '✨ Stunning. The quality of construction here keeps improving year by year!',\n  '🏗️ Love seeing great projects in the Riviera Maya! This is what it\\'s all about.',\n  '🏡 Incredible. The Riviera Maya is truly a paradise for builders and investors.',\n  '💎 This level of quality is what the Riviera Maya is known for. Beautiful work!',\n  '🌊 Love this! The Caribbean light makes every space look incredible.',\n  '🏗️ Great project! The Riviera Maya construction scene is really thriving right now.',\n  '✅ This is what 18 years of building experience looks like. Stunning results!',\n  '🌴 Beautiful space! Tulum\\' architecture is one of a kind.'\n];\n\n// Pick a random comment\nconst randomComment = comments[Math.floor(Math.random() * comments.length)];\n\nreturn [\n  {\n    json: {\n      postId: post.postId,\n      hashtag: post.hashtag,\n      date: post.date,\n      comment: randomComment\n    }\n  }\n];"
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000009",
+      "name": "Code: Select Comment",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2000, 180]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v19.0/{{ $json.postId }}/comments",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.comment }}"
+            },
+            {
+              "name": "access_token",
+              "value": "YOUR_INSTAGRAM_ACCESS_TOKEN"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000010",
+      "name": "HTTP: Post Comment",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2220, 180]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Engagement Log",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $('Code: Select Comment').first().json.date }}",
+            "Hashtag": "={{ $('Code: Select Comment').first().json.hashtag }}",
+            "Post ID": "={{ $('Code: Select Comment').first().json.postId }}",
+            "Action": "like + comment",
+            "Comment Text": "={{ $('Code: Select Comment').first().json.comment }}",
+            "Timestamp": "={{ new Date().toISOString() }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000011",
+      "name": "Sheets: Log Engagement",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [2440, 180],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 18,
+              "triggerAtMinute": 0,
+              "weekdays": [1, 2, 3, 4, 5]
+            }
+          ]
+        }
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000012",
+      "name": "Schedule: Evening Summary (6pm)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 560]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Engagement Log",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Date",
+              "lookupValue": "={{ new Date().toISOString().split('T')[0] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000013",
+      "name": "Sheets: Read Today's Engagement",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [460, 560],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_CRED_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Summarize today's engagement activity\nconst rows = $input.all().map(i => i.json);\nconst today = new Date().toISOString().split('T')[0];\n\nconst totalActions = rows.length;\nconst hashtagsUsed = [...new Set(rows.map(r => r.Hashtag))].join(', ');\nconst commentsPosted = rows.filter(r => r['Comment Text']).length;\n\nreturn [\n  {\n    json: {\n      date: today,\n      totalActions,\n      hashtagsUsed,\n      commentsPosted,\n      likesGiven: totalActions\n    }\n  }\n];"
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000014",
+      "name": "Code: Build Daily Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 560]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=📊 *RECREA — Reporte de Engagement Diario*\n📅 {{ $json.date }}\n\n✅ Likes dados: *{{ $json.likesGiven }}*\n💬 Comentarios: *{{ $json.commentsPosted }}*\n#️⃣ Hashtags trabajados: {{ $json.hashtagsUsed }}\n\n🤖 El bot de engagement completó su trabajo de hoy.\n¡El algoritmo de Instagram nos favorece! 📈",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "d4e5f6a7-0004-0004-0004-000000000015",
+      "name": "Telegram: Daily Summary",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [900, 560],
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CRED_ID",
+          "name": "Telegram Bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule: Daily 10:30am (Weekdays)": {
+      "main": [
+        [
+          {
+            "node": "Code: Select Today's Hashtags",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Select Today's Hashtags": {
+      "main": [
+        [
+          {
+            "node": "HTTP: Search Hashtag ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP: Search Hashtag ID": {
+      "main": [
+        [
+          {
+            "node": "Code: Extract Hashtag ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Extract Hashtag ID": {
+      "main": [
+        [
+          {
+            "node": "HTTP: Get Recent Posts in Hashtag",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP: Get Recent Posts in Hashtag": {
+      "main": [
+        [
+          {
+            "node": "Code: Select Posts to Engage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Select Posts to Engage": {
+      "main": [
+        [
+          {
+            "node": "HTTP: Like Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP: Like Post": {
+      "main": [
+        [
+          {
+            "node": "Wait: 5s between actions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait: 5s between actions": {
+      "main": [
+        [
+          {
+            "node": "Code: Select Comment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Select Comment": {
+      "main": [
+        [
+          {
+            "node": "HTTP: Post Comment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP: Post Comment": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Log Engagement",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule: Evening Summary (6pm)": {
+      "main": [
+        [
+          {
+            "node": "Sheets: Read Today's Engagement",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets: Read Today's Engagement": {
+      "main": [
+        [
+          {
+            "node": "Code: Build Daily Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code: Build Daily Summary": {
+      "main": [
+        [
+          {
+            "node": "Telegram: Daily Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": ["RECREA", "content-farm", "instagram", "engagement"]
+}
