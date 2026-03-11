@@ -96,6 +96,9 @@ function showBanner(): void {
   console.log(
     `  ${DIM}$${RESET} ${TEXT}npx skills experimental_sync${RESET}    ${DIM}Sync skills from node_modules${RESET}`
   );
+  console.log(
+    `  ${DIM}$${RESET} ${TEXT}npx skills dev ${DIM}[port]${RESET}           ${DIM}Open the skills dashboard${RESET}`
+  );
   console.log();
   console.log(`${DIM}try:${RESET} npx skills add vercel-labs/agent-skills`);
   console.log();
@@ -123,6 +126,7 @@ ${BOLD}Project:${RESET}
   experimental_install Restore skills from skills-lock.json
   init [name]          Initialize a skill (creates <name>/SKILL.md or ./SKILL.md)
   experimental_sync    Sync skills from node_modules into agent directories
+  dev [port]           Open the skills dashboard (default port: 3000)
 
 ${BOLD}Add Options:${RESET}
   -g, --global           Install skill globally (user-level) instead of project-level
@@ -694,6 +698,23 @@ async function main(): Promise<void> {
     case '-v':
       console.log(VERSION);
       break;
+
+    case 'dev': {
+      const port = restArgs.find((a) => /^\d+$/.test(a)) ?? '3000';
+      const dashboardDir = join(__dirname, '..', 'dashboard');
+      console.log(`${TEXT}Skills Dashboard${RESET} ${DIM}→ http://localhost:${port}${RESET}`);
+      console.log(`${DIM}Press Ctrl+C to stop${RESET}`);
+      console.log();
+      const result = spawnSync('npx', ['--yes', 'serve', dashboardDir, '-p', port], {
+        stdio: 'inherit',
+        shell: process.platform === 'win32',
+      });
+      if (result.error) {
+        console.error(`${DIM}Failed to start server: ${result.error.message}${RESET}`);
+        process.exit(1);
+      }
+      break;
+    }
 
     default:
       console.log(`Unknown command: ${command}`);
