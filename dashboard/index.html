@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Dashboard</title>
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #16161f;
+      --bg-card-hover: #1c1c28;
+      --bg-badge: #1e1e2a;
+      --border: #2a2a3a;
+      --border-light: #33334a;
+      --text-primary: #e8e8f0;
+      --text-secondary: #8888a0;
+      --text-muted: #5c5c74;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --accent-glow: rgba(99,102,241,0.15);
+      --green: #22c55e;
+      --green-bg: rgba(34,197,94,0.1);
+      --green-border: rgba(34,197,94,0.25);
+      --yellow: #eab308;
+      --yellow-bg: rgba(234,179,8,0.1);
+      --yellow-border: rgba(234,179,8,0.25);
+      --red: #ef4444;
+      --red-bg: rgba(239,68,68,0.1);
+      --red-border: rgba(239,68,68,0.25);
+      --blue: #3b82f6;
+      --blue-bg: rgba(59,130,246,0.1);
+      --orange: #f97316;
+      --cyan: #06b6d4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- Header ---- */
+    header {
+      padding: 32px 0 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--accent), #a855f7);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .logo-text h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      border-color: var(--border-light);
+      color: var(--text-primary);
+      background: var(--bg-card-hover);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+      color: #fff;
+    }
+
+    .version-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--bg-badge);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    /* ---- Stats Bar ---- */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 24px 0;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+    }
+
+    .stat-card.purple::before { background: linear-gradient(90deg, var(--accent), #a855f7); }
+    .stat-card.green::before { background: linear-gradient(90deg, var(--green), #4ade80); }
+    .stat-card.blue::before { background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+    .stat-card.orange::before { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .stat-card.purple .stat-value { color: var(--accent-light); }
+    .stat-card.green .stat-value { color: var(--green); }
+    .stat-card.blue .stat-value { color: var(--blue); }
+    .stat-card.orange .stat-value { color: var(--orange); }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ---- Search & Filters ---- */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      padding: 16px 0 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-box input:focus { border-color: var(--accent); }
+
+    .search-box svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover { color: var(--text-secondary); }
+    .filter-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ---- Agent Grid ---- */
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .count {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: var(--bg-badge);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      padding-bottom: 32px;
+    }
+
+    .agent-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agent-card:hover {
+      border-color: var(--border-light);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+
+    .agent-card.detected {
+      border-color: var(--green-border);
+    }
+
+    .agent-card.detected:hover {
+      border-color: var(--green);
+    }
+
+    .agent-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .agent-name-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .agent-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .agent-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .agent-id {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .status-dot.detected {
+      background: var(--green);
+      box-shadow: 0 0 8px rgba(34,197,94,0.4);
+    }
+
+    .status-dot.not-detected {
+      background: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    .agent-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--bg-badge);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    .meta-tag.universal {
+      border-color: var(--accent);
+      color: var(--accent-light);
+      background: var(--accent-glow);
+    }
+
+    .meta-tag.custom {
+      border-color: var(--yellow-border);
+      color: var(--yellow);
+      background: var(--yellow-bg);
+    }
+
+    /* ---- Skills Section ---- */
+    .skills-section {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .skill-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+
+    .skill-item:hover {
+      border-color: var(--border-light);
+      background: var(--bg-card-hover);
+    }
+
+    .skill-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--blue-bg);
+      border: 1px solid rgba(59,130,246,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .skill-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .skill-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ---- Command Palette ---- */
+    .cmd-section {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .cmd-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 10px;
+    }
+
+    .cmd-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .cmd-item:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+
+    .cmd-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(99,102,241,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .cmd-text code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--accent-light);
+    }
+
+    .cmd-text p {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ---- Animations ---- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .agent-card { animation: fadeIn 0.3s ease forwards; }
+
+    .agents-grid .agent-card:nth-child(1) { animation-delay: 0.02s; }
+    .agents-grid .agent-card:nth-child(2) { animation-delay: 0.04s; }
+    .agents-grid .agent-card:nth-child(3) { animation-delay: 0.06s; }
+    .agents-grid .agent-card:nth-child(4) { animation-delay: 0.08s; }
+    .agents-grid .agent-card:nth-child(5) { animation-delay: 0.10s; }
+    .agents-grid .agent-card:nth-child(6) { animation-delay: 0.12s; }
+    .agents-grid .agent-card:nth-child(7) { animation-delay: 0.14s; }
+    .agents-grid .agent-card:nth-child(8) { animation-delay: 0.16s; }
+
+    /* ---- Loading Pulse ---- */
+    .pulse {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse-anim 2s infinite;
+    }
+
+    @keyframes pulse-anim {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 640px) {
+      .agents-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .header-top { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ---- Scrollbar ---- */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
+
+    /* ---- Toast ---- */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--green-border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 13px;
+      color: var(--green);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 100;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Detail Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 480px;
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 28px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .modal h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .modal .modal-id {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+
+    .modal-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .modal-row .label { color: var(--text-muted); }
+    .modal-row .value { color: var(--text-primary); font-family: monospace; font-size: 12px; text-align: right; max-width: 260px; word-break: break-all; }
+
+    .modal-close {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <div class="logo-area">
+          <div class="logo-icon">S</div>
+          <div class="logo-text">
+            <h1>Skills Dashboard</h1>
+            <span>The open agent skills ecosystem</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <span class="version-badge" id="version">v1.4.4</span>
+          <button class="btn" onclick="refreshData()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+            Refresh
+          </button>
+          <button class="btn btn-primary" onclick="copyCmd('npx skills find')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Find Skills
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-card purple">
+        <div class="stat-label">Total Agents</div>
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-sub">supported platforms</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Detected</div>
+        <div class="stat-value" id="stat-detected">
+          <span class="pulse"></span>&nbsp;0
+        </div>
+        <div class="stat-sub">installed locally</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-label">Universal</div>
+        <div class="stat-value" id="stat-universal">0</div>
+        <div class="stat-sub">.agents/skills compatible</div>
+      </div>
+      <div class="stat-card orange">
+        <div class="stat-label">Custom Path</div>
+        <div class="stat-value" id="stat-custom">0</div>
+        <div class="stat-sub">agent-specific directories</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search" placeholder="Search agents..." oninput="filterAgents()">
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All</button>
+        <button class="filter-btn" data-filter="detected" onclick="setFilter('detected', this)">Detected</button>
+        <button class="filter-btn" data-filter="universal" onclick="setFilter('universal', this)">Universal</button>
+        <button class="filter-btn" data-filter="custom" onclick="setFilter('custom', this)">Custom</button>
+      </div>
+    </div>
+
+    <!-- Agents -->
+    <div class="section-title">
+      Agents <span class="count" id="shown-count">0</span>
+    </div>
+    <div class="agents-grid" id="agents-grid"></div>
+
+    <!-- Built-in Skills -->
+    <div class="skills-section">
+      <div class="section-title">
+        Built-in Skills <span class="count">1</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info">
+          <div class="skill-icon-box">&#x1F50D;</div>
+          <div>
+            <div class="skill-name">find-skills</div>
+            <div class="skill-desc">Teaches agents how to discover and install skills from the ecosystem</div>
+          </div>
+        </div>
+        <div class="meta-tag">built-in</div>
+      </div>
+    </div>
+
+    <!-- Quick Commands -->
+    <div class="cmd-section">
+      <div class="section-title">Quick Commands</div>
+      <div class="cmd-grid">
+        <div class="cmd-item" onclick="copyCmd('npx skills add vercel-labs/agent-skills')">
+          <div class="cmd-icon">+</div>
+          <div class="cmd-text">
+            <code>npx skills add vercel-labs/agent-skills</code>
+            <p>Install the official agent skills pack</p>
+          </div>
+        </div>
+        <div class="cmd-item" onclick="copyCmd('npx skills list')">
+          <div class="cmd-icon">&#x2630;</div>
+          <div class="cmd-text">
+            <code>npx skills list</code>
+            <p>List all installed skills</p>
+          </div>
+        </div>
+        <div class="cmd-item" onclick="copyCmd('npx skills find')">
+          <div class="cmd-icon">&#x26A1;</div>
+          <div class="cmd-text">
+            <code>npx skills find</code>
+            <p>Search and discover new skills</p>
+          </div>
+        </div>
+        <div class="cmd-item" onclick="copyCmd('npx skills check')">
+          <div class="cmd-icon">&#x2191;</div>
+          <div class="cmd-text">
+            <code>npx skills check</code>
+            <p>Check for available updates</p>
+          </div>
+        </div>
+        <div class="cmd-item" onclick="copyCmd('npx skills update')">
+          <div class="cmd-icon">&#x21BB;</div>
+          <div class="cmd-text">
+            <code>npx skills update</code>
+            <p>Update all skills to latest</p>
+          </div>
+        </div>
+        <div class="cmd-item" onclick="copyCmd('npx skills init my-skill')">
+          <div class="cmd-icon">&#x2726;</div>
+          <div class="cmd-text">
+            <code>npx skills init my-skill</code>
+            <p>Create a new skill template</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Skills CLI &mdash; The open agent skills ecosystem &mdash;
+      <a href="https://skills.sh/" target="_blank">skills.sh</a> &middot;
+      <a href="https://github.com/vercel-labs/skills" target="_blank">GitHub</a>
+    </footer>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <!-- Detail Modal -->
+  <div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
+    <div class="modal" id="modal-content"></div>
+  </div>
+
+  <script>
+    // ---- Agent Data (generated from agents.ts) ----
+    const AGENTS = [
+      { id: 'amp', name: 'Amp', skillsDir: '.agents/skills', globalDir: '~/.config/agents/skills', detectPath: '~/.config/amp' },
+      { id: 'antigravity', name: 'Antigravity', skillsDir: '.agent/skills', globalDir: '~/.gemini/antigravity/skills', detectPath: '~/.gemini/antigravity' },
+      { id: 'augment', name: 'Augment', skillsDir: '.augment/skills', globalDir: '~/.augment/skills', detectPath: '~/.augment' },
+      { id: 'claude-code', name: 'Claude Code', skillsDir: '.claude/skills', globalDir: '~/.claude/skills', detectPath: '~/.claude' },
+      { id: 'openclaw', name: 'OpenClaw', skillsDir: 'skills', globalDir: '~/.openclaw/skills', detectPath: '~/.openclaw' },
+      { id: 'cline', name: 'Cline', skillsDir: '.agents/skills', globalDir: '~/.agents/skills', detectPath: '~/.cline' },
+      { id: 'codebuddy', name: 'CodeBuddy', skillsDir: '.codebuddy/skills', globalDir: '~/.codebuddy/skills', detectPath: '~/.codebuddy' },
+      { id: 'codex', name: 'Codex', skillsDir: '.agents/skills', globalDir: '~/.codex/skills', detectPath: '~/.codex' },
+      { id: 'command-code', name: 'Command Code', skillsDir: '.commandcode/skills', globalDir: '~/.commandcode/skills', detectPath: '~/.commandcode' },
+      { id: 'continue', name: 'Continue', skillsDir: '.continue/skills', globalDir: '~/.continue/skills', detectPath: '~/.continue' },
+      { id: 'cortex', name: 'Cortex Code', skillsDir: '.cortex/skills', globalDir: '~/.snowflake/cortex/skills', detectPath: '~/.snowflake/cortex' },
+      { id: 'crush', name: 'Crush', skillsDir: '.crush/skills', globalDir: '~/.config/crush/skills', detectPath: '~/.config/crush' },
+      { id: 'cursor', name: 'Cursor', skillsDir: '.agents/skills', globalDir: '~/.cursor/skills', detectPath: '~/.cursor' },
+      { id: 'droid', name: 'Droid', skillsDir: '.factory/skills', globalDir: '~/.factory/skills', detectPath: '~/.factory' },
+      { id: 'gemini-cli', name: 'Gemini CLI', skillsDir: '.agents/skills', globalDir: '~/.gemini/skills', detectPath: '~/.gemini' },
+      { id: 'github-copilot', name: 'GitHub Copilot', skillsDir: '.agents/skills', globalDir: '~/.copilot/skills', detectPath: '~/.copilot' },
+      { id: 'goose', name: 'Goose', skillsDir: '.goose/skills', globalDir: '~/.config/goose/skills', detectPath: '~/.config/goose' },
+      { id: 'junie', name: 'Junie', skillsDir: '.junie/skills', globalDir: '~/.junie/skills', detectPath: '~/.junie' },
+      { id: 'iflow-cli', name: 'iFlow CLI', skillsDir: '.iflow/skills', globalDir: '~/.iflow/skills', detectPath: '~/.iflow' },
+      { id: 'kilo', name: 'Kilo Code', skillsDir: '.kilocode/skills', globalDir: '~/.kilocode/skills', detectPath: '~/.kilocode' },
+      { id: 'kimi-cli', name: 'Kimi Code CLI', skillsDir: '.agents/skills', globalDir: '~/.config/agents/skills', detectPath: '~/.kimi' },
+      { id: 'kiro-cli', name: 'Kiro CLI', skillsDir: '.kiro/skills', globalDir: '~/.kiro/skills', detectPath: '~/.kiro' },
+      { id: 'kode', name: 'Kode', skillsDir: '.kode/skills', globalDir: '~/.kode/skills', detectPath: '~/.kode' },
+      { id: 'mcpjam', name: 'MCPJam', skillsDir: '.mcpjam/skills', globalDir: '~/.mcpjam/skills', detectPath: '~/.mcpjam' },
+      { id: 'mistral-vibe', name: 'Mistral Vibe', skillsDir: '.vibe/skills', globalDir: '~/.vibe/skills', detectPath: '~/.vibe' },
+      { id: 'mux', name: 'Mux', skillsDir: '.mux/skills', globalDir: '~/.mux/skills', detectPath: '~/.mux' },
+      { id: 'opencode', name: 'OpenCode', skillsDir: '.agents/skills', globalDir: '~/.config/opencode/skills', detectPath: '~/.config/opencode' },
+      { id: 'openhands', name: 'OpenHands', skillsDir: '.openhands/skills', globalDir: '~/.openhands/skills', detectPath: '~/.openhands' },
+      { id: 'pi', name: 'Pi', skillsDir: '.pi/skills', globalDir: '~/.pi/agent/skills', detectPath: '~/.pi/agent' },
+      { id: 'qoder', name: 'Qoder', skillsDir: '.qoder/skills', globalDir: '~/.qoder/skills', detectPath: '~/.qoder' },
+      { id: 'qwen-code', name: 'Qwen Code', skillsDir: '.qwen/skills', globalDir: '~/.qwen/skills', detectPath: '~/.qwen' },
+      { id: 'replit', name: 'Replit', skillsDir: '.agents/skills', globalDir: '~/.config/agents/skills', detectPath: '.replit' },
+      { id: 'roo', name: 'Roo Code', skillsDir: '.roo/skills', globalDir: '~/.roo/skills', detectPath: '~/.roo' },
+      { id: 'trae', name: 'Trae', skillsDir: '.trae/skills', globalDir: '~/.trae/skills', detectPath: '~/.trae' },
+      { id: 'trae-cn', name: 'Trae CN', skillsDir: '.trae/skills', globalDir: '~/.trae-cn/skills', detectPath: '~/.trae-cn' },
+      { id: 'windsurf', name: 'Windsurf', skillsDir: '.windsurf/skills', globalDir: '~/.codeium/windsurf/skills', detectPath: '~/.codeium/windsurf' },
+      { id: 'zencoder', name: 'Zencoder', skillsDir: '.zencoder/skills', globalDir: '~/.zencoder/skills', detectPath: '~/.zencoder' },
+      { id: 'neovate', name: 'Neovate', skillsDir: '.neovate/skills', globalDir: '~/.neovate/skills', detectPath: '~/.neovate' },
+      { id: 'pochi', name: 'Pochi', skillsDir: '.pochi/skills', globalDir: '~/.pochi/skills', detectPath: '~/.pochi' },
+      { id: 'adal', name: 'AdaL', skillsDir: '.adal/skills', globalDir: '~/.adal/skills', detectPath: '~/.adal' },
+      { id: 'universal', name: 'Universal', skillsDir: '.agents/skills', globalDir: '~/.config/agents/skills', detectPath: null },
+    ];
+
+    // Color palette for agent icons
+    const COLORS = [
+      '#6366f1','#8b5cf6','#a855f7','#d946ef','#ec4899','#f43f5e',
+      '#ef4444','#f97316','#eab308','#84cc16','#22c55e','#14b8a6',
+      '#06b6d4','#3b82f6','#2563eb','#7c3aed','#c026d3','#e11d48',
+      '#dc2626','#ea580c','#ca8a04','#65a30d','#16a34a','#0d9488',
+      '#0891b2','#2563eb','#4f46e5','#9333ea','#c026d3','#be123c',
+    ];
+
+    // Simulated detection (in a real app, this would call the CLI)
+    const DETECTED_IDS = new Set();
+    // Detect based on common local presence
+    const KNOWN_DETECTED = ['claude-code'];
+    KNOWN_DETECTED.forEach(id => DETECTED_IDS.add(id));
+
+    let currentFilter = 'all';
+
+    function isUniversal(agent) {
+      return agent.skillsDir === '.agents/skills';
+    }
+
+    function getColor(id) {
+      let hash = 0;
+      for (let i = 0; i < id.length; i++) hash = id.charCodeAt(i) + ((hash << 5) - hash);
+      return COLORS[Math.abs(hash) % COLORS.length];
+    }
+
+    function getInitials(name) {
+      return name.split(/[\s-]+/).map(w => w[0]).join('').toUpperCase().slice(0, 2);
+    }
+
+    function renderAgents() {
+      const grid = document.getElementById('agents-grid');
+      const search = document.getElementById('search').value.toLowerCase();
+
+      let filtered = AGENTS.filter(a => {
+        const matchSearch = a.name.toLowerCase().includes(search) || a.id.toLowerCase().includes(search);
+        if (!matchSearch) return false;
+        if (currentFilter === 'detected') return DETECTED_IDS.has(a.id);
+        if (currentFilter === 'universal') return isUniversal(a);
+        if (currentFilter === 'custom') return !isUniversal(a);
+        return true;
+      });
+
+      // Sort: detected first, then alphabetical
+      filtered.sort((a, b) => {
+        const aD = DETECTED_IDS.has(a.id) ? 0 : 1;
+        const bD = DETECTED_IDS.has(b.id) ? 0 : 1;
+        if (aD !== bD) return aD - bD;
+        return a.name.localeCompare(b.name);
+      });
+
+      grid.innerHTML = filtered.map(agent => {
+        const detected = DETECTED_IDS.has(agent.id);
+        const universal = isUniversal(agent);
+        const color = getColor(agent.id);
+        return `
+          <div class="agent-card ${detected ? 'detected' : ''}" onclick="showDetail('${agent.id}')">
+            <div class="agent-header">
+              <div class="agent-name-area">
+                <div class="agent-icon" style="background:${color}">${getInitials(agent.name)}</div>
+                <div>
+                  <div class="agent-name">${agent.name}</div>
+                  <div class="agent-id">${agent.id}</div>
+                </div>
+              </div>
+              <div class="status-dot ${detected ? 'detected' : 'not-detected'}"></div>
+            </div>
+            <div class="agent-meta">
+              <span class="meta-tag ${universal ? 'universal' : 'custom'}">${universal ? 'universal' : 'custom path'}</span>
+              <span class="meta-tag">${agent.skillsDir}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('shown-count').textContent = filtered.length;
+
+      // Stats
+      const totalAgents = AGENTS.filter(a => a.id !== 'universal').length;
+      const detectedCount = [...DETECTED_IDS].filter(id => AGENTS.find(a => a.id === id)).length;
+      const universalCount = AGENTS.filter(a => isUniversal(a) && a.id !== 'universal' && a.id !== 'replit').length;
+      const customCount = totalAgents - universalCount;
+
+      document.getElementById('stat-total').textContent = totalAgents;
+      document.getElementById('stat-detected').innerHTML = `<span class="pulse"></span>&nbsp;${detectedCount}`;
+      document.getElementById('stat-universal').textContent = universalCount;
+      document.getElementById('stat-custom').textContent = customCount;
+    }
+
+    function filterAgents() { renderAgents(); }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAgents();
+    }
+
+    function showDetail(id) {
+      const agent = AGENTS.find(a => a.id === id);
+      if (!agent) return;
+      const detected = DETECTED_IDS.has(agent.id);
+      const color = getColor(agent.id);
+
+      document.getElementById('modal-content').innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <div class="agent-icon" style="background:${color};width:44px;height:44px;font-size:18px;border-radius:10px">${getInitials(agent.name)}</div>
+          <div>
+            <h2>${agent.name}</h2>
+            <div class="modal-id">${agent.id}</div>
+          </div>
+        </div>
+        <div class="modal-row"><span class="label">Status</span><span class="value" style="color:${detected ? 'var(--green)' : 'var(--text-muted)'}">${detected ? 'Detected' : 'Not detected'}</span></div>
+        <div class="modal-row"><span class="label">Type</span><span class="value">${isUniversal(agent) ? 'Universal (.agents/skills)' : 'Custom path'}</span></div>
+        <div class="modal-row"><span class="label">Project skills dir</span><span class="value">${agent.skillsDir}</span></div>
+        <div class="modal-row"><span class="label">Global skills dir</span><span class="value">${agent.globalDir}</span></div>
+        <div class="modal-row"><span class="label">Detection path</span><span class="value">${agent.detectPath || 'N/A'}</span></div>
+        <div style="margin-top:20px">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">Install a skill for this agent:</div>
+          <div class="cmd-item" onclick="event.stopPropagation();copyCmd('npx skills add vercel-labs/agent-skills -a ${agent.id}')">
+            <div class="cmd-icon">+</div>
+            <div class="cmd-text">
+              <code>npx skills add vercel-labs/agent-skills -a ${agent.id}</code>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close" onclick="document.getElementById('modal-backdrop').classList.remove('open')">Close</button>
+      `;
+      document.getElementById('modal-backdrop').classList.add('open');
+    }
+
+    function closeModal(e) {
+      if (e.target === e.currentTarget) {
+        document.getElementById('modal-backdrop').classList.remove('open');
+      }
+    }
+
+    function copyCmd(cmd) {
+      navigator.clipboard?.writeText(cmd).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = `Copied: ${cmd}`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      }).catch(() => {});
+    }
+
+    function refreshData() {
+      // Simulate a refresh animation
+      document.getElementById('agents-grid').innerHTML = '';
+      setTimeout(renderAgents, 300);
+    }
+
+    // Keyboard shortcut
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') document.getElementById('modal-backdrop').classList.remove('open');
+      if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        document.getElementById('search').focus();
+      }
+    });
+
+    // Init
+    renderAgents();
+  </script>
+</body>
+</html>
