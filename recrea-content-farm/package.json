@@ -1,0 +1,27 @@
+{
+  "name": "recrea-content-farm",
+  "version": "1.0.0",
+  "description": "RECREA Construcción — Claude-powered Instagram content farm",
+  "type": "module",
+  "scripts": {
+    "generate": "tsx src/farm.ts generate",
+    "publish-post": "tsx src/farm.ts publish",
+    "engage": "tsx src/farm.ts engage",
+    "dm-server": "tsx src/farm.ts dm-server",
+    "run-all": "tsx src/farm.ts all"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "googleapis": "^144.0.0",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
