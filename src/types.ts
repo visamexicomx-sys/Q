@@ -39,6 +39,7 @@ export type AgentType =
   | 'zencoder'
   | 'pochi'
   | 'adal'
+  | 'marketing-agent'
   | 'universal';
 
 export interface Skill {

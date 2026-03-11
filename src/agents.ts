@@ -392,6 +392,15 @@ export const agents: Record<AgentType, AgentConfig> = {
       return existsSync(join(home, '.adal'));
     },
   },
+  'marketing-agent': {
+    name: 'marketing-agent',
+    displayName: 'Marketing Agent',
+    skillsDir: '.marketing-agent/skills',
+    globalSkillsDir: join(home, '.marketing-agent/skills'),
+    detectInstalled: async () => {
+      return existsSync(join(home, '.marketing-agent'));
+    },
+  },
   universal: {
     name: 'universal',
     displayName: 'Universal',
