@@ -31,7 +31,7 @@ export function runCli(
       encoding: 'utf-8',
       cwd,
       stdio: ['pipe', 'pipe', 'pipe'],
-      env: env ? { ...process.env, ...env } : undefined,
+      env: { ...process.env, DISABLE_TELEMETRY: '1', ...env },
       timeout: timeout ?? 30000,
     });
     return { stdout: stripAnsi(output), stderr: '', exitCode: 0 };
@@ -60,6 +60,7 @@ export function runCliWithInput(
       cwd,
       input: input + '\n',
       stdio: ['pipe', 'pipe', 'pipe'],
+      env: { ...process.env, DISABLE_TELEMETRY: '1' },
     });
     return { stdout: stripAnsi(output), stderr: '', exitCode: 0 };
   } catch (error: any) {

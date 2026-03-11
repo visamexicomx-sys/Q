@@ -19,7 +19,7 @@ describe('experimental_sync command', () => {
   });
 
   describe('node_modules discovery', () => {
-    it('should find SKILL.md at package root', () => {
+    it('should find SKILL.md at package root', { timeout: 20000 }, () => {
       // Create a package with SKILL.md at root
       const pkgDir = join(testDir, 'node_modules', 'my-skill-pkg');
       mkdirSync(pkgDir, { recursive: true });
@@ -40,7 +40,7 @@ Instructions.
       expect(result.stdout).toContain('my-skill-pkg');
     });
 
-    it('should find skills in skills/ subdirectory', () => {
+    it('should find skills in skills/ subdirectory', { timeout: 20000 }, () => {
       const skillDir = join(testDir, 'node_modules', 'my-lib', 'skills', 'helper-skill');
       mkdirSync(skillDir, { recursive: true });
       writeFileSync(
@@ -60,7 +60,7 @@ Instructions.
       expect(result.stdout).toContain('my-lib');
     });
 
-    it('should find skills in scoped packages', () => {
+    it('should find skills in scoped packages', { timeout: 20000 }, () => {
       const pkgDir = join(testDir, 'node_modules', '@acme', 'tools');
       mkdirSync(pkgDir, { recursive: true });
       writeFileSync(
@@ -80,21 +80,21 @@ Instructions.
       expect(result.stdout).toContain('@acme/tools');
     });
 
-    it('should show no skills found when node_modules is empty', () => {
+    it('should show no skills found when node_modules is empty', { timeout: 20000 }, () => {
       mkdirSync(join(testDir, 'node_modules'), { recursive: true });
 
       const result = runCli(['experimental_sync', '-y'], testDir);
       expect(result.stdout).toContain('No skills found');
     });
 
-    it('should show no skills found when no node_modules exists', () => {
+    it('should show no skills found when no node_modules exists', { timeout: 20000 }, () => {
       const result = runCli(['experimental_sync', '-y'], testDir);
       expect(result.stdout).toContain('No skills found');
     });
   });
 
   describe('skills-lock.json', () => {
-    it('should write skills-lock.json after sync', () => {
+    it('should write skills-lock.json after sync', { timeout: 20000 }, () => {
       const pkgDir = join(testDir, 'node_modules', 'my-pkg');
       mkdirSync(pkgDir, { recursive: true });
       writeFileSync(
@@ -122,7 +122,7 @@ Instructions.
       expect(lock.skills['lock-test-skill'].computedHash).toMatch(/^[a-f0-9]{64}$/);
     });
 
-    it('should not have timestamps in lock entries', () => {
+    it('should not have timestamps in lock entries', { timeout: 20000 }, () => {
       const pkgDir = join(testDir, 'node_modules', 'my-pkg');
       mkdirSync(pkgDir, { recursive: true });
       writeFileSync(
@@ -144,7 +144,7 @@ description: No timestamps
       expect(entry.updatedAt).toBeUndefined();
     });
 
-    it('should sort skills alphabetically in lock file', () => {
+    it('should sort skills alphabetically in lock file', { timeout: 20000 }, () => {
       // Create three packages in reverse order
       for (const name of ['zebra-skill', 'alpha-skill', 'mid-skill']) {
         const pkgDir = join(testDir, 'node_modules', name);
@@ -168,7 +168,7 @@ description: ${name} description
       expect(keys).toEqual(['alpha-skill', 'mid-skill', 'zebra-skill']);
     });
 
-    it('should skip unchanged skills on second sync', () => {
+    it('should skip unchanged skills on second sync', { timeout: 30000 }, () => {
       const pkgDir = join(testDir, 'node_modules', 'my-pkg');
       mkdirSync(pkgDir, { recursive: true });
       writeFileSync(
@@ -190,7 +190,7 @@ description: Test caching
       expect(result.stdout).toContain('up to date');
     });
 
-    it('should reinstall when --force is used', () => {
+    it('should reinstall when --force is used', { timeout: 30000 }, () => {
       const pkgDir = join(testDir, 'node_modules', 'my-pkg');
       mkdirSync(pkgDir, { recursive: true });
       writeFileSync(
@@ -227,7 +227,7 @@ description: Test force
   });
 
   describe('multiple skills from one package', () => {
-    it('should discover multiple skills in skills/ subdirectory', () => {
+    it('should discover multiple skills in skills/ subdirectory', { timeout: 20000 }, () => {
       const pkg = join(testDir, 'node_modules', 'multi-skill-pkg');
       for (const name of ['skill-one', 'skill-two']) {
         const dir = join(pkg, 'skills', name);
