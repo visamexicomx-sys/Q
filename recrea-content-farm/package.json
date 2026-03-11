@@ -11,10 +11,10 @@
     "run-all": "tsx src/farm.ts all"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0",
+    "@anthropic-ai/sdk": "^0.78.0",
+    "dotenv": "^16.4.5",
     "googleapis": "^144.0.0",
-    "node-fetch": "^3.3.2",
-    "dotenv": "^16.4.5"
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
