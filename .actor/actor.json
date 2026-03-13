@@ -1,0 +1,9 @@
+{
+  "actorSpecification": 1,
+  "name": "recrea-construction-riviera-maya-leads",
+  "title": "Recrea Construction Riviera Maya - Lead Scraper",
+  "description": "Scrapes Google Maps, real estate portals, and business directories to generate construction leads in Riviera Maya (Playa del Carmen, Tulum, Cancun, Bacalar, Puerto Morelos, Akumal).",
+  "version": "1.0.0",
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile"
+}

@@ -1,0 +1,69 @@
+{
+  "title": "Recrea Construction Lead Scraper Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchQueries": {
+      "title": "Search Queries",
+      "type": "array",
+      "description": "List of Google Maps / Google Search queries to scrape leads from.",
+      "default": [
+        "desarrolladores inmobiliarios Riviera Maya",
+        "constructoras Playa del Carmen",
+        "bienes raices Tulum construccion",
+        "real estate developer Cancun",
+        "arquitectos Playa del Carmen",
+        "condominios en construccion Tulum",
+        "fraccionamientos Riviera Maya",
+        "hoteles boutique construccion Riviera Maya",
+        "desarrollo inmobiliario Puerto Morelos",
+        "inversiones inmobiliarias Bacalar"
+      ],
+      "editor": "stringList"
+    },
+    "locations": {
+      "title": "Target Locations",
+      "type": "array",
+      "description": "Locations to focus lead generation in.",
+      "default": [
+        "Playa del Carmen",
+        "Tulum",
+        "Cancun",
+        "Bacalar",
+        "Puerto Morelos",
+        "Akumal",
+        "Holbox",
+        "Cozumel",
+        "Mahahual"
+      ],
+      "editor": "stringList"
+    },
+    "maxLeadsPerSource": {
+      "title": "Max Leads Per Source",
+      "type": "integer",
+      "description": "Maximum number of leads to collect per source/query.",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 500
+    },
+    "sources": {
+      "title": "Sources to Scrape",
+      "type": "array",
+      "description": "Which sources to include in the lead scraping.",
+      "default": ["google_maps", "inmuebles24", "lamudi", "vivanuncios", "propiedades_com"],
+      "editor": "checkboxes",
+      "items": {
+        "type": "string",
+        "enum": ["google_maps", "inmuebles24", "lamudi", "vivanuncios", "propiedades_com"]
+      }
+    },
+    "exportFormat": {
+      "title": "Export Format",
+      "type": "string",
+      "description": "Format to export leads.",
+      "default": "csv",
+      "enum": ["csv", "json", "both"],
+      "enumTitles": ["CSV", "JSON", "Both CSV and JSON"]
+    }
+  }
+}
