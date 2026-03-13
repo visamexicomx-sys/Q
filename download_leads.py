@@ -80,6 +80,7 @@ def classify(item):
             'scrapedAt': datetime.utcnow().isoformat()}
 
 def extract_city(address):
+    address = address or ''
     for loc in LOCATIONS:
         if loc.lower() in address.lower():
             return loc
@@ -91,7 +92,7 @@ def normalize_gm(place):
         'businessName': place.get('title',''),
         'contactName': '',
         'email': place.get('email','') or extract_email(place.get('description','')),
-        'phone': re.sub(r'[^\d+\s\-()]','', place.get('phone','')).strip(),
+        'phone': re.sub(r'[^\d+\s\-()]','', place.get('phone') or '').strip(),
         'website': place.get('website',''),
         'address': place.get('address',''),
         'city': extract_city(place.get('address','')),
