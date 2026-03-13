@@ -51,10 +51,9 @@
       "type": "array",
       "description": "Which sources to include in the lead scraping.",
       "default": ["google_maps", "inmuebles24", "lamudi", "vivanuncios", "propiedades_com"],
-      "editor": "checkboxes",
+      "editor": "stringList",
       "items": {
-        "type": "string",
-        "enum": ["google_maps", "inmuebles24", "lamudi", "vivanuncios", "propiedades_com"]
+        "type": "string"
       }
     },
     "exportFormat": {
