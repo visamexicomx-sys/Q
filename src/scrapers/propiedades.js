@@ -1,14 +1,10 @@
 /**
- * Propiedades.com Scraper
- *
- * Propiedades.com is a leading Mexican real estate portal with extensive
- * developer and agency profiles for the Riviera Maya region.
- *
- * URL pattern: https://www.propiedades.com/{state}/{city}/
+ * Propiedades.com Scraper (stealth edition)
  */
 
 import { PlaywrightCrawler } from 'crawlee';
 import * as cheerio from 'cheerio';
+import { stealthCrawlerOptions } from '../utils/stealth.js';
 
 const BASE_URL = 'https://www.propiedades.com';
 
@@ -24,10 +20,6 @@ const LOCATION_SLUGS = {
     'Mahahual':         'quintana-roo/mahahual',
 };
 
-/**
- * @param {{ locations: string[], maxLeadsPerSource: number }} opts
- * @returns {Promise<import('../utils/leads.js').Lead[]>}
- */
 export async function scrapePropiedades({ locations, maxLeadsPerSource }) {
     const leads = [];
 
@@ -36,12 +28,11 @@ export async function scrapePropiedades({ locations, maxLeadsPerSource }) {
         .map(loc => ({ url: `${BASE_URL}/${LOCATION_SLUGS[loc]}/`, userData: { city: loc } }));
 
     const crawler = new PlaywrightCrawler({
-        maxRequestsPerCrawl: startUrls.length * 2,
-        requestHandlerTimeoutSecs: 30,
+        ...stealthCrawlerOptions({ maxRequestsPerCrawl: startUrls.length * 2 }),
 
         async requestHandler({ page, request }) {
             const { city } = request.userData;
-            await page.waitForSelector('[class*="listing"], [class*="property-card"], article', { timeout: 15000 }).catch(() => {});
+            await page.waitForSelector('[class*="listing"], [class*="property-card"], article', { timeout: 20000 }).catch(() => {});
 
             const html = await page.content();
             const $ = cheerio.load(html);
@@ -86,7 +77,6 @@ export async function scrapePropiedades({ locations, maxLeadsPerSource }) {
     });
 
     await crawler.run(startUrls.map(r => r.url));
-
     return dedup(leads).slice(0, maxLeadsPerSource);
 }
 

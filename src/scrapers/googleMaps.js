@@ -1,18 +1,29 @@
 /**
  * Google Maps Scraper
  *
- * Uses Apify's built-in Google Maps Scraper actor as a sub-actor,
- * or falls back to a direct Playwright-based scrape of Google Maps search.
+ * Calls the Apify Google Maps Scraper sub-actor constrained to a
+ * Quintana Roo bounding box so it never scans all of Mexico.
  *
- * Target categories for Recrea Construction leads:
- *  - Real estate developers / Desarrolladores inmobiliarios
- *  - Architects / Arquitectos
- *  - Construction companies / Constructoras
- *  - Real estate agents / Agentes inmobiliarios
- *  - Hotels & Resorts (potential construction clients)
+ * Bounding box for Quintana Roo / Riviera Maya:
+ *   SW: 17.9°N, -88.0°W   NE: 21.6°N, -86.7°W
  */
 
 import { Actor } from 'apify';
+
+// Quintana Roo bounding box — keeps the sub-actor from scanning all Mexico
+const QR_GEOLOCATION = {
+    type: 'Feature',
+    geometry: {
+        type: 'Polygon',
+        coordinates: [[
+            [-88.0, 21.6],
+            [-86.7, 21.6],
+            [-86.7, 17.9],
+            [-88.0, 17.9],
+            [-88.0, 21.6],
+        ]],
+    },
+};
 
 /**
  * @param {{ searchQueries: string[], locations: string[], maxLeadsPerSource: number }} opts
@@ -21,25 +32,23 @@ import { Actor } from 'apify';
 export async function scrapeGoogleMaps({ searchQueries, locations, maxLeadsPerSource }) {
     const leads = [];
 
-    // Build combined queries: each query × each location
-    const combinedQueries = [];
-    for (const query of searchQueries) {
-        for (const location of locations) {
-            combinedQueries.push(`${query} ${location}`);
-        }
-    }
+    // Use the search queries directly (they already include location names)
+    // Cap at 10 queries to stay within memory limits on free plan
+    const queries = searchQueries.slice(0, 10);
 
-    // Call the Apify Google Maps Scraper actor (nwua9Gu5YrADL7ZDj)
-    // This is the official Apify actor for Google Maps scraping
     let runResult;
     try {
         const run = await Actor.call('nwua9Gu5YrADL7ZDj', {
-            searchStringsArray: combinedQueries.slice(0, 20), // cap at 20 combined queries
-            maxCrawledPlacesPerSearch: Math.ceil(maxLeadsPerSource / locations.length),
+            searchStringsArray: queries,
+            maxCrawledPlacesPerSearch: Math.ceil(maxLeadsPerSource / queries.length),
             language: 'es',
             countryCode: 'mx',
+            customGeolocation: QR_GEOLOCATION,  // ← LOCKS search to Quintana Roo
+            maxConcurrency: 3,                  // ← reduces memory footprint
             includeWebResults: false,
             exportPlaceUrls: false,
+        }, {
+            memory: 1024,   // Request only 1GB for the sub-actor (vs default 4GB)
         });
         runResult = await Actor.openDataset(run.defaultDatasetId);
     } catch (err) {
@@ -51,7 +60,6 @@ export async function scrapeGoogleMaps({ searchQueries, locations, maxLeadsPerSo
 
     for (const place of items) {
         if (!place.title) continue;
-
         leads.push({
             source: 'Google Maps',
             businessName: place.title ?? '',
@@ -94,7 +102,6 @@ function extractCity(address, locations) {
 function inferTags(place) {
     const tags = [];
     const text = `${place.title ?? ''} ${place.categoryName ?? ''} ${place.description ?? ''}`.toLowerCase();
-
     if (text.includes('constructor') || text.includes('construc')) tags.push('construction');
     if (text.includes('inmobili') || text.includes('real estate')) tags.push('real-estate');
     if (text.includes('arquitect')) tags.push('architecture');
@@ -102,6 +109,5 @@ function inferTags(place) {
     if (text.includes('condo') || text.includes('departamento')) tags.push('residential');
     if (text.includes('comercial') || text.includes('oficina')) tags.push('commercial');
     if (text.includes('inversi') || text.includes('invest')) tags.push('investor');
-
     return tags.join(', ');
 }

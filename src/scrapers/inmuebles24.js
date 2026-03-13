@@ -1,14 +1,10 @@
 /**
- * Inmuebles24.com Scraper
- *
- * Scrapes real estate developer / agency listings from Mexico's largest
- * real estate portal. Extracts agency name, agent name, phone, email,
- * and location for the Riviera Maya corridor.
- *
- * URL pattern: https://www.inmuebles24.com/inmuebles-en-venta-en-{location}.html
+ * Inmuebles24.com Scraper (stealth edition)
+ * Uses stealth Playwright to bypass 403 anti-bot blocking.
  */
 
-import { PlaywrightCrawler, RequestList } from 'crawlee';
+import { PlaywrightCrawler } from 'crawlee';
+import { stealthCrawlerOptions } from '../utils/stealth.js';
 
 const BASE_URL = 'https://www.inmuebles24.com';
 
@@ -24,10 +20,6 @@ const LOCATION_SLUGS = {
     'Mahahual':         'mahahual',
 };
 
-/**
- * @param {{ locations: string[], maxLeadsPerSource: number }} opts
- * @returns {Promise<import('../utils/leads.js').Lead[]>}
- */
 export async function scrapeInmuebles24({ locations, maxLeadsPerSource }) {
     const leads = [];
 
@@ -35,29 +27,28 @@ export async function scrapeInmuebles24({ locations, maxLeadsPerSource }) {
         .filter(loc => LOCATION_SLUGS[loc])
         .map(loc => ({
             url: `${BASE_URL}/inmuebles-en-venta-en-${LOCATION_SLUGS[loc]}.html`,
-            userData: { location: loc, page: 1 },
+            userData: { location: loc },
         }));
 
     const crawler = new PlaywrightCrawler({
-        maxRequestsPerCrawl: startUrls.length * 3,
-        requestHandlerTimeoutSecs: 30,
+        ...stealthCrawlerOptions({ maxRequestsPerCrawl: startUrls.length * 3 }),
 
         async requestHandler({ page, request, enqueueLinks }) {
             const { location } = request.userData;
-            await page.waitForSelector('[data-qa="posting PROPERTY"]', { timeout: 15000 }).catch(() => {});
+            await page.waitForSelector('[data-qa="posting PROPERTY"], .posting-card, article', { timeout: 20000 }).catch(() => {});
 
-            const listings = await page.$$eval('[data-qa="posting PROPERTY"]', (cards) =>
-                cards.map(card => {
-                    const agency = card.querySelector('[data-qa="posting-card-publisher-name"]')?.textContent?.trim() ?? '';
-                    const agent  = card.querySelector('[data-qa="posting-card-publisher-agent"]')?.textContent?.trim() ?? '';
-                    const phone  = card.querySelector('[data-qa="posting-card-phone"]')?.textContent?.trim() ?? '';
-                    const title  = card.querySelector('[data-qa="posting-card-title"]')?.textContent?.trim() ?? '';
-                    const price  = card.querySelector('[data-qa="posting-card-price"]')?.textContent?.trim() ?? '';
-                    const address = card.querySelector('[data-qa="posting-card-location"]')?.textContent?.trim() ?? '';
-                    const link   = card.querySelector('a')?.href ?? '';
-                    return { agency, agent, phone, title, price, address, link };
-                })
-            );
+            const listings = await page.$$eval(
+                '[data-qa="posting PROPERTY"], .posting-card, article.avisoNormal',
+                (cards) => cards.map(card => ({
+                    agency:  card.querySelector('[data-qa="posting-card-publisher-name"], .publisher-name')?.textContent?.trim() ?? '',
+                    agent:   card.querySelector('[data-qa="posting-card-publisher-agent"], .agent-name')?.textContent?.trim() ?? '',
+                    phone:   card.querySelector('[data-qa="posting-card-phone"], [href^="tel:"]')?.textContent?.trim() ?? '',
+                    title:   card.querySelector('[data-qa="posting-card-title"], h2, h3')?.textContent?.trim() ?? '',
+                    price:   card.querySelector('[data-qa="posting-card-price"], .price')?.textContent?.trim() ?? '',
+                    address: card.querySelector('[data-qa="posting-card-location"], .address')?.textContent?.trim() ?? '',
+                    link:    card.querySelector('a')?.href ?? '',
+                }))
+            ).catch(() => []);
 
             for (const listing of listings) {
                 if (!listing.agency && !listing.agent) continue;
@@ -76,17 +67,14 @@ export async function scrapeInmuebles24({ locations, maxLeadsPerSource }) {
                     rating: '',
                     reviewCount: 0,
                     googleMapsUrl: '',
-                    description: `${listing.title} — ${listing.price}`,
+                    description: `${listing.title} — ${listing.price}`.trim(),
                     listingUrl: listing.link,
                     tags: 'real-estate, inmuebles24',
                 });
             }
 
             if (leads.length < maxLeadsPerSource) {
-                const nextButton = await page.$('[data-qa="PAGING_NEXT"]');
-                if (nextButton) {
-                    await enqueueLinks({ selector: '[data-qa="PAGING_NEXT"]' });
-                }
+                await enqueueLinks({ selector: '[data-qa="PAGING_NEXT"], a[rel="next"]' }).catch(() => {});
             }
         },
 
@@ -95,9 +83,7 @@ export async function scrapeInmuebles24({ locations, maxLeadsPerSource }) {
         },
     });
 
-    const requestList = await RequestList.open(null, startUrls);
     await crawler.run(startUrls.map(r => r.url));
-
     return dedup(leads).slice(0, maxLeadsPerSource);
 }
 
