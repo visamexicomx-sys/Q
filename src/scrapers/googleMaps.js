@@ -32,28 +32,37 @@ const QR_GEOLOCATION = {
 export async function scrapeGoogleMaps({ searchQueries, locations, maxLeadsPerSource }) {
     const leads = [];
 
-    // Use the search queries directly (they already include location names)
-    // Cap at 10 queries to stay within memory limits on free plan
-    const queries = searchQueries.slice(0, 10);
+    // Cap at 5 queries and 10 places each to finish within the free plan's 5-min timeout
+    const queries = searchQueries.slice(0, 5);
+    const placesPerQuery = Math.min(10, Math.ceil(maxLeadsPerSource / queries.length));
 
     let runResult;
     try {
         const run = await Actor.call('nwua9Gu5YrADL7ZDj', {
             searchStringsArray: queries,
-            maxCrawledPlacesPerSearch: Math.ceil(maxLeadsPerSource / queries.length),
+            maxCrawledPlacesPerSearch: placesPerQuery,
             language: 'es',
             countryCode: 'mx',
             customGeolocation: QR_GEOLOCATION,  // ← LOCKS search to Quintana Roo
-            maxConcurrency: 3,                  // ← reduces memory footprint
+            maxConcurrency: 5,                  // ← faster parallel crawl
             includeWebResults: false,
             exportPlaceUrls: false,
         }, {
-            memory: 1024,   // Request only 1GB for the sub-actor (vs default 4GB)
+            memory: 1024,    // 1GB for sub-actor
+            waitSecs: 210,   // wait up to 3.5 min then collect whatever was found
         });
         runResult = await Actor.openDataset(run.defaultDatasetId);
     } catch (err) {
-        console.warn('  [Google Maps] Could not call sub-actor, skipping:', err.message);
-        return leads;
+        console.warn('  [Google Maps] Sub-actor error, trying to collect partial results:', err.message);
+        // Try to get partial results from any dataset that was created
+        try {
+            const runs = await Actor.newClient().runs().list({ limit: 3 });
+            const gmRun = runs.items?.find(r => r.actId === 'nwua9Gu5YrADL7ZDj');
+            if (gmRun?.defaultDatasetId) {
+                runResult = await Actor.openDataset(gmRun.defaultDatasetId);
+            }
+        } catch (_) {}
+        if (!runResult) return leads;
     }
 
     const { items } = await runResult.getData();
