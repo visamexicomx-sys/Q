@@ -5,6 +5,7 @@
 /** CSV column headers in the order they appear in the export */
 const CSV_COLUMNS = [
     'leadScore',
+    'isBroker',
     'businessName',
     'contactName',
     'email',
@@ -23,6 +24,7 @@ const CSV_COLUMNS = [
     'googleMapsUrl',
     'listingUrl',
     'notes',
+    'commissionPitch',
     'scrapedAt',
 ];
 

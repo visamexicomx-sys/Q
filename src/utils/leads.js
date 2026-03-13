@@ -60,6 +60,8 @@ export function enrichLead(lead) {
     return {
         ...lead,
         leadScore: computeLeadScore(lead),
+        isBroker: detectBroker(lead),
+        commissionPitch: buildCommissionPitch(lead),
         scrapedAt: new Date().toISOString(),
         notes: suggestNextAction(lead),
     };
@@ -108,9 +110,50 @@ function computeLeadScore(lead) {
 }
 
 function suggestNextAction(lead) {
+    const isBroker = detectBroker(lead);
+    if (isBroker && lead.email) return `Send commission offer email to ${lead.email}`;
+    if (isBroker && lead.phone) return `WhatsApp/call ${lead.phone} — offer referral commission for construction clients`;
     if (lead.email) return `Send intro email to ${lead.email}`;
-    if (lead.phone) return `Call ${lead.phone} — ask for construction manager`;
+    if (lead.phone) return `Call ${lead.phone} — ask for decision maker`;
     if (lead.website) return `Visit ${lead.website} and find contact form`;
     if (lead.googleMapsUrl) return 'Visit Google Maps listing to get contact info';
     return 'Research company to find contact details';
+}
+
+/**
+ * Returns true if the lead is likely a real estate broker/agent.
+ */
+function detectBroker(lead) {
+    const text = `${lead.businessName} ${lead.contactName} ${lead.category} ${lead.tags} ${lead.description}`.toLowerCase();
+    return (
+        text.includes('agente') ||
+        text.includes('broker') ||
+        text.includes('asesor') ||
+        text.includes('realtor') ||
+        text.includes('inmobiliaria') ||
+        text.includes('inmobiliario') ||
+        text.includes('real estate agent') ||
+        text.includes('real estate broker') ||
+        text.includes('agency') ||
+        text.includes('agencia')
+    );
+}
+
+/**
+ * Builds a personalized commission pitch message for broker outreach.
+ */
+function buildCommissionPitch(lead) {
+    const name = lead.contactName || lead.businessName || 'Estimado asesor';
+    const city = lead.city || 'Riviera Maya';
+    return (
+        `Hola ${name},\n\n` +
+        `Soy de Recrea Construction, empresa constructora especializada en proyectos residenciales y comerciales en ${city} y toda la Riviera Maya.\n\n` +
+        `Te invitamos a ser parte de nuestro programa de referidos: por cada cliente que nos refieras y concrete un proyecto de construcción, te ofrecemos una COMISIÓN COMPETITIVA sobre el valor total de la obra.\n\n` +
+        `✅ Comisión atractiva por referido\n` +
+        `✅ Proyectos residenciales, condos, hoteles boutique y comerciales\n` +
+        `✅ Empresa con experiencia comprobada en Riviera Maya\n` +
+        `✅ Acompañamiento completo durante todo el proyecto\n\n` +
+        `¿Tienes clientes que buscan construir en la zona? ¡Hablemos!\n\n` +
+        `Recrea Construction Riviera Maya`
+    );
 }
