@@ -14,12 +14,25 @@ LOCATIONS = [
 ]
 
 QUERIES = [
+    # Brokers & agents
     "agente inmobiliario",
     "broker inmobiliario",
     "inmobiliaria",
+    "real estate agent",
+    # Developers & constructors
     "constructora",
     "desarrollador inmobiliario",
-    "real estate agent",
+    "arquitecto",
+    # Investors
+    "inversionista inmobiliario",
+    "fondo de inversion inmobiliaria",
+    "real estate investor",
+    "club de inversiones",
+    # Work opportunities
+    "proyecto en construccion",
+    "villa en construccion",
+    "desarrollo residencial",
+    "hotel boutique construccion",
 ]
 
 class GoogleMapsSpider(scrapy.Spider):

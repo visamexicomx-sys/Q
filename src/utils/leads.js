@@ -20,6 +20,7 @@
  * @property {string} [listingUrl]    - Portal listing URL
  * @property {string} tags            - Comma-separated tags
  * @property {string} [leadScore]     - Computed priority score (High/Medium/Low)
+ * @property {string} [leadType]      - broker | investor | work | general
  * @property {string} [scrapedAt]     - ISO timestamp of when lead was scraped
  * @property {string} [notes]         - CRM notes / next-action suggestion
  */
@@ -57,13 +58,21 @@ export function deduplicateLeads(leads) {
  * @returns {Lead}
  */
 export function enrichLead(lead) {
+    const isBroker   = detectBroker(lead);
+    const isInvestor = detectInvestor(lead);
+    const isWork     = detectWorkOpportunity(lead);
+    const leadType   = isBroker ? 'broker' : isInvestor ? 'investor' : isWork ? 'work' : 'general';
+
     return {
         ...lead,
         leadScore: computeLeadScore(lead),
-        isBroker: detectBroker(lead),
-        commissionPitch: buildCommissionPitch(lead),
+        leadType,
+        isBroker,
+        isInvestor,
+        isWorkOpportunity: isWork,
+        commissionPitch: buildOutreachPitch(lead, leadType),
         scrapedAt: new Date().toISOString(),
-        notes: suggestNextAction(lead),
+        notes: suggestNextAction(lead, leadType),
     };
 }
 
@@ -88,8 +97,8 @@ function scoreCompleteness(lead) {
 
 /**
  * Lead scoring for Recrea Construction Riviera Maya:
- *  - High   → direct developer / constructora with phone + email
- *  - Medium → agency / architect with at least phone
+ *  - High   → investor / developer / broker with phone + email
+ *  - Medium → agency / work project with at least phone
  *  - Low    → listing only, no contact info
  */
 function computeLeadScore(lead) {
@@ -101,18 +110,32 @@ function computeLeadScore(lead) {
 
     const isDeveloper = category.includes('developer') || tags.includes('construction') || category.includes('constructor');
     const isAgency    = category.includes('agenc') || category.includes('real estate');
+    const isInvestor  = detectInvestor(lead);
+    const isWork      = detectWorkOpportunity(lead);
 
-    if ((isDeveloper || isAgency) && hasPhone && hasEmail) return 'High';
-    if ((isDeveloper || isAgency) && hasPhone) return 'High';
+    if ((isDeveloper || isAgency || isInvestor || isWork) && hasPhone && hasEmail) return 'High';
+    if ((isDeveloper || isAgency || isInvestor || isWork) && hasPhone) return 'High';
     if (hasPhone || hasEmail) return 'Medium';
     if (hasWebsite || lead.googleMapsUrl) return 'Medium';
     return 'Low';
 }
 
-function suggestNextAction(lead) {
-    const isBroker = detectBroker(lead);
-    if (isBroker && lead.email) return `Send commission offer email to ${lead.email}`;
-    if (isBroker && lead.phone) return `WhatsApp/call ${lead.phone} — offer referral commission for construction clients`;
+function suggestNextAction(lead, leadType) {
+    const contact = lead.email || lead.phone || lead.website;
+    if (leadType === 'investor') {
+        if (lead.email) return `Send investment portfolio email to ${lead.email} — showcase Recrea projects & ROI`;
+        if (lead.phone) return `WhatsApp/call ${lead.phone} — present investment opportunity in Riviera Maya construction`;
+        if (lead.website) return `Visit ${lead.website} — find contact for investment proposal`;
+    }
+    if (leadType === 'work') {
+        if (lead.email) return `Email ${lead.email} — offer construction quote for their project`;
+        if (lead.phone) return `Call ${lead.phone} — ask about construction needs and quote project`;
+        if (lead.website) return `Visit ${lead.website} — identify decision maker for construction contract`;
+    }
+    if (leadType === 'broker') {
+        if (lead.email) return `Send commission offer email to ${lead.email}`;
+        if (lead.phone) return `WhatsApp/call ${lead.phone} — offer referral commission for construction clients`;
+    }
     if (lead.email) return `Send intro email to ${lead.email}`;
     if (lead.phone) return `Call ${lead.phone} — ask for decision maker`;
     if (lead.website) return `Visit ${lead.website} and find contact form`;
@@ -140,11 +163,96 @@ function detectBroker(lead) {
 }
 
 /**
- * Builds a personalized commission pitch message for broker outreach.
+ * Returns true if the lead is likely a real estate investor or investment fund.
  */
-function buildCommissionPitch(lead) {
-    const name = lead.contactName || lead.businessName || 'Estimado asesor';
+function detectInvestor(lead) {
+    const text = `${lead.businessName} ${lead.contactName} ${lead.category} ${lead.tags} ${lead.description}`.toLowerCase();
+    return (
+        text.includes('inversionista') ||
+        text.includes('inversor') ||
+        text.includes('inversion') ||
+        text.includes('inversión') ||
+        text.includes('investor') ||
+        text.includes('investment') ||
+        text.includes('fondo') ||
+        text.includes('fund') ||
+        text.includes('capital') ||
+        text.includes('fideicomiso') ||
+        text.includes('crowdfunding') ||
+        text.includes('venture') ||
+        text.includes('private equity') ||
+        text.includes('grupo empresarial') ||
+        text.includes('holding')
+    );
+}
+
+/**
+ * Returns true if the lead represents a project that needs construction work.
+ */
+function detectWorkOpportunity(lead) {
+    const text = `${lead.businessName} ${lead.contactName} ${lead.category} ${lead.tags} ${lead.description}`.toLowerCase();
+    return (
+        text.includes('en construccion') ||
+        text.includes('en construcción') ||
+        text.includes('under construction') ||
+        text.includes('obra nueva') ||
+        text.includes('proyecto') ||
+        text.includes('por construir') ||
+        text.includes('en preventa') ||
+        text.includes('pre-construccion') ||
+        text.includes('pre-venta') ||
+        text.includes('terreno con proyecto') ||
+        text.includes('lote con proyecto') ||
+        text.includes('desarrollo') ||
+        text.includes('fraccionamiento') ||
+        text.includes('villa') ||
+        text.includes('boutique hotel') ||
+        text.includes('hotel boutique') ||
+        text.includes('condo') ||
+        text.includes('residencial')
+    );
+}
+
+/**
+ * Builds a personalized outreach pitch based on lead type.
+ */
+function buildOutreachPitch(lead, leadType) {
+    const name = lead.contactName || lead.businessName || 'Estimado';
     const city = lead.city || 'Riviera Maya';
+
+    if (leadType === 'investor') {
+        return (
+            `Hola ${name},\n\n` +
+            `Soy de Recrea Construction, empresa constructora con amplia experiencia en proyectos residenciales, comerciales y de hospitalidad en ${city} y toda la Riviera Maya.\n\n` +
+            `Estamos en búsqueda de socios inversionistas para co-desarrollar proyectos de alto rendimiento en la zona. La Riviera Maya es uno de los mercados inmobiliarios con mayor crecimiento en Latinoamérica.\n\n` +
+            `💼 ¿Qué ofrecemos?\n` +
+            `✅ Proyectos con ROI comprobado en Riviera Maya\n` +
+            `✅ Villas residenciales, condos, hoteles boutique y comerciales\n` +
+            `✅ Gestión integral: permisos, construcción y entrega llave en mano\n` +
+            `✅ Transparencia total: reportes de avance y estados financieros\n` +
+            `✅ Equipo con más de 10 años en el mercado local\n\n` +
+            `¿Te interesa conocer nuestro portafolio de inversión? ¡Hablemos!\n\n` +
+            `Recrea Construction Riviera Maya`
+        );
+    }
+
+    if (leadType === 'work') {
+        return (
+            `Hola ${name},\n\n` +
+            `Somos Recrea Construction, constructora especializada en proyectos residenciales y comerciales en ${city} y la Riviera Maya.\n\n` +
+            `Vimos su proyecto y nos gustaría presentarles una propuesta de construcción adaptada a sus necesidades.\n\n` +
+            `🔨 ¿Por qué elegirnos?\n` +
+            `✅ Presupuesto detallado sin costo\n` +
+            `✅ Experiencia en villas, condos, hoteles boutique y comercio\n` +
+            `✅ Materiales de calidad y acabados de primer nivel\n` +
+            `✅ Cumplimiento de plazos y presupuesto garantizado\n` +
+            `✅ Permisos y trámites incluidos\n\n` +
+            `¿Podemos agendar una visita a su terreno/proyecto para presentar nuestra propuesta?\n\n` +
+            `Recrea Construction Riviera Maya`
+        );
+    }
+
+    // Default: broker commission pitch
     return (
         `Hola ${name},\n\n` +
         `Soy de Recrea Construction, empresa constructora especializada en proyectos residenciales y comerciales en ${city} y toda la Riviera Maya.\n\n` +

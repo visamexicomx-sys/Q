@@ -5,7 +5,10 @@
 /** CSV column headers in the order they appear in the export */
 const CSV_COLUMNS = [
     'leadScore',
+    'leadType',
     'isBroker',
+    'isInvestor',
+    'isWorkOpportunity',
     'businessName',
     'contactName',
     'email',

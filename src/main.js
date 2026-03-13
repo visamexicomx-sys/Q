@@ -28,16 +28,32 @@ const input = await Actor.getInput() ?? {};
 
 const {
     searchQueries = [
+        // Brokers & agents
+        'agente inmobiliario Riviera Maya',
+        'broker inmobiliario Playa del Carmen',
+        'inmobiliaria Tulum',
+        'real estate agent Cancun',
+        'bienes raices Quintana Roo',
+        // Developers & constructors
         'desarrolladores inmobiliarios Riviera Maya',
         'constructoras Playa del Carmen',
-        'bienes raices Tulum construccion',
-        'real estate developer Cancun',
-        'arquitectos Playa del Carmen',
-        'condominios en construccion Tulum',
-        'fraccionamientos Riviera Maya',
-        'hoteles boutique construccion Riviera Maya',
-        'desarrollo inmobiliario Puerto Morelos',
-        'inversiones inmobiliarias Bacalar',
+        'arquitectos Tulum',
+        'condominios en construccion Riviera Maya',
+        // Investors
+        'inversionista inmobiliario Riviera Maya',
+        'fondo de inversion inmobiliaria Cancun',
+        'real estate investor Tulum',
+        'club de inversiones Playa del Carmen',
+        'fideicomiso inmobiliario Riviera Maya',
+        'crowdfunding inmobiliario Mexico',
+        // Looking for construction work
+        'proyecto de construccion Riviera Maya',
+        'villa en construccion Tulum',
+        'casa en construccion Playa del Carmen',
+        'hotel boutique en construccion Riviera Maya',
+        'desarrollo residencial Bacalar',
+        'terreno con proyecto Holbox',
+        'obra nueva Quintana Roo',
     ],
     locations = [
         'Playa del Carmen',
