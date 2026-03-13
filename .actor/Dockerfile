@@ -1,5 +1,5 @@
 # Apify Actor Dockerfile for Recrea Construction Lead Scraper
-FROM apify/actor-node-playwright-chrome:18
+FROM apify/actor-node-playwright-chrome:20
 
 # Copy dependency files
 COPY package*.json ./
