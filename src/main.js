@@ -20,7 +20,8 @@ import { scrapeInmuebles24 } from './scrapers/inmuebles24.js';
 import { scrapeLamudi } from './scrapers/lamudi.js';
 import { scrapeVivanuncios } from './scrapers/vivanuncios.js';
 import { scrapePropiedades } from './scrapers/propiedades.js';
-import { deduplicateLeads, enrichLead } from './utils/leads.js';
+import { deduplicateLeads, enrichLead, enrichLeadWithAI } from './utils/leads.js';
+import { createLLMClient } from './utils/llm.js';
 
 await Actor.init();
 
@@ -142,8 +143,18 @@ if (sources.includes('propiedades_com')) {
 // ─── Deduplicate & Enrich ─────────────────────────────────────────────────────
 console.log('\n[Post-processing] Deduplicating and enriching leads...');
 const uniqueLeads = deduplicateLeads(allLeads);
-const enrichedLeads = uniqueLeads.map(enrichLead);
+
+// Initialize LLM client — tries all configured free API providers in order
+const llmClient = createLLMClient();
+
+// Enrich leads — AI-powered pitches if LLM available, template fallback otherwise
+const enrichedLeads = await Promise.all(
+    uniqueLeads.map(lead => enrichLeadWithAI(lead, llmClient))
+);
+
+const aiCount = enrichedLeads.filter(l => l.aiEnriched).length;
 console.log(`  Total unique leads: ${enrichedLeads.length} (from ${allLeads.length} raw)`);
+if (llmClient) console.log(`  AI-enriched pitches: ${aiCount}/${enrichedLeads.length}`);
 
 // ─── Save to Apify Dataset ────────────────────────────────────────────────────
 await dataset.pushData(enrichedLeads);
@@ -171,6 +182,12 @@ console.log('══════════════════════�
 console.log(`  Total leads collected : ${enrichedLeads.length}`);
 console.log(`  Sources scraped       : ${sources.length}`);
 console.log(`  Locations covered     : ${locations.join(', ')}`);
+if (llmClient) {
+    const aiCount2 = enrichedLeads.filter(l => l.aiEnriched).length;
+    console.log(`  AI-enriched pitches   : ${aiCount2}/${enrichedLeads.length} (via ${llmClient.providerNames})`);
+} else {
+    console.log(`  AI enrichment         : disabled (add API keys to .env)`);
+}
 console.log('═══════════════════════════════════════════\n');
 
 await Actor.exit();

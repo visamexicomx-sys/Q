@@ -52,6 +52,64 @@ export function deduplicateLeads(leads) {
 }
 
 /**
+ * AI-powered enrichment — generates a personalized Spanish pitch using the LLM.
+ * Falls back to template-based pitch if LLM is unavailable or fails.
+ *
+ * @param {Lead} lead
+ * @param {{ complete: (prompt: string) => Promise<string> } | null} llmClient
+ * @returns {Promise<Lead>}
+ */
+export async function enrichLeadWithAI(lead, llmClient) {
+    const base = enrichLead(lead);
+    if (!llmClient) return base;
+
+    try {
+        const prompt = buildAIPrompt(lead, base.leadType);
+        const aiPitch = await llmClient.complete(prompt);
+        return { ...base, commissionPitch: aiPitch, aiEnriched: true };
+    } catch {
+        return { ...base, aiEnriched: false };
+    }
+}
+
+function buildAIPrompt(lead, leadType) {
+    const name   = lead.contactName || lead.businessName || 'Estimado';
+    const city   = lead.city || 'Riviera Maya';
+    const biz    = lead.businessName || '';
+    const cat    = lead.category || '';
+    const desc   = lead.description || '';
+    const rating = lead.rating ? `(Google rating: ${lead.rating}/5, ${lead.reviewCount || 0} reviews)` : '';
+    const context = [biz, cat, desc, rating].filter(Boolean).join(' | ');
+
+    const roleMap = {
+        investor: 'real estate investor or investment fund looking to invest in the Riviera Maya',
+        work:     'developer or property owner with a construction project underway',
+        broker:   'real estate broker or agent operating in the Riviera Maya',
+        general:  'business or contact in the real estate / construction sector in Riviera Maya',
+    };
+
+    return `You are a senior sales copywriter for Recrea Construction, a premium construction company in the Riviera Maya, Mexico.
+
+Write a SHORT, personalized WhatsApp/email outreach message in SPANISH to this lead:
+
+Name: ${name}
+Company: ${context}
+City: ${city}
+Lead type: ${roleMap[leadType] || roleMap.general}
+
+Instructions:
+- Maximum 150 words
+- Warm, professional tone — not salesy
+- Mention their company name and city naturally
+- Tailor to their role: ${leadType === 'broker' ? 'offer referral commission' : leadType === 'investor' ? 'co-investment opportunity with ROI focus' : leadType === 'work' ? 'free construction quote for their project' : 'introduce Recrea services'}
+- End with a clear call to action (WhatsApp or meeting)
+- Sign off as: Recrea Construction Riviera Maya
+- Do NOT use markdown, headers, or bullet points — plain conversational text only
+
+Write only the message, nothing else.`;
+}
+
+/**
  * Add computed fields to a raw lead.
  *
  * @param {Lead} lead
