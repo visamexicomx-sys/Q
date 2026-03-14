@@ -97,59 +97,51 @@ const PROVIDERS = [
     },
 ];
 
-async function callOpenAI(provider, prompt, key) {
-    const res = await fetch(provider.url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${key}`,
-            ...provider.extraHeaders,
-        },
-        body: JSON.stringify({
-            model: provider.model,
-            messages: [{ role: 'user', content: prompt }],
-            max_tokens: provider.maxTokens,
-            temperature: 0.7,
-        }),
-        signal: AbortSignal.timeout(20000),
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error?.message || `HTTP ${res.status}`);
+import { execSync } from 'child_process';
+
+/**
+ * HTTP POST via curl (works in environments where Node.js fetch is blocked).
+ */
+function curlPost(url, body, headers = {}) {
+    const headerArgs = Object.entries(headers)
+        .map(([k, v]) => `-H ${JSON.stringify(`${k}: ${v}`)}`)
+        .join(' ');
+    const bodyJson = JSON.stringify(body);
+    const cmd = `curl -s --max-time 25 -X POST ${url} ${headerArgs} -H "Content-Type: application/json" --data-binary ${JSON.stringify(bodyJson)}`;
+    const raw = execSync(cmd, { maxBuffer: 2 * 1024 * 1024 });
+    return JSON.parse(raw.toString());
+}
+
+function callOpenAI(provider, prompt, key) {
+    const headers = { Authorization: `Bearer ${key}` };
+    if (provider.extraHeaders) Object.assign(headers, provider.extraHeaders);
+    const data = curlPost(provider.url, {
+        model: provider.model,
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: provider.maxTokens,
+        temperature: 0.7,
+    }, headers);
+    if (data.error) throw new Error(data.error.message || 'API error');
     return data.choices?.[0]?.message?.content?.trim() ?? '';
 }
 
-async function callGoogle(provider, prompt, key) {
+function callGoogle(provider, prompt, key) {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${provider.model}:generateContent?key=${key}`;
-    const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { maxOutputTokens: provider.maxTokens, temperature: 0.7 },
-        }),
-        signal: AbortSignal.timeout(20000),
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error?.message || `HTTP ${res.status}`);
+    const data = curlPost(url, {
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens: provider.maxTokens, temperature: 0.7 },
+    }, {});
+    if (data.error) throw new Error(data.error.message || 'API error');
     return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? '';
 }
 
-async function callCohere(provider, prompt, key) {
-    const res = await fetch(provider.url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${key}`,
-        },
-        body: JSON.stringify({
-            model: provider.model,
-            messages: [{ role: 'user', content: prompt }],
-            max_tokens: provider.maxTokens,
-        }),
-        signal: AbortSignal.timeout(20000),
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || `HTTP ${res.status}`);
+function callCohere(provider, prompt, key) {
+    const data = curlPost(provider.url, {
+        model: provider.model,
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: provider.maxTokens,
+    }, { Authorization: `Bearer ${key}` });
+    if (data.message && !data.message.content) throw new Error(data.message || 'API error');
     return data.message?.content?.[0]?.text?.trim() ?? '';
 }
 
@@ -181,9 +173,10 @@ export function createLLMClient() {
             const key = process.env[provider.keyEnv];
             try {
                 let result;
-                if (provider.style === 'openai') result = await callOpenAI(provider, prompt, key);
-                else if (provider.style === 'google') result = await callGoogle(provider, prompt, key);
-                else if (provider.style === 'cohere') result = await callCohere(provider, prompt, key);
+                // Functions are synchronous (execSync/curl) — works even when Node fetch is blocked
+                if (provider.style === 'openai') result = callOpenAI(provider, prompt, key);
+                else if (provider.style === 'google') result = callGoogle(provider, prompt, key);
+                else if (provider.style === 'cohere') result = callCohere(provider, prompt, key);
                 if (result) return result;
             } catch (err) {
                 const isRateLimit = err.message.includes('429') || err.message.toLowerCase().includes('rate');
