@@ -25,5 +25,8 @@
   },
   "overrides": {
     "undici": "5.28.4"
+  },
+  "devDependencies": {
+    "dotenv": "^17.3.1"
   }
 }
