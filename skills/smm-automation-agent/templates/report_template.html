@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f23; color: #e0e0e0; padding: 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { color: #fff; margin-bottom: 0.5rem; font-size: 1.8rem; }
+        h2 { color: #7c83ff; margin: 1.5rem 0 1rem; font-size: 1.3rem; }
+        .meta { color: #888; margin-bottom: 2rem; }
+        .card { background: #1a1a2e; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; border: 1px solid #2a2a4a; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .metric { text-align: center; }
+        .metric .value { font-size: 2rem; font-weight: bold; color: #7c83ff; }
+        .metric .label { color: #888; font-size: 0.85rem; margin-top: 0.3rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        th { text-align: left; padding: 0.75rem; border-bottom: 2px solid #2a2a4a; color: #7c83ff; }
+        td { padding: 0.75rem; border-bottom: 1px solid #1a1a2e; }
+        .positive { color: #4ade80; }
+        .negative { color: #f87171; }
+        .rec { background: #1a2e1a; border-left: 3px solid #4ade80; padding: 0.75rem 1rem; margin: 0.5rem 0; border-radius: 0 8px 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p class="meta">{{ period }} &bull; Generated {{ generated_at }}</p>
+
+        <h2>Overview</h2>
+        <div class="grid">
+            {% for metric in overview_metrics %}
+            <div class="card metric">
+                <div class="value">{{ metric.value }}</div>
+                <div class="label">{{ metric.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2>Platform Performance</h2>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Posts</th>
+                        <th>Impressions</th>
+                        <th>Engagement</th>
+                        <th>Eng. Rate</th>
+                        <th>Growth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for platform in platforms %}
+                    <tr>
+                        <td>{{ platform.name }}</td>
+                        <td>{{ platform.posts }}</td>
+                        <td>{{ platform.impressions }}</td>
+                        <td>{{ platform.engagement }}</td>
+                        <td>{{ platform.engagement_rate }}</td>
+                        <td class="{{ 'positive' if platform.growth > 0 else 'negative' }}">{{ platform.growth }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if recommendations %}
+        <h2>Recommendations</h2>
+        {% for rec in recommendations %}
+        <div class="rec">{{ rec }}</div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

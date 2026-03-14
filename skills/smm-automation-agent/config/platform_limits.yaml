@@ -1,0 +1,57 @@
+# Platform-specific content limits
+
+twitter:
+  max_chars: 280
+  max_hashtags: 10
+  recommended_hashtags: 3
+  max_images: 4
+  max_video_length_seconds: 140
+  supported_image_formats: [jpg, png, gif, webp]
+
+instagram:
+  max_chars: 2200
+  max_hashtags: 30
+  recommended_hashtags: 12
+  max_images: 10
+  max_video_length_seconds: 90
+  story_max_seconds: 60
+  reel_max_seconds: 90
+
+linkedin:
+  max_chars: 3000
+  max_hashtags: 30
+  recommended_hashtags: 5
+  max_images: 9
+  max_video_length_seconds: 600
+  article_max_chars: 120000
+
+facebook:
+  max_chars: 63206
+  max_hashtags: 30
+  recommended_hashtags: 3
+  max_images: 10
+  max_video_length_seconds: 14400
+
+tiktok:
+  max_chars: 2200
+  max_hashtags: 100
+  recommended_hashtags: 5
+  max_video_length_seconds: 600
+
+youtube:
+  title_max_chars: 100
+  description_max_chars: 5000
+  max_tags: 500
+  shorts_max_seconds: 60
+
+pinterest:
+  title_max_chars: 100
+  description_max_chars: 500
+  max_hashtags: 20
+  recommended_hashtags: 5
+
+threads:
+  max_chars: 500
+  max_hashtags: 10
+  recommended_hashtags: 3
+  max_images: 10

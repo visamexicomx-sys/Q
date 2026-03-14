@@ -1,0 +1,109 @@
+# SMM Automation Agent — Default Configuration
+
+brand:
+  name: "Your Brand"
+  voice: "professional"
+  values:
+    - quality
+    - innovation
+    - transparency
+  visual_style: "modern, clean, minimalist"
+  tagline: ""
+  industry: "technology"
+  website: ""
+
+audience:
+  demographics:
+    age_range: "25-45"
+    gender: "all"
+  interests:
+    - technology
+    - business
+    - entrepreneurship
+  pain_points:
+    - time management
+    - scaling operations
+    - staying competitive
+  platforms:
+    - twitter
+    - instagram
+    - linkedin
+  locations:
+    - "United States"
+    - "Global"
+  languages:
+    - en
+
+content_pillars:
+  - name: educational
+    weight: 0.30
+    formats:
+      - tips
+      - how-to
+      - explainer
+      - listicle
+    tone: authoritative
+    topics: []
+  - name: engagement
+    weight: 0.25
+    formats:
+      - polls
+      - questions
+      - challenges
+    tone: conversational
+    topics: []
+  - name: promotional
+    weight: 0.15
+    formats:
+      - product-highlight
+      - testimonial
+      - case-study
+    tone: compelling
+    topics: []
+  - name: behind_the_scenes
+    weight: 0.15
+    formats:
+      - team-spotlight
+      - process
+      - milestones
+    tone: authentic
+    topics: []
+  - name: trending
+    weight: 0.15
+    formats:
+      - newsjacking
+      - meme
+      - industry-news
+    tone: timely
+    topics: []
+
+schedule:
+  posts_per_day:
+    twitter: 3
+    instagram: 2
+    linkedin: 1
+    facebook: 2
+    tiktok: 1
+    threads: 2
+  timezone: "UTC"
+  blackout_hours: []
+  weekend_posting: true
+
+platforms:
+  - twitter
+  - instagram
+  - linkedin
+
+competitors: []
+
+goals:
+  monthly_followers_growth: 0.05
+  engagement_rate: 0.03
+  posts_per_week: 20
+
+auto_engage: true
+auto_publish: false
+approval_required: true
+
+database_url: "sqlite:///smm_agent.db"
+redis_url: "redis://localhost:6379"

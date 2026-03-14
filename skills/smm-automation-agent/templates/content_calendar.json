@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "name": "SMM Content Calendar",
+  "default_platforms": ["twitter", "instagram", "linkedin"],
+  "weekly_structure": {
+    "monday": {
+      "theme": "Motivation Monday",
+      "content_types": ["quote", "tip", "story"],
+      "suggested_posts": 2
+    },
+    "tuesday": {
+      "theme": "Tutorial Tuesday",
+      "content_types": ["how-to", "explainer", "thread"],
+      "suggested_posts": 3
+    },
+    "wednesday": {
+      "theme": "Wisdom Wednesday",
+      "content_types": ["insight", "case-study", "data"],
+      "suggested_posts": 2
+    },
+    "thursday": {
+      "theme": "Throwback / Thought Leadership",
+      "content_types": ["thought-leadership", "behind-scenes", "milestone"],
+      "suggested_posts": 2
+    },
+    "friday": {
+      "theme": "Feature Friday",
+      "content_types": ["product-highlight", "announcement", "testimonial"],
+      "suggested_posts": 2
+    },
+    "saturday": {
+      "theme": "Community Saturday",
+      "content_types": ["ugc", "poll", "question"],
+      "suggested_posts": 1
+    },
+    "sunday": {
+      "theme": "Strategy Sunday",
+      "content_types": ["planning", "review", "preview"],
+      "suggested_posts": 1
+    }
+  }
+}
