@@ -67,27 +67,44 @@ async function createTask(
 async function pollResult(
   apiKey: string,
   taskId: string,
+  isVeo: boolean,
   intervalMs = 5000,
   maxAttempts = 120
 ): Promise<string[]> {
   for (let i = 0; i < maxAttempts; i++) {
-    const res = await fetch(`${KIE_API_BASE}/jobs/recordInfo?taskId=${taskId}`, {
+    const endpoint = isVeo
+      ? `${KIE_API_BASE}/veo/record-info?taskId=${taskId}`
+      : `${KIE_API_BASE}/jobs/recordInfo?taskId=${taskId}`;
+
+    const res = await fetch(endpoint, {
       headers: { Authorization: `Bearer ${apiKey}` },
     });
 
-    const json: KieStatusResponse = await res.json();
-    if (!json.data) throw new Error(`kie.ai error: ${json.msg}`);
+    const json = await res.json();
+    if (json.code !== 200 || !json.data) throw new Error(`kie.ai error: ${json.msg}`);
 
-    const elapsed = Math.round((Date.now() - Number(json.data.costTime || 0)) / 1000);
-    console.log(`  [${i + 1}/${maxAttempts}] State: ${json.data.state}`);
+    if (isVeo) {
+      // Veo uses successFlag/errorMessage instead of state
+      const { successFlag, errorMessage, response } = json.data;
+      console.log(`  [${i + 1}/${maxAttempts}] ${successFlag === 1 ? 'Success' : 'Processing...'}`);
 
-    if (json.data.state === 'success') {
-      const result = JSON.parse(json.data.resultJson);
-      return result.resultUrls as string[];
-    }
+      if (successFlag === 1 && response?.resultUrls) {
+        return response.resultUrls as string[];
+      }
+      if (errorMessage) {
+        throw new Error(`Task failed: ${errorMessage}`);
+      }
+    } else {
+      // Kling uses state-based polling
+      console.log(`  [${i + 1}/${maxAttempts}] State: ${json.data.state}`);
 
-    if (json.data.state === 'fail') {
-      throw new Error(`Task failed (${json.data.failCode}): ${json.data.failMsg}`);
+      if (json.data.state === 'success') {
+        const result = JSON.parse(json.data.resultJson);
+        return result.resultUrls as string[];
+      }
+      if (json.data.state === 'fail') {
+        throw new Error(`Task failed (${json.data.failCode}): ${json.data.failMsg}`);
+      }
     }
 
     await new Promise((r) => setTimeout(r, intervalMs));
@@ -129,8 +146,9 @@ async function main() {
   console.log('━'.repeat(50));
 
   let taskId: string;
+  const isVeo = modelArg.startsWith('veo3');
 
-  if (modelArg.startsWith('veo3')) {
+  if (isVeo) {
     // Veo 3.1 uses a different endpoint
     console.log('\n📹 Creating Veo 3.1 video task...');
     taskId = await createTask(
@@ -161,7 +179,7 @@ async function main() {
   console.log(`✅ Task created: ${taskId}`);
   console.log('\n⏳ Polling for result (this may take 1-3 minutes)...\n');
 
-  const urls = await pollResult(apiKey, taskId);
+  const urls = await pollResult(apiKey, taskId, isVeo);
 
   console.log('\n🎬 Video generated successfully!');
   console.log('━'.repeat(50));

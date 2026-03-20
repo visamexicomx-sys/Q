@@ -226,6 +226,8 @@ Use `@element_name` in prompts to reference characters/objects defined in `kling
 
 ## Querying Task Status
 
+### Kling Models
+
 **GET** `https://api.kie.ai/api/v1/jobs/recordInfo?taskId=TASK_ID`
 
 ```bash
@@ -233,7 +235,7 @@ curl -X GET "https://api.kie.ai/api/v1/jobs/recordInfo?taskId=task_kling-2.6_176
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-### Success Response
+#### Kling Success Response
 
 ```json
 {
@@ -254,6 +256,45 @@ curl -X GET "https://api.kie.ai/api/v1/jobs/recordInfo?taskId=task_kling-2.6_176
 ```
 
 Parse `resultJson` to get the video URL from `resultUrls` array.
+
+### Veo 3.1 Models
+
+**IMPORTANT**: Veo uses a **different polling endpoint** than Kling.
+
+**GET** `https://api.kie.ai/api/v1/veo/record-info?taskId=TASK_ID`
+
+```bash
+curl -X GET "https://api.kie.ai/api/v1/veo/record-info?taskId=YOUR_TASK_ID" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+#### Veo Success Response
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taskId": "c2ac913cc2618ee809dd315065c48c5a",
+    "paramJson": "{\"aspectRatio\":\"16:9\",\"model\":\"veo3_fast\",\"prompt\":\"...\"}",
+    "response": {
+      "taskId": "c2ac913cc2618ee809dd315065c48c5a",
+      "resolution": "720p",
+      "resultUrls": ["https://tempfile.aiquickdraw.com/v/example.mp4"],
+      "hasAudioList": [true],
+      "seeds": [34186]
+    },
+    "successFlag": 1,
+    "fallbackFlag": false,
+    "completeTime": 1773967493000,
+    "createTime": 1773967426000,
+    "errorCode": null,
+    "errorMessage": null
+  }
+}
+```
+
+Check `successFlag === 1` for completion. Video URLs are in `response.resultUrls`.
 
 ---
 
