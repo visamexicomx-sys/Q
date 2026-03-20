@@ -58,3 +58,19 @@ polyrouter-mcp/
 # Prediction market tools (cloned repos)
 polymarket-insider-tracker/
 polyterm/
+prediction-market-analysis/
+polymarket-agents/
+PredictOS/
+kalshi-deep-trading-bot/
+kalshi-ai-trading-bot/
+polymarket-kalshi-weather-bot/
+kalshi-market-making/
+Kalshi-Quant-TeleBot/
+polymarket-whalesight/
+polymarket-intelligence/
+polymarket-mcp-server/
+poly_data/
+polymarket_analysis_v1/
+polymarket-subgraph-analytics/
+polymarket-kalshi-btc-arbitrage-bot/
+prediction-market-arbitrage-bot/
