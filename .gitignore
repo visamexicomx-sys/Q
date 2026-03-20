@@ -51,3 +51,6 @@ package-lock.json
 bin/_chunks/
 bin/cli-wrapper.mjs
 bin/cli.d.mts
+
+# MCP servers (cloned repos with credentials)
+polyrouter-mcp/
