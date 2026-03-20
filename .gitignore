@@ -54,3 +54,7 @@ bin/cli.d.mts
 
 # MCP servers (cloned repos with credentials)
 polyrouter-mcp/
+
+# Prediction market tools (cloned repos)
+polymarket-insider-tracker/
+polyterm/
