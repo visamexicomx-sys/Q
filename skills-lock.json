@@ -111,6 +111,11 @@
       "sourceType": "github",
       "computedHash": "44138664e994e87a0410405c46385438e0de0b1050450a994d621da4f1c98310"
     },
+    "prediction-market-analysis": {
+      "source": "/home/user/Q/skills/prediction-market-analysis",
+      "sourceType": "local",
+      "computedHash": "9b6aae2f866be3fc31229e7500a0e6fe818e5a594c4d51c46f3136464203512a"
+    },
     "pricing-strategy": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
