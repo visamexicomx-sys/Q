@@ -3,7 +3,7 @@
 set -euo pipefail
 
 BASE_URL="https://repodatos.atdt.gob.mx/api_update"
-OUT_DIR="$(cd "$(dirname "$0")/.." && pwd)/data/repodatos"
+OUT_DIR="${REPODATOS_OUT_DIR:-/home/olek/Desktop/repodatos}"
 PARALLEL=8
 
 mkdir -p "$OUT_DIR"
