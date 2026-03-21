@@ -71,6 +71,15 @@ polymarket-intelligence/
 polymarket-mcp-server/
 poly_data/
 polymarket_analysis_v1/
+!polymarket_analysis_v1/packages/nextjs/app/dashboard/
+!polymarket_analysis_v1/packages/nextjs/app/dashboard/**
+!polymarket_analysis_v1/packages/nextjs/components/dashboard/
+!polymarket_analysis_v1/packages/nextjs/components/dashboard/**
+!polymarket_analysis_v1/packages/nextjs/components/Header.tsx
+!polymarket_analysis_v1/packages/
+!polymarket_analysis_v1/packages/nextjs/
+!polymarket_analysis_v1/packages/nextjs/app/
+!polymarket_analysis_v1/packages/nextjs/components/
 polymarket-subgraph-analytics/
 polymarket-kalshi-btc-arbitrage-bot/
 prediction-market-arbitrage-bot/
