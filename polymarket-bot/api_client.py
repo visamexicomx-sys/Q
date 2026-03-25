@@ -177,19 +177,46 @@ class PolymarketClient:
         markets = []
         for m in data:
             try:
-                tokens = m.get("clobTokenIds", [])
-                if isinstance(tokens, str):
-                    tokens = [{"token_id": t} for t in tokens.split(",")]
-                elif isinstance(tokens, list) and tokens and isinstance(tokens[0], str):
-                    tokens = [{"token_id": t} for t in tokens]
+                # clobTokenIds can be a JSON string like '["id1", "id2"]'
+                tokens_raw = m.get("clobTokenIds", "[]")
+                if isinstance(tokens_raw, str):
+                    import json as _json
+                    try:
+                        token_list = _json.loads(tokens_raw)
+                    except (ValueError, TypeError):
+                        token_list = [t.strip() for t in tokens_raw.split(",") if t.strip()]
+                    tokens = [{"token_id": t} for t in token_list]
+                elif isinstance(tokens_raw, list):
+                    if tokens_raw and isinstance(tokens_raw[0], str):
+                        tokens = [{"token_id": t} for t in tokens_raw]
+                    else:
+                        tokens = tokens_raw
+                else:
+                    tokens = []
 
-                prices_raw = m.get("outcomePrices", [])
+                # outcomePrices can be a JSON string like '["0.5", "0.5"]'
+                prices_raw = m.get("outcomePrices", "[]")
                 if isinstance(prices_raw, str):
-                    prices = [float(p) for p in prices_raw.strip("[]").split(",") if p.strip()]
+                    import json as _json
+                    try:
+                        prices = [float(p) for p in _json.loads(prices_raw)]
+                    except (ValueError, TypeError):
+                        prices = [float(p) for p in prices_raw.strip("[]").split(",") if p.strip()]
                 elif isinstance(prices_raw, list):
                     prices = [float(p) for p in prices_raw]
                 else:
                     prices = []
+
+                # outcomes can also be a JSON string
+                outcomes_raw = m.get("outcomes", '["Yes", "No"]')
+                if isinstance(outcomes_raw, str):
+                    import json as _json
+                    try:
+                        outcomes = _json.loads(outcomes_raw)
+                    except (ValueError, TypeError):
+                        outcomes = ["Yes", "No"]
+                else:
+                    outcomes = outcomes_raw
 
                 markets.append(Market(
                     condition_id=m.get("conditionId", m.get("condition_id", "")),
@@ -197,11 +224,11 @@ class PolymarketClient:
                     tokens=tokens,
                     active=m.get("active", True),
                     closed=m.get("closed", False),
-                    volume=float(m.get("volume", 0) or 0),
-                    liquidity=float(m.get("liquidity", 0) or 0),
+                    volume=float(m.get("volumeNum", m.get("volume", 0)) or 0),
+                    liquidity=float(m.get("liquidityNum", m.get("liquidity", 0)) or 0),
                     end_date=m.get("endDate", m.get("end_date_iso", "")),
                     description=m.get("description", ""),
-                    outcomes=m.get("outcomes", ["Yes", "No"]),
+                    outcomes=outcomes,
                     outcome_prices=prices,
                 ))
             except (ValueError, KeyError, TypeError) as e:
