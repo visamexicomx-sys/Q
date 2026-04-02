@@ -1,6 +1,18 @@
 {
   "version": 1,
   "skills": {
+    "carousel-creator": {
+      "source": "local",
+      "sourceType": "local"
+    },
+    "content-scripter": {
+      "source": "local",
+      "sourceType": "local"
+    },
+    "scrape-competitors": {
+      "source": "local",
+      "sourceType": "local"
+    },
     "ab-test-setup": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
