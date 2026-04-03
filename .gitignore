@@ -56,4 +56,4 @@ bin/cli.d.mts
 __pycache__/
 *.pyc
 venv/
-*.log
+caches/
