@@ -225,6 +225,222 @@
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
       "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+    },
+    "agentdb-advanced": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "agentdb-learning": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "agentdb-memory-patterns": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "agentdb-optimization": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "agentdb-vector-search": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "agentic-jujutsu": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "flow-nexus-neural": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "flow-nexus-platform": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "flow-nexus-swarm": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "github-code-review": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "github-multi-repo": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "github-project-management": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "github-release-management": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "github-workflow-automation": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "hive-mind-advanced": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "hooks-automation": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "pair-programming": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "performance-analysis": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "reasoningbank-agentdb": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "reasoningbank-intelligence": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "skill-builder": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "sparc-methodology": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "stream-chain": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "swarm-advanced": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "swarm-orchestration": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-cli-modernization": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-core-implementation": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-ddd-architecture": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-integration-deep": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-mcp-optimization": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-memory-unification": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-performance-optimization": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-security-overhaul": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "v3-swarm-coordination": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "verification-quality": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "worker-benchmarks": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "worker-integration": {
+      "source": "ruvnet/ruflo",
+      "sourceType": "github"
+    },
+    "auto-red-team": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "binaural-beats": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "cl4r1t4s": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "g0dm0d3": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "gemini-system-prompt": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "glossopetrae": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "grok-system-prompt": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "image-defender": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "l1b3rt4s": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "naturalis-futura": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "obliteratus": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "ourobopus": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "p4rs3lt0ngv3": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "prompt-hacks": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "st3gg": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "v3r1t4s": {
+      "source": "elder-plinius",
+      "sourceType": "github"
+    },
+    "v3sp3r": {
+      "source": "elder-plinius",
+      "sourceType": "github"
     }
   }
 }
