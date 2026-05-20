@@ -1,0 +1,146 @@
+name: Wildberries TV report
+
+on:
+  schedule:
+    # Каждую пятницу 06:00 UTC = 09:00 МСК.
+    - cron: "0 6 * * 5"
+  workflow_dispatch:
+    inputs:
+      query:
+        description: "Поисковый запрос на WB"
+        default: "телевизор"
+        required: false
+      topN:
+        description: "Сколько артикулов брать в топ"
+        default: "100"
+        required: false
+      maxPages:
+        description: "Максимум страниц"
+        default: "100"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wb-tv-report
+  cancel-in-progress: false
+
+jobs:
+  scrape-and-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+      APIFY_ACTOR_ID: ${{ vars.APIFY_ACTOR_ID }}
+      QUERY: ${{ github.event.inputs.query || 'телевизор' }}
+      TOP_N: ${{ github.event.inputs.topN || '100' }}
+      MAX_PAGES: ${{ github.event.inputs.maxPages || '100' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify secrets
+        run: |
+          set -e
+          if [ -z "${APIFY_TOKEN}" ]; then
+            echo "::error::Missing APIFY_TOKEN secret. Add it in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          if [ -z "${APIFY_ACTOR_ID}" ]; then
+            echo "::error::Missing APIFY_ACTOR_ID variable (e.g. yourname~wildberries-tv-scraper)."
+            exit 1
+          fi
+          echo "Actor: ${APIFY_ACTOR_ID}, query: ${QUERY}, topN: ${TOP_N}"
+
+      - name: Start Apify run
+        id: start
+        run: |
+          set -euo pipefail
+          payload=$(jq -nc \
+            --arg query "${QUERY}" \
+            --argjson topN "${TOP_N}" \
+            --argjson maxPages "${MAX_PAGES}" \
+            '{query:$query, topN:$topN, maxPages:$maxPages, sort:"priceup", useProxy:true}')
+          echo "Input: $payload"
+          resp=$(curl -fsSL -X POST \
+            "https://api.apify.com/v2/acts/${APIFY_ACTOR_ID}/runs?token=${APIFY_TOKEN}&memory=1024&timeout=1800" \
+            -H "Content-Type: application/json" \
+            -d "$payload")
+          run_id=$(echo "$resp" | jq -r '.data.id')
+          if [ -z "$run_id" ] || [ "$run_id" = "null" ]; then
+            echo "::error::Failed to start Apify run"; echo "$resp"; exit 1
+          fi
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          echo "Started run $run_id"
+
+      - name: Wait for run to finish
+        id: wait
+        env:
+          RUN_ID: ${{ steps.start.outputs.run_id }}
+        run: |
+          set -euo pipefail
+          status=""
+          for i in $(seq 1 60); do
+            sleep 30
+            resp=$(curl -fsSL "https://api.apify.com/v2/actor-runs/${RUN_ID}?token=${APIFY_TOKEN}")
+            status=$(echo "$resp" | jq -r '.data.status')
+            echo "[$i] status=$status"
+            case "$status" in
+              SUCCEEDED)
+                echo "kvs_id=$(echo "$resp" | jq -r '.data.defaultKeyValueStoreId')" >> "$GITHUB_OUTPUT"
+                echo "dataset_id=$(echo "$resp" | jq -r '.data.defaultDatasetId')" >> "$GITHUB_OUTPUT"
+                exit 0
+                ;;
+              FAILED|ABORTED|TIMED-OUT|TIMEOUT)
+                echo "::error::Apify run finished with status $status"
+                echo "$resp" | jq '.data | {id, status, statusMessage, exitCode}'
+                exit 1
+                ;;
+            esac
+          done
+          echo "::error::Timed out waiting for Apify run (last status=$status)"
+          exit 1
+
+      - name: Download report artifacts
+        env:
+          KVS_ID: ${{ steps.wait.outputs.kvs_id }}
+          DATASET_ID: ${{ steps.wait.outputs.dataset_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p apify-wb-tv-scraper/report
+          curl -fsSL \
+            "https://api.apify.com/v2/key-value-stores/${KVS_ID}/records/REPORT?token=${APIFY_TOKEN}" \
+            -o apify-wb-tv-scraper/report/REPORT.md
+          curl -fsSL \
+            "https://api.apify.com/v2/key-value-stores/${KVS_ID}/records/REPORT_JSON?token=${APIFY_TOKEN}" \
+            -o apify-wb-tv-scraper/report/REPORT.json
+          curl -fsSL \
+            "https://api.apify.com/v2/datasets/${DATASET_ID}/items?format=csv&clean=true&token=${APIFY_TOKEN}" \
+            -o apify-wb-tv-scraper/report/dataset.csv
+          ls -la apify-wb-tv-scraper/report
+          head -n 30 apify-wb-tv-scraper/report/REPORT.md
+
+      - name: Commit and push report
+        run: |
+          set -euo pipefail
+          git config user.name "wb-tv-report-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apify-wb-tv-scraper/report/REPORT.md \
+                  apify-wb-tv-scraper/report/REPORT.json \
+                  apify-wb-tv-scraper/report/dataset.csv
+          if git diff --staged --quiet; then
+            echo "No report changes — skipping commit."
+            exit 0
+          fi
+          stamp=$(date -u +%Y-%m-%d)
+          git commit -m "chore(report): refresh Wildberries TV report ${stamp}"
+          git push
+
+      - name: Upload report as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wb-tv-report
+          path: apify-wb-tv-scraper/report/
+          if-no-files-found: ignore

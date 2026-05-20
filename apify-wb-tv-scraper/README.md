@@ -13,13 +13,21 @@ Markdown-отчёт с топом артикулов по цене.
    (`кронштейн`, `пульт`, `чехол`, …) — оставляет только карточки,
    у которых в названии есть `телевизор`/`smart tv`/`LED`/`QLED`/`OLED`/`UHD`.
 3. Для каждой карточки кладёт в Dataset поля:
-   `id`, `name`, `brand`, `price`, `basicPrice`, `discount`,
-   `rating`, `feedbacks`, `supplier`, `subjectId`, `url`.
-4. Сортирует по цене, фильтрует по `minRating` / `minFeedbacks` и
+   `id`, `name`, `brand`, `diagonal`, `price`, `basicPrice`, `discount`,
+   `rating`, `feedbacks`, `supplier`, `supplierId`, `supplierRating`,
+   `subjectId`, `url`.
+4. Парсит диагональ из названия (`32"`, `43 дюйма`, fallback по
+   стандартному ряду 19/22/24/…/100) и забирает рейтинг продавца,
+   когда WB его отдаёт.
+5. Сортирует по цене, фильтрует по `minRating` / `minFeedbacks` и
    сохраняет в Key-Value Store:
-   - `REPORT` — Markdown-таблица топ-N артикулов со ссылками
-     `https://www.wildberries.ru/catalog/<id>/detail.aspx`.
-   - `REPORT_JSON` — те же позиции как JSON.
+   - `REPORT` — Markdown-отчёт с тремя секциями:
+     1. **Топ артикулов по цене** (с колонками `Диаг.`, `Продавец (★)`),
+     2. **Разбивка по брендам** — топ-15 по числу карточек, для каждого
+        мин/медианная цена, средний рейтинг и самый дешёвый артикул,
+     3. **Разбивка по диагоналям** — для каждой диагонали топ-3 дешёвых.
+     Все ссылки ведут на `https://www.wildberries.ru/catalog/<id>/detail.aspx`.
+   - `REPORT_JSON` — структурированные данные тех же секций.
 
 ## Как запустить
 
@@ -69,6 +77,24 @@ apify run -p   # -p = чистый KV-стор перед запуском
 | `useProxy` | bool | `true` | Включать Apify Proxy (рекомендуется) |
 | `proxyGroups` | array | `[]` | Например `["RESIDENTIAL"]` |
 | `delayMs` | int | `600` | Задержка между запросами |
+
+## Авто-прогон по расписанию (GitHub Action)
+
+В корне репо лежит workflow `.github/workflows/wb-tv-report.yml`,
+который раз в неделю (и по кнопке `workflow_dispatch`) дёргает Apify
+API, ждёт окончания прогона, скачивает `REPORT.md` + `REPORT.json` +
+`dataset.csv` и коммитит их в `apify-wb-tv-scraper/report/`.
+
+Чтобы он заработал, в репо нужно настроить:
+
+| Где | Что | Зачем |
+|-----|-----|-------|
+| Settings → Secrets and variables → Actions → **Secrets** | `APIFY_TOKEN` | Токен Apify (`https://console.apify.com/account/integrations`) |
+| Settings → Secrets and variables → Actions → **Variables** | `APIFY_ACTOR_ID` | ID собранного Actor, например `username~wildberries-tv-scraper` |
+
+После этого Action можно запускать вручную через
+**Actions → Wildberries TV report → Run workflow**, или ждать пятницы
+06:00 UTC (расписание правится в самом yml).
 
 ## Замечания
 

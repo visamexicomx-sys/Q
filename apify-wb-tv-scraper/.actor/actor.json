@@ -15,12 +15,15 @@
         "id",
         "name",
         "brand",
+        "diagonal",
         "price",
         "basicPrice",
         "discount",
         "rating",
         "feedbacks",
         "supplier",
+        "supplierId",
+        "supplierRating",
         "subjectId",
         "url"
       ],
@@ -31,11 +34,14 @@
             "fields": [
               "id",
               "brand",
+              "diagonal",
               "name",
               "price",
               "discount",
               "rating",
               "feedbacks",
+              "supplier",
+              "supplierRating",
               "url"
             ]
           },
