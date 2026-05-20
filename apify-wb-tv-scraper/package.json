@@ -1,0 +1,17 @@
+{
+  "name": "wildberries-tv-scraper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "apify": "^3.2.6",
+    "got-scraping": "^4.1.1"
+  }
+}

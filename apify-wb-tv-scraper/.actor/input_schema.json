@@ -1,0 +1,102 @@
+{
+  "title": "Wildberries TV scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "query": {
+      "title": "Поисковый запрос",
+      "type": "string",
+      "description": "Что искать на WB. По умолчанию 'телевизор'.",
+      "default": "телевизор",
+      "editor": "textfield"
+    },
+    "maxPages": {
+      "title": "Максимум страниц",
+      "type": "integer",
+      "description": "WB отдаёт до 100 страниц по 100 карточек. Для полного охвата ставьте 100.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "sort": {
+      "title": "Сортировка WB",
+      "type": "string",
+      "description": "priceup = от дешёвых к дорогим (для поиска лучших цен).",
+      "enum": ["priceup", "pricedown", "popular", "rate", "newly"],
+      "enumTitles": [
+        "Цена ↑ (priceup)",
+        "Цена ↓ (pricedown)",
+        "Популярные",
+        "Рейтинг",
+        "Новинки"
+      ],
+      "default": "priceup"
+    },
+    "dest": {
+      "title": "Регион (dest код WB)",
+      "type": "integer",
+      "description": "Код региона WB. -1257786 — стандартный для Москвы/ЦФО.",
+      "default": -1257786
+    },
+    "minPrice": {
+      "title": "Минимальная цена, ₽",
+      "type": "integer",
+      "default": 0,
+      "minimum": 0
+    },
+    "maxPrice": {
+      "title": "Максимальная цена, ₽ (0 = без лимита)",
+      "type": "integer",
+      "default": 0,
+      "minimum": 0
+    },
+    "minRating": {
+      "title": "Минимальный рейтинг для топа",
+      "type": "integer",
+      "description": "Карточки с рейтингом ниже не попадут в Top-отчёт (в датасет попадут все).",
+      "default": 4,
+      "minimum": 0,
+      "maximum": 5
+    },
+    "minFeedbacks": {
+      "title": "Минимум отзывов для топа",
+      "type": "integer",
+      "default": 5,
+      "minimum": 0
+    },
+    "topN": {
+      "title": "Сколько артикулов брать в финальный топ",
+      "type": "integer",
+      "default": 50,
+      "minimum": 1,
+      "maximum": 500
+    },
+    "onlyTVs": {
+      "title": "Только настоящие телевизоры",
+      "type": "boolean",
+      "description": "Отфильтровать кронштейны, пульты, чехлы и прочие аксессуары по ключевым словам.",
+      "default": true
+    },
+    "useProxy": {
+      "title": "Использовать прокси Apify",
+      "type": "boolean",
+      "description": "Включить Apify Proxy (рекомендуется, иначе WB может банить датацентровые IP).",
+      "default": true
+    },
+    "proxyGroups": {
+      "title": "Группы прокси",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Например ['RESIDENTIAL'] для жилых прокси (если доступны в вашем плане).",
+      "default": []
+    },
+    "delayMs": {
+      "title": "Задержка между запросами, мс",
+      "type": "integer",
+      "default": 600,
+      "minimum": 0,
+      "maximum": 10000
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,47 @@
+{
+  "actorSpecification": 1,
+  "name": "wildberries-tv-scraper",
+  "title": "Wildberries TV scraper",
+  "description": "Скрейпит все телевизоры с Wildberries.ru через публичный search.wb.ru API, фильтрует аксессуары, считает скидки и пишет в Key-Value Store отчёт REPORT.md с топом артикулов по цене.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "meta": { "templateId": "js-empty" },
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "fields": [
+        "id",
+        "name",
+        "brand",
+        "price",
+        "basicPrice",
+        "discount",
+        "rating",
+        "feedbacks",
+        "supplier",
+        "subjectId",
+        "url"
+      ],
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "transformation": {
+            "fields": [
+              "id",
+              "brand",
+              "name",
+              "price",
+              "discount",
+              "rating",
+              "feedbacks",
+              "url"
+            ]
+          },
+          "display": { "component": "table" }
+        }
+      }
+    }
+  }
+}
