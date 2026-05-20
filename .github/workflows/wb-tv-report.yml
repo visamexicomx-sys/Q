@@ -49,12 +49,17 @@ jobs:
       - name: Show report head
         run: head -n 40 "$OUT_DIR/REPORT.md" || true
 
+      - name: Show anomalies head
+        run: head -n 40 "$OUT_DIR/ANOMALIES.md" || true
+
       - name: Commit and push report
         run: |
           set -euo pipefail
           git config user.name "wb-tv-report-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$OUT_DIR/REPORT.md" "$OUT_DIR/REPORT.json"
+          git add "$OUT_DIR/REPORT.md" "$OUT_DIR/REPORT.json" \
+                  "$OUT_DIR/ANOMALIES.md" "$OUT_DIR/ANOMALIES.json" \
+                  "$OUT_DIR/history"
           if git diff --staged --quiet; then
             echo "No report changes — skipping commit."
             exit 0

@@ -103,5 +103,25 @@ fi
 echo "▸ Building report…"
 node apify-wb-tv-scraper/scripts/build-report.mjs --input "$COMBINED" --out-dir "$OUT_DIR"
 
+echo "▸ Detecting anomalies…"
+HIST_DIR="$OUT_DIR/history"
+mkdir -p "$HIST_DIR"
+# pick the most recent previous snapshot (if any) before we overwrite
+PREV_SNAPSHOT="$(ls -t "$HIST_DIR"/*.json 2>/dev/null | head -1 || true)"
+PREV_ARG=()
+if [ -n "$PREV_SNAPSHOT" ]; then
+  echo "  using previous snapshot: $PREV_SNAPSHOT"
+  PREV_ARG=(--prev "$PREV_SNAPSHOT")
+else
+  echo "  no previous snapshot yet — trend sections will be skipped"
+fi
+node apify-wb-tv-scraper/scripts/anomalies.mjs \
+  --input "$OUT_DIR/REPORT.json" --out-dir "$OUT_DIR" "${PREV_ARG[@]}"
+
+# rotate: snapshot current REPORT.json into history/YYYY-MM-DD.json, keep last 30
+STAMP=$(date -u +%Y-%m-%d)
+cp "$OUT_DIR/REPORT.json" "$HIST_DIR/$STAMP.json"
+ls -t "$HIST_DIR"/*.json | tail -n +31 | xargs -r rm -f
+
 echo "▸ Done. Files in $OUT_DIR:"
 ls -la "$OUT_DIR"
