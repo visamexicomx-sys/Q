@@ -11,22 +11,7 @@
   "storages": {
     "dataset": {
       "actorSpecification": 1,
-      "fields": [
-        "id",
-        "name",
-        "brand",
-        "diagonal",
-        "price",
-        "basicPrice",
-        "discount",
-        "rating",
-        "feedbacks",
-        "supplier",
-        "supplierId",
-        "supplierRating",
-        "subjectId",
-        "url"
-      ],
+      "fields": {},
       "views": {
         "overview": {
           "title": "Overview",

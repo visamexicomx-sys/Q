@@ -41,12 +41,14 @@
     "minPrice": {
       "title": "Минимальная цена, ₽",
       "type": "integer",
+      "description": "Карточки дешевле этого порога пропускаются. 0 — без нижнего предела.",
       "default": 0,
       "minimum": 0
     },
     "maxPrice": {
-      "title": "Максимальная цена, ₽ (0 = без лимита)",
+      "title": "Максимальная цена, ₽",
       "type": "integer",
+      "description": "Карточки дороже этого порога пропускаются. 0 — без верхнего предела.",
       "default": 0,
       "minimum": 0
     },
@@ -61,12 +63,14 @@
     "minFeedbacks": {
       "title": "Минимум отзывов для топа",
       "type": "integer",
+      "description": "Карточки с меньшим числом отзывов в Top-отчёт не попадут (в датасет — попадут все).",
       "default": 5,
       "minimum": 0
     },
     "topN": {
       "title": "Сколько артикулов брать в финальный топ",
       "type": "integer",
+      "description": "Размер таблицы топа в REPORT.md.",
       "default": 50,
       "minimum": 1,
       "maximum": 500
@@ -93,6 +97,7 @@
     "delayMs": {
       "title": "Задержка между запросами, мс",
       "type": "integer",
+      "description": "Пауза между HTTP-запросами к search.wb.ru — снижает риск блокировки.",
       "default": 600,
       "minimum": 0,
       "maximum": 10000
