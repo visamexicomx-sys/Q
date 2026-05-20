@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-05-20T21:29:18.440Z",
-  "snapshotSize": 230,
+  "generatedAt": "2026-05-20T21:44:09.725Z",
+  "snapshotSize": 382,
   "prevSize": 0,
   "severity": {
     "high": 13,
-    "medium": 15,
-    "low": 29
+    "medium": 32,
+    "low": 33
   },
   "sentinels": [
     {
@@ -18,11 +18,71 @@
       "rating": null,
       "reviews": 0,
       "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/1030929758/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10309/part1030929/1030929758/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ]
+      "url": "https://www.wildberries.ru/catalog/1030929758/detail.aspx"
+    },
+    {
+      "id": "1031002922",
+      "name": "/ Телевизор 43AU20H",
+      "brand": "Artel",
+      "price": 999999,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/1031002922/detail.aspx"
+    },
+    {
+      "id": "1031006980",
+      "name": "/ Телевизор 50AU20K",
+      "brand": "Artel",
+      "price": 999999,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 50,
+      "url": "https://www.wildberries.ru/catalog/1031006980/detail.aspx"
+    },
+    {
+      "id": "1031006960",
+      "name": "/ Телевизор 43AU20K",
+      "brand": "Artel",
+      "price": 999999,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/1031006960/detail.aspx"
+    },
+    {
+      "id": "1031006926",
+      "name": "/ Телевизор 55AU20K",
+      "brand": "Artel",
+      "price": 999999,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 55,
+      "url": "https://www.wildberries.ru/catalog/1031006926/detail.aspx"
+    }
+  ],
+  "expensiveOutliers": [
+    {
+      "id": "1031006980",
+      "name": "/ Телевизор 50AU20K",
+      "brand": "Artel",
+      "price": 999999,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 50,
+      "url": "https://www.wildberries.ru/catalog/1031006980/detail.aspx",
+      "zscore": 15.06,
+      "medianPrice": 38199
     },
     {
       "id": "1031002922",
@@ -35,26 +95,8 @@
       "reviews": 0,
       "diagonal": 43,
       "url": "https://www.wildberries.ru/catalog/1031002922/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031002/1031002922/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ]
-    },
-    {
-      "id": "1031006980",
-      "name": "/ Телевизор 50AU20K",
-      "brand": "Artel",
-      "price": 999999,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 50,
-      "url": "https://www.wildberries.ru/catalog/1031006980/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031006/1031006980/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ]
+      "zscore": 13.64,
+      "medianPrice": 27699
     },
     {
       "id": "1031006960",
@@ -67,29 +109,9 @@
       "reviews": 0,
       "diagonal": 43,
       "url": "https://www.wildberries.ru/catalog/1031006960/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031006/1031006960/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ]
+      "zscore": 13.64,
+      "medianPrice": 27699
     },
-    {
-      "id": "1031006926",
-      "name": "/ Телевизор 55AU20K",
-      "brand": "Artel",
-      "price": 999999,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/1031006926/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031006/1031006926/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ]
-    }
-  ],
-  "expensiveOutliers": [
     {
       "id": "1030929758",
       "name": "/ Телевизор A32MH1300",
@@ -101,48 +123,8 @@
       "reviews": 0,
       "diagonal": 32,
       "url": "https://www.wildberries.ru/catalog/1030929758/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10309/part1030929/1030929758/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 31.76,
-      "medianPrice": 13065
-    },
-    {
-      "id": "1031002922",
-      "name": "/ Телевизор 43AU20H",
-      "brand": "Artel",
-      "price": 999999,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 43,
-      "url": "https://www.wildberries.ru/catalog/1031002922/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031002/1031002922/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 12.99,
-      "medianPrice": 24990
-    },
-    {
-      "id": "1031006960",
-      "name": "/ Телевизор 43AU20K",
-      "brand": "Artel",
-      "price": 999999,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 43,
-      "url": "https://www.wildberries.ru/catalog/1031006960/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031006/1031006960/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 12.99,
-      "medianPrice": 24990
+      "zscore": 13.4,
+      "medianPrice": 14734
     },
     {
       "id": "1031006926",
@@ -155,66 +137,8 @@
       "reviews": 0,
       "diagonal": 55,
       "url": "https://www.wildberries.ru/catalog/1031006926/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031006/1031006926/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 12.71,
-      "medianPrice": 36340
-    },
-    {
-      "id": "1031006980",
-      "name": "/ Телевизор 50AU20K",
-      "brand": "Artel",
-      "price": 999999,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 50,
-      "url": "https://www.wildberries.ru/catalog/1031006980/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10310/part1031006/1031006980/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 6.34,
-      "medianPrice": 38933
-    },
-    {
-      "id": "732688359",
-      "name": "/ Телевизор 77OLED950, OLED, 4K UHD, Google TV, Ambilight",
-      "brand": "PHILIPS",
-      "price": 723341,
-      "originalPrice": 850990,
-      "discount": 15,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 77,
-      "url": "https://www.wildberries.ru/catalog/732688359/detail.aspx",
-      "image": "https://basket-34.wbbasket.ru/vol7326/part732688/732688359/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 5.79,
-      "medianPrice": 540486
-    },
-    {
-      "id": "982664481",
-      "name": "/ Телевизор 77OLED950, OLED, 4K UHD, Google TV, Ambilight",
-      "brand": "PHILIPS",
-      "price": 719091,
-      "originalPrice": 845990,
-      "discount": 15,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 77,
-      "url": "https://www.wildberries.ru/catalog/982664481/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol9826/part982664/982664481/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 5.68,
-      "medianPrice": 540486
+      "zscore": 8.43,
+      "medianPrice": 40848
     },
     {
       "id": "817474244",
@@ -227,210 +151,64 @@
       "reviews": 0,
       "diagonal": 43,
       "url": "https://www.wildberries.ru/catalog/817474244/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8174/part817474/817474244/images/c516x688/1.webp",
-      "sources": [
-        "newly"
-      ],
-      "zscore": 5.58,
-      "medianPrice": 24990
+      "zscore": 5.64,
+      "medianPrice": 27699
     },
     {
-      "id": "1026030053",
-      "name": "/ Телевизор Samsung UE32F6000FUXRU",
-      "brand": "",
-      "price": 25693,
-      "originalPrice": 49974,
-      "discount": 49,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/1026030053/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol10260/part1026030/1026030053/images/c516x688/1.webp",
-      "sources": [
-        "newly"
-      ],
-      "zscore": 4.95,
-      "medianPrice": 13065
-    },
-    {
-      "id": "810854151",
-      "name": "/ Телевизор QE75QN990FUXRU",
-      "brand": "Samsung",
-      "price": 603190,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/810854151/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8108/part810854/810854151/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 4.69,
-      "medianPrice": 89987
-    },
-    {
-      "id": "810842867",
-      "name": "/ Телевизор QE75QN990FUXRU",
-      "brand": "Samsung",
-      "price": 603190,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/810842867/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8108/part810842/810842867/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 4.69,
-      "medianPrice": 89987
-    },
-    {
-      "id": "810825784",
-      "name": "/ Телевизор QE75QN990FUXRU",
-      "brand": "Samsung",
-      "price": 603190,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/810825784/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8108/part810825/810825784/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 4.69,
-      "medianPrice": 89987
-    },
-    {
-      "id": "858569105",
-      "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
-      "brand": "Samsung",
-      "price": 579991,
-      "originalPrice": 1113483,
-      "discount": 48,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/858569105/detail.aspx",
-      "image": "https://basket-38.wbbasket.ru/vol8585/part858569/858569105/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 4.59,
-      "medianPrice": 89987
-    },
-    {
-      "id": "810116463",
-      "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
-      "brand": "Samsung",
-      "price": 579990,
-      "originalPrice": 1125758,
-      "discount": 48,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/810116463/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8101/part810116/810116463/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 4.59,
-      "medianPrice": 89987
-    },
-    {
-      "id": "810842895",
-      "name": "/ Телевизор QE75QN900FUXRU",
-      "brand": "Samsung",
-      "price": 524990,
-      "originalPrice": null,
-      "discount": 0,
-      "rating": null,
-      "reviews": 0,
-      "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/810842895/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8108/part810842/810842895/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 4.35,
-      "medianPrice": 89987
-    },
-    {
-      "id": "1051304677",
-      "name": "/ Телевизор 55U8Q",
-      "brand": "HISENSE",
-      "price": 98403,
-      "originalPrice": 115769,
+      "id": "732688359",
+      "name": "/ Телевизор 77OLED950, OLED, 4K UHD, Google TV, Ambilight",
+      "brand": "PHILIPS",
+      "price": 723341,
+      "originalPrice": 850990,
       "discount": 15,
       "rating": null,
       "reviews": 0,
-      "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/1051304677/detail.aspx",
-      "image": "https://basket-42.wbbasket.ru/vol10513/part1051304/1051304677/images/c516x688/1.webp",
-      "sources": [
-        "newly"
-      ],
-      "zscore": 3.82,
-      "medianPrice": 36340
+      "diagonal": 77,
+      "url": "https://www.wildberries.ru/catalog/732688359/detail.aspx",
+      "zscore": 5.35,
+      "medianPrice": 529990
     },
     {
-      "id": "1055669048",
-      "name": "/ Телевизор ТВ Станция с Алисой 55'' YNDX-00101",
-      "brand": "Яндекс",
-      "price": 84439,
-      "originalPrice": null,
-      "discount": 0,
+      "id": "982664481",
+      "name": "/ Телевизор 77OLED950, OLED, 4K UHD, Google TV, Ambilight",
+      "brand": "PHILIPS",
+      "price": 719091,
+      "originalPrice": 845990,
+      "discount": 15,
       "rating": null,
       "reviews": 0,
-      "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/1055669048/detail.aspx",
-      "image": "https://basket-42.wbbasket.ru/vol10556/part1055669/1055669048/images/c516x688/1.webp",
-      "sources": [
-        "newly"
-      ],
-      "zscore": 3.23,
-      "medianPrice": 36340
+      "diagonal": 77,
+      "url": "https://www.wildberries.ru/catalog/982664481/detail.aspx",
+      "zscore": 5.25,
+      "medianPrice": 529990
     },
     {
-      "id": "564643743",
-      "name": "/ Телевизор 32 Smart TV S2 Pro, Android, EVO TV 60Гц",
-      "brand": "Haier",
-      "price": 20163,
-      "originalPrice": 27396,
-      "discount": 26,
-      "rating": 4.9,
-      "reviews": 3,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/564643743/detail.aspx",
-      "image": "https://basket-29.wbbasket.ru/vol5646/part564643/564643743/images/c516x688/1.webp",
-      "sources": [
-        "rate"
-      ],
-      "zscore": 3.18,
-      "medianPrice": 13065
-    },
-    {
-      "id": "338326814",
-      "name": "/ Телевизор 32 Smart TV S2 Pro, Android, EVO TV 60Гц",
-      "brand": "Haier",
-      "price": 19999,
-      "originalPrice": 33967,
-      "discount": 41,
-      "rating": 4.8,
+      "id": "927043721",
+      "name": "/ 24\" Телевизор DLED 24TQ510S-PZ, HD Smart TV",
+      "brand": "LG",
+      "price": 19675,
+      "originalPrice": 27101,
+      "discount": 27,
+      "rating": 5,
       "reviews": 8,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/338326814/detail.aspx",
-      "image": "https://basket-20.wbbasket.ru/vol3383/part338326/338326814/images/c516x688/1.webp",
-      "sources": [
-        "rate"
-      ],
-      "zscore": 3.12,
-      "medianPrice": 13065
+      "diagonal": 24,
+      "url": "https://www.wildberries.ru/catalog/927043721/detail.aspx",
+      "zscore": 4.74,
+      "medianPrice": 7639
+    },
+    {
+      "id": "706240534",
+      "name": "/ Телевизор смарт 43 дюйма QE43QN90FAUXRU черный",
+      "brand": "Samsung",
+      "price": 94207,
+      "originalPrice": 128000,
+      "discount": 26,
+      "rating": 4.8,
+      "reviews": 592,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/706240534/detail.aspx",
+      "zscore": 4.66,
+      "medianPrice": 27699
     },
     {
       "id": "810859679",
@@ -443,30 +221,190 @@
       "reviews": 0,
       "diagonal": 65,
       "url": "https://www.wildberries.ru/catalog/810859679/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8108/part810859/810859679/images/c516x688/1.webp",
-      "sources": [
-        "pricedown"
-      ],
-      "zscore": 3.11,
-      "medianPrice": 70246
+      "zscore": 4.59,
+      "medianPrice": 74991
     },
     {
-      "id": "338782308",
-      "name": "/ Телевизор 55 Mini LED, 4K, Android, EVO TV 144Гц",
-      "brand": "Haier",
-      "price": 79999,
-      "originalPrice": 135868,
-      "discount": 41,
+      "id": "810854151",
+      "name": "/ Телевизор QE75QN990FUXRU",
+      "brand": "Samsung",
+      "price": 603190,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/810854151/detail.aspx",
+      "zscore": 4.31,
+      "medianPrice": 90280
+    },
+    {
+      "id": "810842867",
+      "name": "/ Телевизор QE75QN990FUXRU",
+      "brand": "Samsung",
+      "price": 603190,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/810842867/detail.aspx",
+      "zscore": 4.31,
+      "medianPrice": 90280
+    },
+    {
+      "id": "810825784",
+      "name": "/ Телевизор QE75QN990FUXRU",
+      "brand": "Samsung",
+      "price": 603190,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/810825784/detail.aspx",
+      "zscore": 4.31,
+      "medianPrice": 90280
+    },
+    {
+      "id": "858569105",
+      "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
+      "brand": "Samsung",
+      "price": 579991,
+      "originalPrice": 1113483,
+      "discount": 48,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/858569105/detail.aspx",
+      "zscore": 4.22,
+      "medianPrice": 90280
+    },
+    {
+      "id": "810116463",
+      "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
+      "brand": "Samsung",
+      "price": 579990,
+      "originalPrice": 1125758,
+      "discount": 48,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/810116463/detail.aspx",
+      "zscore": 4.22,
+      "medianPrice": 90280
+    },
+    {
+      "id": "810121887",
+      "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
+      "brand": "Samsung",
+      "price": 579971,
+      "originalPrice": 1010263,
+      "discount": 43,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/810121887/detail.aspx",
+      "zscore": 4.22,
+      "medianPrice": 90280
+    },
+    {
+      "id": "824906120",
+      "name": "/ Телевизор QLED QE75QN990FUXRU",
+      "brand": "Samsung",
+      "price": 579920,
+      "originalPrice": 1125623,
+      "discount": 48,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/824906120/detail.aspx",
+      "zscore": 4.22,
+      "medianPrice": 90280
+    },
+    {
+      "id": "810842895",
+      "name": "/ Телевизор QE75QN900FUXRU",
+      "brand": "Samsung",
+      "price": 524990,
+      "originalPrice": null,
+      "discount": 0,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 75,
+      "url": "https://www.wildberries.ru/catalog/810842895/detail.aspx",
+      "zscore": 3.99,
+      "medianPrice": 90280
+    },
+    {
+      "id": "720809842",
+      "name": "/ Телевизор смарт 43 дюйма QE43LS03FAUXRU черный",
+      "brand": "Samsung",
+      "price": 78015,
+      "originalPrice": 106000,
+      "discount": 26,
       "rating": 4.8,
+      "reviews": 592,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/720809842/detail.aspx",
+      "zscore": 3.94,
+      "medianPrice": 27699
+    },
+    {
+      "id": "599214629",
+      "name": "/ Телевизор смарт 32 дюймов QE32LS03CBUXRU черный",
+      "brand": "Samsung",
+      "price": 43791,
+      "originalPrice": 59500,
+      "discount": 26,
+      "rating": 5,
+      "reviews": 4,
+      "diagonal": 32,
+      "url": "https://www.wildberries.ru/catalog/599214629/detail.aspx",
+      "zscore": 3.46,
+      "medianPrice": 14734
+    },
+    {
+      "id": "425534052",
+      "name": "/ Телевизор OLED 55'' OLED55C5RLA 4K UHD Smart TV",
+      "brand": "LG",
+      "price": 126480,
+      "originalPrice": 186000,
+      "discount": 32,
+      "rating": 5,
       "reviews": 8,
       "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/338782308/detail.aspx",
-      "image": "https://basket-20.wbbasket.ru/vol3387/part338782/338782308/images/c516x688/1.webp",
-      "sources": [
-        "rate"
-      ],
-      "zscore": 3.02,
-      "medianPrice": 36340
+      "url": "https://www.wildberries.ru/catalog/425534052/detail.aspx",
+      "zscore": 2.98,
+      "medianPrice": 40848
+    },
+    {
+      "id": "1037120713",
+      "name": "/ Телевизор TDWC24BH3260V",
+      "brand": "Topdevice",
+      "price": 13250,
+      "originalPrice": 13521,
+      "discount": 2,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 24,
+      "url": "https://www.wildberries.ru/catalog/1037120713/detail.aspx",
+      "zscore": 2.76,
+      "medianPrice": 7639
+    },
+    {
+      "id": "797058592",
+      "name": "/ Телевизор смарт 55 дюймов 55U8Q 2025 черный",
+      "brand": "HISENSE",
+      "price": 107087,
+      "originalPrice": 145500,
+      "discount": 26,
+      "rating": 4.9,
+      "reviews": 106,
+      "diagonal": 55,
+      "url": "https://www.wildberries.ru/catalog/797058592/detail.aspx",
+      "zscore": 2.54,
+      "medianPrice": 40848
     }
   ],
   "cheapOutliers": [
@@ -481,12 +419,8 @@
       "reviews": 0,
       "diagonal": 77,
       "url": "https://www.wildberries.ru/catalog/693156043/detail.aspx",
-      "image": "https://basket-33.wbbasket.ru/vol6931/part693156/693156043/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -11.84,
-      "medianPrice": 540486
+      "zscore": -9.9,
+      "medianPrice": 529990
     },
     {
       "id": "277503085",
@@ -499,12 +433,36 @@
       "reviews": 1,
       "diagonal": 77,
       "url": "https://www.wildberries.ru/catalog/277503085/detail.aspx",
-      "image": "https://basket-17.wbbasket.ru/vol2775/part277503/277503085/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -11.12,
-      "medianPrice": 540486
+      "zscore": -9.28,
+      "medianPrice": 529990
+    },
+    {
+      "id": "565514923",
+      "name": "/ Телевизор OLED77G5RLA.ARUG",
+      "brand": "LG",
+      "price": 333233,
+      "originalPrice": 458999,
+      "discount": 27,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 77,
+      "url": "https://www.wildberries.ru/catalog/565514923/detail.aspx",
+      "zscore": -7.98,
+      "medianPrice": 529990
+    },
+    {
+      "id": "784441483",
+      "name": "/ Телевизор LED 85\" UE85U8000FUXCE 4K Ultra HD Smart TV",
+      "brand": "Samsung",
+      "price": 88089,
+      "originalPrice": 117453,
+      "discount": 25,
+      "rating": 5,
+      "reviews": 2,
+      "diagonal": 85,
+      "url": "https://www.wildberries.ru/catalog/784441483/detail.aspx",
+      "zscore": -6.96,
+      "medianPrice": 545186
     },
     {
       "id": "460358796",
@@ -517,10 +475,6 @@
       "reviews": 8,
       "diagonal": 85,
       "url": "https://www.wildberries.ru/catalog/460358796/detail.aspx",
-      "image": "https://basket-26.wbbasket.ru/vol4603/part460358/460358796/images/c516x688/1.webp",
-      "sources": [
-        "rate"
-      ],
       "zscore": -6.11,
       "medianPrice": 545186
     },
@@ -535,10 +489,6 @@
       "reviews": 3,
       "diagonal": 85,
       "url": "https://www.wildberries.ru/catalog/693156299/detail.aspx",
-      "image": "https://basket-33.wbbasket.ru/vol6931/part693156/693156299/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
       "zscore": -6.09,
       "medianPrice": 545186
     },
@@ -553,66 +503,36 @@
       "reviews": 0,
       "diagonal": 85,
       "url": "https://www.wildberries.ru/catalog/969774224/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol9697/part969774/969774224/images/c516x688/1.webp",
-      "sources": [
-        "newly"
-      ],
       "zscore": -4.68,
       "medianPrice": 545186
     },
     {
-      "id": "883556292",
-      "name": "/ Телевизор 32 дюйма HC32HSS26F HD Smart ОС Салют WiFi",
-      "brand": "RAZZ",
-      "price": 8520,
-      "originalPrice": 14490,
+      "id": "575747044",
+      "name": "/ Телевизор 85QNED93A6A, QNED, ИИ процессор 8 Gen2",
+      "brand": "LG",
+      "price": 185665,
+      "originalPrice": 315328,
       "discount": 41,
-      "rating": 4.7,
-      "reviews": 583,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/883556292/detail.aspx",
-      "image": "https://basket-39.wbbasket.ru/vol8835/part883556/883556292/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -3.13,
-      "medianPrice": 13065
-    },
-    {
-      "id": "377687889",
-      "name": "/ Телевизор маленький на кухню 32 дюйма не смарт HD 32PL12TC",
-      "brand": "POLARLINE",
-      "price": 9190,
-      "originalPrice": 12405,
-      "discount": 26,
       "rating": 5,
-      "reviews": 35,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/377687889/detail.aspx",
-      "image": "https://basket-22.wbbasket.ru/vol3776/part377687/377687889/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -2.58,
-      "medianPrice": 13065
+      "reviews": 3,
+      "diagonal": 85,
+      "url": "https://www.wildberries.ru/catalog/575747044/detail.aspx",
+      "zscore": -4.11,
+      "medianPrice": 545186
     },
     {
-      "id": "532047992",
-      "name": "/ Телевизор смарт 32 дюйма с wi-fi",
-      "brand": "HOLLEBERG",
-      "price": 9363,
-      "originalPrice": 20999,
-      "discount": 55,
-      "rating": 4.6,
-      "reviews": 339,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/532047992/detail.aspx",
-      "image": "https://basket-28.wbbasket.ru/vol5320/part532047/532047992/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -2.44,
-      "medianPrice": 13065
+      "id": "430224880",
+      "name": "/ Телевизор 50 дюймов C50USS25F UHD 4К Smart ОС Салют WiFi",
+      "brand": "RAZZ",
+      "price": 18753,
+      "originalPrice": 27990,
+      "discount": 33,
+      "rating": 4.8,
+      "reviews": 1,
+      "diagonal": 50,
+      "url": "https://www.wildberries.ru/catalog/430224880/detail.aspx",
+      "zscore": -3.28,
+      "medianPrice": 38199
     },
     {
       "id": "420000552",
@@ -625,102 +545,22 @@
       "reviews": 746,
       "diagonal": 43,
       "url": "https://www.wildberries.ru/catalog/420000552/detail.aspx",
-      "image": "https://basket-24.wbbasket.ru/vol4200/part420000/420000552/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -2.43,
-      "medianPrice": 24990
+      "zscore": -3.02,
+      "medianPrice": 27699
     },
     {
-      "id": "111980165",
-      "name": "/ Телевизор 32 дюйма 32R690T, DVB-T2, HD",
-      "brand": "Harper",
-      "price": 9434,
-      "originalPrice": 19899,
-      "discount": 53,
+      "id": "277503207",
+      "name": "/ Телевизор 40E55G",
+      "brand": "Skyworth",
+      "price": 13801,
+      "originalPrice": 19399,
+      "discount": 29,
       "rating": 4.9,
-      "reviews": 987,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/111980165/detail.aspx",
-      "image": "https://basket-08.wbbasket.ru/vol1119/part111980/111980165/images/c516x688/1.webp",
-      "sources": [
-        "rate"
-      ],
-      "zscore": -2.38,
-      "medianPrice": 13065
-    },
-    {
-      "id": "784019781",
-      "name": "/ Телевизор 55\" 55LU1260 4K UHD Smart TV с Google TV",
-      "brand": "Витязь",
-      "price": 19666,
-      "originalPrice": 32240,
-      "discount": 39,
-      "rating": 4.3,
-      "reviews": 228,
-      "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/784019781/detail.aspx",
-      "image": "https://basket-36.wbbasket.ru/vol7840/part784019/784019781/images/c516x688/1.webp",
-      "sources": [
-        "tv55"
-      ],
-      "zscore": -2.35,
-      "medianPrice": 36340
-    },
-    {
-      "id": "579983206",
-      "name": "/ LED телевизор LD32D7500 диагональ 32″ Full HD, черный",
-      "brand": "ARG",
-      "price": 9534,
-      "originalPrice": 25740,
-      "discount": 63,
-      "rating": 5,
-      "reviews": 2,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/579983206/detail.aspx",
-      "image": "https://basket-29.wbbasket.ru/vol5799/part579983/579983206/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -2.31,
-      "medianPrice": 13065
-    },
-    {
-      "id": "822402376",
-      "name": "/ Телевизор 55 дюймов HC55USS26F UHD 4К Smart ОС Салют WiFi",
-      "brand": "RAZZ",
-      "price": 20143,
-      "originalPrice": 30990,
-      "discount": 35,
-      "rating": 4.8,
-      "reviews": 367,
-      "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/822402376/detail.aspx",
-      "image": "https://basket-37.wbbasket.ru/vol8224/part822402/822402376/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -2.26,
-      "medianPrice": 36340
-    },
-    {
-      "id": "399149562",
-      "name": "/ Телевизор СМАРТ 32\" TDHTV32YFD_BK",
-      "brand": "Topdevice",
-      "price": 9650,
-      "originalPrice": 16297,
-      "discount": 41,
-      "rating": 4.7,
-      "reviews": 888,
-      "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/399149562/detail.aspx",
-      "image": "https://basket-23.wbbasket.ru/vol3991/part399149/399149562/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -2.22,
-      "medianPrice": 13065
+      "reviews": 13,
+      "diagonal": 40,
+      "url": "https://www.wildberries.ru/catalog/277503207/detail.aspx",
+      "zscore": -2.84,
+      "medianPrice": 19016
     },
     {
       "id": "883556306",
@@ -733,12 +573,50 @@
       "reviews": 577,
       "diagonal": 43,
       "url": "https://www.wildberries.ru/catalog/883556306/detail.aspx",
-      "image": "https://basket-39.wbbasket.ru/vol8835/part883556/883556306/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "zscore": -2.2,
-      "medianPrice": 24990
+      "zscore": -2.77,
+      "medianPrice": 27699
+    },
+    {
+      "id": "577718242",
+      "name": "/ Телевизор SDX-43F3111 43\" Full HD, черный",
+      "brand": "SBER",
+      "price": 14798,
+      "originalPrice": 20799,
+      "discount": 29,
+      "rating": 4.8,
+      "reviews": 216,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/577718242/detail.aspx",
+      "zscore": -2.39,
+      "medianPrice": 27699
+    },
+    {
+      "id": "1047094771",
+      "name": "/ Телевизор TDWC43BF2110V 43″ HD, черный Smart TV",
+      "brand": "Topdevice",
+      "price": 16250,
+      "originalPrice": 31999,
+      "discount": 49,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/1047094771/detail.aspx",
+      "zscore": -2.03,
+      "medianPrice": 27699
+    }
+  ],
+  "fakeDiscounts": [
+    {
+      "id": "293919764",
+      "name": "/ Телевизор Bt 24F34B Черный 24\"",
+      "brand": "Blackton",
+      "price": 6844,
+      "originalPrice": 46500,
+      "discount": 85,
+      "rating": 4.8,
+      "reviews": 657,
+      "diagonal": 24,
+      "url": "https://www.wildberries.ru/catalog/293919764/detail.aspx"
     },
     {
       "id": "670146065",
@@ -750,31 +628,7 @@
       "rating": 4.8,
       "reviews": 80,
       "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/670146065/detail.aspx",
-      "image": "https://basket-32.wbbasket.ru/vol6701/part670146/670146065/images/c516x688/1.webp",
-      "sources": [
-        "tv55"
-      ],
-      "zscore": -2.01,
-      "medianPrice": 36340
-    }
-  ],
-  "fakeDiscounts": [
-    {
-      "id": "670146065",
-      "name": "/ Телевизор 55 S55QS QLED 4К Сбер ОС",
-      "brand": "SHIVAKI",
-      "price": 21518,
-      "originalPrice": 77999,
-      "discount": 72,
-      "rating": 4.8,
-      "reviews": 80,
-      "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/670146065/detail.aspx",
-      "image": "https://basket-32.wbbasket.ru/vol6701/part670146/670146065/images/c516x688/1.webp",
-      "sources": [
-        "tv55"
-      ]
+      "url": "https://www.wildberries.ru/catalog/670146065/detail.aspx"
     },
     {
       "id": "420000552",
@@ -786,11 +640,7 @@
       "rating": 4.5,
       "reviews": 746,
       "diagonal": 43,
-      "url": "https://www.wildberries.ru/catalog/420000552/detail.aspx",
-      "image": "https://basket-24.wbbasket.ru/vol4200/part420000/420000552/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ]
+      "url": "https://www.wildberries.ru/catalog/420000552/detail.aspx"
     },
     {
       "id": "851018722",
@@ -802,11 +652,7 @@
       "rating": 4.9,
       "reviews": 216,
       "diagonal": null,
-      "url": "https://www.wildberries.ru/catalog/851018722/detail.aspx",
-      "image": "https://basket-38.wbbasket.ru/vol8510/part851018/851018722/images/c516x688/1.webp",
-      "sources": [
-        "smarttv"
-      ]
+      "url": "https://www.wildberries.ru/catalog/851018722/detail.aspx"
     },
     {
       "id": "205991494",
@@ -818,11 +664,7 @@
       "rating": 4.9,
       "reviews": 8,
       "diagonal": null,
-      "url": "https://www.wildberries.ru/catalog/205991494/detail.aspx",
-      "image": "https://basket-14.wbbasket.ru/vol2059/part205991/205991494/images/c516x688/1.webp",
-      "sources": [
-        "smarttv"
-      ]
+      "url": "https://www.wildberries.ru/catalog/205991494/detail.aspx"
     },
     {
       "id": "440597367",
@@ -834,11 +676,7 @@
       "rating": 4.9,
       "reviews": 43,
       "diagonal": 60,
-      "url": "https://www.wildberries.ru/catalog/440597367/detail.aspx",
-      "image": "https://basket-25.wbbasket.ru/vol4405/part440597/440597367/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ]
+      "url": "https://www.wildberries.ru/catalog/440597367/detail.aspx"
     },
     {
       "id": "440597408",
@@ -850,11 +688,7 @@
       "rating": 3.8,
       "reviews": 4,
       "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/440597408/detail.aspx",
-      "image": "https://basket-25.wbbasket.ru/vol4405/part440597/440597408/images/c516x688/1.webp",
-      "sources": [
-        "tv75"
-      ]
+      "url": "https://www.wildberries.ru/catalog/440597408/detail.aspx"
     },
     {
       "id": "440597460",
@@ -866,11 +700,7 @@
       "rating": 4.9,
       "reviews": 8,
       "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/440597460/detail.aspx",
-      "image": "https://basket-25.wbbasket.ru/vol4405/part440597/440597460/images/c516x688/1.webp",
-      "sources": [
-        "tv75"
-      ]
+      "url": "https://www.wildberries.ru/catalog/440597460/detail.aspx"
     },
     {
       "id": "440597456",
@@ -882,11 +712,7 @@
       "rating": 4.9,
       "reviews": 12,
       "diagonal": 65,
-      "url": "https://www.wildberries.ru/catalog/440597456/detail.aspx",
-      "image": "https://basket-25.wbbasket.ru/vol4405/part440597/440597456/images/c516x688/1.webp",
-      "sources": [
-        "tv75"
-      ]
+      "url": "https://www.wildberries.ru/catalog/440597456/detail.aspx"
     },
     {
       "id": "440597455",
@@ -898,11 +724,43 @@
       "rating": 4.7,
       "reviews": 15,
       "diagonal": 55,
-      "url": "https://www.wildberries.ru/catalog/440597455/detail.aspx",
-      "image": "https://basket-25.wbbasket.ru/vol4405/part440597/440597455/images/c516x688/1.webp",
-      "sources": [
-        "tv55"
-      ]
+      "url": "https://www.wildberries.ru/catalog/440597455/detail.aspx"
+    },
+    {
+      "id": "569423845",
+      "name": "/ 32\" Телевизор UE32F6000FUXRU, без ПО",
+      "brand": "Samsung",
+      "price": 21148,
+      "originalPrice": 58260,
+      "discount": 64,
+      "rating": 5,
+      "reviews": 3,
+      "diagonal": 32,
+      "url": "https://www.wildberries.ru/catalog/569423845/detail.aspx"
+    },
+    {
+      "id": "569423883",
+      "name": "/ 55\" Телевизор UE55U8000FUXRU, без ПО",
+      "brand": "Samsung",
+      "price": 39233,
+      "originalPrice": 108080,
+      "discount": 64,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 55,
+      "url": "https://www.wildberries.ru/catalog/569423883/detail.aspx"
+    },
+    {
+      "id": "820785870",
+      "name": "/ 55\" Телевизор QE55Q7F5AUXRU, QLED, Ultra HD",
+      "brand": "Samsung",
+      "price": 54312,
+      "originalPrice": 149620,
+      "discount": 64,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 55,
+      "url": "https://www.wildberries.ru/catalog/820785870/detail.aspx"
     },
     {
       "id": "579983206",
@@ -914,11 +772,7 @@
       "rating": 5,
       "reviews": 2,
       "diagonal": 32,
-      "url": "https://www.wildberries.ru/catalog/579983206/detail.aspx",
-      "image": "https://basket-29.wbbasket.ru/vol5799/part579983/579983206/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ]
+      "url": "https://www.wildberries.ru/catalog/579983206/detail.aspx"
     },
     {
       "id": "767983146",
@@ -930,11 +784,115 @@
       "rating": 5,
       "reviews": 1,
       "diagonal": 75,
-      "url": "https://www.wildberries.ru/catalog/767983146/detail.aspx",
-      "image": "https://basket-35.wbbasket.ru/vol7679/part767983/767983146/images/c516x688/1.webp",
-      "sources": [
-        "tv75"
-      ]
+      "url": "https://www.wildberries.ru/catalog/767983146/detail.aspx"
+    },
+    {
+      "id": "330823253",
+      "name": "/ Телевизор 43LM5772PLA 43\" 4K UHD, черный",
+      "brand": "LG",
+      "price": 27121,
+      "originalPrice": 73700,
+      "discount": 63,
+      "rating": 4.8,
+      "reviews": 26,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/330823253/detail.aspx"
+    },
+    {
+      "id": "657759544",
+      "name": "/ LED Телевизор 50UA73006LA 50 4K, черный",
+      "brand": "LG",
+      "price": 38264,
+      "originalPrice": 103980,
+      "discount": 63,
+      "rating": 5,
+      "reviews": 1,
+      "diagonal": 50,
+      "url": "https://www.wildberries.ru/catalog/657759544/detail.aspx"
+    },
+    {
+      "id": "801079322",
+      "name": "/ Телевизор 32 дюйма 82 см Smart-TV WebOS с wi-fi",
+      "brand": "LG",
+      "price": 16725,
+      "originalPrice": 45450,
+      "discount": 63,
+      "rating": 4.7,
+      "reviews": 20,
+      "diagonal": 32,
+      "url": "https://www.wildberries.ru/catalog/801079322/detail.aspx"
+    },
+    {
+      "id": "657707999",
+      "name": "/ Телевизор 50NANO80A6B 50\" 4K UHD, черный",
+      "brand": "LG",
+      "price": 46103,
+      "originalPrice": 125280,
+      "discount": 63,
+      "rating": 5,
+      "reviews": 4,
+      "diagonal": 50,
+      "url": "https://www.wildberries.ru/catalog/657707999/detail.aspx"
+    },
+    {
+      "id": "539115062",
+      "name": "/ QNED телевизор 65QNED80A6A",
+      "brand": "LG",
+      "price": 74792,
+      "originalPrice": 203240,
+      "discount": 63,
+      "rating": null,
+      "reviews": 0,
+      "diagonal": 65,
+      "url": "https://www.wildberries.ru/catalog/539115062/detail.aspx"
+    },
+    {
+      "id": "657783087",
+      "name": "/ QNED Телевизор 55QNED70A6A 55\" 4K, черный",
+      "brand": "LG",
+      "price": 56230,
+      "originalPrice": 152800,
+      "discount": 63,
+      "rating": 5,
+      "reviews": 3,
+      "diagonal": 55,
+      "url": "https://www.wildberries.ru/catalog/657783087/detail.aspx"
+    },
+    {
+      "id": "657775411",
+      "name": "/ LED Телевизор 55UA73006LA 55 4K, черный",
+      "brand": "LG",
+      "price": 43769,
+      "originalPrice": 118940,
+      "discount": 63,
+      "rating": 5,
+      "reviews": 1,
+      "diagonal": 55,
+      "url": "https://www.wildberries.ru/catalog/657775411/detail.aspx"
+    },
+    {
+      "id": "907498201",
+      "name": "/ Телевизор смарт 50T6D QLED 4K UHD 50 дюймов Google TV",
+      "brand": "TCL",
+      "price": 38999,
+      "originalPrice": 105976,
+      "discount": 63,
+      "rating": 4.8,
+      "reviews": 587,
+      "diagonal": 50,
+      "url": "https://www.wildberries.ru/catalog/907498201/detail.aspx"
+    },
+    {
+      "id": "103783581",
+      "name": "/ Телевизор смарт 43T6C QLED 4K 43 дюймов Google TV",
+      "brand": "TCL",
+      "price": 33300,
+      "originalPrice": 90490,
+      "discount": 63,
+      "rating": 4.8,
+      "reviews": 587,
+      "diagonal": 43,
+      "url": "https://www.wildberries.ru/catalog/103783581/detail.aspx"
     },
     {
       "id": "387718599",
@@ -946,14 +904,167 @@
       "rating": 4.9,
       "reviews": 383,
       "diagonal": 43,
-      "url": "https://www.wildberries.ru/catalog/387718599/detail.aspx",
-      "image": "https://basket-22.wbbasket.ru/vol3877/part387718/387718599/images/c516x688/1.webp",
-      "sources": [
-        "popular"
+      "url": "https://www.wildberries.ru/catalog/387718599/detail.aspx"
+    },
+    {
+      "id": "575900201",
+      "name": "/ 55\" Ultra HD 4K, 55P69K Телевизор",
+      "brand": "TCL",
+      "price": 36202,
+      "originalPrice": 93339,
+      "discount": 61,
+      "rating": 4.7,
+      "reviews": 39,
+      "diagonal": 55,
+      "url": "https://www.wildberries.ru/catalog/575900201/detail.aspx"
+    },
+    {
+      "id": "399393714",
+      "name": "/ FullHD 32\" WebOSmart Tv - with ThinQ AI",
+      "brand": "LG",
+      "price": 16191,
+      "originalPrice": 39999,
+      "discount": 60,
+      "rating": 4.8,
+      "reviews": 13,
+      "diagonal": 32,
+      "url": "https://www.wildberries.ru/catalog/399393714/detail.aspx"
+    }
+  ],
+  "dupes": [
+    {
+      "key": "samsung|ue43f6000fuxru",
+      "min": 21344,
+      "max": 31640,
+      "spread": 1.48,
+      "arr": [
+        {
+          "id": "629218813",
+          "name": "/ Телевизор LED 43\" UE43F6000FUXRU Full HD, Smart",
+          "brand": "Samsung",
+          "price": 21344,
+          "originalPrice": 46400,
+          "discount": 54,
+          "rating": 4.5,
+          "reviews": 69,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/629218813/detail.aspx"
+        },
+        {
+          "id": "496315317",
+          "name": "/ Телевизор UE43F6000FUXRU, 2025, FULL HD LED Smart TV",
+          "brand": "Samsung",
+          "price": 31640,
+          "originalPrice": 52426,
+          "discount": 40,
+          "rating": 4.2,
+          "reviews": 6,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/496315317/detail.aspx"
+        }
+      ]
+    },
+    {
+      "key": "hisense|65u7s",
+      "min": 87583,
+      "max": 122912,
+      "spread": 1.4,
+      "arr": [
+        {
+          "id": "980678340",
+          "name": "/ Телевизор смарт 65 дюймов 65U7S черный",
+          "brand": "HISENSE",
+          "price": 87583,
+          "originalPrice": 119000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 20,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/980678340/detail.aspx"
+        },
+        {
+          "id": "1051364652",
+          "name": "/ Телевизор смарт 65 дюймов 65U7S PRO черный",
+          "brand": "HISENSE",
+          "price": 122912,
+          "originalPrice": 167000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 20,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/1051364652/detail.aspx"
+        },
+        {
+          "id": "1051366312",
+          "name": "/ Телевизор смарт 65 дюймов 65U7S PRO черный",
+          "brand": "HISENSE",
+          "price": 122912,
+          "originalPrice": 167000,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/1051366312/detail.aspx"
+        }
+      ]
+    },
+    {
+      "key": "samsung|ue55u8000fuxru",
+      "min": 39233,
+      "max": 54990,
+      "spread": 1.4,
+      "arr": [
+        {
+          "id": "569423883",
+          "name": "/ 55\" Телевизор UE55U8000FUXRU, без ПО",
+          "brand": "Samsung",
+          "price": 39233,
+          "originalPrice": 108080,
+          "discount": 64,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/569423883/detail.aspx"
+        },
+        {
+          "id": "693156022",
+          "name": "/ Телевизор 4К UE55U8000FUXRU 55\", UHD, 60 Гц",
+          "brand": "Samsung",
+          "price": 39859,
+          "originalPrice": 90262,
+          "discount": 56,
+          "rating": 4.7,
+          "reviews": 13,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/693156022/detail.aspx"
+        },
+        {
+          "id": "463064681",
+          "name": "/ Телевизор смарт 55 дюймов UE55U8000FUXRU черный",
+          "brand": "Samsung",
+          "price": 46735,
+          "originalPrice": 63500,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 109,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/463064681/detail.aspx"
+        },
+        {
+          "id": "466481345",
+          "name": "/ Телевизор 4К UE55U8000FUXRU 55\", UHD, 60 Гц",
+          "brand": "Samsung",
+          "price": 54990,
+          "originalPrice": 106736,
+          "discount": 48,
+          "rating": 4.8,
+          "reviews": 49,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/466481345/detail.aspx"
+        }
       ]
     }
   ],
-  "dupes": [],
   "premiumLow": [
     {
       "id": "693156299",
@@ -966,10 +1077,6 @@
       "reviews": 3,
       "diagonal": 85,
       "url": "https://www.wildberries.ru/catalog/693156299/detail.aspx",
-      "image": "https://basket-33.wbbasket.ru/vol6931/part693156/693156299/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
       "medianPrice": 545726
     },
     {
@@ -983,11 +1090,7 @@
       "reviews": 0,
       "diagonal": 77,
       "url": "https://www.wildberries.ru/catalog/693156043/detail.aspx",
-      "image": "https://basket-33.wbbasket.ru/vol6931/part693156/693156043/images/c516x688/1.webp",
-      "sources": [
-        "popular"
-      ],
-      "medianPrice": 540590
+      "medianPrice": 529990
     },
     {
       "id": "969774224",
@@ -1000,10 +1103,32 @@
       "reviews": 0,
       "diagonal": 85,
       "url": "https://www.wildberries.ru/catalog/969774224/detail.aspx",
-      "image": "https://basket-41.wbbasket.ru/vol9697/part969774/969774224/images/c516x688/1.webp",
-      "sources": [
-        "newly"
-      ],
+      "medianPrice": 545726
+    },
+    {
+      "id": "784441483",
+      "name": "/ Телевизор LED 85\" UE85U8000FUXCE 4K Ultra HD Smart TV",
+      "brand": "Samsung",
+      "price": 88089,
+      "originalPrice": 117453,
+      "discount": 25,
+      "rating": 5,
+      "reviews": 2,
+      "diagonal": 85,
+      "url": "https://www.wildberries.ru/catalog/784441483/detail.aspx",
+      "medianPrice": 545726
+    },
+    {
+      "id": "575747044",
+      "name": "/ Телевизор 85QNED93A6A, QNED, ИИ процессор 8 Gen2",
+      "brand": "LG",
+      "price": 185665,
+      "originalPrice": 315328,
+      "discount": 41,
+      "rating": 5,
+      "reviews": 3,
+      "diagonal": 85,
+      "url": "https://www.wildberries.ru/catalog/575747044/detail.aspx",
       "medianPrice": 545726
     }
   ],

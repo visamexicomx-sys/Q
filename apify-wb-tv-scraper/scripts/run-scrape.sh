@@ -25,14 +25,29 @@ trap 'rm -f "$COMBINED"' EXIT
 : > "$COMBINED"
 
 QUERIES=(
+  # broad sorts
   'sort=priceup&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
   'sort=pricedown&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
   'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
   'sort=rate&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
   'sort=newly&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=popular&search=smart+tv'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+75'
+  # per diagonal (телевизор + size)
+  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+24'
+  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+32'
+  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+43'
+  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+50'
   'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+55'
+  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+65'
+  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+75'
+  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+85'
+  # per brand
+  'sort=popular&search=samsung+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=lg+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=sony+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=hisense+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=tcl+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=xiaomi+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=haier+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
 )
 
 echo "▸ Actor: $ACTOR"
@@ -102,6 +117,10 @@ fi
 
 echo "▸ Building report…"
 node apify-wb-tv-scraper/scripts/build-report.mjs --input "$COMBINED" --out-dir "$OUT_DIR"
+
+echo "▸ Tracking models…"
+node apify-wb-tv-scraper/scripts/models.mjs \
+  --input "$OUT_DIR/REPORT.json" --out-dir "$OUT_DIR"
 
 echo "▸ Detecting anomalies…"
 HIST_DIR="$OUT_DIR/history"
