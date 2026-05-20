@@ -80,21 +80,39 @@ apify run -p   # -p = чистый KV-стор перед запуском
 
 ## Авто-прогон по расписанию (GitHub Action)
 
-В корне репо лежит workflow `.github/workflows/wb-tv-report.yml`,
-который раз в неделю (и по кнопке `workflow_dispatch`) дёргает Apify
-API, ждёт окончания прогона, скачивает `REPORT.md` + `REPORT.json` +
-`dataset.csv` и коммитит их в `apify-wb-tv-scraper/report/`.
+В корне репо лежит workflow `.github/workflows/wb-tv-report.yml`. По
+расписанию (пятница 09:00 МСК) и по кнопке `workflow_dispatch` он
+запускает `apify-wb-tv-scraper/scripts/run-scrape.sh`, который:
 
-Чтобы он заработал, в репо нужно настроить:
+1. Дёргает Apify Actor (по умолчанию `powerai/wildberries-products-search-scraper`
+   — работает без residential-прокси на FREE-плане) **восемью параллельными
+   запросами** по разным сортировкам и подзапросам.
+2. Объединяет датасеты и прогоняет через `scripts/build-report.mjs`.
+3. Коммитит свежие `REPORT.md` + `REPORT.json` в
+   `apify-wb-tv-scraper/report/` и заливает их в Actions artifacts.
 
-| Где | Что | Зачем |
-|-----|-----|-------|
-| Settings → Secrets and variables → Actions → **Secrets** | `APIFY_TOKEN` | Токен Apify (`https://console.apify.com/account/integrations`) |
-| Settings → Secrets and variables → Actions → **Variables** | `APIFY_ACTOR_ID` | ID собранного Actor, например `username~wildberries-tv-scraper` |
+### Быстрый setup одной командой
 
-После этого Action можно запускать вручную через
-**Actions → Wildberries TV report → Run workflow**, или ждать пятницы
-06:00 UTC (расписание правится в самом yml).
+После ротации Apify-токена в
+[Apify Console → Integrations](https://console.apify.com/account/integrations):
+
+```bash
+APIFY_TOKEN=apify_api_xxxxxxxxxxxx \
+  ./apify-wb-tv-scraper/setup-actions.sh --dispatch
+```
+
+Скрипт через ваш `gh` CLI положит токен в Secrets, выставит
+`APIFY_ACTOR_ID` Variable и сразу запустит workflow. Без `--dispatch` —
+только настройка, без запуска.
+
+### Локальный прогон
+
+Тот же `run-scrape.sh` работает локально:
+
+```bash
+APIFY_TOKEN=apify_api_xxxxxxxxxxxx bash apify-wb-tv-scraper/scripts/run-scrape.sh
+ls apify-wb-tv-scraper/report
+```
 
 ## Замечания
 
