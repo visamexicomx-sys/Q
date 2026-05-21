@@ -17,6 +17,56 @@ function arg(name, fallback) {
 
 const inputPath = arg('input', 'combined.json');
 const outDir = arg('out-dir', 'report');
+const brandsArg = arg('brands', '');
+
+// Optional brand whitelist: case-insensitive, supports Cyrillic aliases.
+// Each entry: aliases for brand-field match, and (optionally) safe-to-search-in-name list.
+// "яндекс" / "sber" only match brand-field — their words appear in OS-mentions
+// inside other-brand TV names ("Яндекс.ТВ", "Сбер ОС") and would over-match otherwise.
+const BRAND_ALIASES = {
+    samsung: { match: ['samsung', 'самсунг'], inName: ['samsung', 'самсунг'] },
+    sony: { match: ['sony', 'сони'], inName: ['sony', 'сони'] },
+    tcl: { match: ['tcl'], inName: ['tcl'] },
+    hisense: { match: ['hisense', 'хайсенс'], inName: ['hisense', 'хайсенс'] },
+    haier: { match: ['haier', 'хайер'], inName: ['haier', 'хайер'] },
+    xiaomi: { match: ['xiaomi', 'redmi', 'сяоми', 'ксиаоми'], inName: ['xiaomi', 'redmi', 'сяоми', 'ксиаоми'] },
+    'яндекс': { match: ['яндекс', 'yandex', 'yndx'], inName: [] },
+    sber: { match: ['sber', 'сбер', 'sberdevices', 'sber portal'], inName: [] },
+};
+
+let brandMatchSet = null;
+let brandNameSet = null;
+if (brandsArg) {
+    brandMatchSet = new Set();
+    brandNameSet = new Set();
+    for (const raw of brandsArg.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean)) {
+        const entry = BRAND_ALIASES[raw] || { match: [raw], inName: [raw] };
+        for (const a of entry.match) brandMatchSet.add(a.toLowerCase());
+        for (const a of entry.inName) brandNameSet.add(a.toLowerCase());
+    }
+}
+
+function matchesBrandField(b) {
+    if (!brandMatchSet) return true;
+    const n = (b || '').trim().toLowerCase();
+    if (!n) return false;
+    if (brandMatchSet.has(n)) return true;
+    for (const w of brandMatchSet) {
+        if (n.startsWith(w + ' ') || n.startsWith(w + '-')) return true;
+    }
+    return false;
+}
+
+function matchesBrandInName(name) {
+    if (!brandMatchSet) return true;
+    if (!brandNameSet || brandNameSet.size === 0) return false;
+    const n = (name || '').toLowerCase();
+    for (const w of brandNameSet) {
+        const re = new RegExp(`(^|[^a-zа-я0-9])${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-zа-я0-9]|$)`, 'i');
+        if (re.test(n)) return true;
+    }
+    return false;
+}
 
 if (!existsSync(inputPath)) {
     console.error(`input not found: ${inputPath}`);
@@ -107,6 +157,7 @@ const norm = items
         };
     })
     .filter((x) => x.price && x.url)
+    .filter((x) => matchesBrandField(x.brand) || matchesBrandInName(x.name))
     .filter((x) => {
         if (!x.diagonal) return x.price >= 3000;
         const d = x.diagonal;

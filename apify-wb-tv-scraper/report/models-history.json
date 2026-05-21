@@ -1,3250 +1,1720 @@
 {
-  "updatedAt": "2026-05-20T21:44:09.604Z",
+  "updatedAt": "2026-05-21T02:46:24.795Z",
   "models": {
-    "razz|hc32hss26f": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 8520,
-          "med": 8520,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 8520,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 8520,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 8520,
-      "lastMedian": 8520
-    },
-    "razz|hc43fss26f": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 13370,
-          "med": 13370,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 13370,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 13370,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 13370,
-      "lastMedian": 13370
-    },
-    "витязь|d24hs01bf": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 6784,
-          "med": 6784,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 6784,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 6784,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 6784,
-      "lastMedian": 6784
-    },
     "samsung|qe55q7f5auxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 48186,
           "med": 51249,
           "sellers": 2
         }
       ],
       "allTimeMin": 48186,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 54312,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 48186,
       "lastMedian": 51249
     },
-    "razz|hc55uss26f": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 20143,
-          "med": 20143,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 20143,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 20143,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 20143,
-      "lastMedian": 20143
-    },
     "xiaomi|l55mb-aru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 27642,
           "med": 27642,
           "sellers": 1
         }
       ],
       "allTimeMin": 27642,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 27642,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 27642,
       "lastMedian": 27642
     },
-    "polarline|32pl12tc": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 9190,
-          "med": 9190,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 9190,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 9190,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 9190,
-      "lastMedian": 9190
-    },
-    "shivaki|s43nfch001": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 12521,
-          "med": 12521,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 12521,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 12521,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 12521,
-      "lastMedian": 12521
-    },
     "xiaomi|l32mb-aru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 13489,
           "med": 13489,
           "sellers": 1
         }
       ],
       "allTimeMin": 13489,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 13489,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 13489,
       "lastMedian": 13489
     },
-    "asano|24lh1011t": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 6692,
-          "med": 6692,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 6692,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 6692,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 6692,
-      "lastMedian": 6692
-    },
     "samsung|qe85q7faauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 110408,
           "med": 110408,
           "sellers": 1
         }
       ],
       "allTimeMin": 110408,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 110408,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 110408,
       "lastMedian": 110408
     },
     "samsung|qe77s90faexru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 297943,
           "med": 297943,
           "sellers": 1
         }
       ],
       "allTimeMin": 297943,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 297943,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 297943,
       "lastMedian": 297943
     },
-    "blackton|24f32b": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 6800,
-          "med": 6885,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 6800,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 6970,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 6800,
-      "lastMedian": 6885
-    },
-    "starwind|sw-led24sg304": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 11686,
-          "med": 11686,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 11686,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 11686,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 11686,
-      "lastMedian": 11686
-    },
-    "skyworth|60q66h": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 35711,
-          "med": 35711,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 35711,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 35711,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 35711,
-      "lastMedian": 35711
-    },
-    "arg|ld32d7500": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 9534,
-          "med": 9534,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 9534,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 9534,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 9534,
-      "lastMedian": 9534
-    },
-    "tuvio|td32hfbch11": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 10135,
-          "med": 10135,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 10135,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 10135,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 10135,
-      "lastMedian": 10135
-    },
     "sber|sdx-43f3111": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 14798,
           "med": 14798,
           "sellers": 1
         }
       ],
       "allTimeMin": 14798,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 14798,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 14798,
       "lastMedian": 14798
     },
-    "razz|c50uss25f": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 18753,
-          "med": 18753,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 18753,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 18753,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 18753,
-      "lastMedian": 18753
-    },
     "xiaomi|l43mb-afru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 20632,
           "med": 20632,
           "sellers": 1
         }
       ],
       "allTimeMin": 20632,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 20632,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 20632,
       "lastMedian": 20632
     },
-    "harper|32r690t": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 9434,
-          "med": 9434,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 9434,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 9434,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 9434,
-      "lastMedian": 9434
-    },
-    "bbk|32lem-1045": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 11931,
-          "med": 11931,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 11931,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 11931,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 11931,
-      "lastMedian": 11931
-    },
-    "bbk|32lex-7233": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 13091,
-          "med": 13091,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 13091,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 13091,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 13091,
-      "lastMedian": 13091
-    },
-    "bbk|43lex-7247": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 22391,
-          "med": 22391,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 22391,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 22391,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 22391,
-      "lastMedian": 22391
-    },
-    "supra|stv-lc24lt0080w": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 8741,
-          "med": 10062,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 8741,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 11382,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 8741,
-      "lastMedian": 10062
-    },
-    "eplutus|ep-174t": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 8552,
-          "med": 8552,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 8552,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 8552,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 8552,
-      "lastMedian": 8552
-    },
-    "eplutus|ep-1430s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 9660,
-          "med": 9660,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 9660,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 9660,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 9660,
-      "lastMedian": 9660
-    },
     "tcl|85p8l": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 159991,
           "med": 159991,
           "sellers": 1
         }
       ],
       "allTimeMin": 159991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 159991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 159991,
       "lastMedian": 159991
     },
     "tcl|55a400": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 59990,
           "med": 59990,
           "sellers": 1
         }
       ],
       "allTimeMin": 59990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 59990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 59990,
       "lastMedian": 59990
     },
-    "erisson|24les90t2": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 8996,
-          "med": 8996,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 8996,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 8996,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 8996,
-      "lastMedian": 8996
-    },
-    "topdevice|tdwc24bh3260v": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 13250,
-          "med": 13250,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 13250,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 13250,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 13250,
-      "lastMedian": 13250
-    },
-    "erisson|32les803t2": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 12046,
-          "med": 12046,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 12046,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 12046,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 12046,
-      "lastMedian": 12046
-    },
     "xiaomi|l43mb-apru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 35535,
           "med": 35535,
           "sellers": 1
         }
       ],
       "allTimeMin": 35535,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 35535,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 35535,
       "lastMedian": 35535
     },
     "яндекс|yndx-00101": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 65504,
           "med": 74972,
           "sellers": 2
         }
       ],
       "allTimeMin": 65504,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 84439,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 65504,
       "lastMedian": 74972
     },
-    "bbk|50led-8260": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 39574,
-          "med": 39574,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 39574,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 39574,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 39574,
-      "lastMedian": 39574
-    },
-    "polarline|43pl51tc": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 26087,
-          "med": 26087,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 26087,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 26087,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 26087,
-      "lastMedian": 26087
-    },
     "samsung|qe43qn90fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 94207,
           "med": 108099,
           "sellers": 2
         }
       ],
       "allTimeMin": 94207,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 121991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 94207,
       "lastMedian": 108099
     },
-    "topdevice|tdwc43bf4260v": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 17266,
-          "med": 17266,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 17266,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 17266,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 17266,
-      "lastMedian": 17266
-    },
-    "topdevice|tdwc43bf2110v": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 16250,
-          "med": 16250,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 16250,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 16250,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 16250,
-      "lastMedian": 16250
-    },
-    "polarline|40pl53tc-sm": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 19042,
-          "med": 19042,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 19042,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 19042,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 19042,
-      "lastMedian": 19042
-    },
     "hisense|50u7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 54998,
           "med": 54999,
           "sellers": 3
         }
       ],
       "allTimeMin": 54998,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 54999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 54998,
       "lastMedian": 54999
     },
     "samsung|qe65qn80fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 131744,
           "med": 134707,
           "sellers": 2
         }
       ],
       "allTimeMin": 131744,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 137670,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 131744,
       "lastMedian": 134707
     },
-    "polar|p32l34t2csm": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 13077,
-          "med": 13077,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 13077,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 13077,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 13077,
-      "lastMedian": 13077
-    },
-    "lg|65qned70a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 67902,
-          "med": 69074,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 67902,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 70246,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 67902,
-      "lastMedian": 69074
-    },
     "hisense|65u7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 87583,
           "med": 122912,
           "sellers": 3
         }
       ],
       "allTimeMin": 87583,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 122912,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 87583,
       "lastMedian": 122912
     },
     "hisense|55u8q": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 98403,
           "med": 102745,
           "sellers": 2
         }
       ],
       "allTimeMin": 98403,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 107087,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 98403,
       "lastMedian": 102745
     },
-    "bbk|40lex-7244": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 18887,
-          "med": 18887,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 18887,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 18887,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 18887,
-      "lastMedian": 18887
-    },
     "hisense|75u7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 103039,
           "med": 117549,
           "sellers": 2
         }
       ],
       "allTimeMin": 103039,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 132059,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 103039,
       "lastMedian": 117549
     },
-    "supra|stv-lc24st0080w": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 9727,
-          "med": 9727,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 9727,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 9727,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 9727,
-      "lastMedian": 9727
-    },
-    "lg|oled97g5rla": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 1755999,
-          "med": 1759499,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 1755999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 1762999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 1755999,
-      "lastMedian": 1759499
-    },
-    "artel|a32mh1300": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 999999,
-          "med": 999999,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 999999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 999999,
-      "lastMedian": 999999
-    },
-    "artel|43au20h": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 999999,
-          "med": 999999,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 999999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 999999,
-      "lastMedian": 999999
-    },
-    "artel|50au20k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 999999,
-          "med": 999999,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 999999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 999999,
-      "lastMedian": 999999
-    },
-    "artel|43au20k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 999999,
-          "med": 999999,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 999999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 999999,
-      "lastMedian": 999999
-    },
-    "artel|55au20k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 999999,
-          "med": 999999,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 999999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 999999,
-      "lastMedian": 999999
-    },
-    "philips|77oled950": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 719091,
-          "med": 721216,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 719091,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 723341,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 719091,
-      "lastMedian": 721216
-    },
     "samsung|qe85qn900fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 569990,
           "med": 569995,
           "sellers": 6
         }
       ],
       "allTimeMin": 569990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 713990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 569990,
       "lastMedian": 569995
     },
     "sony|xr-83a80l": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 705733,
           "med": 705733,
           "sellers": 1
         }
       ],
       "allTimeMin": 705733,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 705733,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 705733,
       "lastMedian": 705733
     },
-    "lg|oled83g5rla": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 665989,
-          "med": 665989,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 665989,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 665989,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 665989,
-      "lastMedian": 665989
-    },
     "samsung|qe75qn990fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 579920,
           "med": 579991,
           "sellers": 7
         }
       ],
       "allTimeMin": 579920,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 603190,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 579920,
       "lastMedian": 579991
     },
     "samsung|qe65qn990fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 577490,
           "med": 577490,
           "sellers": 1
         }
       ],
       "allTimeMin": 577490,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 577490,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 577490,
       "lastMedian": 577490
     },
     "samsung|qe98qn90fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 547975,
           "med": 553995,
           "sellers": 4
         }
       ],
       "allTimeMin": 547975,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 559990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 547975,
       "lastMedian": 553995
     },
     "samsung|qe77s95fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 529990,
           "med": 540590,
           "sellers": 6
         }
       ],
       "allTimeMin": 529990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 551190,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 529990,
       "lastMedian": 540590
     },
-    "philips|77oled770": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 528166,
-          "med": 528166,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 528166,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 528166,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 528166,
-      "lastMedian": 528166
-    },
     "samsung|qe75qn900fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 524990,
           "med": 524990,
           "sellers": 1
         }
       ],
       "allTimeMin": 524990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 524990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 524990,
       "lastMedian": 524990
     },
     "samsung|qe83s95faexru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 499990,
           "med": 499990,
           "sellers": 3
         }
       ],
       "allTimeMin": 499990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 524990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 499990,
       "lastMedian": 499990
     },
     "samsung|qe85ls03fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 521461,
           "med": 521461,
           "sellers": 1
         }
       ],
       "allTimeMin": 521461,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 521461,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 521461,
       "lastMedian": 521461
     },
-    "philips|77oled909": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 509991,
-          "med": 509991,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 509991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 509991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 509991,
-      "lastMedian": 509991
-    },
-    "lg|oled83c5rla": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 503092,
-          "med": 503092,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 503092,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 503092,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 503092,
-      "lastMedian": 503092
-    },
     "hisense|55a6s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 31490,
           "med": 33856,
           "sellers": 3
         }
       ],
       "allTimeMin": 31490,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 38700,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 31490,
       "lastMedian": 33856
     },
-    "bbk|43led-8259": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 23165,
-          "med": 23165,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 23165,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 23165,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 23165,
-      "lastMedian": 23165
-    },
     "hisense|32a4s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 13700,
           "med": 14063,
           "sellers": 2
         }
       ],
       "allTimeMin": 13700,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 14425,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 13700,
       "lastMedian": 14063
     },
     "samsung|qe75qn80fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 198719,
           "med": 198719,
           "sellers": 1
         }
       ],
       "allTimeMin": 198719,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 198719,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 198719,
       "lastMedian": 198719
     },
     "sber|sdf-50uq7000mba": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 32147,
           "med": 32147,
           "sellers": 1
         }
       ],
       "allTimeMin": 32147,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 32147,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 32147,
       "lastMedian": 32147
     },
     "samsung|u8000f": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 64033,
           "med": 64033,
           "sellers": 1
         }
       ],
       "allTimeMin": 64033,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 64033,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 64033,
       "lastMedian": 64033
     },
     "samsung|qe75ls03fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 176802,
           "med": 176802,
           "sellers": 1
         }
       ],
       "allTimeMin": 176802,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 176802,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 176802,
       "lastMedian": 176802
     },
-    "hyundai|h-led75bu7011": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 68448,
-          "med": 68448,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 68448,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 68448,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 68448,
-      "lastMedian": 68448
-    },
-    "lg|75qned70a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 90034,
-          "med": 90034,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 90034,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 90034,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 90034,
-      "lastMedian": 90034
-    },
     "hisense|75e7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 70880,
           "med": 90527,
           "sellers": 3
         }
       ],
       "allTimeMin": 70880,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 92480,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 70880,
       "lastMedian": 90527
     },
     "tcl|75p7k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 80799,
           "med": 80799,
           "sellers": 1
         }
       ],
       "allTimeMin": 80799,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 80799,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 80799,
       "lastMedian": 80799
     },
-    "hyundai|h-led75bu7009": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 79557,
-          "med": 79557,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 79557,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 79557,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 79557,
-      "lastMedian": 79557
-    },
-    "skyworth|75q67h": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 61354,
-          "med": 61354,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 61354,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 61354,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 61354,
-      "lastMedian": 61354
-    },
-    "skyworth|75q66h": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 67125,
-          "med": 67125,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 67125,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 67125,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 67125,
-      "lastMedian": 67125
-    },
-    "skyworth|65q75g": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 51567,
-          "med": 51567,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 51567,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 51567,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 51567,
-      "lastMedian": 51567
-    },
     "samsung|ue75u8000fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 64105,
           "med": 68485,
           "sellers": 2
         }
       ],
       "allTimeMin": 64105,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 72864,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 64105,
       "lastMedian": 68485
     },
     "hisense|75ur9s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 222450,
           "med": 236216,
           "sellers": 2
         }
       ],
       "allTimeMin": 222450,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 249982,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 222450,
       "lastMedian": 236216
     },
     "hisense|55e7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 36340,
           "med": 38272,
           "sellers": 3
         }
       ],
       "allTimeMin": 36340,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 48700,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 36340,
       "lastMedian": 38272
     },
-    "harper|55q880ts": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 30856,
-          "med": 30856,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 30856,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 30856,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 30856,
-      "lastMedian": 30856
-    },
-    "harper|55q770ts": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 31765,
-          "med": 31765,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 31765,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 31765,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 31765,
-      "lastMedian": 31765
-    },
-    "shivaki|s55qs": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 21518,
-          "med": 21518,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 21518,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 21518,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 21518,
-      "lastMedian": 21518
-    },
-    "digma|dm-led55ubb40": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 32812,
-          "med": 32812,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 32812,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 32812,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 32812,
-      "lastMedian": 32812
-    },
-    "витязь|55lu1260": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 19666,
-          "med": 19666,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 19666,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 19666,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 19666,
-      "lastMedian": 19666
-    },
-    "harper|55u660ts": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 31273,
-          "med": 31273,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 31273,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 31273,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 31273,
-      "lastMedian": 31273
-    },
     "tcl|55t8c": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 44999,
           "med": 44999,
           "sellers": 1
         }
       ],
       "allTimeMin": 44999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 44999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 44999,
       "lastMedian": 44999
     },
-    "skyworth|40e55g": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 13801,
-          "med": 13801,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 13801,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 13801,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 13801,
-      "lastMedian": 13801
-    },
-    "hyundai|h-led55bu7012": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 35328,
-          "med": 35328,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 35328,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 35328,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 35328,
-      "lastMedian": 35328
-    },
-    "hyundai|h-led55bu7011": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 34592,
-          "med": 34592,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 34592,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 34592,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 34592,
-      "lastMedian": 34592
-    },
-    "lg|55nano90a6b": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 57974,
-          "med": 57974,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 57974,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 57974,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 57974,
-      "lastMedian": 57974
-    },
-    "harper|55u750ts": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 31386,
-          "med": 31386,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 31386,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 31386,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 31386,
-      "lastMedian": 31386
-    },
-    "skyworth|55q67h": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 32938,
-          "med": 32938,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 32938,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 32938,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 32938,
-      "lastMedian": 32938
-    },
-    "hyundai|h-led55qbu7500": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 42757,
-          "med": 42757,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 42757,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 42757,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 42757,
-      "lastMedian": 42757
-    },
-    "harper|58u750ts": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 29535,
-          "med": 29535,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 29535,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 29535,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 29535,
-      "lastMedian": 29535
-    },
-    "asano|55lu8120t": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 25360,
-          "med": 25360,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 25360,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 25360,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 25360,
-      "lastMedian": 25360
-    },
-    "hyundai|h-led55bu7003": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 39774,
-          "med": 39774,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 39774,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 39774,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 39774,
-      "lastMedian": 39774
-    },
-    "lg|55ua75009la": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 41583,
-          "med": 42135,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 41583,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 42687,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 41583,
-      "lastMedian": 42135
-    },
-    "bq|32fs02b": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 9408,
-          "med": 9408,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 9408,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 9408,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 9408,
-      "lastMedian": 9408
-    },
-    "blackton|24f34b": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 6844,
-          "med": 6844,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 6844,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 6844,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 6844,
-      "lastMedian": 6844
-    },
     "samsung|ue32f6000fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 21148,
           "med": 21319,
           "sellers": 2
         }
       ],
       "allTimeMin": 21148,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 21489,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 21148,
       "lastMedian": 21319
     },
     "samsung|ue43f6000fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 21344,
           "med": 26492,
           "sellers": 2
         }
       ],
       "allTimeMin": 21344,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 31640,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 21344,
       "lastMedian": 26492
     },
     "samsung|ue55u8000fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 39233,
           "med": 43297,
           "sellers": 4
         }
       ],
       "allTimeMin": 39233,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 54990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 39233,
       "lastMedian": 43297
     },
     "samsung|qe50q7faauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 42679,
           "med": 43705,
           "sellers": 3
         }
       ],
       "allTimeMin": 42679,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 44073,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 42679,
       "lastMedian": 43705
     },
     "samsung|ue32h5000fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 16320,
           "med": 16568,
           "sellers": 3
         }
       ],
       "allTimeMin": 16320,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 18520,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 16320,
       "lastMedian": 16568
     },
     "samsung|ue50u8000fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 34060,
           "med": 35626,
           "sellers": 3
         }
       ],
       "allTimeMin": 34060,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 47454,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 34060,
       "lastMedian": 35626
     },
     "samsung|qe43qef1auxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 28494,
           "med": 28494,
           "sellers": 1
         }
       ],
       "allTimeMin": 28494,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 28494,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 28494,
       "lastMedian": 28494
     },
     "samsung|qe55q7faauxce": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 43262,
           "med": 43262,
           "sellers": 1
         }
       ],
       "allTimeMin": 43262,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 43262,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 43262,
       "lastMedian": 43262
     },
     "samsung|qe50qef1auxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 39008,
           "med": 39008,
           "sellers": 1
         }
       ],
       "allTimeMin": 39008,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 39008,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 39008,
       "lastMedian": 39008
     },
     "samsung|qe55qn1efauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 68364,
           "med": 68364,
           "sellers": 1
         }
       ],
       "allTimeMin": 68364,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 68364,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 68364,
       "lastMedian": 68364
     },
     "samsung|qe32ls03cbuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 43791,
           "med": 43791,
           "sellers": 1
         }
       ],
       "allTimeMin": 43791,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 43791,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 43791,
       "lastMedian": 43791
     },
     "samsung|ue43u8000fuxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 25947,
           "med": 28319,
           "sellers": 3
         }
       ],
       "allTimeMin": 25947,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 33991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 25947,
       "lastMedian": 28319
     },
     "samsung|qe65s90faexru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 171829,
           "med": 171829,
           "sellers": 1
         }
       ],
       "allTimeMin": 171829,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 171829,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 171829,
       "lastMedian": 171829
     },
     "samsung|qe43ls03fauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 78015,
           "med": 78015,
           "sellers": 1
         }
       ],
       "allTimeMin": 78015,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 78015,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 78015,
       "lastMedian": 78015
     },
     "samsung|ue55u8000fuxce": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 39643,
           "med": 39643,
           "sellers": 1
         }
       ],
       "allTimeMin": 39643,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 39643,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 39643,
       "lastMedian": 39643
     },
     "samsung|qe43q7faauxru": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 32468,
           "med": 32468,
           "sellers": 1
         }
       ],
       "allTimeMin": 32468,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 32468,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 32468,
       "lastMedian": 32468
     },
     "samsung|ue85u8000fuxce": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 88089,
           "med": 88089,
           "sellers": 1
         }
       ],
       "allTimeMin": 88089,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 88089,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 88089,
       "lastMedian": 88089
     },
     "samsung|q7fa": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 66130,
           "med": 66130,
           "sellers": 1
         }
       ],
       "allTimeMin": 66130,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 66130,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 66130,
       "lastMedian": 66130
     },
     "samsung|ue65u8000huxpy": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 54733,
           "med": 54733,
           "sellers": 1
         }
       ],
       "allTimeMin": 54733,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 54733,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 54733,
       "lastMedian": 54733
     },
-    "lg|32lq63806lc": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 21343,
-          "med": 22114,
-          "sellers": 3
-        }
-      ],
-      "allTimeMin": 21343,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 22479,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 21343,
-      "lastMedian": 22114
-    },
-    "lg|32lq63006la": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 22048,
-          "med": 22114,
-          "sellers": 3
-        }
-      ],
-      "allTimeMin": 22048,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 22587,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 22048,
-      "lastMedian": 22114
-    },
-    "lg|oled77g5rla": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 333233,
-          "med": 333233,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 333233,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 333233,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 333233,
-      "lastMedian": 333233
-    },
-    "lg|50ua75009la": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 38135,
-          "med": 38670,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 38135,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 39204,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 38135,
-      "lastMedian": 38670
-    },
-    "lg|55qned82a6b": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 61242,
-          "med": 61242,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 61242,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 61242,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 61242,
-      "lastMedian": 61242
-    },
-    "lg|43lm5772pla": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 27121,
-          "med": 27121,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 27121,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 27121,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 27121,
-      "lastMedian": 27121
-    },
-    "lg|43qned70a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 37329,
-          "med": 37329,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 37329,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 37329,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 37329,
-      "lastMedian": 37329
-    },
-    "lg|50ua73006la": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 38264,
-          "med": 38264,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 38264,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 38264,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 38264,
-      "lastMedian": 38264
-    },
-    "lg|oled55c5rla": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 126480,
-          "med": 126480,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 126480,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 126480,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 126480,
-      "lastMedian": 126480
-    },
-    "lg|50nano80a6b": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 46103,
-          "med": 46103,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 46103,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 46103,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 46103,
-      "lastMedian": 46103
-    },
-    "lg|24tq510s-pz": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 19675,
-          "med": 19675,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 19675,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 19675,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 19675,
-      "lastMedian": 19675
-    },
-    "lg|43nano80a6b": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 39992,
-          "med": 39992,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 39992,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 39992,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 39992,
-      "lastMedian": 39992
-    },
-    "lg|55qned70a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 55684,
-          "med": 55957,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 55684,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 56230,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 55684,
-      "lastMedian": 55957
-    },
-    "lg|55ua73006la": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 40232,
-          "med": 42001,
-          "sellers": 2
-        }
-      ],
-      "allTimeMin": 40232,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 43769,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 40232,
-      "lastMedian": 42001
-    },
-    "lg|65ua75009la": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 55568,
-          "med": 55568,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 55568,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 55568,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 55568,
-      "lastMedian": 55568
-    },
-    "lg|65qned80a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 74792,
-          "med": 74792,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 74792,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 74792,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 74792,
-      "lastMedian": 74792
-    },
-    "lg|85qned93a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 185665,
-          "med": 185665,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 185665,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 185665,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 185665,
-      "lastMedian": 185665
-    },
-    "lg|50qned70a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 42471,
-          "med": 42471,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 42471,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 42471,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 42471,
-      "lastMedian": 42471
-    },
-    "lg|50qned80a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 52991,
-          "med": 52991,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 52991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 52991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 52991,
-      "lastMedian": 52991
-    },
-    "lg|43nano81a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 39007,
-          "med": 39007,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 39007,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 39007,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 39007,
-      "lastMedian": 39007
-    },
-    "lg|55nano81a6a": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
-      "snapshots": [
-        {
-          "at": "2026-05-20T21:44:09.604Z",
-          "min": 53331,
-          "med": 53331,
-          "sellers": 1
-        }
-      ],
-      "allTimeMin": 53331,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "allTimeMax": 53331,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
-      "lastMin": 53331,
-      "lastMedian": 53331
-    },
     "hisense|50u77sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 51940,
           "med": 51940,
           "sellers": 1
         }
       ],
       "allTimeMin": 51940,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 51940,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 51940,
       "lastMedian": 51940
     },
     "hisense|55u77sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 53900,
           "med": 53900,
           "sellers": 1
         }
       ],
       "allTimeMin": 53900,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 53900,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 53900,
       "lastMedian": 53900
     },
     "hisense|65u77sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 78400,
           "med": 78400,
           "sellers": 1
         }
       ],
       "allTimeMin": 78400,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 78400,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 78400,
       "lastMedian": 78400
     },
     "hisense|43a6s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 23551,
           "med": 23551,
           "sellers": 1
         }
       ],
       "allTimeMin": 23551,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 23551,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 23551,
       "lastMedian": 23551
     },
     "hisense|50a6s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 27199,
           "med": 30066,
           "sellers": 4
         }
       ],
       "allTimeMin": 27199,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 34951,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 27199,
       "lastMedian": 30066
     },
     "hisense|32e4qt": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 11880,
           "med": 11880,
           "sellers": 1
         }
       ],
       "allTimeMin": 11880,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 11880,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 11880,
       "lastMedian": 11880
     },
     "hisense|43e77q": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 28289,
           "med": 28289,
           "sellers": 1
         }
       ],
       "allTimeMin": 28289,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 28289,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 28289,
       "lastMedian": 28289
     },
     "hisense|55e77q": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 34850,
           "med": 34850,
           "sellers": 1
         }
       ],
       "allTimeMin": 34850,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 34850,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 34850,
       "lastMedian": 34850
     },
     "hisense|32e55sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 19600,
           "med": 19600,
           "sellers": 1
         }
       ],
       "allTimeMin": 19600,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 19600,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 19600,
       "lastMedian": 19600
     },
     "hisense|43e77sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 29396,
           "med": 29396,
           "sellers": 1
         }
       ],
       "allTimeMin": 29396,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 29396,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 29396,
       "lastMedian": 29396
     },
     "hisense|43e7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 29808,
           "med": 29808,
           "sellers": 1
         }
       ],
       "allTimeMin": 29808,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 29808,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 29808,
       "lastMedian": 29808
     },
     "hisense|55e66sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 35360,
           "med": 35360,
           "sellers": 1
         }
       ],
       "allTimeMin": 35360,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 35360,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 35360,
       "lastMedian": 35360
     },
     "hisense|50a6q": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 28900,
           "med": 29076,
           "sellers": 2
         }
       ],
       "allTimeMin": 28900,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 29251,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 28900,
       "lastMedian": 29076
     },
     "hisense|50e66sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 32340,
           "med": 32340,
           "sellers": 1
         }
       ],
       "allTimeMin": 32340,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 32340,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 32340,
       "lastMedian": 32340
     },
     "hisense|43a6q": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 26716,
           "med": 26716,
           "sellers": 1
         }
       ],
       "allTimeMin": 26716,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 26716,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 26716,
       "lastMedian": 26716
     },
     "hisense|50e7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 33856,
           "med": 33856,
           "sellers": 1
         }
       ],
       "allTimeMin": 33856,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 33856,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 33856,
       "lastMedian": 33856
     },
     "hisense|65e7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 66240,
           "med": 66240,
           "sellers": 1
         }
       ],
       "allTimeMin": 66240,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 66240,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 66240,
       "lastMedian": 66240
     },
     "hisense|32a4q": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 12836,
           "med": 13761,
           "sellers": 2
         }
       ],
       "allTimeMin": 12836,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 14685,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 12836,
       "lastMedian": 13761
     },
     "hisense|32a5s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 16928,
           "med": 16928,
           "sellers": 1
         }
       ],
       "allTimeMin": 16928,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 16928,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 16928,
       "lastMedian": 16928
     },
     "hisense|65ur9s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 176798,
           "med": 188394,
           "sellers": 2
         }
       ],
       "allTimeMin": 176798,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 199990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 176798,
       "lastMedian": 188394
     },
     "hisense|55u7s": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 54990,
           "med": 54990,
           "sellers": 1
         }
       ],
       "allTimeMin": 54990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 54990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 54990,
       "lastMedian": 54990
     },
     "hisense|65e77sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 60618,
           "med": 60618,
           "sellers": 1
         }
       ],
       "allTimeMin": 60618,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 60618,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 60618,
       "lastMedian": 60618
     },
     "hisense|50e77sl": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 36371,
           "med": 36371,
           "sellers": 1
         }
       ],
       "allTimeMin": 36371,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 36371,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 36371,
       "lastMedian": 36371
     },
     "tcl|50q6cs": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 37296,
           "med": 37296,
           "sellers": 1
         }
       ],
       "allTimeMin": 37296,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 37296,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 37296,
       "lastMedian": 37296
     },
     "tcl|43s5k-uz": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 25991,
           "med": 25991,
           "sellers": 2
         }
       ],
       "allTimeMin": 25991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 25991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 25991,
       "lastMedian": 25991
     },
     "tcl|43p7k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 29989,
           "med": 29990,
           "sellers": 2
         }
       ],
       "allTimeMin": 29989,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 29990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 29989,
       "lastMedian": 29990
     },
     "tcl|43v6c": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 28999,
           "med": 28999,
           "sellers": 1
         }
       ],
       "allTimeMin": 28999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 28999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 28999,
       "lastMedian": 28999
     },
     "tcl|50p7l": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 39990,
           "med": 39990,
           "sellers": 1
         }
       ],
       "allTimeMin": 39990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 39990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 39990,
       "lastMedian": 39990
     },
     "tcl|50v6c": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 34999,
           "med": 34999,
           "sellers": 1
         }
       ],
       "allTimeMin": 34999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 34999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 34999,
       "lastMedian": 34999
     },
     "tcl|32s5k-uz": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 19990,
           "med": 19990,
           "sellers": 1
         }
       ],
       "allTimeMin": 19990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 19990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 19990,
       "lastMedian": 19990
     },
     "tcl|55t6c": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 35999,
           "med": 35999,
           "sellers": 1
         }
       ],
       "allTimeMin": 35999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 35999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 35999,
       "lastMedian": 35999
     },
     "tcl|55q6c": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 54999,
           "med": 55099,
           "sellers": 2
         }
       ],
       "allTimeMin": 54999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 55199,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 54999,
       "lastMedian": 55099
     },
     "tcl|65c6k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 74991,
           "med": 74991,
           "sellers": 3
         }
       ],
       "allTimeMin": 74991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 74999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 74991,
       "lastMedian": 74991
     },
     "tcl|32s4k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 15463,
           "med": 15463,
           "sellers": 1
         }
       ],
       "allTimeMin": 15463,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 15463,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 15463,
       "lastMedian": 15463
     },
     "tcl|50t6d": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 38999,
           "med": 38999,
           "sellers": 1
         }
       ],
       "allTimeMin": 38999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 38999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 38999,
       "lastMedian": 38999
     },
     "tcl|55c6k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 54991,
           "med": 54991,
           "sellers": 1
         }
       ],
       "allTimeMin": 54991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 54991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 54991,
       "lastMedian": 54991
     },
     "tcl|40s5k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 21990,
           "med": 21995,
           "sellers": 2
         }
       ],
       "allTimeMin": 21990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 21999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 21990,
       "lastMedian": 21995
     },
     "tcl|55p7l": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 49991,
           "med": 49991,
           "sellers": 1
         }
       ],
       "allTimeMin": 49991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 49991,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 49991,
       "lastMedian": 49991
     },
     "tcl|55p69k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 36202,
           "med": 36202,
           "sellers": 1
         }
       ],
       "allTimeMin": 36202,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 36202,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 36202,
       "lastMedian": 36202
     },
     "tcl|50p7k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 35990,
           "med": 35990,
           "sellers": 1
         }
       ],
       "allTimeMin": 35990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 35990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 35990,
       "lastMedian": 35990
     },
     "tcl|65p6k": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 54990,
           "med": 54990,
           "sellers": 1
         }
       ],
       "allTimeMin": 54990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 54990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 54990,
       "lastMedian": 54990
     },
     "tcl|43t6c": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 33299,
           "med": 33300,
           "sellers": 2
         }
       ],
       "allTimeMin": 33299,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 33300,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 33299,
       "lastMedian": 33300
     },
     "tcl|43p7k-uz": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 29990,
           "med": 29990,
           "sellers": 1
         }
       ],
       "allTimeMin": 29990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 29990,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 29990,
       "lastMedian": 29990
     },
     "tcl|43t6d": {
-      "firstSeen": "2026-05-20T21:44:09.604Z",
+      "firstSeen": "2026-05-21T02:46:24.795Z",
       "snapshots": [
         {
-          "at": "2026-05-20T21:44:09.604Z",
+          "at": "2026-05-21T02:46:24.795Z",
           "min": 31999,
           "med": 31999,
           "sellers": 1
         }
       ],
       "allTimeMin": 31999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "allTimeMax": 31999,
-      "lastSeen": "2026-05-20T21:44:09.604Z",
+      "lastSeen": "2026-05-21T02:46:24.795Z",
       "lastMin": 31999,
       "lastMedian": 31999
     }

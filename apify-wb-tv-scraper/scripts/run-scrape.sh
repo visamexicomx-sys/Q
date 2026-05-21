@@ -24,31 +24,28 @@ COMBINED="$(mktemp -t wb-combined.XXXXXX.json)"
 trap 'rm -f "$COMBINED"' EXIT
 : > "$COMBINED"
 
+# Whitelist: only these 8 brands. Each gets 2 sort orders (popular + priceup) for
+# better coverage of both bestsellers and budget end of the line-up.
 QUERIES=(
-  # broad sorts
-  'sort=priceup&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=pricedown&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=rate&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=newly&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  # per diagonal (телевизор + size)
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+24'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+32'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+43'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+50'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+55'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+65'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+75'
-  'sort=popular&search=%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80+85'
-  # per brand
   'sort=popular&search=samsung+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=popular&search=lg+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=samsung+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
   'sort=popular&search=sony+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=popular&search=hisense+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=sony+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
   'sort=popular&search=tcl+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
-  'sort=popular&search=xiaomi+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=tcl+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=hisense+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=hisense+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
   'sort=popular&search=haier+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=haier+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=xiaomi+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=xiaomi+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=popular&search=sber+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
+  'sort=priceup&search=%D1%81%D0%B1%D0%B5%D1%80+%D1%82%D0%B5%D0%BB%D0%B5%D0%B2%D0%B8%D0%B7%D0%BE%D1%80'
 )
+
+BRAND_WHITELIST="${BRAND_WHITELIST:-samsung,sony,tcl,hisense,haier,xiaomi,яндекс,sber}"
 
 echo "▸ Actor: $ACTOR"
 echo "▸ Queries: ${#QUERIES[@]}"
@@ -66,16 +63,40 @@ start_run () {
     | jq -r '.data.id'
 }
 
+MAX_PARALLEL="${MAX_PARALLEL:-4}"   # FREE plan: 8GB memory cap, each run = 2GB
+
 declare -a RUN_IDS=()
+declare -A DONE=()
+
+wait_until_capacity () {
+  local cap="$1"
+  while :; do
+    local running=0
+    for rid in "${RUN_IDS[@]}"; do
+      [ -n "${DONE[$rid]:-}" ] && continue
+      st=$(curl -fsSL "https://api.apify.com/v2/actor-runs/${rid}?token=${APIFY_TOKEN}" | jq -r '.data.status')
+      case "$st" in
+        SUCCEEDED) DONE[$rid]=ok ;;
+        FAILED|ABORTED|TIMED-OUT|TIMING-OUT|ABORTING)
+          echo "::warning::run $rid finished with $st"
+          DONE[$rid]=fail ;;
+        *) running=$((running+1)) ;;
+      esac
+    done
+    [ "$running" -lt "$cap" ] && break
+    sleep 10
+  done
+}
+
 for q in "${QUERIES[@]}"; do
-  rid=$(start_run "$q")
-  [ -n "$rid" ] || { echo "::error::failed to start run for $q"; exit 1; }
+  wait_until_capacity "$MAX_PARALLEL"
+  rid=$(start_run "$q") || { echo "::warning::failed to start run for $q"; continue; }
+  [ -n "$rid" ] || { echo "::warning::no run id for $q"; continue; }
   RUN_IDS+=("$rid")
   echo "  ▸ started: $rid  ($q)"
 done
 
-echo "▸ Waiting for ${#RUN_IDS[@]} runs…"
-declare -A DONE=()
+echo "▸ Waiting for final ${#RUN_IDS[@]} runs to drain…"
 for _ in $(seq 1 80); do
   pending=0
   for rid in "${RUN_IDS[@]}"; do
@@ -84,7 +105,7 @@ for _ in $(seq 1 80); do
     case "$st" in
       SUCCEEDED) DONE[$rid]=ok ;;
       FAILED|ABORTED|TIMED-OUT|TIMING-OUT|ABORTING)
-        echo "::error::run $rid finished with $st"
+        echo "::warning::run $rid finished with $st"
         DONE[$rid]=fail ;;
       *) pending=$((pending+1)) ;;
     esac
@@ -116,7 +137,8 @@ if [ "$total" -eq 0 ]; then
 fi
 
 echo "▸ Building report…"
-node apify-wb-tv-scraper/scripts/build-report.mjs --input "$COMBINED" --out-dir "$OUT_DIR"
+node apify-wb-tv-scraper/scripts/build-report.mjs \
+  --input "$COMBINED" --out-dir "$OUT_DIR" --brands "$BRAND_WHITELIST"
 
 echo "▸ Tracking models…"
 node apify-wb-tv-scraper/scripts/models.mjs \

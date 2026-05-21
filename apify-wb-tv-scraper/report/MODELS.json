@@ -1,108 +1,12 @@
 {
-  "generatedAt": "2026-05-20T21:44:09.604Z",
-  "totalModels": 191,
-  "withoutModelCode": 111,
-  "multiSeller": 48,
+  "generatedAt": "2026-05-21T02:46:24.795Z",
+  "totalModels": 101,
+  "withoutModelCode": 84,
+  "multiSeller": 36,
   "dealsWithin": 2,
-  "newAllTimeLows": 191,
+  "newAllTimeLows": 101,
   "droppedMin": 0,
   "models": [
-    {
-      "key": "razz|hc32hss26f",
-      "brand": "RAZZ",
-      "model": "hc32hss26f",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 8520,
-      "max": 8520,
-      "median": 8520,
-      "floor": 6816,
-      "allTimeMin": 8520,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "883556292",
-          "name": "/ Телевизор 32 дюйма HC32HSS26F HD Smart ОС Салют WiFi",
-          "brand": "RAZZ",
-          "price": 8520,
-          "originalPrice": 14490,
-          "discount": 41,
-          "rating": 4.7,
-          "reviews": 583,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/883556292/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "razz|hc43fss26f",
-      "brand": "RAZZ",
-      "model": "hc43fss26f",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 13370,
-      "max": 13370,
-      "median": 13370,
-      "floor": 10696,
-      "allTimeMin": 13370,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "883556306",
-          "name": "/ Телевизор 43 дюйма HC43FSS26F Full HD Smart ОС Салют WiFi",
-          "brand": "RAZZ",
-          "price": 13370,
-          "originalPrice": 20990,
-          "discount": 36,
-          "rating": 4.7,
-          "reviews": 577,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/883556306/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "витязь|d24hs01bf",
-      "brand": "Витязь",
-      "model": "d24hs01bf",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 6784,
-      "max": 6784,
-      "median": 6784,
-      "floor": 5427,
-      "allTimeMin": 6784,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "822574598",
-          "name": "/ Телевизор 24 дюйма D24HS01BF Smart Салют ТВ",
-          "brand": "Витязь",
-          "price": 6784,
-          "originalPrice": 10990,
-          "discount": 38,
-          "rating": 4.8,
-          "reviews": 1,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/822574598/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
     {
       "key": "samsung|qe55q7f5auxru",
       "brand": "Samsung",
@@ -116,7 +20,7 @@
       "median": 51249,
       "floor": 40999,
       "allTimeMin": 48186,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -148,38 +52,6 @@
       "dealItems": []
     },
     {
-      "key": "razz|hc55uss26f",
-      "brand": "RAZZ",
-      "model": "hc55uss26f",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 20143,
-      "max": 20143,
-      "median": 20143,
-      "floor": 16114,
-      "allTimeMin": 20143,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "822402376",
-          "name": "/ Телевизор 55 дюймов HC55USS26F UHD 4К Smart ОС Салют WiFi",
-          "brand": "RAZZ",
-          "price": 20143,
-          "originalPrice": 30990,
-          "discount": 35,
-          "rating": 4.8,
-          "reviews": 367,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/822402376/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "xiaomi|l55mb-aru",
       "brand": "Xiaomi",
       "model": "l55mb-aru",
@@ -192,7 +64,7 @@
       "median": 27642,
       "floor": 22114,
       "allTimeMin": 27642,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -212,70 +84,6 @@
       "dealItems": []
     },
     {
-      "key": "polarline|32pl12tc",
-      "brand": "POLARLINE",
-      "model": "32pl12tc",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 9190,
-      "max": 9190,
-      "median": 9190,
-      "floor": 7352,
-      "allTimeMin": 9190,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "377687889",
-          "name": "/ Телевизор маленький на кухню 32 дюйма не смарт HD 32PL12TC",
-          "brand": "POLARLINE",
-          "price": 9190,
-          "originalPrice": 12405,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 35,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/377687889/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "shivaki|s43nfch001",
-      "brand": "SHIVAKI",
-      "model": "s43nfch001",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 12521,
-      "max": 12521,
-      "median": 12521,
-      "floor": 10017,
-      "allTimeMin": 12521,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "420000552",
-          "name": "/ Телевизор 43\" S43NFCH001 Full HD SMART Wi-Fi Android",
-          "brand": "SHIVAKI",
-          "price": 12521,
-          "originalPrice": 39999,
-          "discount": 69,
-          "rating": 4.5,
-          "reviews": 746,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/420000552/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "xiaomi|l32mb-aru",
       "brand": "Xiaomi",
       "model": "l32mb-aru",
@@ -288,7 +96,7 @@
       "median": 13489,
       "floor": 10791,
       "allTimeMin": 13489,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -308,38 +116,6 @@
       "dealItems": []
     },
     {
-      "key": "asano|24lh1011t",
-      "brand": "ASANO",
-      "model": "24lh1011t",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 6692,
-      "max": 6692,
-      "median": 6692,
-      "floor": 5354,
-      "allTimeMin": 6692,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "371680575",
-          "name": "/ Телевизор LED 24LH1011T 24\", HD, белый",
-          "brand": "ASANO",
-          "price": 6692,
-          "originalPrice": 11368,
-          "discount": 41,
-          "rating": 4.8,
-          "reviews": 160,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/371680575/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "samsung|qe85q7faauxru",
       "brand": "Samsung",
       "model": "qe85q7faauxru",
@@ -352,7 +128,7 @@
       "median": 110408,
       "floor": 88326,
       "allTimeMin": 110408,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -384,7 +160,7 @@
       "median": 297943,
       "floor": 238354,
       "allTimeMin": 297943,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -404,178 +180,6 @@
       "dealItems": []
     },
     {
-      "key": "blackton|24f32b",
-      "brand": "Blackton",
-      "model": "24f32b",
-      "diagonals": [
-        24
-      ],
-      "sellers": 2,
-      "min": 6800,
-      "max": 6970,
-      "median": 6885,
-      "floor": 5508,
-      "allTimeMin": 6800,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "220094688",
-          "name": "/ Телевизор Bt 24F32B Black, 24\"",
-          "brand": "Blackton",
-          "price": 6800,
-          "originalPrice": 13200,
-          "discount": 48,
-          "rating": 4.7,
-          "reviews": 1,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/220094688/detail.aspx"
-        },
-        {
-          "id": "487536224",
-          "name": "/ Телевизор 24 дюйма BT 24F32B (DVB-T2) черный",
-          "brand": "Blackton",
-          "price": 6970,
-          "originalPrice": 9600,
-          "discount": 27,
-          "rating": 4.7,
-          "reviews": 62,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/487536224/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "starwind|sw-led24sg304",
-      "brand": "StarWind",
-      "model": "sw-led24sg304",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 11686,
-      "max": 11686,
-      "median": 11686,
-      "floor": 9349,
-      "allTimeMin": 11686,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "241100950",
-          "name": "/ Телевизор SW-LED24SG304 24\" 60 Гц LED, HD смарт, YaOS",
-          "brand": "StarWind",
-          "price": 11686,
-          "originalPrice": 16203,
-          "discount": 28,
-          "rating": 5,
-          "reviews": 24,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/241100950/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "skyworth|60q66h",
-      "brand": "Skyworth",
-      "model": "60q66h",
-      "diagonals": [
-        60
-      ],
-      "sellers": 1,
-      "min": 35711,
-      "max": 35711,
-      "median": 35711,
-      "floor": 28569,
-      "allTimeMin": 35711,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "440597367",
-          "name": "/ 60\" Телевизор 60Q66H, QLED, 120Гц",
-          "brand": "Skyworth",
-          "price": 35711,
-          "originalPrice": 98380,
-          "discount": 64,
-          "rating": 4.9,
-          "reviews": 43,
-          "diagonal": 60,
-          "url": "https://www.wildberries.ru/catalog/440597367/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "arg|ld32d7500",
-      "brand": "ARG",
-      "model": "ld32d7500",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 9534,
-      "max": 9534,
-      "median": 9534,
-      "floor": 7627,
-      "allTimeMin": 9534,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "579983206",
-          "name": "/ LED телевизор LD32D7500 диагональ 32″ Full HD, черный",
-          "brand": "ARG",
-          "price": 9534,
-          "originalPrice": 25740,
-          "discount": 63,
-          "rating": 5,
-          "reviews": 2,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/579983206/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "tuvio|td32hfbch11",
-      "brand": "Tuvio",
-      "model": "td32hfbch11",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 10135,
-      "max": 10135,
-      "median": 10135,
-      "floor": 8108,
-      "allTimeMin": 10135,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "706859902",
-          "name": "/ Телевизор 32\" HD-ready DLED YaOS, Smart TV, TD32HFBCH11",
-          "brand": "Tuvio",
-          "price": 10135,
-          "originalPrice": 14772,
-          "discount": 31,
-          "rating": 5,
-          "reviews": 11,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/706859902/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "sber|sdx-43f3111",
       "brand": "SBER",
       "model": "sdx-43f3111",
@@ -588,7 +192,7 @@
       "median": 14798,
       "floor": 11838,
       "allTimeMin": 14798,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -608,38 +212,6 @@
       "dealItems": []
     },
     {
-      "key": "razz|c50uss25f",
-      "brand": "RAZZ",
-      "model": "c50uss25f",
-      "diagonals": [
-        50
-      ],
-      "sellers": 1,
-      "min": 18753,
-      "max": 18753,
-      "median": 18753,
-      "floor": 15002,
-      "allTimeMin": 18753,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "430224880",
-          "name": "/ Телевизор 50 дюймов C50USS25F UHD 4К Smart ОС Салют WiFi",
-          "brand": "RAZZ",
-          "price": 18753,
-          "originalPrice": 27990,
-          "discount": 33,
-          "rating": 4.8,
-          "reviews": 1,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/430224880/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "xiaomi|l43mb-afru",
       "brand": "Xiaomi",
       "model": "l43mb-afru",
@@ -652,7 +224,7 @@
       "median": 20632,
       "floor": 16506,
       "allTimeMin": 20632,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -672,240 +244,6 @@
       "dealItems": []
     },
     {
-      "key": "harper|32r690t",
-      "brand": "Harper",
-      "model": "32r690t",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 9434,
-      "max": 9434,
-      "median": 9434,
-      "floor": 7547,
-      "allTimeMin": 9434,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "111980165",
-          "name": "/ Телевизор 32 дюйма 32R690T, DVB-T2, HD",
-          "brand": "Harper",
-          "price": 9434,
-          "originalPrice": 19899,
-          "discount": 53,
-          "rating": 4.9,
-          "reviews": 987,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/111980165/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "bbk|32lem-1045",
-      "brand": "BBK",
-      "model": "32lem-1045",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 11931,
-      "max": 11931,
-      "median": 11931,
-      "floor": 9545,
-      "allTimeMin": 11931,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "972362700",
-          "name": "/ Телевизор маленький на кухню 32 дюйма 32LEM-1045 TS2C (W)",
-          "brand": "BBK",
-          "price": 11931,
-          "originalPrice": 16543,
-          "discount": 28,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/972362700/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "bbk|32lex-7233",
-      "brand": "BBK",
-      "model": "32lex-7233",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 13091,
-      "max": 13091,
-      "median": 13091,
-      "floor": 10473,
-      "allTimeMin": 13091,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "972362637",
-          "name": "/ Телевизор маленький на кухню 32 дюйма смарт 32LEX-7233 TS2C",
-          "brand": "BBK",
-          "price": 13091,
-          "originalPrice": 18152,
-          "discount": 28,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/972362637/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "bbk|43lex-7247",
-      "brand": "BBK",
-      "model": "43lex-7247",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 22391,
-      "max": 22391,
-      "median": 22391,
-      "floor": 17913,
-      "allTimeMin": 22391,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "972362714",
-          "name": "/ Телевизор 43 дюйма смарт Full HD 43LEX-7247 FTS2C (W)",
-          "brand": "BBK",
-          "price": 22391,
-          "originalPrice": 30423,
-          "discount": 26,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/972362714/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "supra|stv-lc24lt0080w",
-      "brand": "SUPRA",
-      "model": "stv-lc24lt0080w",
-      "diagonals": [
-        24
-      ],
-      "sellers": 2,
-      "min": 8741,
-      "max": 11382,
-      "median": 10062,
-      "floor": 8050,
-      "allTimeMin": 8741,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "820485817",
-          "name": "/ Телевизор маленький на кухню 24 дюйма STV-LC24LT0080W",
-          "brand": "SUPRA",
-          "price": 8741,
-          "originalPrice": 11799,
-          "discount": 26,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/820485817/detail.aspx"
-        },
-        {
-          "id": "1056048350",
-          "name": "/ Телевизор STV-LC24LT0080W",
-          "brand": "SUPRA",
-          "price": 11382,
-          "originalPrice": 15999,
-          "discount": 29,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/1056048350/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "eplutus|ep-174t",
-      "brand": "Eplutus",
-      "model": "ep-174t",
-      "diagonals": [
-        17
-      ],
-      "sellers": 1,
-      "min": 8552,
-      "max": 8552,
-      "median": 8552,
-      "floor": 6842,
-      "allTimeMin": 8552,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1055903755",
-          "name": "/ Портативный телевизор EP-174T 17\"",
-          "brand": "Eplutus",
-          "price": 8552,
-          "originalPrice": 14800,
-          "discount": 42,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 17,
-          "url": "https://www.wildberries.ru/catalog/1055903755/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "eplutus|ep-1430s",
-      "brand": "Eplutus",
-      "model": "ep-1430s",
-      "diagonals": [],
-      "sellers": 1,
-      "min": 9660,
-      "max": 9660,
-      "median": 9660,
-      "floor": 7728,
-      "allTimeMin": 9660,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1055897548",
-          "name": "/ Телевизор цифровой Smart TV EP-1430S DVB-T2 C",
-          "brand": "Eplutus",
-          "price": 9660,
-          "originalPrice": 16300,
-          "discount": 41,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": null,
-          "url": "https://www.wildberries.ru/catalog/1055897548/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "tcl|85p8l",
       "brand": "TCL",
       "model": "85p8l",
@@ -918,7 +256,7 @@
       "median": 159991,
       "floor": 127993,
       "allTimeMin": 159991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -950,7 +288,7 @@
       "median": 59990,
       "floor": 47992,
       "allTimeMin": 59990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -970,102 +308,6 @@
       "dealItems": []
     },
     {
-      "key": "erisson|24les90t2",
-      "brand": "Erisson",
-      "model": "24les90t2",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 8996,
-      "max": 8996,
-      "median": 8996,
-      "floor": 7197,
-      "allTimeMin": 8996,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1055811710",
-          "name": "/ Телевизор 24LES90T2",
-          "brand": "Erisson",
-          "price": 8996,
-          "originalPrice": 9180,
-          "discount": 2,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/1055811710/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "topdevice|tdwc24bh3260v",
-      "brand": "Topdevice",
-      "model": "tdwc24bh3260v",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 13250,
-      "max": 13250,
-      "median": 13250,
-      "floor": 10600,
-      "allTimeMin": 13250,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1037120713",
-          "name": "/ Телевизор TDWC24BH3260V",
-          "brand": "Topdevice",
-          "price": 13250,
-          "originalPrice": 13521,
-          "discount": 2,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/1037120713/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "erisson|32les803t2",
-      "brand": "Erisson",
-      "model": "32les803t2",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 12046,
-      "max": 12046,
-      "median": 12046,
-      "floor": 9637,
-      "allTimeMin": 12046,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1055714551",
-          "name": "/ Телевизор 32LES803T2",
-          "brand": "Erisson",
-          "price": 12046,
-          "originalPrice": 12292,
-          "discount": 2,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/1055714551/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "xiaomi|l43mb-apru",
       "brand": "Xiaomi",
       "model": "l43mb-apru",
@@ -1078,7 +320,7 @@
       "median": 35535,
       "floor": 28428,
       "allTimeMin": 35535,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1110,7 +352,7 @@
       "median": 74972,
       "floor": 59978,
       "allTimeMin": 65504,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1142,70 +384,6 @@
       "dealItems": []
     },
     {
-      "key": "bbk|50led-8260",
-      "brand": "BBK",
-      "model": "50led-8260",
-      "diagonals": [
-        50
-      ],
-      "sellers": 1,
-      "min": 39574,
-      "max": 39574,
-      "median": 39574,
-      "floor": 31659,
-      "allTimeMin": 39574,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "810832010",
-          "name": "/ Телевизор 50LED-8260 UTS2C",
-          "brand": "BBK",
-          "price": 39574,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/810832010/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "polarline|43pl51tc",
-      "brand": "POLARLINE",
-      "model": "43pl51tc",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 26087,
-      "max": 26087,
-      "median": 26087,
-      "floor": 20870,
-      "allTimeMin": 26087,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1037205326",
-          "name": "/ Телевизор 43PL51TC",
-          "brand": "POLARLINE",
-          "price": 26087,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/1037205326/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "samsung|qe43qn90fauxru",
       "brand": "Samsung",
       "model": "qe43qn90fauxru",
@@ -1218,7 +396,7 @@
       "median": 108099,
       "floor": 86479,
       "allTimeMin": 94207,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1250,102 +428,6 @@
       "dealItems": []
     },
     {
-      "key": "topdevice|tdwc43bf4260v",
-      "brand": "Topdevice",
-      "model": "tdwc43bf4260v",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 17266,
-      "max": 17266,
-      "median": 17266,
-      "floor": 13813,
-      "allTimeMin": 17266,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1047155456",
-          "name": "/ Телевизор TDWC43BF4260V 43″ HD, черный Smart TV",
-          "brand": "Topdevice",
-          "price": 17266,
-          "originalPrice": 34000,
-          "discount": 49,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/1047155456/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "topdevice|tdwc43bf2110v",
-      "brand": "Topdevice",
-      "model": "tdwc43bf2110v",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 16250,
-      "max": 16250,
-      "median": 16250,
-      "floor": 13000,
-      "allTimeMin": 16250,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1047094771",
-          "name": "/ Телевизор TDWC43BF2110V 43″ HD, черный Smart TV",
-          "brand": "Topdevice",
-          "price": 16250,
-          "originalPrice": 31999,
-          "discount": 49,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/1047094771/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "polarline|40pl53tc-sm",
-      "brand": "POLARLINE",
-      "model": "40pl53tc-sm",
-      "diagonals": [
-        40
-      ],
-      "sellers": 1,
-      "min": 19042,
-      "max": 19042,
-      "median": 19042,
-      "floor": 15234,
-      "allTimeMin": 19042,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "782007552",
-          "name": "/ Телевизор 40PL53TC-SM",
-          "brand": "POLARLINE",
-          "price": 19042,
-          "originalPrice": 22403,
-          "discount": 15,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 40,
-          "url": "https://www.wildberries.ru/catalog/782007552/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "hisense|50u7s",
       "brand": "HISENSE",
       "model": "50u7s",
@@ -1358,7 +440,7 @@
       "median": 54999,
       "floor": 43999,
       "allTimeMin": 54998,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1414,7 +496,7 @@
       "median": 134707,
       "floor": 107766,
       "allTimeMin": 131744,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1446,82 +528,6 @@
       "dealItems": []
     },
     {
-      "key": "polar|p32l34t2csm",
-      "brand": "POLAR",
-      "model": "p32l34t2csm",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 13077,
-      "max": 13077,
-      "median": 13077,
-      "floor": 10462,
-      "allTimeMin": 13077,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1051422157",
-          "name": "/ Телевизор P32L34T2CSM",
-          "brand": "POLAR",
-          "price": 13077,
-          "originalPrice": 15699,
-          "discount": 17,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/1051422157/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|65qned70a6a",
-      "brand": "LG",
-      "model": "65qned70a6a",
-      "diagonals": [
-        65
-      ],
-      "sellers": 2,
-      "min": 67902,
-      "max": 70246,
-      "median": 69074,
-      "floor": 55259,
-      "allTimeMin": 67902,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "687464428",
-          "name": "/ Телевизор 65 дюймов 4K 65QNED70A6A QNED, Смарт, HDR",
-          "brand": "LG",
-          "price": 67902,
-          "originalPrice": 137699,
-          "discount": 51,
-          "rating": 3,
-          "reviews": 1,
-          "diagonal": 65,
-          "url": "https://www.wildberries.ru/catalog/687464428/detail.aspx"
-        },
-        {
-          "id": "985112859",
-          "name": "/ Телевизор LED 65QNED70A6A.ARUG",
-          "brand": "LG",
-          "price": 70246,
-          "originalPrice": 112286,
-          "discount": 37,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 65,
-          "url": "https://www.wildberries.ru/catalog/985112859/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "hisense|65u7s",
       "brand": "HISENSE",
       "model": "65u7s",
@@ -1534,7 +540,7 @@
       "median": 122912,
       "floor": 98330,
       "allTimeMin": 87583,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1603,7 +609,7 @@
       "median": 102745,
       "floor": 82196,
       "allTimeMin": 98403,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1635,38 +641,6 @@
       "dealItems": []
     },
     {
-      "key": "bbk|40lex-7244",
-      "brand": "BBK",
-      "model": "40lex-7244",
-      "diagonals": [
-        40
-      ],
-      "sellers": 1,
-      "min": 18887,
-      "max": 18887,
-      "median": 18887,
-      "floor": 15110,
-      "allTimeMin": 18887,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1051304637",
-          "name": "/ Телевизор 40LEX-7244 FTS2C белый",
-          "brand": "BBK",
-          "price": 18887,
-          "originalPrice": 22221,
-          "discount": 15,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 40,
-          "url": "https://www.wildberries.ru/catalog/1051304637/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "hisense|75u7s",
       "brand": "HISENSE",
       "model": "75u7s",
@@ -1679,7 +653,7 @@
       "median": 117549,
       "floor": 94039,
       "allTimeMin": 103039,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -1711,284 +685,6 @@
       "dealItems": []
     },
     {
-      "key": "supra|stv-lc24st0080w",
-      "brand": "SUPRA",
-      "model": "stv-lc24st0080w",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 9727,
-      "max": 9727,
-      "median": 9727,
-      "floor": 7782,
-      "allTimeMin": 9727,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1051304698",
-          "name": "/ Телевизор STV-LC24ST0080W",
-          "brand": "SUPRA",
-          "price": 9727,
-          "originalPrice": 11678,
-          "discount": 17,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/1051304698/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|oled97g5rla",
-      "brand": "LG",
-      "model": "oled97g5rla",
-      "diagonals": [],
-      "sellers": 2,
-      "min": 1755999,
-      "max": 1762999,
-      "median": 1759499,
-      "floor": 1407599,
-      "allTimeMin": 1755999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "881751533",
-          "name": "/ Телевизор OLED97G5RLA.ARUZ",
-          "brand": "LG",
-          "price": 1755999,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": null,
-          "url": "https://www.wildberries.ru/catalog/881751533/detail.aspx"
-        },
-        {
-          "id": "881753348",
-          "name": "/ Телевизор OLED97G5RLA ARUZ",
-          "brand": "LG",
-          "price": 1762999,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": null,
-          "url": "https://www.wildberries.ru/catalog/881753348/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "artel|a32mh1300",
-      "brand": "Artel",
-      "model": "a32mh1300",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 999999,
-      "max": 999999,
-      "median": 999999,
-      "floor": 799999,
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1030929758",
-          "name": "/ Телевизор A32MH1300",
-          "brand": "Artel",
-          "price": 999999,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/1030929758/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "artel|43au20h",
-      "brand": "Artel",
-      "model": "43au20h",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 999999,
-      "max": 999999,
-      "median": 999999,
-      "floor": 799999,
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1031002922",
-          "name": "/ Телевизор 43AU20H",
-          "brand": "Artel",
-          "price": 999999,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/1031002922/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "artel|50au20k",
-      "brand": "Artel",
-      "model": "50au20k",
-      "diagonals": [
-        50
-      ],
-      "sellers": 1,
-      "min": 999999,
-      "max": 999999,
-      "median": 999999,
-      "floor": 799999,
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1031006980",
-          "name": "/ Телевизор 50AU20K",
-          "brand": "Artel",
-          "price": 999999,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/1031006980/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "artel|43au20k",
-      "brand": "Artel",
-      "model": "43au20k",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 999999,
-      "max": 999999,
-      "median": 999999,
-      "floor": 799999,
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1031006960",
-          "name": "/ Телевизор 43AU20K",
-          "brand": "Artel",
-          "price": 999999,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/1031006960/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "artel|55au20k",
-      "brand": "Artel",
-      "model": "55au20k",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 999999,
-      "max": 999999,
-      "median": 999999,
-      "floor": 799999,
-      "allTimeMin": 999999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1031006926",
-          "name": "/ Телевизор 55AU20K",
-          "brand": "Artel",
-          "price": 999999,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/1031006926/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "philips|77oled950",
-      "brand": "PHILIPS",
-      "model": "77oled950",
-      "diagonals": [
-        77
-      ],
-      "sellers": 2,
-      "min": 719091,
-      "max": 723341,
-      "median": 721216,
-      "floor": 576973,
-      "allTimeMin": 719091,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "982664481",
-          "name": "/ Телевизор 77OLED950, OLED, 4K UHD, Google TV, Ambilight",
-          "brand": "PHILIPS",
-          "price": 719091,
-          "originalPrice": 845990,
-          "discount": 15,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 77,
-          "url": "https://www.wildberries.ru/catalog/982664481/detail.aspx"
-        },
-        {
-          "id": "732688359",
-          "name": "/ Телевизор 77OLED950, OLED, 4K UHD, Google TV, Ambilight",
-          "brand": "PHILIPS",
-          "price": 723341,
-          "originalPrice": 850990,
-          "discount": 15,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 77,
-          "url": "https://www.wildberries.ru/catalog/732688359/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "samsung|qe85qn900fuxru",
       "brand": "Samsung",
       "model": "qe85qn900fuxru",
@@ -2001,7 +697,7 @@
       "median": 569995,
       "floor": 455996,
       "allTimeMin": 569990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2091,7 +787,7 @@
       "median": 705733,
       "floor": 564586,
       "allTimeMin": 705733,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2111,48 +807,6 @@
       "dealItems": []
     },
     {
-      "key": "lg|oled83g5rla",
-      "brand": "LG",
-      "model": "oled83g5rla",
-      "diagonals": [],
-      "sellers": 2,
-      "min": 665989,
-      "max": 665989,
-      "median": 665989,
-      "floor": 532791,
-      "allTimeMin": 665989,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "888224044",
-          "name": "/ Телевизор OLED83G5RLA.ARUG",
-          "brand": "LG",
-          "price": 665989,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": null,
-          "url": "https://www.wildberries.ru/catalog/888224044/detail.aspx"
-        },
-        {
-          "id": "874715417",
-          "name": "/ Телевизор OLED83G5RLA.ARUG",
-          "brand": "LG",
-          "price": 665989,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": null,
-          "url": "https://www.wildberries.ru/catalog/874715417/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "samsung|qe75qn990fuxru",
       "brand": "Samsung",
       "model": "qe75qn990fuxru",
@@ -2165,7 +819,7 @@
       "median": 579991,
       "floor": 463993,
       "allTimeMin": 579920,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2269,7 +923,7 @@
       "median": 577490,
       "floor": 461992,
       "allTimeMin": 577490,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2301,7 +955,7 @@
       "median": 553995,
       "floor": 443196,
       "allTimeMin": 547975,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2369,7 +1023,7 @@
       "median": 540590,
       "floor": 432472,
       "allTimeMin": 529990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2449,38 +1103,6 @@
       "dealItems": []
     },
     {
-      "key": "philips|77oled770",
-      "brand": "PHILIPS",
-      "model": "77oled770",
-      "diagonals": [
-        77
-      ],
-      "sellers": 1,
-      "min": 528166,
-      "max": 528166,
-      "median": 528166,
-      "floor": 422533,
-      "allTimeMin": 528166,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "1029662843",
-          "name": "/ Телевизор 77OLED770",
-          "brand": "PHILIPS",
-          "price": 528166,
-          "originalPrice": null,
-          "discount": 0,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 77,
-          "url": "https://www.wildberries.ru/catalog/1029662843/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "samsung|qe75qn900fuxru",
       "brand": "Samsung",
       "model": "qe75qn900fuxru",
@@ -2493,7 +1115,7 @@
       "median": 524990,
       "floor": 419992,
       "allTimeMin": 524990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2525,7 +1147,7 @@
       "median": 499990,
       "floor": 399992,
       "allTimeMin": 499990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2581,7 +1203,7 @@
       "median": 521461,
       "floor": 417169,
       "allTimeMin": 521461,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2601,70 +1223,6 @@
       "dealItems": []
     },
     {
-      "key": "philips|77oled909",
-      "brand": "PHILIPS",
-      "model": "77oled909",
-      "diagonals": [
-        77
-      ],
-      "sellers": 1,
-      "min": 509991,
-      "max": 509991,
-      "median": 509991,
-      "floor": 407993,
-      "allTimeMin": 509991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "302794179",
-          "name": "/ Телевизор 77″ 77OLED909, OLED, 4K UHD",
-          "brand": "PHILIPS",
-          "price": 509991,
-          "originalPrice": 599990,
-          "discount": 15,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 77,
-          "url": "https://www.wildberries.ru/catalog/302794179/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|oled83c5rla",
-      "brand": "LG",
-      "model": "oled83c5rla",
-      "diagonals": [
-        83
-      ],
-      "sellers": 1,
-      "min": 503092,
-      "max": 503092,
-      "median": 503092,
-      "floor": 402474,
-      "allTimeMin": 503092,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "585213213",
-          "name": "/ Телевизор OLED 83\" OLED83C5RLA.ARUG Smart TV 4K Ultra HD",
-          "brand": "LG",
-          "price": 503092,
-          "originalPrice": 683550,
-          "discount": 26,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 83,
-          "url": "https://www.wildberries.ru/catalog/585213213/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "hisense|55a6s",
       "brand": "HISENSE",
       "model": "55a6s",
@@ -2677,7 +1235,7 @@
       "median": 33856,
       "floor": 27085,
       "allTimeMin": 31490,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2721,38 +1279,6 @@
       "dealItems": []
     },
     {
-      "key": "bbk|43led-8259",
-      "brand": "BBK",
-      "model": "43led-8259",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 23165,
-      "max": 23165,
-      "median": 23165,
-      "floor": 18532,
-      "allTimeMin": 23165,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "246962015",
-          "name": "/ Телевизор 43 дюйма смарт 4K 43LED-8259 UTS2C",
-          "brand": "BBK",
-          "price": 23165,
-          "originalPrice": 31475,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 4,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/246962015/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "hisense|32a4s",
       "brand": "HISENSE",
       "model": "32a4s",
@@ -2765,7 +1291,7 @@
       "median": 14063,
       "floor": 11250,
       "allTimeMin": 13700,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2809,7 +1335,7 @@
       "median": 198719,
       "floor": 158975,
       "allTimeMin": 198719,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2841,7 +1367,7 @@
       "median": 32147,
       "floor": 25718,
       "allTimeMin": 32147,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2873,7 +1399,7 @@
       "median": 64033,
       "floor": 51226,
       "allTimeMin": 64033,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2905,7 +1431,7 @@
       "median": 176802,
       "floor": 141442,
       "allTimeMin": 176802,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -2925,70 +1451,6 @@
       "dealItems": []
     },
     {
-      "key": "hyundai|h-led75bu7011",
-      "brand": "HYUNDAI",
-      "model": "h-led75bu7011",
-      "diagonals": [
-        75
-      ],
-      "sellers": 1,
-      "min": 68448,
-      "max": 68448,
-      "median": 68448,
-      "floor": 54758,
-      "allTimeMin": 68448,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "907280941",
-          "name": "/ Телевизор смарт 75 дюймов H-LED75BU7011 черный",
-          "brand": "HYUNDAI",
-          "price": 68448,
-          "originalPrice": 93000,
-          "discount": 26,
-          "rating": 4.7,
-          "reviews": 213,
-          "diagonal": 75,
-          "url": "https://www.wildberries.ru/catalog/907280941/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|75qned70a6a",
-      "brand": "LG",
-      "model": "75qned70a6a",
-      "diagonals": [
-        75
-      ],
-      "sellers": 1,
-      "min": 90034,
-      "max": 90034,
-      "median": 90034,
-      "floor": 72027,
-      "allTimeMin": 90034,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "767983146",
-          "name": "/ QNED телевизор 75QNED70A6A 75″ 4K UHD, черный",
-          "brand": "LG",
-          "price": 90034,
-          "originalPrice": 244660,
-          "discount": 63,
-          "rating": 5,
-          "reviews": 1,
-          "diagonal": 75,
-          "url": "https://www.wildberries.ru/catalog/767983146/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "hisense|75e7s",
       "brand": "HISENSE",
       "model": "75e7s",
@@ -3001,7 +1463,7 @@
       "median": 90527,
       "floor": 72422,
       "allTimeMin": 70880,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -3070,7 +1532,7 @@
       "median": 80799,
       "floor": 64639,
       "allTimeMin": 80799,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -3090,134 +1552,6 @@
       "dealItems": []
     },
     {
-      "key": "hyundai|h-led75bu7009",
-      "brand": "HYUNDAI",
-      "model": "h-led75bu7009",
-      "diagonals": [
-        75
-      ],
-      "sellers": 1,
-      "min": 79557,
-      "max": 79557,
-      "median": 79557,
-      "floor": 63646,
-      "allTimeMin": 79557,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "243256010",
-          "name": "/ Телевизор LED 75\" H-LED75BU7009 Smart Android TV",
-          "brand": "HYUNDAI",
-          "price": 79557,
-          "originalPrice": 108095,
-          "discount": 26,
-          "rating": 4.4,
-          "reviews": 10,
-          "diagonal": 75,
-          "url": "https://www.wildberries.ru/catalog/243256010/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "skyworth|75q67h",
-      "brand": "Skyworth",
-      "model": "75q67h",
-      "diagonals": [
-        75
-      ],
-      "sellers": 1,
-      "min": 61354,
-      "max": 61354,
-      "median": 61354,
-      "floor": 49083,
-      "allTimeMin": 61354,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "440597408",
-          "name": "/ 75\" Телевизор 75Q67H, QLED, 120Гц, UHD, Wi-Fi, Bluetooth",
-          "brand": "Skyworth",
-          "price": 61354,
-          "originalPrice": 169020,
-          "discount": 64,
-          "rating": 3.8,
-          "reviews": 4,
-          "diagonal": 75,
-          "url": "https://www.wildberries.ru/catalog/440597408/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "skyworth|75q66h",
-      "brand": "Skyworth",
-      "model": "75q66h",
-      "diagonals": [
-        75
-      ],
-      "sellers": 1,
-      "min": 67125,
-      "max": 67125,
-      "median": 67125,
-      "floor": 53700,
-      "allTimeMin": 67125,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "440597460",
-          "name": "/ 75\" Телевизор 75Q66H, QLED, 120Гц, UHD, Wi-Fi, Bluetooth",
-          "brand": "Skyworth",
-          "price": 67125,
-          "originalPrice": 184920,
-          "discount": 64,
-          "rating": 4.9,
-          "reviews": 8,
-          "diagonal": 75,
-          "url": "https://www.wildberries.ru/catalog/440597460/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "skyworth|65q75g",
-      "brand": "Skyworth",
-      "model": "65q75g",
-      "diagonals": [
-        65
-      ],
-      "sellers": 1,
-      "min": 51567,
-      "max": 51567,
-      "median": 51567,
-      "floor": 41254,
-      "allTimeMin": 51567,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "440597456",
-          "name": "/ 65\" Телевизор 65Q75G, 120Гц, UHD",
-          "brand": "Skyworth",
-          "price": 51567,
-          "originalPrice": 142060,
-          "discount": 64,
-          "rating": 4.9,
-          "reviews": 12,
-          "diagonal": 65,
-          "url": "https://www.wildberries.ru/catalog/440597456/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "samsung|ue75u8000fuxru",
       "brand": "Samsung",
       "model": "ue75u8000fuxru",
@@ -3230,7 +1564,7 @@
       "median": 68485,
       "floor": 54788,
       "allTimeMin": 64105,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -3274,7 +1608,7 @@
       "median": 236216,
       "floor": 188973,
       "allTimeMin": 222450,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -3318,7 +1652,7 @@
       "median": 38272,
       "floor": 30618,
       "allTimeMin": 36340,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -3362,198 +1696,6 @@
       "dealItems": []
     },
     {
-      "key": "harper|55q880ts",
-      "brand": "Harper",
-      "model": "55q880ts",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 30856,
-      "max": 30856,
-      "median": 30856,
-      "floor": 24685,
-      "allTimeMin": 30856,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "642495387",
-          "name": "/ Телевизор 55 дюймов смарт с wi-fi 55Q880TS",
-          "brand": "Harper",
-          "price": 30856,
-          "originalPrice": 64499,
-          "discount": 52,
-          "rating": 4.9,
-          "reviews": 132,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/642495387/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "harper|55q770ts",
-      "brand": "Harper",
-      "model": "55q770ts",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 31765,
-      "max": 31765,
-      "median": 31765,
-      "floor": 25412,
-      "allTimeMin": 31765,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "302386167",
-          "name": "/ Телевизор 55 дюймов смарт 55Q770TS QLED+ HDR 4K UHD, черный",
-          "brand": "Harper",
-          "price": 31765,
-          "originalPrice": 66399,
-          "discount": 52,
-          "rating": 4.7,
-          "reviews": 243,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/302386167/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "shivaki|s55qs",
-      "brand": "SHIVAKI",
-      "model": "s55qs",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 21518,
-      "max": 21518,
-      "median": 21518,
-      "floor": 17214,
-      "allTimeMin": 21518,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "670146065",
-          "name": "/ Телевизор 55 S55QS QLED 4К Сбер ОС",
-          "brand": "SHIVAKI",
-          "price": 21518,
-          "originalPrice": 77999,
-          "discount": 72,
-          "rating": 4.8,
-          "reviews": 80,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/670146065/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "digma|dm-led55ubb40",
-      "brand": "Digma",
-      "model": "dm-led55ubb40",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 32812,
-      "max": 32812,
-      "median": 32812,
-      "floor": 26250,
-      "allTimeMin": 32812,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "268750535",
-          "name": "/ Телевизор 55\" DM-LED55UBB40",
-          "brand": "Digma",
-          "price": 32812,
-          "originalPrice": 44582,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 12,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/268750535/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "витязь|55lu1260",
-      "brand": "Витязь",
-      "model": "55lu1260",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 19666,
-      "max": 19666,
-      "median": 19666,
-      "floor": 15733,
-      "allTimeMin": 19666,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "784019781",
-          "name": "/ Телевизор 55\" 55LU1260 4K UHD Smart TV с Google TV",
-          "brand": "Витязь",
-          "price": 19666,
-          "originalPrice": 32240,
-          "discount": 39,
-          "rating": 4.3,
-          "reviews": 228,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/784019781/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "harper|55u660ts",
-      "brand": "Harper",
-      "model": "55u660ts",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 31273,
-      "max": 31273,
-      "median": 31273,
-      "floor": 25018,
-      "allTimeMin": 31273,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "13974337",
-          "name": "/ Телевизор 55 дюймов смарт с Алисой 55U660TS",
-          "brand": "Harper",
-          "price": 31273,
-          "originalPrice": 63420,
-          "discount": 51,
-          "rating": 4.8,
-          "reviews": 263,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/13974337/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "tcl|55t8c",
       "brand": "TCL",
       "model": "55t8c",
@@ -3566,7 +1708,7 @@
       "median": 44999,
       "floor": 35999,
       "allTimeMin": 44999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -3586,434 +1728,6 @@
       "dealItems": []
     },
     {
-      "key": "skyworth|40e55g",
-      "brand": "Skyworth",
-      "model": "40e55g",
-      "diagonals": [
-        40
-      ],
-      "sellers": 1,
-      "min": 13801,
-      "max": 13801,
-      "median": 13801,
-      "floor": 11041,
-      "allTimeMin": 13801,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "277503207",
-          "name": "/ Телевизор 40E55G",
-          "brand": "Skyworth",
-          "price": 13801,
-          "originalPrice": 19399,
-          "discount": 29,
-          "rating": 4.9,
-          "reviews": 13,
-          "diagonal": 40,
-          "url": "https://www.wildberries.ru/catalog/277503207/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "hyundai|h-led55bu7012",
-      "brand": "HYUNDAI",
-      "model": "h-led55bu7012",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 35328,
-      "max": 35328,
-      "median": 35328,
-      "floor": 28262,
-      "allTimeMin": 35328,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "907281153",
-          "name": "/ Телевизор смарт 55 дюймов H-LED55BU7012 черный",
-          "brand": "HYUNDAI",
-          "price": 35328,
-          "originalPrice": 48000,
-          "discount": 26,
-          "rating": 4.7,
-          "reviews": 213,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/907281153/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "hyundai|h-led55bu7011",
-      "brand": "HYUNDAI",
-      "model": "h-led55bu7011",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 34592,
-      "max": 34592,
-      "median": 34592,
-      "floor": 27674,
-      "allTimeMin": 34592,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "907281573",
-          "name": "/ Телевизор смарт 55 дюймов H-LED55BU7011 черный",
-          "brand": "HYUNDAI",
-          "price": 34592,
-          "originalPrice": 47000,
-          "discount": 26,
-          "rating": 4.7,
-          "reviews": 213,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/907281573/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|55nano90a6b",
-      "brand": "LG",
-      "model": "55nano90a6b",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 57974,
-      "max": 57974,
-      "median": 57974,
-      "floor": 46379,
-      "allTimeMin": 57974,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "494819822",
-          "name": "/ Телевизор LED 55\" 55NANO90A6B.ARUG Smart TV 4K Ultra HD",
-          "brand": "LG",
-          "price": 57974,
-          "originalPrice": 78770,
-          "discount": 26,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/494819822/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "harper|55u750ts",
-      "brand": "Harper",
-      "model": "55u750ts",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 31386,
-      "max": 31386,
-      "median": 31386,
-      "floor": 25109,
-      "allTimeMin": 31386,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "306185396",
-          "name": "/ Телевизор смарт 55 дюймов Яндекс 55U750TS 4K UHD",
-          "brand": "Harper",
-          "price": 31386,
-          "originalPrice": 64614,
-          "discount": 51,
-          "rating": 4.8,
-          "reviews": 321,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/306185396/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "skyworth|55q67h",
-      "brand": "Skyworth",
-      "model": "55q67h",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 32938,
-      "max": 32938,
-      "median": 32938,
-      "floor": 26350,
-      "allTimeMin": 32938,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "440597455",
-          "name": "/ 55\" Телевизор 55Q67H, QLED, 120Гц, UHD, Wi-Fi, Bluetooth",
-          "brand": "Skyworth",
-          "price": 32938,
-          "originalPrice": 90740,
-          "discount": 64,
-          "rating": 4.7,
-          "reviews": 15,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/440597455/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "hyundai|h-led55qbu7500",
-      "brand": "HYUNDAI",
-      "model": "h-led55qbu7500",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 42757,
-      "max": 42757,
-      "median": 42757,
-      "floor": 34206,
-      "allTimeMin": 42757,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "241100972",
-          "name": "/ Телевизор QLED 55\" H-LED55QBU7500 Smart Android TV, черный",
-          "brand": "HYUNDAI",
-          "price": 42757,
-          "originalPrice": 58095,
-          "discount": 26,
-          "rating": 4.9,
-          "reviews": 13,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/241100972/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "harper|58u750ts",
-      "brand": "Harper",
-      "model": "58u750ts",
-      "diagonals": [
-        58
-      ],
-      "sellers": 1,
-      "min": 29535,
-      "max": 29535,
-      "median": 29535,
-      "floor": 23628,
-      "allTimeMin": 29535,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "222887016",
-          "name": "/ Телевизор 58 дюймов смарт 58U750TS 4K Ultra HD",
-          "brand": "Harper",
-          "price": 29535,
-          "originalPrice": 61738,
-          "discount": 52,
-          "rating": 4.8,
-          "reviews": 150,
-          "diagonal": 58,
-          "url": "https://www.wildberries.ru/catalog/222887016/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "asano|55lu8120t",
-      "brand": "ASANO",
-      "model": "55lu8120t",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 25360,
-      "max": 25360,
-      "median": 25360,
-      "floor": 20288,
-      "allTimeMin": 25360,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "244369895",
-          "name": "/ Телевизор 55LU8120T 55\", Smart TV, Wi-Fi",
-          "brand": "ASANO",
-          "price": 25360,
-          "originalPrice": 43072,
-          "discount": 41,
-          "rating": 4.4,
-          "reviews": 16,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/244369895/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "hyundai|h-led55bu7003",
-      "brand": "HYUNDAI",
-      "model": "h-led55bu7003",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 39774,
-      "max": 39774,
-      "median": 39774,
-      "floor": 31819,
-      "allTimeMin": 39774,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "241100839",
-          "name": "/ Телевизор LED 55\" H-LED55BU7003 Smart Яндекс.ТВ, черный",
-          "brand": "HYUNDAI",
-          "price": 39774,
-          "originalPrice": 54041,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 31,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/241100839/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|55ua75009la",
-      "brand": "LG",
-      "model": "55ua75009la",
-      "diagonals": [
-        55
-      ],
-      "sellers": 2,
-      "min": 41583,
-      "max": 42687,
-      "median": 42135,
-      "floor": 33708,
-      "allTimeMin": 41583,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "499645171",
-          "name": "/ Телевизор смарт 55 дюймов 55UA75009LA.ARUG черный",
-          "brand": "LG",
-          "price": 41583,
-          "originalPrice": 56500,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 4,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/499645171/detail.aspx"
-        },
-        {
-          "id": "451781522",
-          "name": "/ Телевизор смарт 55 дюймов 55UA75009LA.ARUG черный",
-          "brand": "LG",
-          "price": 42687,
-          "originalPrice": 58000,
-          "discount": 26,
-          "rating": 4.9,
-          "reviews": 259,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/451781522/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "bq|32fs02b",
-      "brand": "BQ",
-      "model": "32fs02b",
-      "diagonals": [
-        32
-      ],
-      "sellers": 1,
-      "min": 9408,
-      "max": 9408,
-      "median": 9408,
-      "floor": 7526,
-      "allTimeMin": 9408,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "351184621",
-          "name": "/ Смарт телевизор 32FS02B Черный 32\"",
-          "brand": "BQ",
-          "price": 9408,
-          "originalPrice": 18143,
-          "discount": 48,
-          "rating": 4.7,
-          "reviews": 482,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/351184621/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "blackton|24f34b",
-      "brand": "Blackton",
-      "model": "24f34b",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 6844,
-      "max": 6844,
-      "median": 6844,
-      "floor": 5475,
-      "allTimeMin": 6844,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "293919764",
-          "name": "/ Телевизор Bt 24F34B Черный 24\"",
-          "brand": "Blackton",
-          "price": 6844,
-          "originalPrice": 46500,
-          "discount": 85,
-          "rating": 4.8,
-          "reviews": 657,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/293919764/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "samsung|ue32f6000fuxru",
       "brand": "Samsung",
       "model": "ue32f6000fuxru",
@@ -4026,7 +1740,7 @@
       "median": 21319,
       "floor": 17055,
       "allTimeMin": 21148,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4070,7 +1784,7 @@
       "median": 26492,
       "floor": 21194,
       "allTimeMin": 21344,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4114,7 +1828,7 @@
       "median": 43297,
       "floor": 34638,
       "allTimeMin": 39233,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4182,7 +1896,7 @@
       "median": 43705,
       "floor": 34964,
       "allTimeMin": 42679,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4238,7 +1952,7 @@
       "median": 16568,
       "floor": 13254,
       "allTimeMin": 16320,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4294,7 +2008,7 @@
       "median": 35626,
       "floor": 28501,
       "allTimeMin": 34060,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4350,7 +2064,7 @@
       "median": 28494,
       "floor": 22795,
       "allTimeMin": 28494,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4382,7 +2096,7 @@
       "median": 43262,
       "floor": 34610,
       "allTimeMin": 43262,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4414,7 +2128,7 @@
       "median": 39008,
       "floor": 31206,
       "allTimeMin": 39008,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4446,7 +2160,7 @@
       "median": 68364,
       "floor": 54691,
       "allTimeMin": 68364,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4478,7 +2192,7 @@
       "median": 43791,
       "floor": 35033,
       "allTimeMin": 43791,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4510,7 +2224,7 @@
       "median": 28319,
       "floor": 22655,
       "allTimeMin": 25947,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4566,7 +2280,7 @@
       "median": 171829,
       "floor": 137463,
       "allTimeMin": 171829,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4598,7 +2312,7 @@
       "median": 78015,
       "floor": 62412,
       "allTimeMin": 78015,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4630,7 +2344,7 @@
       "median": 39643,
       "floor": 31714,
       "allTimeMin": 39643,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4662,7 +2376,7 @@
       "median": 32468,
       "floor": 25974,
       "allTimeMin": 32468,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4694,7 +2408,7 @@
       "median": 88089,
       "floor": 70471,
       "allTimeMin": 88089,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4726,7 +2440,7 @@
       "median": 66130,
       "floor": 52904,
       "allTimeMin": 66130,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4758,7 +2472,7 @@
       "median": 54733,
       "floor": 43786,
       "allTimeMin": 54733,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -4778,762 +2492,6 @@
       "dealItems": []
     },
     {
-      "key": "lg|32lq63806lc",
-      "brand": "LG",
-      "model": "32lq63806lc",
-      "diagonals": [
-        32
-      ],
-      "sellers": 3,
-      "min": 21343,
-      "max": 22479,
-      "median": 22114,
-      "floor": 17691,
-      "allTimeMin": 21343,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "440626147",
-          "name": "/ Телевизор смарт 32 дюйма 32LQ63806LC.ARUG белый",
-          "brand": "LG",
-          "price": 21343,
-          "originalPrice": 29000,
-          "discount": 26,
-          "rating": 4.9,
-          "reviews": 461,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/440626147/detail.aspx"
-        },
-        {
-          "id": "447967870",
-          "name": "/ Телевизор 32LQ63806LC.ARUG, HDR10 Pro, ИИ процессор a5 Gen5",
-          "brand": "LG",
-          "price": 22114,
-          "originalPrice": 37559,
-          "discount": 41,
-          "rating": 5,
-          "reviews": 1,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/447967870/detail.aspx"
-        },
-        {
-          "id": "467887423",
-          "name": "/ 32\" Телевизор DLED 32LQ63806LC.ARUG, Full HD Smart TV",
-          "brand": "LG",
-          "price": 22479,
-          "originalPrice": 30964,
-          "discount": 27,
-          "rating": 4.9,
-          "reviews": 8,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/467887423/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|32lq63006la",
-      "brand": "LG",
-      "model": "32lq63006la",
-      "diagonals": [
-        32
-      ],
-      "sellers": 3,
-      "min": 22048,
-      "max": 22587,
-      "median": 22114,
-      "floor": 17691,
-      "allTimeMin": 22048,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "576078438",
-          "name": "/ Телевизор 32LQ63006LA.ARUG, 32\", чёрный",
-          "brand": "LG",
-          "price": 22048,
-          "originalPrice": 33744,
-          "discount": 35,
-          "rating": 5,
-          "reviews": 1,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/576078438/detail.aspx"
-        },
-        {
-          "id": "444591161",
-          "name": "/ Телевизор 32LQ63006LA.ARUG, HDR10 Pro, ИИ процессор a5 Gen5",
-          "brand": "LG",
-          "price": 22114,
-          "originalPrice": 35350,
-          "discount": 37,
-          "rating": 4.9,
-          "reviews": 11,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/444591161/detail.aspx"
-        },
-        {
-          "id": "165471781",
-          "name": "/ Телевизор 32LQ63006LA (2022)",
-          "brand": "LG",
-          "price": 22587,
-          "originalPrice": 29487,
-          "discount": 23,
-          "rating": 4.3,
-          "reviews": 7,
-          "diagonal": 32,
-          "url": "https://www.wildberries.ru/catalog/165471781/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|oled77g5rla",
-      "brand": "LG",
-      "model": "oled77g5rla",
-      "diagonals": [
-        77
-      ],
-      "sellers": 1,
-      "min": 333233,
-      "max": 333233,
-      "median": 333233,
-      "floor": 266586,
-      "allTimeMin": 333233,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "565514923",
-          "name": "/ Телевизор OLED77G5RLA.ARUG",
-          "brand": "LG",
-          "price": 333233,
-          "originalPrice": 458999,
-          "discount": 27,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 77,
-          "url": "https://www.wildberries.ru/catalog/565514923/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|50ua75009la",
-      "brand": "LG",
-      "model": "50ua75009la",
-      "diagonals": [
-        50
-      ],
-      "sellers": 2,
-      "min": 38135,
-      "max": 39204,
-      "median": 38670,
-      "floor": 30936,
-      "allTimeMin": 38135,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "483673756",
-          "name": "/ Телевизор 50UA75009LA UHD AI (2025) 50\" 4K UHD LED Smart TV",
-          "brand": "LG",
-          "price": 38135,
-          "originalPrice": 51815,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 6,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/483673756/detail.aspx"
-        },
-        {
-          "id": "695751512",
-          "name": "/ Телевизор 50\" 50UA75009LA LED 4K UHD Smart",
-          "brand": "LG",
-          "price": 39204,
-          "originalPrice": 59400,
-          "discount": 34,
-          "rating": 5,
-          "reviews": 8,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/695751512/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|55qned82a6b",
-      "brand": "LG",
-      "model": "55qned82a6b",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 61242,
-      "max": 61242,
-      "median": 61242,
-      "floor": 48994,
-      "allTimeMin": 61242,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "476041373",
-          "name": "/ Телевизор LED 55QNED82A6B.ARUG",
-          "brand": "LG",
-          "price": 61242,
-          "originalPrice": 104013,
-          "discount": 41,
-          "rating": 5,
-          "reviews": 1,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/476041373/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|43lm5772pla",
-      "brand": "LG",
-      "model": "43lm5772pla",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 27121,
-      "max": 27121,
-      "median": 27121,
-      "floor": 21697,
-      "allTimeMin": 27121,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "330823253",
-          "name": "/ Телевизор 43LM5772PLA 43\" 4K UHD, черный",
-          "brand": "LG",
-          "price": 27121,
-          "originalPrice": 73700,
-          "discount": 63,
-          "rating": 4.8,
-          "reviews": 26,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/330823253/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|43qned70a6a",
-      "brand": "LG",
-      "model": "43qned70a6a",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 37329,
-      "max": 37329,
-      "median": 37329,
-      "floor": 29863,
-      "allTimeMin": 37329,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "554980963",
-          "name": "/ Телевизор AI 43QNED70A6A 43\" 4K UHD QNED Smart TV, Wi-Fi",
-          "brand": "LG",
-          "price": 37329,
-          "originalPrice": 50719,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 3,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/554980963/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|50ua73006la",
-      "brand": "LG",
-      "model": "50ua73006la",
-      "diagonals": [
-        50
-      ],
-      "sellers": 1,
-      "min": 38264,
-      "max": 38264,
-      "median": 38264,
-      "floor": 30611,
-      "allTimeMin": 38264,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "657759544",
-          "name": "/ LED Телевизор 50UA73006LA 50 4K, черный",
-          "brand": "LG",
-          "price": 38264,
-          "originalPrice": 103980,
-          "discount": 63,
-          "rating": 5,
-          "reviews": 1,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/657759544/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|oled55c5rla",
-      "brand": "LG",
-      "model": "oled55c5rla",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 126480,
-      "max": 126480,
-      "median": 126480,
-      "floor": 101184,
-      "allTimeMin": 126480,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "425534052",
-          "name": "/ Телевизор OLED 55'' OLED55C5RLA 4K UHD Smart TV",
-          "brand": "LG",
-          "price": 126480,
-          "originalPrice": 186000,
-          "discount": 32,
-          "rating": 5,
-          "reviews": 8,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/425534052/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|50nano80a6b",
-      "brand": "LG",
-      "model": "50nano80a6b",
-      "diagonals": [
-        50
-      ],
-      "sellers": 1,
-      "min": 46103,
-      "max": 46103,
-      "median": 46103,
-      "floor": 36882,
-      "allTimeMin": 46103,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "657707999",
-          "name": "/ Телевизор 50NANO80A6B 50\" 4K UHD, черный",
-          "brand": "LG",
-          "price": 46103,
-          "originalPrice": 125280,
-          "discount": 63,
-          "rating": 5,
-          "reviews": 4,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/657707999/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|24tq510s-pz",
-      "brand": "LG",
-      "model": "24tq510s-pz",
-      "diagonals": [
-        24
-      ],
-      "sellers": 1,
-      "min": 19675,
-      "max": 19675,
-      "median": 19675,
-      "floor": 15740,
-      "allTimeMin": 19675,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "927043721",
-          "name": "/ 24\" Телевизор DLED 24TQ510S-PZ, HD Smart TV",
-          "brand": "LG",
-          "price": 19675,
-          "originalPrice": 27101,
-          "discount": 27,
-          "rating": 5,
-          "reviews": 8,
-          "diagonal": 24,
-          "url": "https://www.wildberries.ru/catalog/927043721/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|43nano80a6b",
-      "brand": "LG",
-      "model": "43nano80a6b",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 39992,
-      "max": 39992,
-      "median": 39992,
-      "floor": 31994,
-      "allTimeMin": 39992,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "417858339",
-          "name": "/ Телевизор NanoCell 43NANO80A6B (2025) 43\" 4K UHD NanoCell",
-          "brand": "LG",
-          "price": 39992,
-          "originalPrice": 54338,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 2,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/417858339/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|55qned70a6a",
-      "brand": "LG",
-      "model": "55qned70a6a",
-      "diagonals": [
-        55
-      ],
-      "sellers": 2,
-      "min": 55684,
-      "max": 56230,
-      "median": 55957,
-      "floor": 44766,
-      "allTimeMin": 55684,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "677134978",
-          "name": "/ Телевизор 55 дюймов Смарт 55QNED70A6A, QNED, 4K ULTRA HD",
-          "brand": "LG",
-          "price": 55684,
-          "originalPrice": 114634,
-          "discount": 51,
-          "rating": 5,
-          "reviews": 4,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/677134978/detail.aspx"
-        },
-        {
-          "id": "657783087",
-          "name": "/ QNED Телевизор 55QNED70A6A 55\" 4K, черный",
-          "brand": "LG",
-          "price": 56230,
-          "originalPrice": 152800,
-          "discount": 63,
-          "rating": 5,
-          "reviews": 3,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/657783087/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|55ua73006la",
-      "brand": "LG",
-      "model": "55ua73006la",
-      "diagonals": [
-        55
-      ],
-      "sellers": 2,
-      "min": 40232,
-      "max": 43769,
-      "median": 42001,
-      "floor": 33601,
-      "allTimeMin": 40232,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "901605743",
-          "name": "/ Телевизор LED 55\" 55UA73006LA 4K Ultra HD AI Smart TV",
-          "brand": "LG",
-          "price": 40232,
-          "originalPrice": 68190,
-          "discount": 41,
-          "rating": 5,
-          "reviews": 2,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/901605743/detail.aspx"
-        },
-        {
-          "id": "657775411",
-          "name": "/ LED Телевизор 55UA73006LA 55 4K, черный",
-          "brand": "LG",
-          "price": 43769,
-          "originalPrice": 118940,
-          "discount": 63,
-          "rating": 5,
-          "reviews": 1,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/657775411/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|65ua75009la",
-      "brand": "LG",
-      "model": "65ua75009la",
-      "diagonals": [
-        65
-      ],
-      "sellers": 1,
-      "min": 55568,
-      "max": 55568,
-      "median": 55568,
-      "floor": 44454,
-      "allTimeMin": 55568,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "500304581",
-          "name": "/ Телевизор смарт 65 дюймов 65UA75009LA.ARUG черный",
-          "brand": "LG",
-          "price": 55568,
-          "originalPrice": 75500,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 28,
-          "diagonal": 65,
-          "url": "https://www.wildberries.ru/catalog/500304581/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|65qned80a6a",
-      "brand": "LG",
-      "model": "65qned80a6a",
-      "diagonals": [
-        65
-      ],
-      "sellers": 1,
-      "min": 74792,
-      "max": 74792,
-      "median": 74792,
-      "floor": 59834,
-      "allTimeMin": 74792,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "539115062",
-          "name": "/ QNED телевизор 65QNED80A6A",
-          "brand": "LG",
-          "price": 74792,
-          "originalPrice": 203240,
-          "discount": 63,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 65,
-          "url": "https://www.wildberries.ru/catalog/539115062/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|85qned93a6a",
-      "brand": "LG",
-      "model": "85qned93a6a",
-      "diagonals": [
-        85
-      ],
-      "sellers": 1,
-      "min": 185665,
-      "max": 185665,
-      "median": 185665,
-      "floor": 148532,
-      "allTimeMin": 185665,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "575747044",
-          "name": "/ Телевизор 85QNED93A6A, QNED, ИИ процессор 8 Gen2",
-          "brand": "LG",
-          "price": 185665,
-          "originalPrice": 315328,
-          "discount": 41,
-          "rating": 5,
-          "reviews": 3,
-          "diagonal": 85,
-          "url": "https://www.wildberries.ru/catalog/575747044/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|50qned70a6a",
-      "brand": "LG",
-      "model": "50qned70a6a",
-      "diagonals": [
-        50
-      ],
-      "sellers": 1,
-      "min": 42471,
-      "max": 42471,
-      "median": 42471,
-      "floor": 33977,
-      "allTimeMin": 42471,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "773067341",
-          "name": "/ Телевизор Mini LED 50\" 50QNED70A6A 4K Ultra HD AI Smart TV",
-          "brand": "LG",
-          "price": 42471,
-          "originalPrice": 63390,
-          "discount": 33,
-          "rating": 5,
-          "reviews": 1,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/773067341/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|50qned80a6a",
-      "brand": "LG",
-      "model": "50qned80a6a",
-      "diagonals": [
-        50
-      ],
-      "sellers": 1,
-      "min": 52991,
-      "max": 52991,
-      "median": 52991,
-      "floor": 42393,
-      "allTimeMin": 52991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "499645218",
-          "name": "/ Телевизор смарт 50 дюймов 50QNED80A6A.ARUG черный",
-          "brand": "LG",
-          "price": 52991,
-          "originalPrice": 72000,
-          "discount": 26,
-          "rating": 5,
-          "reviews": 19,
-          "diagonal": 50,
-          "url": "https://www.wildberries.ru/catalog/499645218/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|43nano81a6a",
-      "brand": "LG",
-      "model": "43nano81a6a",
-      "diagonals": [
-        43
-      ],
-      "sellers": 1,
-      "min": 39007,
-      "max": 39007,
-      "median": 39007,
-      "floor": 31206,
-      "allTimeMin": 39007,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "402194924",
-          "name": "/ Телевизор смарт 43 дюйма 43NANO81A6A.ARUG черный",
-          "brand": "LG",
-          "price": 39007,
-          "originalPrice": 53000,
-          "discount": 26,
-          "rating": 4.9,
-          "reviews": 398,
-          "diagonal": 43,
-          "url": "https://www.wildberries.ru/catalog/402194924/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
-      "key": "lg|55nano81a6a",
-      "brand": "LG",
-      "model": "55nano81a6a",
-      "diagonals": [
-        55
-      ],
-      "sellers": 1,
-      "min": 53331,
-      "max": 53331,
-      "median": 53331,
-      "floor": 42665,
-      "allTimeMin": 53331,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
-      "newAllTimeLow": true,
-      "dropPct": null,
-      "items": [
-        {
-          "id": "420965925",
-          "name": "/ Телевизор 55NANO81A6A.ARUG",
-          "brand": "LG",
-          "price": 53331,
-          "originalPrice": 91825,
-          "discount": 42,
-          "rating": null,
-          "reviews": 0,
-          "diagonal": 55,
-          "url": "https://www.wildberries.ru/catalog/420965925/detail.aspx"
-        }
-      ],
-      "dealItems": []
-    },
-    {
       "key": "hisense|50u77sl",
       "brand": "HISENSE",
       "model": "50u77sl",
@@ -5546,7 +2504,7 @@
       "median": 51940,
       "floor": 41552,
       "allTimeMin": 51940,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5578,7 +2536,7 @@
       "median": 53900,
       "floor": 43120,
       "allTimeMin": 53900,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5610,7 +2568,7 @@
       "median": 78400,
       "floor": 62720,
       "allTimeMin": 78400,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5642,7 +2600,7 @@
       "median": 23551,
       "floor": 18841,
       "allTimeMin": 23551,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5674,7 +2632,7 @@
       "median": 30066,
       "floor": 24053,
       "allTimeMin": 27199,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5742,7 +2700,7 @@
       "median": 11880,
       "floor": 9504,
       "allTimeMin": 11880,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5774,7 +2732,7 @@
       "median": 28289,
       "floor": 22631,
       "allTimeMin": 28289,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5806,7 +2764,7 @@
       "median": 34850,
       "floor": 27880,
       "allTimeMin": 34850,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5838,7 +2796,7 @@
       "median": 19600,
       "floor": 15680,
       "allTimeMin": 19600,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5870,7 +2828,7 @@
       "median": 29396,
       "floor": 23517,
       "allTimeMin": 29396,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5902,7 +2860,7 @@
       "median": 29808,
       "floor": 23846,
       "allTimeMin": 29808,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5934,7 +2892,7 @@
       "median": 35360,
       "floor": 28288,
       "allTimeMin": 35360,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -5966,7 +2924,7 @@
       "median": 29076,
       "floor": 23261,
       "allTimeMin": 28900,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6010,7 +2968,7 @@
       "median": 32340,
       "floor": 25872,
       "allTimeMin": 32340,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6042,7 +3000,7 @@
       "median": 26716,
       "floor": 21373,
       "allTimeMin": 26716,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6074,7 +3032,7 @@
       "median": 33856,
       "floor": 27085,
       "allTimeMin": 33856,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6106,7 +3064,7 @@
       "median": 66240,
       "floor": 52992,
       "allTimeMin": 66240,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6138,7 +3096,7 @@
       "median": 13761,
       "floor": 11009,
       "allTimeMin": 12836,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6182,7 +3140,7 @@
       "median": 16928,
       "floor": 13542,
       "allTimeMin": 16928,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6214,7 +3172,7 @@
       "median": 188394,
       "floor": 150715,
       "allTimeMin": 176798,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6258,7 +3216,7 @@
       "median": 54990,
       "floor": 43992,
       "allTimeMin": 54990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6290,7 +3248,7 @@
       "median": 60618,
       "floor": 48494,
       "allTimeMin": 60618,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6322,7 +3280,7 @@
       "median": 36371,
       "floor": 29097,
       "allTimeMin": 36371,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6354,7 +3312,7 @@
       "median": 37296,
       "floor": 29837,
       "allTimeMin": 37296,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6386,7 +3344,7 @@
       "median": 25991,
       "floor": 20793,
       "allTimeMin": 25991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6430,7 +3388,7 @@
       "median": 29990,
       "floor": 23992,
       "allTimeMin": 29989,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6474,7 +3432,7 @@
       "median": 28999,
       "floor": 23199,
       "allTimeMin": 28999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6506,7 +3464,7 @@
       "median": 39990,
       "floor": 31992,
       "allTimeMin": 39990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6538,7 +3496,7 @@
       "median": 34999,
       "floor": 27999,
       "allTimeMin": 34999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6570,7 +3528,7 @@
       "median": 19990,
       "floor": 15992,
       "allTimeMin": 19990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6602,7 +3560,7 @@
       "median": 35999,
       "floor": 28799,
       "allTimeMin": 35999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6634,7 +3592,7 @@
       "median": 55099,
       "floor": 44079,
       "allTimeMin": 54999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6678,7 +3636,7 @@
       "median": 74991,
       "floor": 59993,
       "allTimeMin": 74991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6734,7 +3692,7 @@
       "median": 15463,
       "floor": 12370,
       "allTimeMin": 15463,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6766,7 +3724,7 @@
       "median": 38999,
       "floor": 31199,
       "allTimeMin": 38999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6798,7 +3756,7 @@
       "median": 54991,
       "floor": 43993,
       "allTimeMin": 54991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6830,7 +3788,7 @@
       "median": 21995,
       "floor": 17596,
       "allTimeMin": 21990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6874,7 +3832,7 @@
       "median": 49991,
       "floor": 39993,
       "allTimeMin": 49991,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6906,7 +3864,7 @@
       "median": 36202,
       "floor": 28962,
       "allTimeMin": 36202,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6938,7 +3896,7 @@
       "median": 35990,
       "floor": 28792,
       "allTimeMin": 35990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -6970,7 +3928,7 @@
       "median": 54990,
       "floor": 43992,
       "allTimeMin": 54990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -7002,7 +3960,7 @@
       "median": 33300,
       "floor": 26640,
       "allTimeMin": 33299,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -7046,7 +4004,7 @@
       "median": 29990,
       "floor": 23992,
       "allTimeMin": 29990,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
@@ -7078,7 +4036,7 @@
       "median": 31999,
       "floor": 25599,
       "allTimeMin": 31999,
-      "allTimeMinAt": "2026-05-20T21:44:09.604Z",
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
       "newAllTimeLow": true,
       "dropPct": null,
       "items": [
