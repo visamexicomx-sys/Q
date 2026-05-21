@@ -164,5 +164,19 @@ STAMP=$(date -u +%Y-%m-%d)
 cp "$OUT_DIR/REPORT.json" "$HIST_DIR/$STAMP.json"
 ls -t "$HIST_DIR"/*.json | tail -n +31 | xargs -r rm -f
 
+# optional Telegram notification (no-op if TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID unset)
+if [ -n "${TELEGRAM_BOT_TOKEN:-}" ] && [ -n "${TELEGRAM_CHAT_ID:-}" ]; then
+  echo "▸ Posting to Telegram…"
+  REPO_URL_ARG=()
+  if [ -n "${REPO_URL:-}" ]; then
+    REPO_URL_ARG=(--repo-url "$REPO_URL")
+  fi
+  node apify-wb-tv-scraper/scripts/notify-telegram.mjs \
+    --models "$OUT_DIR/MODELS.json" \
+    --report "$OUT_DIR/REPORT.json" \
+    --anomalies "$OUT_DIR/ANOMALIES.json" \
+    "${REPO_URL_ARG[@]}" || echo "::warning::telegram notify failed (non-fatal)"
+fi
+
 echo "▸ Done. Files in $OUT_DIR:"
 ls -la "$OUT_DIR"

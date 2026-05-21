@@ -128,6 +128,74 @@ ls apify-wb-tv-scraper/report
 - Скрипт уважителен к WB (`delayMs` по умолчанию 600 мс); не
   занижайте значение без необходимости.
 
+## Telegram-канал с автопостингом
+
+После каждого прогона можно автоматически постить в Telegram-канал
+четыре сообщения: сводка по брендам, новые all-time low по моделям,
+сделки ниже медианы своей же модели и (если есть prev-снапшот) модели,
+подешевевшие ≥10% к предыдущему запуску.
+
+### Настройка (5 минут)
+
+1. **Создайте бота.** В Telegram: `@BotFather` → `/newbot` → задайте имя
+   (например `wb_tv_tracker_bot`) → скопируйте токен формата
+   `123456789:ABCdef…` — это `TELEGRAM_BOT_TOKEN`.
+
+2. **Создайте канал.** Telegram → меню → *New Channel*. Канал может
+   быть публичным (с `@username`) или приватным.
+
+3. **Добавьте бота админом канала.** Settings канала → Administrators
+   → Add Administrator → найдите бота по имени → включите *Post
+   Messages* (остальные права не нужны).
+
+4. **Получите `chat_id`:**
+   - Публичный канал: `chat_id = @your_channel_name` (со знаком `@`).
+   - Приватный: отправьте в канал любое сообщение, потом откройте
+     `https://api.telegram.org/bot<TOKEN>/getUpdates` — там будет
+     `chat.id` вида `-1001234567890`.
+
+5. **Положите оба значения в GitHub Secrets:**
+
+   ```bash
+   gh secret set TELEGRAM_BOT_TOKEN -b "123456789:ABCdef…"   -R visamexicomx-sys/Q
+   gh secret set TELEGRAM_CHAT_ID   -b "@your_channel_name"  -R visamexicomx-sys/Q
+   ```
+
+   Или вручную: *Settings → Secrets and variables → Actions → New
+   repository secret*.
+
+6. **Готово.** Workflow `wb-tv-report.yml` подхватит секреты и будет
+   постить в канал при каждом прогоне (по пятницам и при ручном
+   `gh workflow run wb-tv-report.yml`). Если оба секрета не заданы —
+   шаг тихо пропускается.
+
+### Локальная проверка формата (без отправки)
+
+```bash
+node apify-wb-tv-scraper/scripts/notify-telegram.mjs \
+  --models    apify-wb-tv-scraper/report/MODELS.json \
+  --report    apify-wb-tv-scraper/report/REPORT.json \
+  --anomalies apify-wb-tv-scraper/report/ANOMALIES.json \
+  --dry-run
+```
+
+### Разовый пост из терминала
+
+```bash
+export TELEGRAM_BOT_TOKEN='123456789:ABCdef…'
+export TELEGRAM_CHAT_ID='@your_channel_name'
+node apify-wb-tv-scraper/scripts/notify-telegram.mjs
+```
+
+### Кастомизация
+
+- Лимиты топов (25 ATL, 25 сделок, 20 падений) и пороги (`-10%` к
+  прошлому снимку, `< 80% медианы` для in-model deal) задаются прямо в
+  `scripts/notify-telegram.mjs` — секции `buildAtl`, `buildDeals`,
+  `buildDrops`.
+- Сообщения автоматически режутся на куски по ~3800 символов, чтобы
+  не упереться в лимит Telegram 4096.
+
 ## Лицензия / отказ от ответственности
 
 Учебный инструмент. Соблюдайте `robots.txt` и условия использования
