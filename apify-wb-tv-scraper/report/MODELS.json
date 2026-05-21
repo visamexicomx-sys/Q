@@ -1,0 +1,4059 @@
+{
+  "generatedAt": "2026-05-21T02:46:24.795Z",
+  "totalModels": 101,
+  "withoutModelCode": 84,
+  "multiSeller": 36,
+  "dealsWithin": 2,
+  "newAllTimeLows": 101,
+  "droppedMin": 0,
+  "models": [
+    {
+      "key": "samsung|qe55q7f5auxru",
+      "brand": "Samsung",
+      "model": "qe55q7f5auxru",
+      "diagonals": [
+        55
+      ],
+      "sellers": 2,
+      "min": 48186,
+      "max": 54312,
+      "median": 51249,
+      "floor": 40999,
+      "allTimeMin": 48186,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "498006542",
+          "name": "/ 55\" Телевизор QLED QE55Q7F5AUXRU, 4K UHD Smart TV",
+          "brand": "Samsung",
+          "price": 48186,
+          "originalPrice": 66373,
+          "discount": 27,
+          "rating": 4.8,
+          "reviews": 13,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/498006542/detail.aspx"
+        },
+        {
+          "id": "820785870",
+          "name": "/ 55\" Телевизор QE55Q7F5AUXRU, QLED, Ultra HD",
+          "brand": "Samsung",
+          "price": 54312,
+          "originalPrice": 149620,
+          "discount": 64,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/820785870/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "xiaomi|l55mb-aru",
+      "brand": "Xiaomi",
+      "model": "l55mb-aru",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 27642,
+      "max": 27642,
+      "median": 27642,
+      "floor": 22114,
+      "allTimeMin": 27642,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "614016295",
+          "name": "/ Телевизор TV A 55 2026 (L55MB-ARU), черный",
+          "brand": "Xiaomi",
+          "price": 27642,
+          "originalPrice": 46284,
+          "discount": 40,
+          "rating": 4.8,
+          "reviews": 38,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/614016295/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "xiaomi|l32mb-aru",
+      "brand": "Xiaomi",
+      "model": "l32mb-aru",
+      "diagonals": [
+        32
+      ],
+      "sellers": 1,
+      "min": 13489,
+      "max": 13489,
+      "median": 13489,
+      "floor": 10791,
+      "allTimeMin": 13489,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "852877857",
+          "name": "/ Телевизор TV A 32 HD LED 2026 (L32MB-ARU) черный",
+          "brand": "Xiaomi",
+          "price": 13489,
+          "originalPrice": 22003,
+          "discount": 39,
+          "rating": 5,
+          "reviews": 67,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/852877857/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe85q7faauxru",
+      "brand": "Samsung",
+      "model": "qe85q7faauxru",
+      "diagonals": [
+        85
+      ],
+      "sellers": 1,
+      "min": 110408,
+      "max": 110408,
+      "median": 110408,
+      "floor": 88326,
+      "allTimeMin": 110408,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "693156299",
+          "name": "/ Телевизор 4К QE85Q7FAAUXRU 85\", HDR, 60 Гц",
+          "brand": "Samsung",
+          "price": 110408,
+          "originalPrice": 250020,
+          "discount": 56,
+          "rating": 5,
+          "reviews": 3,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/693156299/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe77s90faexru",
+      "brand": "Samsung",
+      "model": "qe77s90faexru",
+      "diagonals": [
+        77
+      ],
+      "sellers": 1,
+      "min": 297943,
+      "max": 297943,
+      "median": 297943,
+      "floor": 238354,
+      "allTimeMin": 297943,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "693156043",
+          "name": "/ Телевизор 4К QE77S90FAEXRU 77\", OLED HDR+, 120 Гц",
+          "brand": "Samsung",
+          "price": 297943,
+          "originalPrice": 674690,
+          "discount": 56,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 77,
+          "url": "https://www.wildberries.ru/catalog/693156043/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "sber|sdx-43f3111",
+      "brand": "SBER",
+      "model": "sdx-43f3111",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 14798,
+      "max": 14798,
+      "median": 14798,
+      "floor": 11838,
+      "allTimeMin": 14798,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "577718242",
+          "name": "/ Телевизор SDX-43F3111 43\" Full HD, черный",
+          "brand": "SBER",
+          "price": 14798,
+          "originalPrice": 20799,
+          "discount": 29,
+          "rating": 4.8,
+          "reviews": 216,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/577718242/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "xiaomi|l43mb-afru",
+      "brand": "Xiaomi",
+      "model": "l43mb-afru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 20632,
+      "max": 20632,
+      "median": 20632,
+      "floor": 16506,
+      "allTimeMin": 20632,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "727189972",
+          "name": "/ Телевизор TV A 43 FHD 2026 (L43MB-AFRU)",
+          "brand": "Xiaomi",
+          "price": 20632,
+          "originalPrice": 31734,
+          "discount": 35,
+          "rating": 4.8,
+          "reviews": 46,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/727189972/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|85p8l",
+      "brand": "TCL",
+      "model": "85p8l",
+      "diagonals": [
+        85
+      ],
+      "sellers": 1,
+      "min": 159991,
+      "max": 159991,
+      "median": 159991,
+      "floor": 127993,
+      "allTimeMin": 159991,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "969774224",
+          "name": "/ Телевизор 85 дюймов смарт 4K 85P8L (2026)",
+          "brand": "TCL",
+          "price": 159991,
+          "originalPrice": 217380,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/969774224/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|55a400",
+      "brand": "TCL",
+      "model": "55a400",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 59990,
+      "max": 59990,
+      "median": 59990,
+      "floor": 47992,
+      "allTimeMin": 59990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "969774487",
+          "name": "/ Телевизор 55 дюймов смарт 4K 55A400",
+          "brand": "TCL",
+          "price": 59990,
+          "originalPrice": 81509,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/969774487/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "xiaomi|l43mb-apru",
+      "brand": "Xiaomi",
+      "model": "l43mb-apru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 35535,
+      "max": 35535,
+      "median": 35535,
+      "floor": 28428,
+      "allTimeMin": 35535,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1055684498",
+          "name": "/ Телевизор TV A Pro 43 2026 L43MB-APRU",
+          "brand": "Xiaomi",
+          "price": 35535,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/1055684498/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "яндекс|yndx-00101",
+      "brand": "Яндекс",
+      "model": "yndx-00101",
+      "diagonals": [
+        55
+      ],
+      "sellers": 2,
+      "min": 65504,
+      "max": 84439,
+      "median": 74972,
+      "floor": 59978,
+      "allTimeMin": 65504,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "328150665",
+          "name": "/ Телевизор смарт 55 дюймов QLED с Алисой YNDX-00101",
+          "brand": "Яндекс",
+          "price": 65504,
+          "originalPrice": 89000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 307,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/328150665/detail.aspx"
+        },
+        {
+          "id": "1055669048",
+          "name": "/ Телевизор ТВ Станция с Алисой 55'' YNDX-00101",
+          "brand": "Яндекс",
+          "price": 84439,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/1055669048/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe43qn90fauxru",
+      "brand": "Samsung",
+      "model": "qe43qn90fauxru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 2,
+      "min": 94207,
+      "max": 121991,
+      "median": 108099,
+      "floor": 86479,
+      "allTimeMin": 94207,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "706240534",
+          "name": "/ Телевизор смарт 43 дюйма QE43QN90FAUXRU черный",
+          "brand": "Samsung",
+          "price": 94207,
+          "originalPrice": 128000,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 592,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/706240534/detail.aspx"
+        },
+        {
+          "id": "817474244",
+          "name": "/ Телевизор 43 дюйма смарт 4K QE43QN90FAUXRU",
+          "brand": "Samsung",
+          "price": 121991,
+          "originalPrice": 165749,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/817474244/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|50u7s",
+      "brand": "HISENSE",
+      "model": "50u7s",
+      "diagonals": [
+        50
+      ],
+      "sellers": 3,
+      "min": 54998,
+      "max": 54999,
+      "median": 54999,
+      "floor": 43999,
+      "allTimeMin": 54998,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "890490091",
+          "name": "/ Телевизор 50U7S RU",
+          "brand": "HISENSE",
+          "price": 54998,
+          "originalPrice": 75756,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/890490091/detail.aspx"
+        },
+        {
+          "id": "890708649",
+          "name": "/ Телевизор 50U7S RU",
+          "brand": "HISENSE",
+          "price": 54999,
+          "originalPrice": 75757,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/890708649/detail.aspx"
+        },
+        {
+          "id": "890698526",
+          "name": "/ Телевизор 50U7S RU",
+          "brand": "HISENSE",
+          "price": 54999,
+          "originalPrice": 75757,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/890698526/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe65qn80fauxru",
+      "brand": "Samsung",
+      "model": "qe65qn80fauxru",
+      "diagonals": [
+        65
+      ],
+      "sellers": 2,
+      "min": 131744,
+      "max": 137670,
+      "median": 134707,
+      "floor": 107766,
+      "allTimeMin": 131744,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "527979827",
+          "name": "/ Телевизор смарт, 65, дюймов, QE65QN80FAUXRU, черный",
+          "brand": "Samsung",
+          "price": 131744,
+          "originalPrice": 179000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 98,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/527979827/detail.aspx"
+        },
+        {
+          "id": "1051419439",
+          "name": "/ Телевизор QE65QN80FAUXRU",
+          "brand": "Samsung",
+          "price": 137670,
+          "originalPrice": 161965,
+          "discount": 15,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/1051419439/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|65u7s",
+      "brand": "HISENSE",
+      "model": "65u7s",
+      "diagonals": [
+        65
+      ],
+      "sellers": 3,
+      "min": 87583,
+      "max": 122912,
+      "median": 122912,
+      "floor": 98330,
+      "allTimeMin": 87583,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "980678340",
+          "name": "/ Телевизор смарт 65 дюймов 65U7S черный",
+          "brand": "HISENSE",
+          "price": 87583,
+          "originalPrice": 119000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 20,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/980678340/detail.aspx"
+        },
+        {
+          "id": "1051364652",
+          "name": "/ Телевизор смарт 65 дюймов 65U7S PRO черный",
+          "brand": "HISENSE",
+          "price": 122912,
+          "originalPrice": 167000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 20,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/1051364652/detail.aspx"
+        },
+        {
+          "id": "1051366312",
+          "name": "/ Телевизор смарт 65 дюймов 65U7S PRO черный",
+          "brand": "HISENSE",
+          "price": 122912,
+          "originalPrice": 167000,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/1051366312/detail.aspx"
+        }
+      ],
+      "dealItems": [
+        {
+          "id": "980678340",
+          "name": "/ Телевизор смарт 65 дюймов 65U7S черный",
+          "brand": "HISENSE",
+          "price": 87583,
+          "originalPrice": 119000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 20,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/980678340/detail.aspx"
+        }
+      ]
+    },
+    {
+      "key": "hisense|55u8q",
+      "brand": "HISENSE",
+      "model": "55u8q",
+      "diagonals": [
+        55
+      ],
+      "sellers": 2,
+      "min": 98403,
+      "max": 107087,
+      "median": 102745,
+      "floor": 82196,
+      "allTimeMin": 98403,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1051304677",
+          "name": "/ Телевизор 55U8Q",
+          "brand": "HISENSE",
+          "price": 98403,
+          "originalPrice": 115769,
+          "discount": 15,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/1051304677/detail.aspx"
+        },
+        {
+          "id": "797058592",
+          "name": "/ Телевизор смарт 55 дюймов 55U8Q 2025 черный",
+          "brand": "HISENSE",
+          "price": 107087,
+          "originalPrice": 145500,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 106,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/797058592/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|75u7s",
+      "brand": "HISENSE",
+      "model": "75u7s",
+      "diagonals": [
+        75
+      ],
+      "sellers": 2,
+      "min": 103039,
+      "max": 132059,
+      "median": 117549,
+      "floor": 94039,
+      "allTimeMin": 103039,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1051364668",
+          "name": "/ Телевизор смарт 75 дюймов 75U7S черный",
+          "brand": "HISENSE",
+          "price": 103039,
+          "originalPrice": 140000,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 4,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/1051364668/detail.aspx"
+        },
+        {
+          "id": "1000894327",
+          "name": "/ Телевизор 75U7S PRO 75\"",
+          "brand": "HISENSE",
+          "price": 132059,
+          "originalPrice": 206705,
+          "discount": 36,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/1000894327/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe85qn900fuxru",
+      "brand": "Samsung",
+      "model": "qe85qn900fuxru",
+      "diagonals": [
+        85
+      ],
+      "sellers": 6,
+      "min": 569990,
+      "max": 713990,
+      "median": 569995,
+      "floor": 455996,
+      "allTimeMin": 569990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "811877444",
+          "name": "/ Телевизор QE85QN900FUXRU 85\", Мини LED, 8K, 120 Гц",
+          "brand": "Samsung",
+          "price": 569990,
+          "originalPrice": 1106348,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/811877444/detail.aspx"
+        },
+        {
+          "id": "858569153",
+          "name": "/ Телевизор QE85QN900FUXRU 85\", Мини LED, 8K, 120 Гц",
+          "brand": "Samsung",
+          "price": 569990,
+          "originalPrice": 1106348,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/858569153/detail.aspx"
+        },
+        {
+          "id": "811883231",
+          "name": "/ Телевизор QE85QN900FUXRU 85\", Мини LED, 8K, 120 Гц",
+          "brand": "Samsung",
+          "price": 569990,
+          "originalPrice": 992876,
+          "discount": 43,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/811883231/detail.aspx"
+        },
+        {
+          "id": "824906035",
+          "name": "/ Телевизор Neo QLED QE85QN900FUXRU 85\", Smart TV, 8К",
+          "brand": "Samsung",
+          "price": 569999,
+          "originalPrice": 1106366,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/824906035/detail.aspx"
+        },
+        {
+          "id": "908019568",
+          "name": "/ Телевизор QE85QN900FUXRU",
+          "brand": "Samsung",
+          "price": 592790,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/908019568/detail.aspx"
+        },
+        {
+          "id": "848984434",
+          "name": "/ Телевизор QE85QN900FUXRU",
+          "brand": "Samsung",
+          "price": 713990,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/848984434/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "sony|xr-83a80l",
+      "brand": "SONY",
+      "model": "xr-83a80l",
+      "diagonals": [],
+      "sellers": 1,
+      "min": 705733,
+      "max": 705733,
+      "median": 705733,
+      "floor": 564586,
+      "allTimeMin": 705733,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1030832310",
+          "name": "/ Телевизор XR-83A80L",
+          "brand": "SONY",
+          "price": 705733,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": null,
+          "url": "https://www.wildberries.ru/catalog/1030832310/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe75qn990fuxru",
+      "brand": "Samsung",
+      "model": "qe75qn990fuxru",
+      "diagonals": [
+        75
+      ],
+      "sellers": 7,
+      "min": 579920,
+      "max": 603190,
+      "median": 579991,
+      "floor": 463993,
+      "allTimeMin": 579920,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "824906120",
+          "name": "/ Телевизор QLED QE75QN990FUXRU",
+          "brand": "Samsung",
+          "price": 579920,
+          "originalPrice": 1125623,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/824906120/detail.aspx"
+        },
+        {
+          "id": "810121887",
+          "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
+          "brand": "Samsung",
+          "price": 579971,
+          "originalPrice": 1010263,
+          "discount": 43,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/810121887/detail.aspx"
+        },
+        {
+          "id": "810116463",
+          "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
+          "brand": "Samsung",
+          "price": 579990,
+          "originalPrice": 1125758,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/810116463/detail.aspx"
+        },
+        {
+          "id": "858569105",
+          "name": "/ Телевизор QE75QN990FUXRU 75″, Мини LED, 8K, 120 Гц",
+          "brand": "Samsung",
+          "price": 579991,
+          "originalPrice": 1113483,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/858569105/detail.aspx"
+        },
+        {
+          "id": "810854151",
+          "name": "/ Телевизор QE75QN990FUXRU",
+          "brand": "Samsung",
+          "price": 603190,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/810854151/detail.aspx"
+        },
+        {
+          "id": "810842867",
+          "name": "/ Телевизор QE75QN990FUXRU",
+          "brand": "Samsung",
+          "price": 603190,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/810842867/detail.aspx"
+        },
+        {
+          "id": "810825784",
+          "name": "/ Телевизор QE75QN990FUXRU",
+          "brand": "Samsung",
+          "price": 603190,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/810825784/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe65qn990fuxru",
+      "brand": "Samsung",
+      "model": "qe65qn990fuxru",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 577490,
+      "max": 577490,
+      "median": 577490,
+      "floor": 461992,
+      "allTimeMin": 577490,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "810859679",
+          "name": "/ Телевизор QE65QN990FUXRU",
+          "brand": "Samsung",
+          "price": 577490,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/810859679/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe98qn90fauxru",
+      "brand": "Samsung",
+      "model": "qe98qn90fauxru",
+      "diagonals": [
+        98
+      ],
+      "sellers": 4,
+      "min": 547975,
+      "max": 559990,
+      "median": 553995,
+      "floor": 443196,
+      "allTimeMin": 547975,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "812807999",
+          "name": "/ Телевизор 4К QE98QN90FAUXRU 98\", Мини LED, HDR, 120 Гц",
+          "brand": "Samsung",
+          "price": 547975,
+          "originalPrice": 966924,
+          "discount": 43,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 98,
+          "url": "https://www.wildberries.ru/catalog/812807999/detail.aspx"
+        },
+        {
+          "id": "824906000",
+          "name": "/ Телевизор Neo QLED QE98QN90FAUXRU 98\", Smart TV, 4К",
+          "brand": "Samsung",
+          "price": 547999,
+          "originalPrice": 1063663,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 98,
+          "url": "https://www.wildberries.ru/catalog/824906000/detail.aspx"
+        },
+        {
+          "id": "858568907",
+          "name": "/ Телевизор 4К QE98QN90FAUXRU 98\", Мини LED, HDR, 120 Гц",
+          "brand": "Samsung",
+          "price": 559990,
+          "originalPrice": 1044369,
+          "discount": 46,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 98,
+          "url": "https://www.wildberries.ru/catalog/858568907/detail.aspx"
+        },
+        {
+          "id": "812696396",
+          "name": "/ Телевизор 4К QE98QN90FAUXRU 98\", Мини LED, HDR, 120 Гц",
+          "brand": "Samsung",
+          "price": 559990,
+          "originalPrice": 1044369,
+          "discount": 46,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 98,
+          "url": "https://www.wildberries.ru/catalog/812696396/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe77s95fauxru",
+      "brand": "Samsung",
+      "model": "qe77s95fauxru",
+      "diagonals": [
+        77
+      ],
+      "sellers": 6,
+      "min": 529990,
+      "max": 551190,
+      "median": 540590,
+      "floor": 432472,
+      "allTimeMin": 529990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "532102207",
+          "name": "/ Телевизор 4К QE77S95FAUXRU 77\", OLED HDR ПРО, 120 Гц",
+          "brand": "Samsung",
+          "price": 529990,
+          "originalPrice": 1028709,
+          "discount": 48,
+          "rating": 5,
+          "reviews": 3,
+          "diagonal": 77,
+          "url": "https://www.wildberries.ru/catalog/532102207/detail.aspx"
+        },
+        {
+          "id": "858569038",
+          "name": "/ Телевизор 4К QE77S95FAUXRU 77\", OLED HDR ПРО, 120 Гц",
+          "brand": "Samsung",
+          "price": 529990,
+          "originalPrice": 1028709,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 77,
+          "url": "https://www.wildberries.ru/catalog/858569038/detail.aspx"
+        },
+        {
+          "id": "768241268",
+          "name": "/ Телевизор 77 дюймов смарт 4K QE77S95FAUXRU",
+          "brand": "Samsung",
+          "price": 529990,
+          "originalPrice": 720096,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 77,
+          "url": "https://www.wildberries.ru/catalog/768241268/detail.aspx"
+        },
+        {
+          "id": "810825696",
+          "name": "/ Телевизор QE77S95FAUXRU",
+          "brand": "Samsung",
+          "price": 551190,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 77,
+          "url": "https://www.wildberries.ru/catalog/810825696/detail.aspx"
+        },
+        {
+          "id": "810842857",
+          "name": "/ Телевизор QE77S95FAUXRU",
+          "brand": "Samsung",
+          "price": 551190,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 77,
+          "url": "https://www.wildberries.ru/catalog/810842857/detail.aspx"
+        },
+        {
+          "id": "810854125",
+          "name": "/ Телевизор QE77S95FAUXRU",
+          "brand": "Samsung",
+          "price": 551190,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 77,
+          "url": "https://www.wildberries.ru/catalog/810854125/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe75qn900fuxru",
+      "brand": "Samsung",
+      "model": "qe75qn900fuxru",
+      "diagonals": [
+        75
+      ],
+      "sellers": 1,
+      "min": 524990,
+      "max": 524990,
+      "median": 524990,
+      "floor": 419992,
+      "allTimeMin": 524990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "810842895",
+          "name": "/ Телевизор QE75QN900FUXRU",
+          "brand": "Samsung",
+          "price": 524990,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/810842895/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe83s95faexru",
+      "brand": "Samsung",
+      "model": "qe83s95faexru",
+      "diagonals": [
+        83
+      ],
+      "sellers": 3,
+      "min": 499990,
+      "max": 524990,
+      "median": 499990,
+      "floor": 399992,
+      "allTimeMin": 499990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "858569039",
+          "name": "/ Телевизор 4К QE83S95FAEXRU 83\", OLED HDR ПРО, 120 Гц",
+          "brand": "Samsung",
+          "price": 499990,
+          "originalPrice": 932470,
+          "discount": 46,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 83,
+          "url": "https://www.wildberries.ru/catalog/858569039/detail.aspx"
+        },
+        {
+          "id": "485210253",
+          "name": "/ Телевизор 4К QE83S95FAEXRU 83\", OLED HDR ПРО, 120 Гц",
+          "brand": "Samsung",
+          "price": 499990,
+          "originalPrice": 970479,
+          "discount": 48,
+          "rating": 5,
+          "reviews": 3,
+          "diagonal": 83,
+          "url": "https://www.wildberries.ru/catalog/485210253/detail.aspx"
+        },
+        {
+          "id": "810842889",
+          "name": "/ Телевизор QE83S95FAEXRU",
+          "brand": "Samsung",
+          "price": 524990,
+          "originalPrice": null,
+          "discount": 0,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": null,
+          "url": "https://www.wildberries.ru/catalog/810842889/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe85ls03fauxru",
+      "brand": "Samsung",
+      "model": "qe85ls03fauxru",
+      "diagonals": [
+        85
+      ],
+      "sellers": 1,
+      "min": 521461,
+      "max": 521461,
+      "median": 521461,
+      "floor": 417169,
+      "allTimeMin": 521461,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "551522776",
+          "name": "/ Телевизор QE85LS03FAUXRU",
+          "brand": "Samsung",
+          "price": 521461,
+          "originalPrice": 613484,
+          "discount": 15,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/551522776/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|55a6s",
+      "brand": "HISENSE",
+      "model": "55a6s",
+      "diagonals": [
+        55
+      ],
+      "sellers": 3,
+      "min": 31490,
+      "max": 38700,
+      "median": 33856,
+      "floor": 27085,
+      "allTimeMin": 31490,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "912813444",
+          "name": "/ 55\" Телевизор 55A6S, VA, 60 Гц, 4K Ultra HD",
+          "brand": "HISENSE",
+          "price": 31490,
+          "originalPrice": 48736,
+          "discount": 35,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/912813444/detail.aspx"
+        },
+        {
+          "id": "936395448",
+          "name": "/ Телевизор смарт 55 дюймов 55A6S черный",
+          "brand": "HISENSE",
+          "price": 33856,
+          "originalPrice": 46000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 106,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/936395448/detail.aspx"
+        },
+        {
+          "id": "1015874859",
+          "name": "/ Телевизор 55 дюймов смарт 55A6S",
+          "brand": "HISENSE",
+          "price": 38700,
+          "originalPrice": 53306,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/1015874859/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|32a4s",
+      "brand": "HISENSE",
+      "model": "32a4s",
+      "diagonals": [
+        32
+      ],
+      "sellers": 2,
+      "min": 13700,
+      "max": 14425,
+      "median": 14063,
+      "floor": 11250,
+      "allTimeMin": 13700,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1021730496",
+          "name": "/ Телевизор смарт 32 дюйма 32A4S (SmartTV, Frameless)",
+          "brand": "HISENSE",
+          "price": 13700,
+          "originalPrice": 19257,
+          "discount": 29,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/1021730496/detail.aspx"
+        },
+        {
+          "id": "977877665",
+          "name": "/ Телевизор смарт 32 дюйма 32A4S черный",
+          "brand": "HISENSE",
+          "price": 14425,
+          "originalPrice": 20000,
+          "discount": 28,
+          "rating": 4.8,
+          "reviews": 133,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/977877665/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe75qn80fauxru",
+      "brand": "Samsung",
+      "model": "qe75qn80fauxru",
+      "diagonals": [
+        75
+      ],
+      "sellers": 1,
+      "min": 198719,
+      "max": 198719,
+      "median": 198719,
+      "floor": 158975,
+      "allTimeMin": 198719,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "687222256",
+          "name": "/ Телевизор смарт 75 дюймов QE75QN80FAUXRU черный",
+          "brand": "Samsung",
+          "price": 198719,
+          "originalPrice": 270000,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 3,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/687222256/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "sber|sdf-50uq7000mba",
+      "brand": "SBER",
+      "model": "sdf-50uq7000mba",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 32147,
+      "max": 32147,
+      "median": 32147,
+      "floor": 25718,
+      "allTimeMin": 32147,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "933904532",
+          "name": "/ Телевизор QLED SDF-50UQ7000MBA UHD, Салют, frameless",
+          "brand": "SBER",
+          "price": 32147,
+          "originalPrice": 54599,
+          "discount": 41,
+          "rating": 5,
+          "reviews": 17,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/933904532/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|u8000f",
+      "brand": "Samsung",
+      "model": "u8000f",
+      "diagonals": [
+        75
+      ],
+      "sellers": 1,
+      "min": 64033,
+      "max": 64033,
+      "median": 64033,
+      "floor": 51226,
+      "allTimeMin": 64033,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "967213090",
+          "name": "/ Телевизор 75\" Crystal UHD U8000F 4K Smart TV (2025)",
+          "brand": "Samsung",
+          "price": 64033,
+          "originalPrice": 90000,
+          "discount": 29,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/967213090/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe75ls03fauxru",
+      "brand": "Samsung",
+      "model": "qe75ls03fauxru",
+      "diagonals": [
+        75
+      ],
+      "sellers": 1,
+      "min": 176802,
+      "max": 176802,
+      "median": 176802,
+      "floor": 141442,
+      "allTimeMin": 176802,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "693156219",
+          "name": "/ Телевизор 4К QE75LS03FAUXRU 75\", QLED, HDR, 120 Гц",
+          "brand": "Samsung",
+          "price": 176802,
+          "originalPrice": 400369,
+          "discount": 56,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/693156219/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|75e7s",
+      "brand": "HISENSE",
+      "model": "75e7s",
+      "diagonals": [
+        75
+      ],
+      "sellers": 3,
+      "min": 70880,
+      "max": 92480,
+      "median": 90527,
+      "floor": 72422,
+      "allTimeMin": 70880,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "912813482",
+          "name": "/ 75\" Телевизор 75E7S, ADS, 120 Гц, 4K Ultra HD",
+          "brand": "HISENSE",
+          "price": 70880,
+          "originalPrice": 108479,
+          "discount": 35,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/912813482/detail.aspx"
+        },
+        {
+          "id": "980223810",
+          "name": "/ Телевизор смарт 75 дюймов 75E7S PRO черный",
+          "brand": "HISENSE",
+          "price": 90527,
+          "originalPrice": 123000,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 4,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/980223810/detail.aspx"
+        },
+        {
+          "id": "912813414",
+          "name": "/ 75\" Телевизор 75E7S PRO, ADS, 144 Гц, 4K Ultra HD",
+          "brand": "HISENSE",
+          "price": 92480,
+          "originalPrice": 141537,
+          "discount": 35,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/912813414/detail.aspx"
+        }
+      ],
+      "dealItems": [
+        {
+          "id": "912813482",
+          "name": "/ 75\" Телевизор 75E7S, ADS, 120 Гц, 4K Ultra HD",
+          "brand": "HISENSE",
+          "price": 70880,
+          "originalPrice": 108479,
+          "discount": 35,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/912813482/detail.aspx"
+        }
+      ]
+    },
+    {
+      "key": "tcl|75p7k",
+      "brand": "TCL",
+      "model": "75p7k",
+      "diagonals": [
+        75
+      ],
+      "sellers": 1,
+      "min": 80799,
+      "max": 80799,
+      "median": 80799,
+      "floor": 64639,
+      "allTimeMin": 80799,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "434608693",
+          "name": "/ Телевизор 75 диагональ 75P7K QLED, 4K UltraHD",
+          "brand": "TCL",
+          "price": 80799,
+          "originalPrice": 105482,
+          "discount": 23,
+          "rating": 5,
+          "reviews": 5,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/434608693/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue75u8000fuxru",
+      "brand": "Samsung",
+      "model": "ue75u8000fuxru",
+      "diagonals": [
+        75
+      ],
+      "sellers": 2,
+      "min": 64105,
+      "max": 72864,
+      "median": 68485,
+      "floor": 54788,
+      "allTimeMin": 64105,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "502568543",
+          "name": "/ Телевизор UE75U8000FUXRU",
+          "brand": "Samsung",
+          "price": 64105,
+          "originalPrice": 88299,
+          "discount": 27,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/502568543/detail.aspx"
+        },
+        {
+          "id": "468606439",
+          "name": "/ Телевизор смарт 75 дюймов UE75U8000FUXRU, черный",
+          "brand": "Samsung",
+          "price": 72864,
+          "originalPrice": 99000,
+          "discount": 26,
+          "rating": 4.5,
+          "reviews": 13,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/468606439/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|75ur9s",
+      "brand": "HISENSE",
+      "model": "75ur9s",
+      "diagonals": [
+        75
+      ],
+      "sellers": 2,
+      "min": 222450,
+      "max": 249982,
+      "median": 236216,
+      "floor": 188973,
+      "allTimeMin": 222450,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "912813452",
+          "name": "/ 75\" Телевизор 75UR9S, VA, 180 Гц, 4K Ultra HD",
+          "brand": "HISENSE",
+          "price": 222450,
+          "originalPrice": 340450,
+          "discount": 35,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/912813452/detail.aspx"
+        },
+        {
+          "id": "1015967064",
+          "name": "/ Телевизор смарт 75 дюймов 75UR9S 2026, черный",
+          "brand": "HISENSE",
+          "price": 249982,
+          "originalPrice": 339650,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 30,
+          "diagonal": 75,
+          "url": "https://www.wildberries.ru/catalog/1015967064/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|55e7s",
+      "brand": "HISENSE",
+      "model": "55e7s",
+      "diagonals": [
+        55
+      ],
+      "sellers": 3,
+      "min": 36340,
+      "max": 48700,
+      "median": 38272,
+      "floor": 30618,
+      "allTimeMin": 36340,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "912813423",
+          "name": "/ 55\" Телевизор 55E7S, VA, 120 Гц, 4K Ultra HD",
+          "brand": "HISENSE",
+          "price": 36340,
+          "originalPrice": 55617,
+          "discount": 35,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/912813423/detail.aspx"
+        },
+        {
+          "id": "1015967158",
+          "name": "/ Телевизор смарт 55 дюймов 55E7S 2026, черный",
+          "brand": "HISENSE",
+          "price": 38272,
+          "originalPrice": 52000,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 30,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/1015967158/detail.aspx"
+        },
+        {
+          "id": "1021878711",
+          "name": "/ Телевизор 55 дюймов смарт 55E7S PRO",
+          "brand": "HISENSE",
+          "price": 48700,
+          "originalPrice": 67080,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/1021878711/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|55t8c",
+      "brand": "TCL",
+      "model": "55t8c",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 44999,
+      "max": 44999,
+      "median": 44999,
+      "floor": 35999,
+      "allTimeMin": 44999,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "448992993",
+          "name": "/ Телевизор 55\" 55T8C QLED 144 Гц 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 44999,
+          "originalPrice": 61140,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 11,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/448992993/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue32f6000fuxru",
+      "brand": "Samsung",
+      "model": "ue32f6000fuxru",
+      "diagonals": [
+        32
+      ],
+      "sellers": 2,
+      "min": 21148,
+      "max": 21489,
+      "median": 21319,
+      "floor": 17055,
+      "allTimeMin": 21148,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "569423845",
+          "name": "/ 32\" Телевизор UE32F6000FUXRU, без ПО",
+          "brand": "Samsung",
+          "price": 21148,
+          "originalPrice": 58260,
+          "discount": 64,
+          "rating": 5,
+          "reviews": 3,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/569423845/detail.aspx"
+        },
+        {
+          "id": "621988476",
+          "name": "/ Телевизор 32\" Full HD Smart TV UE32F6000FUXRU, Wi-Fi",
+          "brand": "Samsung",
+          "price": 21489,
+          "originalPrice": 40000,
+          "discount": 46,
+          "rating": 4.9,
+          "reviews": 91,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/621988476/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue43f6000fuxru",
+      "brand": "Samsung",
+      "model": "ue43f6000fuxru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 2,
+      "min": 21344,
+      "max": 31640,
+      "median": 26492,
+      "floor": 21194,
+      "allTimeMin": 21344,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "629218813",
+          "name": "/ Телевизор LED 43\" UE43F6000FUXRU Full HD, Smart",
+          "brand": "Samsung",
+          "price": 21344,
+          "originalPrice": 46400,
+          "discount": 54,
+          "rating": 4.5,
+          "reviews": 69,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/629218813/detail.aspx"
+        },
+        {
+          "id": "496315317",
+          "name": "/ Телевизор UE43F6000FUXRU, 2025, FULL HD LED Smart TV",
+          "brand": "Samsung",
+          "price": 31640,
+          "originalPrice": 52426,
+          "discount": 40,
+          "rating": 4.2,
+          "reviews": 6,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/496315317/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue55u8000fuxru",
+      "brand": "Samsung",
+      "model": "ue55u8000fuxru",
+      "diagonals": [
+        55
+      ],
+      "sellers": 4,
+      "min": 39233,
+      "max": 54990,
+      "median": 43297,
+      "floor": 34638,
+      "allTimeMin": 39233,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "569423883",
+          "name": "/ 55\" Телевизор UE55U8000FUXRU, без ПО",
+          "brand": "Samsung",
+          "price": 39233,
+          "originalPrice": 108080,
+          "discount": 64,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/569423883/detail.aspx"
+        },
+        {
+          "id": "693156022",
+          "name": "/ Телевизор 4К UE55U8000FUXRU 55\", UHD, 60 Гц",
+          "brand": "Samsung",
+          "price": 39859,
+          "originalPrice": 90262,
+          "discount": 56,
+          "rating": 4.7,
+          "reviews": 13,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/693156022/detail.aspx"
+        },
+        {
+          "id": "463064681",
+          "name": "/ Телевизор смарт 55 дюймов UE55U8000FUXRU черный",
+          "brand": "Samsung",
+          "price": 46735,
+          "originalPrice": 63500,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 109,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/463064681/detail.aspx"
+        },
+        {
+          "id": "466481345",
+          "name": "/ Телевизор 4К UE55U8000FUXRU 55\", UHD, 60 Гц",
+          "brand": "Samsung",
+          "price": 54990,
+          "originalPrice": 106736,
+          "discount": 48,
+          "rating": 4.8,
+          "reviews": 49,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/466481345/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe50q7faauxru",
+      "brand": "Samsung",
+      "model": "qe50q7faauxru",
+      "diagonals": [
+        50
+      ],
+      "sellers": 3,
+      "min": 42679,
+      "max": 44073,
+      "median": 43705,
+      "floor": 34964,
+      "allTimeMin": 42679,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "693156298",
+          "name": "/ Телевизор 4К QE50Q7FAAUXRU 50\", HDR, 60 Гц",
+          "brand": "Samsung",
+          "price": 42679,
+          "originalPrice": 96647,
+          "discount": 56,
+          "rating": 4.9,
+          "reviews": 8,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/693156298/detail.aspx"
+        },
+        {
+          "id": "824697756",
+          "name": "/ Телевизоры смарт тв с wi-fi 50\" QE50Q7FAAUXRU",
+          "brand": "Samsung",
+          "price": 43705,
+          "originalPrice": 60200,
+          "discount": 27,
+          "rating": 5,
+          "reviews": 2,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/824697756/detail.aspx"
+        },
+        {
+          "id": "588186073",
+          "name": "/ 50\" Телевизор QLED QE50Q7FAAUXRU, 4K UHD Smart TV",
+          "brand": "Samsung",
+          "price": 44073,
+          "originalPrice": 60707,
+          "discount": 27,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/588186073/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue32h5000fuxru",
+      "brand": "Samsung",
+      "model": "ue32h5000fuxru",
+      "diagonals": [
+        32
+      ],
+      "sellers": 3,
+      "min": 16320,
+      "max": 18520,
+      "median": 16568,
+      "floor": 13254,
+      "allTimeMin": 16320,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "629197626",
+          "name": "/ Телевизор LED 32\" UE32H5000FUXRU HD Smart",
+          "brand": "Samsung",
+          "price": 16320,
+          "originalPrice": 32000,
+          "discount": 49,
+          "rating": 4.5,
+          "reviews": 71,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/629197626/detail.aspx"
+        },
+        {
+          "id": "498006533",
+          "name": "/ 32\" Телевизор DLED UE32H5000FUXRU, HD Smart TV",
+          "brand": "Samsung",
+          "price": 16568,
+          "originalPrice": 22822,
+          "discount": 27,
+          "rating": 4.9,
+          "reviews": 16,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/498006533/detail.aspx"
+        },
+        {
+          "id": "893287778",
+          "name": "/ Телевизор 32\" Full HD LED UE32H5000FUXRU",
+          "brand": "Samsung",
+          "price": 18520,
+          "originalPrice": 26300,
+          "discount": 30,
+          "rating": 5,
+          "reviews": 4,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/893287778/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue50u8000fuxru",
+      "brand": "Samsung",
+      "model": "ue50u8000fuxru",
+      "diagonals": [
+        50
+      ],
+      "sellers": 3,
+      "min": 34060,
+      "max": 47454,
+      "median": 35626,
+      "floor": 28501,
+      "allTimeMin": 34060,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "693156021",
+          "name": "/ Телевизор 4К UE50U8000FUXRU 50\", UHD, 60 Гц",
+          "brand": "Samsung",
+          "price": 34060,
+          "originalPrice": 77130,
+          "discount": 56,
+          "rating": 4.7,
+          "reviews": 17,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/693156021/detail.aspx"
+        },
+        {
+          "id": "544078703",
+          "name": "/ Телевизор 50\" Smart TV 4K Ultra HD UE50U8000FUXRU",
+          "brand": "Samsung",
+          "price": 35626,
+          "originalPrice": 50590,
+          "discount": 30,
+          "rating": 4.8,
+          "reviews": 584,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/544078703/detail.aspx"
+        },
+        {
+          "id": "449264440",
+          "name": "/ Телевизор 4К UE50U8000FUXRU 50\", UHD, 60 Гц",
+          "brand": "Samsung",
+          "price": 47454,
+          "originalPrice": 92108,
+          "discount": 48,
+          "rating": 4.8,
+          "reviews": 49,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/449264440/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe43qef1auxru",
+      "brand": "Samsung",
+      "model": "qe43qef1auxru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 28494,
+      "max": 28494,
+      "median": 28494,
+      "floor": 22795,
+      "allTimeMin": 28494,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "629342349",
+          "name": "/ Телевизор QLED 43\" QE43QEF1AUXRU 4K Ultra HD Smart TV",
+          "brand": "Samsung",
+          "price": 28494,
+          "originalPrice": 49990,
+          "discount": 43,
+          "rating": 4.8,
+          "reviews": 123,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/629342349/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe55q7faauxce",
+      "brand": "Samsung",
+      "model": "qe55q7faauxce",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 43262,
+      "max": 43262,
+      "median": 43262,
+      "floor": 34610,
+      "allTimeMin": 43262,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "784297698",
+          "name": "/ Телевизор QLED 55\" QE55Q7FAAUXCE 4K Ultra HD Smart TV",
+          "brand": "Samsung",
+          "price": 43262,
+          "originalPrice": 73326,
+          "discount": 41,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/784297698/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe50qef1auxru",
+      "brand": "Samsung",
+      "model": "qe50qef1auxru",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 39008,
+      "max": 39008,
+      "median": 39008,
+      "floor": 31206,
+      "allTimeMin": 39008,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "632384218",
+          "name": "/ Телевизор QLED 50\" QE50QEF1AUXRU 4K Ultra HD, Smart",
+          "brand": "Samsung",
+          "price": 39008,
+          "originalPrice": 73600,
+          "discount": 47,
+          "rating": 4.8,
+          "reviews": 103,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/632384218/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe55qn1efauxru",
+      "brand": "Samsung",
+      "model": "qe55qn1efauxru",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 68364,
+      "max": 68364,
+      "median": 68364,
+      "floor": 54691,
+      "allTimeMin": 68364,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "632289453",
+          "name": "/ Телевизор Mini LED 55\" QE55QN1EFAUXRU, 4K Ultra HD, Smart",
+          "brand": "Samsung",
+          "price": 68364,
+          "originalPrice": 128990,
+          "discount": 47,
+          "rating": 4.8,
+          "reviews": 21,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/632289453/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe32ls03cbuxru",
+      "brand": "Samsung",
+      "model": "qe32ls03cbuxru",
+      "diagonals": [
+        32
+      ],
+      "sellers": 1,
+      "min": 43791,
+      "max": 43791,
+      "median": 43791,
+      "floor": 35033,
+      "allTimeMin": 43791,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "599214629",
+          "name": "/ Телевизор смарт 32 дюймов QE32LS03CBUXRU черный",
+          "brand": "Samsung",
+          "price": 43791,
+          "originalPrice": 59500,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 4,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/599214629/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue43u8000fuxru",
+      "brand": "Samsung",
+      "model": "ue43u8000fuxru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 3,
+      "min": 25947,
+      "max": 33991,
+      "median": 28319,
+      "floor": 22655,
+      "allTimeMin": 25947,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "569482097",
+          "name": "/ 43\" Телевизор UE43U8000FUXRU, 60Гц, без ПО",
+          "brand": "Samsung",
+          "price": 25947,
+          "originalPrice": 44675,
+          "discount": 42,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/569482097/detail.aspx"
+        },
+        {
+          "id": "881713120",
+          "name": "/ Телевизор Смарт 43 дюйма UE43U8000FUXRU 4K, HDR",
+          "brand": "Samsung",
+          "price": 28319,
+          "originalPrice": 60122,
+          "discount": 53,
+          "rating": 5,
+          "reviews": 13,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/881713120/detail.aspx"
+        },
+        {
+          "id": "489519631",
+          "name": "/ Телевизор 43 дюйма смарт 4K UE43U8000FUXRU",
+          "brand": "Samsung",
+          "price": 33991,
+          "originalPrice": 46184,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 89,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/489519631/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe65s90faexru",
+      "brand": "Samsung",
+      "model": "qe65s90faexru",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 171829,
+      "max": 171829,
+      "median": 171829,
+      "floor": 137463,
+      "allTimeMin": 171829,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "912646245",
+          "name": "/ Телевизор 65\" OLED 4K Smart TV QE65S90FAEXRU 120Гц",
+          "brand": "Samsung",
+          "price": 171829,
+          "originalPrice": 244000,
+          "discount": 30,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/912646245/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe43ls03fauxru",
+      "brand": "Samsung",
+      "model": "qe43ls03fauxru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 78015,
+      "max": 78015,
+      "median": 78015,
+      "floor": 62412,
+      "allTimeMin": 78015,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "720809842",
+          "name": "/ Телевизор смарт 43 дюйма QE43LS03FAUXRU черный",
+          "brand": "Samsung",
+          "price": 78015,
+          "originalPrice": 106000,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 592,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/720809842/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue55u8000fuxce",
+      "brand": "Samsung",
+      "model": "ue55u8000fuxce",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 39643,
+      "max": 39643,
+      "median": 39643,
+      "floor": 31714,
+      "allTimeMin": 39643,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "996444636",
+          "name": "/ Телевизор LED 55\" UE55U8000FUXCE 4K Ultra HD Smart TV",
+          "brand": "Samsung",
+          "price": 39643,
+          "originalPrice": 64990,
+          "discount": 39,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/996444636/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|qe43q7faauxru",
+      "brand": "Samsung",
+      "model": "qe43q7faauxru",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 32468,
+      "max": 32468,
+      "median": 32468,
+      "floor": 25974,
+      "allTimeMin": 32468,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "693156292",
+          "name": "/ Телевизор 4К QE43Q7FAAUXRU 43\", HDR, 60 Гц",
+          "brand": "Samsung",
+          "price": 32468,
+          "originalPrice": 73525,
+          "discount": 56,
+          "rating": 4.8,
+          "reviews": 36,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/693156292/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue85u8000fuxce",
+      "brand": "Samsung",
+      "model": "ue85u8000fuxce",
+      "diagonals": [
+        85
+      ],
+      "sellers": 1,
+      "min": 88089,
+      "max": 88089,
+      "median": 88089,
+      "floor": 70471,
+      "allTimeMin": 88089,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "784441483",
+          "name": "/ Телевизор LED 85\" UE85U8000FUXCE 4K Ultra HD Smart TV",
+          "brand": "Samsung",
+          "price": 88089,
+          "originalPrice": 117453,
+          "discount": 25,
+          "rating": 5,
+          "reviews": 2,
+          "diagonal": 85,
+          "url": "https://www.wildberries.ru/catalog/784441483/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|q7fa",
+      "brand": "Samsung",
+      "model": "q7fa",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 66130,
+      "max": 66130,
+      "median": 66130,
+      "floor": 52904,
+      "allTimeMin": 66130,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "771600282",
+          "name": "/ Телевизор 65\" QLED Q7FA, Smart TV, 4К QE65Q7F5AUXRU",
+          "brand": "Samsung",
+          "price": 66130,
+          "originalPrice": 94884,
+          "discount": 30,
+          "rating": 4.7,
+          "reviews": 16,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/771600282/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "samsung|ue65u8000huxpy",
+      "brand": "Samsung",
+      "model": "ue65u8000huxpy",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 54733,
+      "max": 54733,
+      "median": 54733,
+      "floor": 43786,
+      "allTimeMin": 54733,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1013244282",
+          "name": "/ Телевизор UE65U8000HUXPY 65\" Кристалл UHD 4K Смарт (2026)",
+          "brand": "Samsung",
+          "price": 54733,
+          "originalPrice": 106238,
+          "discount": 48,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/1013244282/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|50u77sl",
+      "brand": "HISENSE",
+      "model": "50u77sl",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 51940,
+      "max": 51940,
+      "median": 51940,
+      "floor": 41552,
+      "allTimeMin": 51940,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "890696082",
+          "name": "/ Телевизор 50 Смарт ТВ 4К 50U77SL (2026)",
+          "brand": "HISENSE",
+          "price": 51940,
+          "originalPrice": 74285,
+          "discount": 30,
+          "rating": 4.3,
+          "reviews": 114,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/890696082/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|55u77sl",
+      "brand": "HISENSE",
+      "model": "55u77sl",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 53900,
+      "max": 53900,
+      "median": 53900,
+      "floor": 43120,
+      "allTimeMin": 53900,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "890167319",
+          "name": "/ Телевизор 55 Смарт ТВ 4К 55U77SL (2026)",
+          "brand": "HISENSE",
+          "price": 53900,
+          "originalPrice": 74070,
+          "discount": 27,
+          "rating": 4.3,
+          "reviews": 114,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/890167319/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|65u77sl",
+      "brand": "HISENSE",
+      "model": "65u77sl",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 78400,
+      "max": 78400,
+      "median": 78400,
+      "floor": 62720,
+      "allTimeMin": 78400,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "890289937",
+          "name": "/ Телевизор 65 Смарт ТВ 4К 65U77SL (2026)",
+          "brand": "HISENSE",
+          "price": 78400,
+          "originalPrice": 107737,
+          "discount": 27,
+          "rating": 4.3,
+          "reviews": 114,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/890289937/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|43a6s",
+      "brand": "HISENSE",
+      "model": "43a6s",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 23551,
+      "max": 23551,
+      "median": 23551,
+      "floor": 18841,
+      "allTimeMin": 23551,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "917843511",
+          "name": "/ Телевизор смарт 43 дюймов 43A6S черный",
+          "brand": "HISENSE",
+          "price": 23551,
+          "originalPrice": 32000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 88,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/917843511/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|50a6s",
+      "brand": "HISENSE",
+      "model": "50a6s",
+      "diagonals": [
+        50
+      ],
+      "sellers": 4,
+      "min": 27199,
+      "max": 34951,
+      "median": 30066,
+      "floor": 24053,
+      "allTimeMin": 27199,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "912813468",
+          "name": "/ 50\" Телевизор 50A6S, VA, 60 Гц, 4K Ultra HD",
+          "brand": "HISENSE",
+          "price": 27199,
+          "originalPrice": 41628,
+          "discount": 35,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/912813468/detail.aspx"
+        },
+        {
+          "id": "917843555",
+          "name": "/ Телевизор смарт 50 дюймов 50A6S черный",
+          "brand": "HISENSE",
+          "price": 27232,
+          "originalPrice": 37000,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 30,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/917843555/detail.aspx"
+        },
+        {
+          "id": "1015905627",
+          "name": "/ Телевизор смарт 50 дюймов 50A6S (SmartTV,UltraHD, Frameless)",
+          "brand": "HISENSE",
+          "price": 32900,
+          "originalPrice": 45318,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/1015905627/detail.aspx"
+        },
+        {
+          "id": "978364422",
+          "name": "/ Телевизор 50 дюймов смарт 4K 50A6S",
+          "brand": "HISENSE",
+          "price": 34951,
+          "originalPrice": 47489,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/978364422/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|32e4qt",
+      "brand": "HISENSE",
+      "model": "32e4qt",
+      "diagonals": [
+        32
+      ],
+      "sellers": 1,
+      "min": 11880,
+      "max": 11880,
+      "median": 11880,
+      "floor": 9504,
+      "allTimeMin": 11880,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "551505117",
+          "name": "/ Телевизор 32 дюйма 32E4QT (2025)",
+          "brand": "HISENSE",
+          "price": 11880,
+          "originalPrice": 17339,
+          "discount": 31,
+          "rating": 4.8,
+          "reviews": 876,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/551505117/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|43e77q",
+      "brand": "HISENSE",
+      "model": "43e77q",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 28289,
+      "max": 28289,
+      "median": 28289,
+      "floor": 22631,
+      "allTimeMin": 28289,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "438936036",
+          "name": "/ Телевизор 43 дюйма 43E77Q (2025)",
+          "brand": "HISENSE",
+          "price": 28289,
+          "originalPrice": 38875,
+          "discount": 27,
+          "rating": 4.8,
+          "reviews": 1,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/438936036/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|55e77q",
+      "brand": "HISENSE",
+      "model": "55e77q",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 34850,
+      "max": 34850,
+      "median": 34850,
+      "floor": 27880,
+      "allTimeMin": 34850,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "438903476",
+          "name": "/ Телевизор 55 дюймов 55E77Q (2025)",
+          "brand": "HISENSE",
+          "price": 34850,
+          "originalPrice": 49324,
+          "discount": 29,
+          "rating": 4.8,
+          "reviews": 1,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/438903476/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|32e55sl",
+      "brand": "HISENSE",
+      "model": "32e55sl",
+      "diagonals": [
+        32
+      ],
+      "sellers": 1,
+      "min": 19600,
+      "max": 19600,
+      "median": 19600,
+      "floor": 15680,
+      "allTimeMin": 19600,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "893619495",
+          "name": "/ Телевизор 32 Смарт ТВ HD 32E55SL (2026)",
+          "brand": "HISENSE",
+          "price": 19600,
+          "originalPrice": 26935,
+          "discount": 27,
+          "rating": 4.6,
+          "reviews": 11,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/893619495/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|43e77sl",
+      "brand": "HISENSE",
+      "model": "43e77sl",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 29396,
+      "max": 29396,
+      "median": 29396,
+      "floor": 23517,
+      "allTimeMin": 29396,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "896006700",
+          "name": "/ Телевизор 43 Смарт ТВ 4К 43E77SL (2026)",
+          "brand": "HISENSE",
+          "price": 29396,
+          "originalPrice": 40397,
+          "discount": 27,
+          "rating": 4.9,
+          "reviews": 43,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/896006700/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|43e7s",
+      "brand": "HISENSE",
+      "model": "43e7s",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 29808,
+      "max": 29808,
+      "median": 29808,
+      "floor": 23846,
+      "allTimeMin": 29808,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "969227493",
+          "name": "/ Телевизор смарт 43 дюйма 43E7S черный",
+          "brand": "HISENSE",
+          "price": 29808,
+          "originalPrice": 40500,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 88,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/969227493/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|55e66sl",
+      "brand": "HISENSE",
+      "model": "55e66sl",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 35360,
+      "max": 35360,
+      "median": 35360,
+      "floor": 28288,
+      "allTimeMin": 35360,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "893452356",
+          "name": "/ Телевизор 55 Смарт ТВ 4К 55E66SL (2026)",
+          "brand": "HISENSE",
+          "price": 35360,
+          "originalPrice": 48592,
+          "discount": 27,
+          "rating": 5,
+          "reviews": 21,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/893452356/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|50a6q",
+      "brand": "HISENSE",
+      "model": "50a6q",
+      "diagonals": [
+        50
+      ],
+      "sellers": 2,
+      "min": 28900,
+      "max": 29251,
+      "median": 29076,
+      "floor": 23261,
+      "allTimeMin": 28900,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "851057972",
+          "name": "/ Телевизор смарт 50 дюймов (127см) 50A6Q",
+          "brand": "HISENSE",
+          "price": 28900,
+          "originalPrice": 39808,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/851057972/detail.aspx"
+        },
+        {
+          "id": "444478341",
+          "name": "/ 50\" Телевизор DLED 50A6Q, 4K UHD Smart TV",
+          "brand": "HISENSE",
+          "price": 29251,
+          "originalPrice": 40292,
+          "discount": 27,
+          "rating": 4.6,
+          "reviews": 19,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/444478341/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|50e66sl",
+      "brand": "HISENSE",
+      "model": "50e66sl",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 32340,
+      "max": 32340,
+      "median": 32340,
+      "floor": 25872,
+      "allTimeMin": 32340,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "893283448",
+          "name": "/ Телевизор 50 Смарт ТВ 4К 50E66SL (2026)",
+          "brand": "HISENSE",
+          "price": 32340,
+          "originalPrice": 46254,
+          "discount": 30,
+          "rating": 5,
+          "reviews": 21,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/893283448/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|43a6q",
+      "brand": "HISENSE",
+      "model": "43a6q",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 26716,
+      "max": 26716,
+      "median": 26716,
+      "floor": 21373,
+      "allTimeMin": 26716,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "838184619",
+          "name": "/ Телевизор 43 дюйма SmartTV безрамочный 43A6Q",
+          "brand": "HISENSE",
+          "price": 26716,
+          "originalPrice": 36800,
+          "discount": 27,
+          "rating": 5,
+          "reviews": 7,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/838184619/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|50e7s",
+      "brand": "HISENSE",
+      "model": "50e7s",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 33856,
+      "max": 33856,
+      "median": 33856,
+      "floor": 27085,
+      "allTimeMin": 33856,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "977877418",
+          "name": "/ Телевизор смарт 50 дюймов 50E7S черный",
+          "brand": "HISENSE",
+          "price": 33856,
+          "originalPrice": 46000,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 30,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/977877418/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|65e7s",
+      "brand": "HISENSE",
+      "model": "65e7s",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 66240,
+      "max": 66240,
+      "median": 66240,
+      "floor": 52992,
+      "allTimeMin": 66240,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "977877590",
+          "name": "/ Телевизор смарт 65 дюймов 65E7S PRO черный",
+          "brand": "HISENSE",
+          "price": 66240,
+          "originalPrice": 90000,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 20,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/977877590/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|32a4q",
+      "brand": "HISENSE",
+      "model": "32a4q",
+      "diagonals": [
+        32
+      ],
+      "sellers": 2,
+      "min": 12836,
+      "max": 14685,
+      "median": 13761,
+      "floor": 11009,
+      "allTimeMin": 12836,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "434031962",
+          "name": "/ Телевизор 32A4Q (2025) 32\" HD LED Smart TV",
+          "brand": "HISENSE",
+          "price": 12836,
+          "originalPrice": 17797,
+          "discount": 28,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/434031962/detail.aspx"
+        },
+        {
+          "id": "433664209",
+          "name": "/ 32\" Телевизор 32A4Q Black HD (Для РФ)",
+          "brand": "HISENSE",
+          "price": 14685,
+          "originalPrice": 27148,
+          "discount": 46,
+          "rating": 5,
+          "reviews": 2,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/433664209/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|32a5s",
+      "brand": "HISENSE",
+      "model": "32a5s",
+      "diagonals": [
+        32
+      ],
+      "sellers": 1,
+      "min": 16928,
+      "max": 16928,
+      "median": 16928,
+      "floor": 13542,
+      "allTimeMin": 16928,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1012171503",
+          "name": "/ Телевизор 32 дюймов 32A5S 2026 черный",
+          "brand": "HISENSE",
+          "price": 16928,
+          "originalPrice": 23000,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 30,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/1012171503/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|65ur9s",
+      "brand": "HISENSE",
+      "model": "65ur9s",
+      "diagonals": [
+        65
+      ],
+      "sellers": 2,
+      "min": 176798,
+      "max": 199990,
+      "median": 188394,
+      "floor": 150715,
+      "allTimeMin": 176798,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "986862377",
+          "name": "/ Телевизор 65UR9S (2026)",
+          "brand": "HISENSE",
+          "price": 176798,
+          "originalPrice": 230807,
+          "discount": 23,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/986862377/detail.aspx"
+        },
+        {
+          "id": "980678332",
+          "name": "/ Телевизор смарт 65 дюймов 65UR9S черный",
+          "brand": "HISENSE",
+          "price": 199990,
+          "originalPrice": 271726,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 20,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/980678332/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|55u7s",
+      "brand": "HISENSE",
+      "model": "55u7s",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 54990,
+      "max": 54990,
+      "median": 54990,
+      "floor": 43992,
+      "allTimeMin": 54990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "1015983930",
+          "name": "/ Телевизор 55 дюймов смарт 55U7S Mini LED, UltraHD, Frameless",
+          "brand": "HISENSE",
+          "price": 54990,
+          "originalPrice": 75745,
+          "discount": 27,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/1015983930/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|65e77sl",
+      "brand": "HISENSE",
+      "model": "65e77sl",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 60618,
+      "max": 60618,
+      "median": 60618,
+      "floor": 48494,
+      "allTimeMin": 60618,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "896498600",
+          "name": "/ Телевизор 65 Смарт ТВ 4К 65E77SL (2026)",
+          "brand": "HISENSE",
+          "price": 60618,
+          "originalPrice": 83302,
+          "discount": 27,
+          "rating": 4.9,
+          "reviews": 43,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/896498600/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "hisense|50e77sl",
+      "brand": "HISENSE",
+      "model": "50e77sl",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 36371,
+      "max": 36371,
+      "median": 36371,
+      "floor": 29097,
+      "allTimeMin": 36371,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "896059016",
+          "name": "/ Телевизор 50 Смарт ТВ 4К 50E77SL (2026)",
+          "brand": "HISENSE",
+          "price": 36371,
+          "originalPrice": 49982,
+          "discount": 27,
+          "rating": 4.9,
+          "reviews": 43,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/896059016/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|50q6cs",
+      "brand": "TCL",
+      "model": "50q6cs",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 37296,
+      "max": 37296,
+      "median": 37296,
+      "floor": 29837,
+      "allTimeMin": 37296,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "480904548",
+          "name": "/ Телевизор 50\" 50Q6CS QD-Mini LED 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 37296,
+          "originalPrice": 50675,
+          "discount": 26,
+          "rating": 4.7,
+          "reviews": 258,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/480904548/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|43s5k-uz",
+      "brand": "TCL",
+      "model": "43s5k-uz",
+      "diagonals": [
+        43
+      ],
+      "sellers": 2,
+      "min": 25991,
+      "max": 25991,
+      "median": 25991,
+      "floor": 20793,
+      "allTimeMin": 25991,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "617793861",
+          "name": "/ Телевизор QLED 43\" 43S5K-UZ Smart TV FULL HD",
+          "brand": "TCL",
+          "price": 25991,
+          "originalPrice": 35315,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 22,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/617793861/detail.aspx"
+        },
+        {
+          "id": "709919951",
+          "name": "/ Телевизор 43\" 43S5K-UZ QLED FHD 60 Гц HDR Smart TV",
+          "brand": "TCL",
+          "price": 25991,
+          "originalPrice": 35315,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/709919951/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|43p7k",
+      "brand": "TCL",
+      "model": "43p7k",
+      "diagonals": [
+        43
+      ],
+      "sellers": 2,
+      "min": 29989,
+      "max": 29990,
+      "median": 29990,
+      "floor": 23992,
+      "allTimeMin": 29989,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "388390170",
+          "name": "/ Телевизор 43P7K (2025) 43\" 4K UHD QLED Smart TV",
+          "brand": "TCL",
+          "price": 29989,
+          "originalPrice": 40747,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/388390170/detail.aspx"
+        },
+        {
+          "id": "388382023",
+          "name": "/ Телевизор 43P7K 43\" 4K UHD LCD Smart TV, Wi-Fi, HDR, 2025 г",
+          "brand": "TCL",
+          "price": 29990,
+          "originalPrice": 40748,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 137,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/388382023/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|43v6c",
+      "brand": "TCL",
+      "model": "43v6c",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 28999,
+      "max": 28999,
+      "median": 28999,
+      "floor": 23199,
+      "allTimeMin": 28999,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "351246780",
+          "name": "/ Телевизор 43\" 43V6C 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 28999,
+          "originalPrice": 39401,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 616,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/351246780/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|50p7l",
+      "brand": "TCL",
+      "model": "50p7l",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 39990,
+      "max": 39990,
+      "median": 39990,
+      "floor": 31992,
+      "allTimeMin": 39990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "969774361",
+          "name": "/ Телевизор 50 дюймов смарт 4K 50P7L",
+          "brand": "TCL",
+          "price": 39990,
+          "originalPrice": 54335,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/969774361/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|50v6c",
+      "brand": "TCL",
+      "model": "50v6c",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 34999,
+      "max": 34999,
+      "median": 34999,
+      "floor": 27999,
+      "allTimeMin": 34999,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "351253302",
+          "name": "/ Телевизор 50\" 50V6C 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 34999,
+          "originalPrice": 47553,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 380,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/351253302/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|32s5k-uz",
+      "brand": "TCL",
+      "model": "32s5k-uz",
+      "diagonals": [
+        32
+      ],
+      "sellers": 1,
+      "min": 19990,
+      "max": 19990,
+      "median": 19990,
+      "floor": 15992,
+      "allTimeMin": 19990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "625107418",
+          "name": "/ Телевизор QLED 32\" 32S5K-UZ Smart TV FULL HD",
+          "brand": "TCL",
+          "price": 19990,
+          "originalPrice": 27161,
+          "discount": 26,
+          "rating": 4.7,
+          "reviews": 26,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/625107418/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|55t6c",
+      "brand": "TCL",
+      "model": "55t6c",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 35999,
+      "max": 35999,
+      "median": 35999,
+      "floor": 28799,
+      "allTimeMin": 35999,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "351287029",
+          "name": "/ Телевизор 55\" 55T6C QLED 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 35999,
+          "originalPrice": 48912,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 10,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/351287029/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|55q6c",
+      "brand": "TCL",
+      "model": "55q6c",
+      "diagonals": [
+        55
+      ],
+      "sellers": 2,
+      "min": 54999,
+      "max": 55199,
+      "median": 55099,
+      "floor": 44079,
+      "allTimeMin": 54999,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "915776407",
+          "name": "/ Телевизор 55\" 55Q6C QD-Mini LED 144 Гц 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 54999,
+          "originalPrice": 74727,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/915776407/detail.aspx"
+        },
+        {
+          "id": "986919613",
+          "name": "/ Телевизор 55\" 55Q6C QD-Mini LED 144 Гц 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 55199,
+          "originalPrice": 74999,
+          "discount": 26,
+          "rating": null,
+          "reviews": 0,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/986919613/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|65c6k",
+      "brand": "TCL",
+      "model": "65c6k",
+      "diagonals": [
+        65
+      ],
+      "sellers": 3,
+      "min": 74991,
+      "max": 74999,
+      "median": 74991,
+      "floor": 59993,
+      "allTimeMin": 74991,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "415330472",
+          "name": "/ Телевизор 65 дюймов смарт 4K 65C6K QD-Mini LED",
+          "brand": "TCL",
+          "price": 74991,
+          "originalPrice": 101890,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 13,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/415330472/detail.aspx"
+        },
+        {
+          "id": "399959821",
+          "name": "/ Телевизор 65C6K 4K UHD QLED Smart TV, Wi-Fi, HDR",
+          "brand": "TCL",
+          "price": 74991,
+          "originalPrice": 101891,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 55,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/399959821/detail.aspx"
+        },
+        {
+          "id": "709919960",
+          "name": "/ Телевизор 65\" 65C6K QD-Mini LED 4K UHD HDR Smart TV",
+          "brand": "TCL",
+          "price": 74999,
+          "originalPrice": 101901,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 2,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/709919960/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|32s4k",
+      "brand": "TCL",
+      "model": "32s4k",
+      "diagonals": [
+        32
+      ],
+      "sellers": 1,
+      "min": 15463,
+      "max": 15463,
+      "median": 15463,
+      "floor": 12370,
+      "allTimeMin": 15463,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "575985901",
+          "name": "/ Телевизор 32\" 32S4K QLED HD HDR GoogleTV",
+          "brand": "TCL",
+          "price": 15463,
+          "originalPrice": 21010,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 305,
+          "diagonal": 32,
+          "url": "https://www.wildberries.ru/catalog/575985901/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|50t6d",
+      "brand": "TCL",
+      "model": "50t6d",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 38999,
+      "max": 38999,
+      "median": 38999,
+      "floor": 31199,
+      "allTimeMin": 38999,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "907498201",
+          "name": "/ Телевизор смарт 50T6D QLED 4K UHD 50 дюймов Google TV",
+          "brand": "TCL",
+          "price": 38999,
+          "originalPrice": 105976,
+          "discount": 63,
+          "rating": 4.8,
+          "reviews": 587,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/907498201/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|55c6k",
+      "brand": "TCL",
+      "model": "55c6k",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 54991,
+      "max": 54991,
+      "median": 54991,
+      "floor": 43993,
+      "allTimeMin": 54991,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "420266207",
+          "name": "/ Телевизор 55 дюймов смарт 4K 55C6K QD-Mini LED",
+          "brand": "TCL",
+          "price": 54991,
+          "originalPrice": 74717,
+          "discount": 26,
+          "rating": 4.9,
+          "reviews": 141,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/420266207/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|40s5k",
+      "brand": "TCL",
+      "model": "40s5k",
+      "diagonals": [
+        40
+      ],
+      "sellers": 2,
+      "min": 21990,
+      "max": 21999,
+      "median": 21995,
+      "floor": 17596,
+      "allTimeMin": 21990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "494858511",
+          "name": "/ Телевизор 40 дюймов смарт Full HD 40S5K",
+          "brand": "TCL",
+          "price": 21990,
+          "originalPrice": 26949,
+          "discount": 18,
+          "rating": 5,
+          "reviews": 16,
+          "diagonal": 40,
+          "url": "https://www.wildberries.ru/catalog/494858511/detail.aspx"
+        },
+        {
+          "id": "423153633",
+          "name": "/ Телевизор 40\" 40S5K QLED Full HD HDR GoogleTV",
+          "brand": "TCL",
+          "price": 21999,
+          "originalPrice": 29890,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 567,
+          "diagonal": 40,
+          "url": "https://www.wildberries.ru/catalog/423153633/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|55p7l",
+      "brand": "TCL",
+      "model": "55p7l",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 49991,
+      "max": 49991,
+      "median": 49991,
+      "floor": 39993,
+      "allTimeMin": 49991,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "927118704",
+          "name": "/ Телевизор 55P7L (2026) 55\" 4K UHD QLED Smart TV",
+          "brand": "TCL",
+          "price": 49991,
+          "originalPrice": 67923,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 1,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/927118704/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|55p69k",
+      "brand": "TCL",
+      "model": "55p69k",
+      "diagonals": [
+        55
+      ],
+      "sellers": 1,
+      "min": 36202,
+      "max": 36202,
+      "median": 36202,
+      "floor": 28962,
+      "allTimeMin": 36202,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "575900201",
+          "name": "/ 55\" Ultra HD 4K, 55P69K Телевизор",
+          "brand": "TCL",
+          "price": 36202,
+          "originalPrice": 93339,
+          "discount": 61,
+          "rating": 4.7,
+          "reviews": 39,
+          "diagonal": 55,
+          "url": "https://www.wildberries.ru/catalog/575900201/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|50p7k",
+      "brand": "TCL",
+      "model": "50p7k",
+      "diagonals": [
+        50
+      ],
+      "sellers": 1,
+      "min": 35990,
+      "max": 35990,
+      "median": 35990,
+      "floor": 28792,
+      "allTimeMin": 35990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "431556117",
+          "name": "/ Телевизор 50 дюймов смарт 4K 50P7K",
+          "brand": "TCL",
+          "price": 35990,
+          "originalPrice": 46985,
+          "discount": 23,
+          "rating": 5,
+          "reviews": 70,
+          "diagonal": 50,
+          "url": "https://www.wildberries.ru/catalog/431556117/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|65p6k",
+      "brand": "TCL",
+      "model": "65p6k",
+      "diagonals": [
+        65
+      ],
+      "sellers": 1,
+      "min": 54990,
+      "max": 54990,
+      "median": 54990,
+      "floor": 43992,
+      "allTimeMin": 54990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "709919965",
+          "name": "/ Телевизор 65\" 65P6K 4K UHD HDR 60 Гц Smart TV",
+          "brand": "TCL",
+          "price": 54990,
+          "originalPrice": 74715,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 3,
+          "diagonal": 65,
+          "url": "https://www.wildberries.ru/catalog/709919965/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|43t6c",
+      "brand": "TCL",
+      "model": "43t6c",
+      "diagonals": [
+        43
+      ],
+      "sellers": 2,
+      "min": 33299,
+      "max": 33300,
+      "median": 33300,
+      "floor": 26640,
+      "allTimeMin": 33299,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "351263590",
+          "name": "/ Телевизор 43\" 43T6C QLED 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 33299,
+          "originalPrice": 45244,
+          "discount": 26,
+          "rating": 4.8,
+          "reviews": 366,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/351263590/detail.aspx"
+        },
+        {
+          "id": "103783581",
+          "name": "/ Телевизор смарт 43T6C QLED 4K 43 дюймов Google TV",
+          "brand": "TCL",
+          "price": 33300,
+          "originalPrice": 90490,
+          "discount": 63,
+          "rating": 4.8,
+          "reviews": 587,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/103783581/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|43p7k-uz",
+      "brand": "TCL",
+      "model": "43p7k-uz",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 29990,
+      "max": 29990,
+      "median": 29990,
+      "floor": 23992,
+      "allTimeMin": 29990,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "617793922",
+          "name": "/ Телевизор 43 дюйма смарт 4K 43P7K-UZ",
+          "brand": "TCL",
+          "price": 29990,
+          "originalPrice": 40748,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 61,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/617793922/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    },
+    {
+      "key": "tcl|43t6d",
+      "brand": "TCL",
+      "model": "43t6d",
+      "diagonals": [
+        43
+      ],
+      "sellers": 1,
+      "min": 31999,
+      "max": 31999,
+      "median": 31999,
+      "floor": 25599,
+      "allTimeMin": 31999,
+      "allTimeMinAt": "2026-05-21T02:46:24.795Z",
+      "newAllTimeLow": true,
+      "dropPct": null,
+      "items": [
+        {
+          "id": "896375484",
+          "name": "/ Телевизор 43\" 43T6D QLED 4K HDR Google TV",
+          "brand": "TCL",
+          "price": 31999,
+          "originalPrice": 43477,
+          "discount": 26,
+          "rating": 5,
+          "reviews": 2,
+          "diagonal": 43,
+          "url": "https://www.wildberries.ru/catalog/896375484/detail.aspx"
+        }
+      ],
+      "dealItems": []
+    }
+  ]
+}

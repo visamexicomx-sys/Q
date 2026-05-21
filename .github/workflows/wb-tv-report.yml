@@ -1,0 +1,85 @@
+name: Wildberries TV report
+
+on:
+  schedule:
+    # Каждый день 06:00 UTC = 09:00 МСК.
+    # ⚠️ Внимание: на Apify FREE плане ($5/мес) ежедневно невозможно —
+    # бюджет иссякнет за 1 день. Для ежедневного режима нужен Apify Starter
+    # ($49/мес) или переход на собственный actor / RU-прокси.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      max_items:
+        description: "maxItems на один прогон powerai (×8 параллельных запросов)"
+        default: "200"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wb-tv-report
+  cancel-in-progress: false
+
+jobs:
+  scrape-and-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+      APIFY_ACTOR_ID: ${{ vars.APIFY_ACTOR_ID }}
+      MAX_ITEMS: ${{ github.event.inputs.max_items || '200' }}
+      OUT_DIR: apify-wb-tv-scraper/report
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      REPO_URL: ${{ format('{0}/{1}/tree/{2}', github.server_url, github.repository, github.ref_name) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify secrets
+        run: |
+          set -e
+          [ -n "${APIFY_TOKEN:-}" ] || { echo "::error::Missing APIFY_TOKEN secret"; exit 1; }
+          if [ -z "${APIFY_ACTOR_ID:-}" ]; then
+            echo "::notice::APIFY_ACTOR_ID variable not set — will use powerai default"
+            echo "APIFY_ACTOR_ID=powerai~wildberries-products-search-scraper" >> "$GITHUB_ENV"
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run scrape + build report
+        run: bash apify-wb-tv-scraper/scripts/run-scrape.sh
+
+      - name: Show report head
+        run: head -n 40 "$OUT_DIR/REPORT.md" || true
+
+      - name: Show anomalies head
+        run: head -n 40 "$OUT_DIR/ANOMALIES.md" || true
+
+      - name: Commit and push report
+        run: |
+          set -euo pipefail
+          git config user.name "wb-tv-report-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT_DIR/REPORT.md" "$OUT_DIR/REPORT.json" \
+                  "$OUT_DIR/ANOMALIES.md" "$OUT_DIR/ANOMALIES.json" \
+                  "$OUT_DIR/MODELS.md" "$OUT_DIR/MODELS.json" \
+                  "$OUT_DIR/models-history.json" \
+                  "$OUT_DIR/history"
+          if git diff --staged --quiet; then
+            echo "No report changes — skipping commit."
+            exit 0
+          fi
+          stamp=$(date -u +%Y-%m-%d)
+          git commit -m "chore(report): refresh Wildberries TV report ${stamp}"
+          git push
+
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wb-tv-report
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: ignore

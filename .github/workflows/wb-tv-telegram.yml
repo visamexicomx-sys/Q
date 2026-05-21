@@ -1,0 +1,44 @@
+name: WB TV — post to Telegram (no scrape)
+
+# Manually-triggered workflow that just re-posts the latest committed
+# REPORT.json / MODELS.json / ANOMALIES.json to the Telegram chat.
+# Useful when:
+#   - Apify budget is exhausted and you can't re-scrape
+#   - You want to test the bot/channel wiring without using compute
+#   - You changed notify-telegram.mjs and want to preview a real send
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      OUT_DIR: apify-wb-tv-scraper/report
+      REPO_URL: ${{ format('{0}/{1}/tree/{2}', github.server_url, github.repository, github.ref_name) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify secrets
+        run: |
+          [ -n "${TELEGRAM_BOT_TOKEN:-}" ] || { echo "::error::TELEGRAM_BOT_TOKEN secret is missing"; exit 1; }
+          [ -n "${TELEGRAM_CHAT_ID:-}"   ] || { echo "::error::TELEGRAM_CHAT_ID secret is missing"; exit 1; }
+          [ -f "$OUT_DIR/MODELS.json"    ] || { echo "::error::$OUT_DIR/MODELS.json not found — run the scrape workflow first"; exit 1; }
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Post to Telegram
+        run: |
+          node apify-wb-tv-scraper/scripts/notify-telegram.mjs \
+            --models    "$OUT_DIR/MODELS.json" \
+            --report    "$OUT_DIR/REPORT.json" \
+            --anomalies "$OUT_DIR/ANOMALIES.json" \
+            --repo-url  "$REPO_URL"
