@@ -67,6 +67,7 @@ jobs:
                   "$OUT_DIR/ANOMALIES.md" "$OUT_DIR/ANOMALIES.json" \
                   "$OUT_DIR/MODELS.md" "$OUT_DIR/MODELS.json" \
                   "$OUT_DIR/models-history.json" \
+                  "$OUT_DIR/alerts-state.json" \
                   "$OUT_DIR/history"
           if git diff --staged --quiet; then
             echo "No report changes — skipping commit."

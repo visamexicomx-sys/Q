@@ -166,7 +166,7 @@ ls -t "$HIST_DIR"/*.json | tail -n +31 | xargs -r rm -f
 
 # optional Telegram notification (no-op if TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID unset)
 if [ -n "${TELEGRAM_BOT_TOKEN:-}" ] && [ -n "${TELEGRAM_CHAT_ID:-}" ]; then
-  echo "▸ Posting to Telegram…"
+  echo "▸ Posting summary to Telegram…"
   REPO_URL_ARG=()
   if [ -n "${REPO_URL:-}" ]; then
     REPO_URL_ARG=(--repo-url "$REPO_URL")
@@ -176,6 +176,13 @@ if [ -n "${TELEGRAM_BOT_TOKEN:-}" ] && [ -n "${TELEGRAM_CHAT_ID:-}" ]; then
     --report "$OUT_DIR/REPORT.json" \
     --anomalies "$OUT_DIR/ANOMALIES.json" \
     "${REPO_URL_ARG[@]}" || echo "::warning::telegram notify failed (non-fatal)"
+
+  echo "▸ Broadcasting hot deals + sharp price changes…"
+  node apify-wb-tv-scraper/scripts/alerts.mjs \
+    --models "$OUT_DIR/MODELS.json" \
+    --history "$OUT_DIR/models-history.json" \
+    --state "$OUT_DIR/alerts-state.json" \
+    || echo "::warning::alerts broadcast failed (non-fatal)"
 fi
 
 echo "▸ Done. Files in $OUT_DIR:"
