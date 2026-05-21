@@ -2,8 +2,11 @@ name: Wildberries TV report
 
 on:
   schedule:
-    # Каждую пятницу 06:00 UTC = 09:00 МСК.
-    - cron: "0 6 * * 5"
+    # Каждый день 06:00 UTC = 09:00 МСК.
+    # ⚠️ Внимание: на Apify FREE плане ($5/мес) ежедневно невозможно —
+    # бюджет иссякнет за 1 день. Для ежедневного режима нужен Apify Starter
+    # ($49/мес) или переход на собственный actor / RU-прокси.
+    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       max_items:
