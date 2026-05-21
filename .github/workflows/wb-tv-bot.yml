@@ -1,0 +1,75 @@
+name: WB TV bot — long-poll commands
+
+# Runs every 5 minutes; each run long-polls Telegram for up to ~4 min and
+# responds to commands (/snapshot, /atl, /deals, /find, /brand, /model, …).
+# State is persisted to apify-wb-tv-scraper/report/bot-state.json so updates
+# are processed exactly once.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write   # /scrape command dispatches the wb-tv-report workflow
+
+concurrency:
+  group: wb-tv-bot
+  cancel-in-progress: true
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skip if Telegram secret missing
+        id: gate
+        run: |
+          if [ -z "${TELEGRAM_BOT_TOKEN:-}" ]; then
+            echo "::warning::TELEGRAM_BOT_TOKEN secret missing — skipping"
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.skip == '0'
+        with:
+          node-version: 20
+
+      - name: Run bot poller
+        if: steps.gate.outputs.skip == '0'
+        run: node apify-wb-tv-scraper/scripts/bot-poller.mjs
+
+      - name: Commit state if changed
+        if: steps.gate.outputs.skip == '0'
+        run: |
+          set -euo pipefail
+          git config user.name "wb-tv-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apify-wb-tv-scraper/report/bot-state.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "no state change — nothing to commit"
+            exit 0
+          fi
+          # Only commit if we processed messages this run (skip empty heartbeats)
+          processed=$(jq -r '.processedThisRun // 0' apify-wb-tv-scraper/report/bot-state.json)
+          if [ "$processed" = "0" ]; then
+            echo "quiet poll — discarding state-only diff"
+            git restore --staged apify-wb-tv-scraper/report/bot-state.json
+            git checkout -- apify-wb-tv-scraper/report/bot-state.json 2>/dev/null || true
+            exit 0
+          fi
+          git commit -m "chore(bot): poller state (processed $processed)"
+          # retry push up to 4 times on transient failures
+          for i in 1 2 4 8; do
+            if git push; then exit 0; fi
+            sleep "$i"
+          done
+          echo "::warning::push failed after retries"
