@@ -6,8 +6,16 @@ name: WB TV bot — long-poll commands
 # are processed exactly once.
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
+  # ВЫКЛЮЧЕНО: бот теперь обслуживается Cloudflare Worker
+  # (apify-wb-tv-scraper/worker/index.mjs). Webhook URL:
+  # https://wb-tv-tracker-bot.valet-bd8bb6.workers.dev/webhook
+  #
+  # Если вернуться на polling — закомментируйте webhook через
+  #   curl "https://api.telegram.org/bot<TOKEN>/deleteWebhook"
+  # и раскомментируйте schedule ниже.
+  #
+  # schedule:
+  #   - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
