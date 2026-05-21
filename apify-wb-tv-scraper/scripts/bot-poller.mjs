@@ -452,6 +452,16 @@ async function handleCallback(cq) {
     if (reply) await sendReply(chatId, reply);
 }
 
+// ---------- module exports (for tests / reuse) ----------
+
+export { dispatch, handleMessage, handleCallback, REPLY_KEYBOARD };
+
+// Only enter the polling loop when invoked directly, not when imported.
+const invokedDirectly = import.meta.url === `file://${process.argv[1]}`;
+if (!invokedDirectly) {
+    // Imported as a module — skip the long-polling loop and state writes.
+} else {
+
 // ---------- main loop ----------
 
 // Register slash-commands in Telegram UI on the first run after a state reset.
@@ -500,3 +510,5 @@ const newState = {
 };
 writeFileSync(STATE_PATH, JSON.stringify(newState, null, 2));
 console.log(`bot: done. processed=${processed}, lastUpdateId=${newState.lastUpdateId}`);
+
+}  // end invokedDirectly block
