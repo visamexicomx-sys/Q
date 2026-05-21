@@ -1,0 +1,13 @@
+{
+  "name": "wb-tv-tracker-bot-worker",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.mjs",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

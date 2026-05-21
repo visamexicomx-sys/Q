@@ -1,39 +1,44 @@
-#!/usr/bin/env node
-// Interactive Telegram bot for WB TV Tracker.
+// Cloudflare Worker — Telegram bot webhook for WB TV Tracker.
 //
-// Long-polls getUpdates for up to ~4 minutes, handles commands, then exits.
-// State (last processed update_id) is persisted to bot-state.json so a
-// cron-driven workflow can run this script every ~5 minutes without losing
-// or double-processing messages.
+// Deploy with `wrangler deploy`, then point Telegram at it:
 //
-// Required env vars:
-//   TELEGRAM_BOT_TOKEN
-//   (optional) GITHUB_TOKEN, GITHUB_REPOSITORY, GITHUB_REF_NAME  — for /scrape
+//   curl "https://api.telegram.org/bot$TG/setWebhook?url=https://<worker>.workers.dev"
+//
+// The worker fetches REPORT.json / MODELS.json / ANOMALIES.json from this
+// repo's raw GitHub URL on each invocation, with a 5-minute edge cache.
+// All command logic mirrors apify-wb-tv-scraper/scripts/bot-poller.mjs;
+// keep them in sync until they get extracted into a shared module.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+const REPO = 'visamexicomx-sys/Q';
+const BRANCH = 'claude/explain-codebase-mmlhdl2dx82ks0ug-DNca4';
+const REPORT_BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/apify-wb-tv-scraper/report`;
+const CACHE_TTL = 300;   // 5 minutes
 
-const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-if (!TOKEN) { console.error('TELEGRAM_BOT_TOKEN missing'); process.exit(1); }
+// ---------- helpers ----------
 
-const REPORT_DIR = 'apify-wb-tv-scraper/report';
-const STATE_PATH = resolve(REPORT_DIR, 'bot-state.json');
-const REPORT_PATH = resolve(REPORT_DIR, 'REPORT.json');
-const MODELS_PATH = resolve(REPORT_DIR, 'MODELS.json');
-const ANOMALIES_PATH = resolve(REPORT_DIR, 'ANOMALIES.json');
+const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
+const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const trim = (s = '', n = 70) => s.length > n ? s.slice(0, n - 1) + '…' : s;
+const link = (text, url) => `<a href="${esc(url)}">${esc(text)}</a>`;
+const PAGE_SIZE = 10;
 
-const POLL_DEADLINE_MS = Date.now() + 230_000;  // ~4 min, leaves buffer for cron 5-min slot
+function navMarkup(cbPrefix, page, total) {
+    const lastPage = Math.max(0, Math.ceil(total / PAGE_SIZE) - 1);
+    const row = [];
+    if (page > 0) row.push({ text: '← Назад', callback_data: `${cbPrefix}:${page - 1}` });
+    row.push({ text: `${page + 1}/${lastPage + 1}`, callback_data: 'noop' });
+    if (page < lastPage) row.push({ text: 'Ещё →', callback_data: `${cbPrefix}:${page + 1}` });
+    return { inline_keyboard: [row] };
+}
 
-const tg = async (method, body) => {
-    const r = await fetch(`https://api.telegram.org/bot${TOKEN}/${method}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-    });
-    return r.json();
-};
+function fmtItemLine(p, { showBrand = true, showDiag = true } = {}) {
+    const diag = showDiag && p.diagonal ? ` ${p.diagonal}"` : '';
+    const brand = showBrand ? ` ${esc(p.brand || '—')}` : '';
+    const disc = p.discount ? ` −${p.discount}%` : '';
+    return `• <b>${fmt(p.price)}₽</b>${disc}${diag}${brand} · ${link(trim(p.name, 50), p.url)}`;
+}
 
-// ---------- UI: keyboards & command menu ----------
+// ---------- UI: keyboards ----------
 
 const REPLY_KEYBOARD = {
     keyboard: [
@@ -91,7 +96,6 @@ const ANOMALY_LABELS = {
     jumped: { title: '⬆ Подорожали', desc: 'Цена выросла ≥X% vs прошлый снимок' },
 };
 
-// Map free-text reply-keyboard taps to slash-commands
 const TEXT_TO_COMMAND = {
     '📊 Сводка': '/snapshot',
     '🟢 ATL': '/atl',
@@ -107,45 +111,46 @@ const TEXT_TO_COMMAND = {
     'ℹ️ Помощь': '/help',
 };
 
-async function registerBotCommands() {
-    await tg('setMyCommands', {
-        commands: [
-            { command: 'snapshot', description: '📊 Общая сводка по брендам' },
-            { command: 'atl', description: '🟢 Модели с новыми all-time low' },
-            { command: 'deals', description: '💸 Сделки ниже медианы модели' },
-            { command: 'drops', description: '📉 Подешевели ≥10% к прошлому снимку' },
-            { command: 'anomalies', description: '🚨 High-severity аномалии цены' },
-            { command: 'cheap', description: '🪙 Топ-15 самых дешёвых TV ≥32"' },
-            { command: 'brand', description: '🏷 Бренд (samsung/sony/tcl/…)' },
-            { command: 'd', description: '📏 Диагональ (24/32/43/55/65/75…)' },
-            { command: 'under', description: '💰 Модели до цены (₽)' },
-            { command: 'find', description: '🔍 Поиск по названию' },
-            { command: 'model', description: '📺 Детально по модели' },
-            { command: 'now', description: '🕐 Время последнего снимка' },
-            { command: 'scrape', description: '🔄 Запросить новый скрап' },
-            { command: 'menu', description: '⌨️ Показать меню кнопок' },
-            { command: 'help', description: 'ℹ️ Список команд' },
-        ],
+// ---------- data fetch with edge cache ----------
+
+let DATA = null;  // populated per-request, but cached at the Cloudflare cache layer.
+
+async function fetchJson(name, ctx) {
+    const url = `${REPORT_BASE}/${name}.json`;
+    const cache = caches.default;
+    const cacheKey = new Request(url, { method: 'GET' });
+    let cached = await cache.match(cacheKey);
+    if (cached) return cached.json();
+
+    const resp = await fetch(url, {
+        cf: { cacheTtl: CACHE_TTL, cacheEverything: true },
+        headers: { 'User-Agent': 'wb-tv-tracker-worker/1.0' },
     });
+    if (!resp.ok) throw new Error(`fetch ${name}.json → ${resp.status}`);
+
+    const cloned = new Response(resp.body, resp);
+    cloned.headers.set('Cache-Control', `public, max-age=${CACHE_TTL}`);
+    const data = await cloned.clone().json();
+    ctx.waitUntil(cache.put(cacheKey, cloned));
+    return data;
 }
 
-const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
-const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const trim = (s = '', n = 70) => s.length > n ? s.slice(0, n - 1) + '…' : s;
-const link = (text, url) => `<a href="${esc(url)}">${esc(text)}</a>`;
+async function loadData(ctx) {
+    const [report, models, anomalies] = await Promise.all([
+        fetchJson('REPORT', ctx).catch(() => ({ all: [], byBrand: [], generatedAt: null })),
+        fetchJson('MODELS', ctx).catch(() => ({ models: [], generatedAt: null })),
+        fetchJson('ANOMALIES', ctx).catch(() => null),
+    ]);
+    return {
+        report,
+        models,
+        anomalies,
+        items: report.all || [],
+        allModels: models.models || [],
+    };
+}
 
-const state = existsSync(STATE_PATH) ? JSON.parse(readFileSync(STATE_PATH, 'utf8')) : {};
-let offset = state.lastUpdateId ? state.lastUpdateId + 1 : 0;
-let processed = 0;
-
-const report = existsSync(REPORT_PATH) ? JSON.parse(readFileSync(REPORT_PATH, 'utf8')) : { all: [], byBrand: [], generatedAt: null };
-const models = existsSync(MODELS_PATH) ? JSON.parse(readFileSync(MODELS_PATH, 'utf8')) : { models: [], generatedAt: null };
-const anomalies = existsSync(ANOMALIES_PATH) ? JSON.parse(readFileSync(ANOMALIES_PATH, 'utf8')) : null;
-
-const items = report.all || [];
-const allModels = models.models || [];
-
-// ---------- command handlers ----------
+// ---------- command handlers (mirror bot-poller.mjs) ----------
 
 function cmdHelp() {
     return [
@@ -164,13 +169,12 @@ function cmdHelp() {
         '/brand — кнопки выбора бренда',
         '/d — кнопки выбора диагонали',
         '/under — кнопки выбора потолка цены',
-        '/cheap — топ-15 самых дешёвых TV ≥32"',
+        '/cheap — самые дешёвые TV ≥32"',
         '/find &lt;text&gt; — поиск по названию',
         '/model &lt;code&gt; — детально по модели',
         '',
         '<b>⚙️ Прочее</b>',
         '/now — время последнего снимка',
-        '/scrape — попросить новый скрап',
         '/menu — вернуть меню кнопок',
         '/help — это сообщение',
     ].join('\n');
@@ -194,7 +198,7 @@ function cmdStart() {
     ].join('\n');
 }
 
-function cmdSnapshot() {
+function cmdSnapshot({ items, allModels, report }) {
     const byBrand = report.byBrand || [];
     const lines = [];
     const stamp = (report.generatedAt || '').slice(0, 16).replace('T', ' ');
@@ -207,9 +211,8 @@ function cmdSnapshot() {
     return lines.join('\n');
 }
 
-function cmdAtl(arg, page = 0) {
-    const all = allModels.filter((m) => m.newAllTimeLow)
-        .sort((a, b) => b.sellers - a.sellers || a.min - b.min);
+function cmdAtl({ allModels }, _arg, page = 0) {
+    const all = allModels.filter((m) => m.newAllTimeLow).sort((a, b) => b.sellers - a.sellers || a.min - b.min);
     if (!all.length) return 'Новых all-time low в последнем снимке нет.';
     const start = page * PAGE_SIZE;
     const slice = all.slice(start, start + PAGE_SIZE);
@@ -222,7 +225,7 @@ function cmdAtl(arg, page = 0) {
     return { text: lines.join('\n'), reply_markup: navMarkup('pg:atl:_', page, all.length) };
 }
 
-function cmdDeals(arg, page = 0) {
+function cmdDeals({ allModels }, _arg, page = 0) {
     const deals = allModels
         .filter((m) => m.dealItems?.length)
         .flatMap((m) => m.dealItems.map((d) => ({ ...d, model: m })))
@@ -243,7 +246,7 @@ function cmdDeals(arg, page = 0) {
     return { text: lines.join('\n'), reply_markup: navMarkup('pg:deals:_', page, deals.length) };
 }
 
-function cmdDrops(arg, page = 0) {
+function cmdDrops({ allModels }, _arg, page = 0) {
     const drops = allModels.filter((m) => m.dropPct != null && m.dropPct <= -10).sort((a, b) => a.dropPct - b.dropPct);
     if (!drops.length) return 'Никакая модель не подешевела ≥10% к прошлому снимку.';
     const start = page * PAGE_SIZE;
@@ -257,7 +260,7 @@ function cmdDrops(arg, page = 0) {
     return { text: lines.join('\n'), reply_markup: navMarkup('pg:drops:_', page, drops.length) };
 }
 
-function cmdAnomalies() {
+function cmdAnomalies({ anomalies }) {
     if (!anomalies) return 'Файл аномалий не найден.';
     const sev = anomalies.severity || { high: 0, medium: 0, low: 0 };
     const lines = [
@@ -276,7 +279,7 @@ function cmdAnomalies() {
     return { text: lines.join('\n'), reply_markup: ANOMALY_KEYBOARD };
 }
 
-function cmdAnomalyCategory(cat, page = 0) {
+function cmdAnomalyCategory({ anomalies }, cat, page = 0) {
     if (!anomalies) return 'Файл аномалий не найден.';
     const label = ANOMALY_LABELS[cat];
     if (!label) return 'Неизвестная категория аномалии.';
@@ -291,9 +294,7 @@ function cmdAnomalyCategory(cat, page = 0) {
         `<i>${label.desc}</i>`,
         '',
     ];
-
     if (cat === 'dupes') {
-        // dupes have a different shape: {key, min, max, spread, arr: [items]}
         for (const d of slice) {
             const [brand, model] = (d.key || '').split('|');
             lines.push(`• <code>${esc(model)}</code> · ${esc(brand || '—')} · ${d.arr.length} продавцов · ${fmt(d.min)}–${fmt(d.max)} ₽ (×${d.spread?.toFixed?.(2)})`);
@@ -301,43 +302,19 @@ function cmdAnomalyCategory(cat, page = 0) {
             if (cheap) lines.push(`  └ ${link('арт. ' + cheap.id, cheap.url)} — ${fmt(cheap.price)} ₽`);
         }
     } else {
-        // Plain item shape
         for (const it of slice) {
             const disc = it.discount ? ` −${it.discount}%` : '';
             const diag = it.diagonal ? ` ${it.diagonal}"` : '';
             lines.push(`• <b>${fmt(it.price)} ₽</b>${disc}${diag} · ${esc(it.brand || '—')} · ${link(trim(it.name, 50), it.url)}`);
         }
     }
-
     return { text: lines.join('\n'), reply_markup: navMarkup(`pg:anom:${cat}`, page, arr.length) };
 }
 
-const PAGE_SIZE = 10;
-
-// Build a "← / →" nav row for paginated answers. cbPrefix is the callback_data
-// prefix (e.g. "pg:brand:samsung") — page index gets appended.
-function navMarkup(cbPrefix, page, total) {
-    const lastPage = Math.max(0, Math.ceil(total / PAGE_SIZE) - 1);
-    const row = [];
-    if (page > 0) row.push({ text: '← Назад', callback_data: `${cbPrefix}:${page - 1}` });
-    row.push({ text: `${page + 1}/${lastPage + 1}`, callback_data: 'noop' });
-    if (page < lastPage) row.push({ text: 'Ещё →', callback_data: `${cbPrefix}:${page + 1}` });
-    return { inline_keyboard: [row] };
-}
-
-function fmtItemLine(p, { showBrand = true, showDiag = true } = {}) {
-    const diag = showDiag && p.diagonal ? ` ${p.diagonal}"` : '';
-    const brand = showBrand ? ` ${esc(p.brand || '—')}` : '';
-    const disc = p.discount ? ` −${p.discount}%` : '';
-    return `• <b>${fmt(p.price)}₽</b>${disc}${diag}${brand} · ${link(trim(p.name, 50), p.url)}`;
-}
-
-function cmdBrand(arg, page = 0) {
+function cmdBrand({ items }, arg, page = 0) {
     if (!arg) return { text: '🏷 <b>Выберите бренд:</b>', reply_markup: BRAND_KEYBOARD };
     const q = arg.toLowerCase();
-    const matches = items
-        .filter((x) => (x.brand || '').toLowerCase().includes(q))
-        .sort((a, b) => a.price - b.price);
+    const matches = items.filter((x) => (x.brand || '').toLowerCase().includes(q)).sort((a, b) => a.price - b.price);
     if (!matches.length) return `По бренду «${esc(arg)}» ничего не найдено.`;
     const start = page * PAGE_SIZE;
     const slice = matches.slice(start, start + PAGE_SIZE);
@@ -352,7 +329,7 @@ function cmdBrand(arg, page = 0) {
     return { text: lines.join('\n'), reply_markup: navMarkup(`pg:brand:${q}`, page, matches.length) };
 }
 
-function cmdDiagonal(arg, page = 0) {
+function cmdDiagonal({ items }, arg, page = 0) {
     const n = parseInt(arg, 10);
     if (!n) return { text: '📏 <b>Выберите диагональ:</b>', reply_markup: DIAGONAL_KEYBOARD };
     const matches = items.filter((x) => x.diagonal === n).sort((a, b) => a.price - b.price);
@@ -366,7 +343,7 @@ function cmdDiagonal(arg, page = 0) {
     return { text: lines.join('\n'), reply_markup: navMarkup(`pg:d:${n}`, page, matches.length) };
 }
 
-function cmdUnder(arg, page = 0) {
+function cmdUnder({ items }, arg, page = 0) {
     const max = parseInt(String(arg).replace(/\D/g, ''), 10);
     if (!max) return { text: '💰 <b>Выберите потолок цены:</b>', reply_markup: PRICE_KEYBOARD };
     const matches = items.filter((x) => x.price <= max).sort((a, b) => a.price - b.price);
@@ -380,7 +357,7 @@ function cmdUnder(arg, page = 0) {
     return { text: lines.join('\n'), reply_markup: navMarkup(`pg:under:${max}`, page, matches.length) };
 }
 
-function cmdCheap(arg, page = 0) {
+function cmdCheap({ items }, _arg, page = 0) {
     const matches = items.filter((x) => x.diagonal && x.diagonal >= 32).sort((a, b) => a.price - b.price);
     if (!matches.length) return 'Нет данных.';
     const start = page * PAGE_SIZE;
@@ -392,7 +369,7 @@ function cmdCheap(arg, page = 0) {
     return { text: lines.join('\n'), reply_markup: navMarkup('pg:cheap:_', page, matches.length) };
 }
 
-function cmdFind(arg, page = 0) {
+function cmdFind({ items }, arg, page = 0) {
     if (!arg) return 'Использование: <code>/find qled</code>';
     const q = arg.toLowerCase();
     const matches = items.filter((x) => x.name.toLowerCase().includes(q)).sort((a, b) => a.price - b.price);
@@ -403,13 +380,11 @@ function cmdFind(arg, page = 0) {
     const lastPage = Math.max(0, Math.ceil(matches.length / PAGE_SIZE) - 1);
     const lines = [`<b>«${esc(arg)}» — найдено ${matches.length} · стр. ${page + 1}/${lastPage + 1}</b>`, ''];
     for (const p of slice) lines.push(fmtItemLine(p));
-    // Find arg can contain spaces/colons; sanitize for callback_data (max 64 bytes).
-    // Use a short hash-like key (truncate aggressively).
     const cbArg = encodeURIComponent(q).slice(0, 40);
     return { text: lines.join('\n'), reply_markup: navMarkup(`pg:find:${cbArg}`, page, matches.length) };
 }
 
-function cmdModel(arg) {
+function cmdModel({ allModels }, arg) {
     if (!arg) return 'Использование: <code>/model qe75qn990fuxru</code>';
     const q = arg.toLowerCase().replace(/[`'"]/g, '');
     const m = allModels.find((x) => x.model.toLowerCase() === q) || allModels.find((x) => x.model.toLowerCase().includes(q));
@@ -430,7 +405,7 @@ function cmdModel(arg) {
     return lines.join('\n');
 }
 
-function cmdNow() {
+function cmdNow({ report, models }) {
     const r = (report.generatedAt || '?').slice(0, 16).replace('T', ' ');
     const m = (models.generatedAt || '?').slice(0, 16).replace('T', ' ');
     return [
@@ -442,247 +417,205 @@ function cmdNow() {
     ].join('\n');
 }
 
-async function cmdScrape() {
-    const ghToken = process.env.GITHUB_TOKEN;
-    const repo = process.env.GITHUB_REPOSITORY;
-    const ref = process.env.GITHUB_REF_NAME;
-    if (!ghToken || !repo) return 'Команда доступна только при запуске из GitHub Actions с правом `actions: write`.';
-    const url = `https://api.github.com/repos/${repo}/actions/workflows/wb-tv-report.yml/dispatches`;
-    const r = await fetch(url, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${ghToken}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
-        body: JSON.stringify({ ref: ref || 'main' }),
-    });
-    if (r.status === 204) return '✅ Скрап запрошен. Когда новый снимок будет готов, я пришлю свежую сводку.';
-    const body = await r.text();
-    return `❌ Не удалось запустить скрап: HTTP ${r.status}\n<code>${esc(body.slice(0, 200))}</code>`;
-}
-
 // ---------- dispatcher ----------
 
-async function sendReply(chatId, payload, keyboard) {
-    // payload can be a plain string or an object { text, reply_markup }
-    const text = typeof payload === 'string' ? payload : payload.text;
-    const markup = (typeof payload === 'object' && payload.reply_markup) ? payload.reply_markup : keyboard;
-
-    // Telegram limit: 4096 chars; cap defensively at 3800 with paragraph-aware split.
-    const chunks = [];
-    let cur = '';
-    for (const para of String(text).split('\n')) {
-        if ((cur + '\n' + para).length > 3800 && cur) {
-            chunks.push(cur);
-            cur = para;
-        } else {
-            cur = cur ? cur + '\n' + para : para;
-        }
-    }
-    if (cur) chunks.push(cur);
-
-    for (let i = 0; i < chunks.length; i++) {
-        const body = {
-            chat_id: chatId,
-            text: chunks[i],
-            parse_mode: 'HTML',
-            disable_web_page_preview: true,
-        };
-        // Attach reply markup only to the LAST chunk (Telegram shows one keyboard per message).
-        if (i === chunks.length - 1 && markup) body.reply_markup = markup;
-        await tg('sendMessage', body);
-    }
-}
-
-async function dispatch(cmd, arg) {
+async function dispatch(data, cmd, arg) {
     switch (cmd) {
         case '/start': return { text: cmdStart(), reply_markup: REPLY_KEYBOARD };
         case '/menu': return { text: '⌨️ <b>Меню кнопок:</b>', reply_markup: REPLY_KEYBOARD };
         case '/help': return { text: cmdHelp(), reply_markup: REPLY_KEYBOARD };
         case '/snapshot':
-        case '/summary': return cmdSnapshot();
-        case '/atl': return cmdAtl();
-        case '/deals': return cmdDeals();
-        case '/drops': return cmdDrops();
-        case '/anomalies': return cmdAnomalies();
-        case '/brand': return cmdBrand(arg);
+        case '/summary': return cmdSnapshot(data);
+        case '/atl': return cmdAtl(data, arg, 0);
+        case '/deals': return cmdDeals(data, arg, 0);
+        case '/drops': return cmdDrops(data, arg, 0);
+        case '/anomalies': return cmdAnomalies(data);
+        case '/brand': return cmdBrand(data, arg, 0);
         case '/d':
         case '/diag':
-        case '/diagonal': return cmdDiagonal(arg);
-        case '/under': return cmdUnder(arg);
-        case '/cheap': return cmdCheap();
-        case '/find': return cmdFind(arg);
-        case '/model': return cmdModel(arg);
-        case '/now': return cmdNow();
-        case '/scrape': return await cmdScrape();
+        case '/diagonal': return cmdDiagonal(data, arg, 0);
+        case '/under': return cmdUnder(data, arg, 0);
+        case '/cheap': return cmdCheap(data, arg, 0);
+        case '/find': return cmdFind(data, arg, 0);
+        case '/model': return cmdModel(data, arg);
+        case '/now': return cmdNow(data);
+        case '/scrape': return 'Команда /scrape поддерживается только через GitHub Actions polling. Используйте https://github.com/' + REPO + '/actions';
         default: return 'Неизвестная команда. /help — список.';
     }
 }
 
-async function handleMessage(msg) {
-    if (!msg) return;
+async function dispatchCallback(data, cbData) {
+    if (cbData.startsWith('pg:')) {
+        const rest = cbData.slice(3);
+        const lastColon = rest.lastIndexOf(':');
+        const page = parseInt(rest.slice(lastColon + 1), 10) || 0;
+        const middle = rest.slice(0, lastColon);
+        const firstColon = middle.indexOf(':');
+        const type = middle.slice(0, firstColon);
+        const arg = middle.slice(firstColon + 1);
+        switch (type) {
+            case 'brand': return cmdBrand(data, arg, page);
+            case 'd': return cmdDiagonal(data, arg, page);
+            case 'under': return cmdUnder(data, arg, page);
+            case 'cheap': return cmdCheap(data, arg, page);
+            case 'find': return cmdFind(data, decodeURIComponent(arg), page);
+            case 'atl': return cmdAtl(data, arg, page);
+            case 'deals': return cmdDeals(data, arg, page);
+            case 'drops': return cmdDrops(data, arg, page);
+            case 'anom': return cmdAnomalyCategory(data, arg, page);
+            default: return 'Неизвестная страница.';
+        }
+    }
+    if (cbData.startsWith('anom:')) {
+        const rest = cbData.slice(5);
+        const colon = rest.lastIndexOf(':');
+        const cat = colon > 0 ? rest.slice(0, colon) : rest;
+        const page = colon > 0 ? parseInt(rest.slice(colon + 1), 10) || 0 : 0;
+        return cmdAnomalyCategory(data, cat, page);
+    }
+    if (cbData.startsWith('brand:')) return cmdBrand(data, cbData.slice(6), 0);
+    if (cbData.startsWith('d:')) return cmdDiagonal(data, cbData.slice(2), 0);
+    if (cbData.startsWith('under:')) return cmdUnder(data, cbData.slice(6), 0);
+    return 'Неизвестное действие.';
+}
+
+// ---------- response shaping ----------
+
+function shapeReply(chatId, payload) {
+    const text = typeof payload === 'string' ? payload : payload.text;
+    const markup = (typeof payload === 'object' && payload.reply_markup) ? payload.reply_markup : undefined;
+    // Telegram 4096 cap: split conservatively at 3800 on paragraph boundaries.
+    const chunks = [];
+    let cur = '';
+    for (const para of String(text).split('\n')) {
+        if ((cur + '\n' + para).length > 3800 && cur) { chunks.push(cur); cur = para; }
+        else cur = cur ? cur + '\n' + para : para;
+    }
+    if (cur) chunks.push(cur);
+    return chunks.map((c, i) => ({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: c,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true,
+        ...(i === chunks.length - 1 && markup ? { reply_markup: markup } : {}),
+    }));
+}
+
+// ---------- Telegram update handlers ----------
+
+async function handleMessage(data, msg, env, ctx) {
+    if (!msg) return null;
     const chatId = msg.chat.id;
     let text = (msg.text || '').trim();
-    if (!text) return;
-
-    // Reply-keyboard taps come as plain text; map to slash-commands.
+    if (!text) return null;
     if (TEXT_TO_COMMAND[text]) text = TEXT_TO_COMMAND[text];
-
-    if (!text.startsWith('/')) {
-        // Free-text fallback: treat as /find query.
-        text = '/find ' + text;
-    }
+    if (!text.startsWith('/')) text = '/find ' + text;
 
     const [cmdRaw, ...rest] = text.split(/\s+/);
     const cmd = cmdRaw.split('@')[0].toLowerCase();
     const arg = rest.join(' ');
-
-    let reply;
-    try {
-        reply = await dispatch(cmd, arg);
-    } catch (err) {
-        console.error('handler error', err);
-        reply = `Ошибка: <code>${esc(err.message || String(err))}</code>`;
-    }
-    if (reply) await sendReply(chatId, reply);
+    const reply = await dispatch(data, cmd, arg);
+    return shapeReply(chatId, reply);
 }
 
-async function handleCallback(cq) {
-    if (!cq) return;
-    const data = cq.data || '';
+async function handleCallback(data, cq, env, ctx) {
+    const cbData = cq.data || '';
     const chatId = cq.message?.chat?.id;
     const messageId = cq.message?.message_id;
-    if (!chatId) return;
+    if (!chatId) return null;
 
-    // No-op buttons (e.g. page indicator) — just ack and return
-    if (data === 'noop') {
-        await tg('answerCallbackQuery', { callback_query_id: cq.id });
-        return;
+    if (cbData === 'noop') {
+        return [{ method: 'answerCallbackQuery', callback_query_id: cq.id }];
     }
 
-    // Ack so the spinner on the button stops
-    await tg('answerCallbackQuery', { callback_query_id: cq.id });
-
-    let reply;
-    let editInPlace = false;
-    try {
-        if (data.startsWith('pg:')) {
-            // pg:<type>:<arg>:<page> — paginated nav, edit existing message
-            const rest = data.slice(3);
-            const lastColon = rest.lastIndexOf(':');
-            const page = parseInt(rest.slice(lastColon + 1), 10) || 0;
-            const middle = rest.slice(0, lastColon);
-            const firstColon = middle.indexOf(':');
-            const type = middle.slice(0, firstColon);
-            const arg = middle.slice(firstColon + 1);
-            editInPlace = true;
-            switch (type) {
-                case 'brand': reply = cmdBrand(arg, page); break;
-                case 'd': reply = cmdDiagonal(arg, page); break;
-                case 'under': reply = cmdUnder(arg, page); break;
-                case 'cheap': reply = cmdCheap(arg, page); break;
-                case 'find': reply = cmdFind(decodeURIComponent(arg), page); break;
-                case 'atl': reply = cmdAtl(arg, page); break;
-                case 'deals': reply = cmdDeals(arg, page); break;
-                case 'drops': reply = cmdDrops(arg, page); break;
-                case 'anom': reply = cmdAnomalyCategory(arg, page); break;
-                default: reply = 'Неизвестная страница.';
-            }
-        } else if (data.startsWith('anom:')) {
-            // initial drill-in from /anomalies overview: anom:<category>:0
-            const rest = data.slice(5);
-            const colon = rest.lastIndexOf(':');
-            const cat = colon > 0 ? rest.slice(0, colon) : rest;
-            const page = colon > 0 ? parseInt(rest.slice(colon + 1), 10) || 0 : 0;
-            editInPlace = true;
-            reply = cmdAnomalyCategory(cat, page);
-        } else if (data.startsWith('brand:')) reply = cmdBrand(data.slice(6));
-        else if (data.startsWith('d:')) reply = cmdDiagonal(data.slice(2));
-        else if (data.startsWith('under:')) reply = cmdUnder(data.slice(6));
-        else reply = 'Неизвестное действие.';
-    } catch (err) {
-        reply = `Ошибка: <code>${esc(err.message || String(err))}</code>`;
-    }
-
-    if (!reply) return;
+    const reply = await dispatchCallback(data, cbData);
     const text = typeof reply === 'string' ? reply : reply.text;
     const markup = typeof reply === 'object' ? reply.reply_markup : undefined;
 
-    if (editInPlace && messageId) {
-        // Edit the existing message instead of spamming a new one
-        const r = await tg('editMessageText', {
+    // For paginated callbacks we EDIT the message in place; for initial brand/d/under
+    // callbacks (no "pg:" prefix) we also edit since the user already saw the keyboard.
+    const editInPlace = !!messageId;
+
+    const responses = [{ method: 'answerCallbackQuery', callback_query_id: cq.id }];
+    if (editInPlace) {
+        responses.push({
+            method: 'editMessageText',
             chat_id: chatId,
             message_id: messageId,
             text,
             parse_mode: 'HTML',
             disable_web_page_preview: true,
-            reply_markup: markup,
+            ...(markup ? { reply_markup: markup } : {}),
         });
-        if (!r.ok) {
-            // Telegram returns 400 "message is not modified" if same content — silently ignore
-            if (!/not modified/i.test(r.description || '')) {
-                console.error('editMessageText failed:', r.description);
+    } else {
+        responses.push(...shapeReply(chatId, reply));
+    }
+    return responses;
+}
+
+// ---------- Worker entrypoint ----------
+
+async function sendOne(token, body) {
+    const r = await fetch(`https://api.telegram.org/bot${token}/${body.method}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+    });
+    if (!r.ok) {
+        const t = await r.text();
+        console.error(`tg ${body.method} failed: ${r.status} ${t}`);
+    }
+}
+
+export default {
+    async fetch(request, env, ctx) {
+        const url = new URL(request.url);
+
+        // Health check + setup helpers
+        if (url.pathname === '/' && request.method === 'GET') {
+            return new Response('WB TV Tracker bot — alive. POST /webhook for Telegram.\n', { headers: { 'Content-Type': 'text/plain' } });
+        }
+        if (url.pathname === '/setup' && request.method === 'POST') {
+            // Returns the URL you should pass to setWebhook
+            return Response.json({
+                setWebhook: `https://api.telegram.org/bot<TOKEN>/setWebhook?url=${url.origin}/webhook`,
+                deleteWebhook: `https://api.telegram.org/bot<TOKEN>/deleteWebhook`,
+            });
+        }
+        if (request.method !== 'POST') return new Response('Method not allowed', { status: 405 });
+
+        let update;
+        try { update = await request.json(); }
+        catch { return new Response('Bad JSON', { status: 400 }); }
+
+        const token = env.TELEGRAM_BOT_TOKEN;
+        if (!token) return new Response('TELEGRAM_BOT_TOKEN not configured', { status: 500 });
+
+        const data = await loadData(ctx);
+
+        let responses = null;
+        try {
+            if (update.message) responses = await handleMessage(data, update.message, env, ctx);
+            else if (update.callback_query) responses = await handleCallback(data, update.callback_query, env, ctx);
+        } catch (err) {
+            console.error('handler error:', err.stack || err.message);
+            if (update.message?.chat?.id) {
+                responses = [{
+                    method: 'sendMessage',
+                    chat_id: update.message.chat.id,
+                    text: `Ошибка: <code>${esc(err.message || String(err))}</code>`,
+                    parse_mode: 'HTML',
+                }];
             }
         }
-    } else {
-        await sendReply(chatId, reply);
-    }
-}
 
-// ---------- module exports (for tests / reuse) ----------
+        if (!responses?.length) return new Response('OK');
 
-export { dispatch, handleMessage, handleCallback, REPLY_KEYBOARD };
-
-// Only enter the polling loop when invoked directly, not when imported.
-const invokedDirectly = import.meta.url === `file://${process.argv[1]}`;
-if (!invokedDirectly) {
-    // Imported as a module — skip the long-polling loop and state writes.
-} else {
-
-// ---------- main loop ----------
-
-// Register slash-commands in Telegram UI on the first run after a state reset.
-// Cheap to call (idempotent) but skip if we've already done it to keep logs tidy.
-if (!state.commandsRegistered) {
-    try {
-        await registerBotCommands();
-        state.commandsRegistered = true;
-        console.log('bot: setMyCommands registered');
-    } catch (err) {
-        console.error('bot: setMyCommands failed', err);
-    }
-}
-
-console.log(`bot: starting from offset=${offset}`);
-while (Date.now() < POLL_DEADLINE_MS) {
-    const remainingSec = Math.floor((POLL_DEADLINE_MS - Date.now()) / 1000);
-    const timeout = Math.max(2, Math.min(25, remainingSec - 2));
-    if (timeout < 2) break;
-
-    const resp = await tg('getUpdates', { offset, timeout, allowed_updates: ['message', 'callback_query'] });
-    if (!resp.ok) {
-        console.error('getUpdates failed:', JSON.stringify(resp));
-        break;
-    }
-    const updates = resp.result || [];
-    for (const u of updates) {
-        offset = u.update_id + 1;
-        if (u.message) {
-            console.log(`bot: msg ${u.message.from?.username || u.message.from?.id}: ${u.message.text || ''}`);
-            await handleMessage(u.message);
-            processed++;
-        } else if (u.callback_query) {
-            console.log(`bot: cq ${u.callback_query.from?.username || u.callback_query.from?.id}: ${u.callback_query.data}`);
-            await handleCallback(u.callback_query);
-            processed++;
-        }
-    }
-}
-
-const newState = {
-    lastUpdateId: offset > 0 ? offset - 1 : 0,
-    updatedAt: new Date().toISOString(),
-    processedThisRun: processed,
-    commandsRegistered: state.commandsRegistered === true,
+        // Cloudflare lets us return the FIRST response inline (zero extra latency)
+        // and dispatch the rest via the Bot API.
+        const [first, ...rest] = responses;
+        if (rest.length) ctx.waitUntil(Promise.all(rest.map((b) => sendOne(token, b))));
+        return Response.json(first);
+    },
 };
-writeFileSync(STATE_PATH, JSON.stringify(newState, null, 2));
-console.log(`bot: done. processed=${processed}, lastUpdateId=${newState.lastUpdateId}`);
-
-}  // end invokedDirectly block
