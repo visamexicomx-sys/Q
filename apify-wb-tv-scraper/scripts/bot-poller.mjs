@@ -187,42 +187,54 @@ function cmdSnapshot() {
     return lines.join('\n');
 }
 
-function cmdAtl() {
-    const news = allModels.filter((m) => m.newAllTimeLow);
-    if (!news.length) return 'Новых all-time low в последнем снимке нет.';
-    const top = [...news].sort((a, b) => b.sellers - a.sellers || a.min - b.min).slice(0, 20);
-    const lines = [`<b>🟢 Новые all-time low — ${news.length}</b>`, ''];
-    for (const r of top) {
+function cmdAtl(arg, page = 0) {
+    const all = allModels.filter((m) => m.newAllTimeLow)
+        .sort((a, b) => b.sellers - a.sellers || a.min - b.min);
+    if (!all.length) return 'Новых all-time low в последнем снимке нет.';
+    const start = page * PAGE_SIZE;
+    const slice = all.slice(start, start + PAGE_SIZE);
+    const lastPage = Math.max(0, Math.ceil(all.length / PAGE_SIZE) - 1);
+    const lines = [`<b>🟢 Новые all-time low — ${all.length} · стр. ${page + 1}/${lastPage + 1}</b>`, ''];
+    for (const r of slice) {
         const cheap = r.items[0];
         lines.push(`• <code>${esc(r.model)}</code> · ${esc(r.brand)} ${r.diagonals.join('/')}" · <b>${fmt(r.min)} ₽</b> · ${link('арт. ' + cheap.id, cheap.url)}`);
     }
-    if (news.length > top.length) lines.push(`<i>…и ещё ${news.length - top.length} моделей.</i>`);
-    return lines.join('\n');
+    return { text: lines.join('\n'), reply_markup: navMarkup('pg:atl:_', page, all.length) };
 }
 
-function cmdDeals() {
+function cmdDeals(arg, page = 0) {
     const deals = allModels
         .filter((m) => m.dealItems?.length)
         .flatMap((m) => m.dealItems.map((d) => ({ ...d, model: m })))
         .sort((a, b) => (a.price / a.model.median) - (b.price / b.model.median));
     if (!deals.length) return 'Сделок ниже 80% медианы своей модели сейчас нет.';
-    const lines = [`<b>💸 Сделки внутри модели — ${deals.length}</b>`, '<i>Артикул дешевле, чем тот же товар у других продавцов.</i>', ''];
-    for (const d of deals.slice(0, 20)) {
+    const start = page * PAGE_SIZE;
+    const slice = deals.slice(start, start + PAGE_SIZE);
+    const lastPage = Math.max(0, Math.ceil(deals.length / PAGE_SIZE) - 1);
+    const lines = [
+        `<b>💸 Сделки внутри модели — ${deals.length} · стр. ${page + 1}/${lastPage + 1}</b>`,
+        '<i>Артикул дешевле, чем тот же товар у других продавцов.</i>',
+        '',
+    ];
+    for (const d of slice) {
         const diff = Math.round((1 - d.price / d.model.median) * 100);
         lines.push(`• −<b>${diff}%</b> · <code>${esc(d.model.model)}</code> · ${esc(d.model.brand)} ${d.model.diagonals.join('/')}" · <b>${fmt(d.price)} ₽</b> (медиана ${fmt(d.model.median)}) · ${link('арт. ' + d.id, d.url)}`);
     }
-    return lines.join('\n');
+    return { text: lines.join('\n'), reply_markup: navMarkup('pg:deals:_', page, deals.length) };
 }
 
-function cmdDrops() {
+function cmdDrops(arg, page = 0) {
     const drops = allModels.filter((m) => m.dropPct != null && m.dropPct <= -10).sort((a, b) => a.dropPct - b.dropPct);
     if (!drops.length) return 'Никакая модель не подешевела ≥10% к прошлому снимку.';
-    const lines = [`<b>📉 Подешевели ≥10% — ${drops.length}</b>`, ''];
-    for (const r of drops.slice(0, 20)) {
+    const start = page * PAGE_SIZE;
+    const slice = drops.slice(start, start + PAGE_SIZE);
+    const lastPage = Math.max(0, Math.ceil(drops.length / PAGE_SIZE) - 1);
+    const lines = [`<b>📉 Подешевели ≥10% — ${drops.length} · стр. ${page + 1}/${lastPage + 1}</b>`, ''];
+    for (const r of slice) {
         const cheap = r.items[0];
         lines.push(`• <b>${r.dropPct}%</b> · <code>${esc(r.model)}</code> · ${esc(r.brand)} ${r.diagonals.join('/')}" · <b>${fmt(r.min)} ₽</b> · ${link('арт. ' + cheap.id, cheap.url)}`);
     }
-    return lines.join('\n');
+    return { text: lines.join('\n'), reply_markup: navMarkup('pg:drops:_', page, drops.length) };
 }
 
 function cmdAnomalies() {
@@ -237,63 +249,101 @@ function cmdAnomalies() {
     return lines.join('\n');
 }
 
-function cmdBrand(arg) {
-    if (!arg) return { text: '🏷 <b>Выберите бренд:</b>', reply_markup: BRAND_KEYBOARD };
-    const q = arg.toLowerCase();
-    const matches = items.filter((x) => (x.brand || '').toLowerCase().includes(q));
-    if (!matches.length) return `По бренду «${esc(arg)}» ничего не найдено.`;
-    const sorted = [...matches].sort((a, b) => a.price - b.price);
-    const lines = [`<b>${esc(arg.toUpperCase())} — ${matches.length} карт.</b>`, `Мин <b>${fmt(sorted[0].price)} ₽</b> · Макс ${fmt(sorted[sorted.length - 1].price)} ₽`, ''];
-    for (const p of sorted.slice(0, 15)) {
-        lines.push(`• <b>${fmt(p.price)}₽</b> ${p.diagonal ? p.diagonal + '"' : ''} ${link(trim(p.name, 60), p.url)}`);
-    }
-    return lines.join('\n');
+const PAGE_SIZE = 10;
+
+// Build a "← / →" nav row for paginated answers. cbPrefix is the callback_data
+// prefix (e.g. "pg:brand:samsung") — page index gets appended.
+function navMarkup(cbPrefix, page, total) {
+    const lastPage = Math.max(0, Math.ceil(total / PAGE_SIZE) - 1);
+    const row = [];
+    if (page > 0) row.push({ text: '← Назад', callback_data: `${cbPrefix}:${page - 1}` });
+    row.push({ text: `${page + 1}/${lastPage + 1}`, callback_data: 'noop' });
+    if (page < lastPage) row.push({ text: 'Ещё →', callback_data: `${cbPrefix}:${page + 1}` });
+    return { inline_keyboard: [row] };
 }
 
-function cmdDiagonal(arg) {
+function fmtItemLine(p, { showBrand = true, showDiag = true } = {}) {
+    const diag = showDiag && p.diagonal ? ` ${p.diagonal}"` : '';
+    const brand = showBrand ? ` ${esc(p.brand || '—')}` : '';
+    const disc = p.discount ? ` −${p.discount}%` : '';
+    return `• <b>${fmt(p.price)}₽</b>${disc}${diag}${brand} · ${link(trim(p.name, 50), p.url)}`;
+}
+
+function cmdBrand(arg, page = 0) {
+    if (!arg) return { text: '🏷 <b>Выберите бренд:</b>', reply_markup: BRAND_KEYBOARD };
+    const q = arg.toLowerCase();
+    const matches = items
+        .filter((x) => (x.brand || '').toLowerCase().includes(q))
+        .sort((a, b) => a.price - b.price);
+    if (!matches.length) return `По бренду «${esc(arg)}» ничего не найдено.`;
+    const start = page * PAGE_SIZE;
+    const slice = matches.slice(start, start + PAGE_SIZE);
+    if (!slice.length) return `Страница ${page + 1} пуста.`;
+    const lastPage = Math.max(0, Math.ceil(matches.length / PAGE_SIZE) - 1);
+    const lines = [
+        `<b>${esc(arg.toUpperCase())} — ${matches.length} карт. · стр. ${page + 1}/${lastPage + 1}</b>`,
+        `Мин <b>${fmt(matches[0].price)} ₽</b> · Макс ${fmt(matches[matches.length - 1].price)} ₽`,
+        '',
+    ];
+    for (const p of slice) lines.push(fmtItemLine(p, { showBrand: false }));
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:brand:${q}`, page, matches.length) };
+}
+
+function cmdDiagonal(arg, page = 0) {
     const n = parseInt(arg, 10);
     if (!n) return { text: '📏 <b>Выберите диагональ:</b>', reply_markup: DIAGONAL_KEYBOARD };
     const matches = items.filter((x) => x.diagonal === n).sort((a, b) => a.price - b.price);
     if (!matches.length) return `Карточек с диагональю ${n}" нет.`;
-    const lines = [`<b>${n}" — топ-10 самых дешёвых из ${matches.length}</b>`, ''];
-    for (const p of matches.slice(0, 10)) {
-        lines.push(`• <b>${fmt(p.price)}₽</b> ${p.discount ? '−' + p.discount + '% ' : ''}${esc(p.brand || '—')} · ${link(trim(p.name, 55), p.url)}`);
-    }
-    return lines.join('\n');
+    const start = page * PAGE_SIZE;
+    const slice = matches.slice(start, start + PAGE_SIZE);
+    if (!slice.length) return `Страница ${page + 1} пуста.`;
+    const lastPage = Math.max(0, Math.ceil(matches.length / PAGE_SIZE) - 1);
+    const lines = [`<b>${n}" — ${matches.length} карт. · стр. ${page + 1}/${lastPage + 1}</b>`, ''];
+    for (const p of slice) lines.push(fmtItemLine(p, { showDiag: false }));
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:d:${n}`, page, matches.length) };
 }
 
-function cmdUnder(arg) {
+function cmdUnder(arg, page = 0) {
     const max = parseInt(String(arg).replace(/\D/g, ''), 10);
     if (!max) return { text: '💰 <b>Выберите потолок цены:</b>', reply_markup: PRICE_KEYBOARD };
     const matches = items.filter((x) => x.price <= max).sort((a, b) => a.price - b.price);
     if (!matches.length) return `Ничего не дешевле ${fmt(max)} ₽.`;
-    const lines = [`<b>До ${fmt(max)} ₽ — ${matches.length} карт.</b>`, ''];
-    for (const p of matches.slice(0, 20)) {
-        lines.push(`• <b>${fmt(p.price)}₽</b> ${p.diagonal ? p.diagonal + '" ' : ''}${esc(p.brand || '—')} · ${link(trim(p.name, 55), p.url)}`);
-    }
-    return lines.join('\n');
+    const start = page * PAGE_SIZE;
+    const slice = matches.slice(start, start + PAGE_SIZE);
+    if (!slice.length) return `Страница ${page + 1} пуста.`;
+    const lastPage = Math.max(0, Math.ceil(matches.length / PAGE_SIZE) - 1);
+    const lines = [`<b>До ${fmt(max)} ₽ — ${matches.length} карт. · стр. ${page + 1}/${lastPage + 1}</b>`, ''];
+    for (const p of slice) lines.push(fmtItemLine(p));
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:under:${max}`, page, matches.length) };
 }
 
-function cmdCheap() {
-    const c = [...items].filter((x) => x.diagonal && x.diagonal >= 32).sort((a, b) => a.price - b.price).slice(0, 15);
-    const lines = ['<b>🪙 Топ-15 самых дешёвых TV ≥32"</b>', ''];
-    for (const p of c) {
-        lines.push(`• <b>${fmt(p.price)}₽</b> ${p.diagonal}" ${esc(p.brand || '—')} · ${link(trim(p.name, 55), p.url)}`);
-    }
-    return lines.join('\n');
+function cmdCheap(arg, page = 0) {
+    const matches = items.filter((x) => x.diagonal && x.diagonal >= 32).sort((a, b) => a.price - b.price);
+    if (!matches.length) return 'Нет данных.';
+    const start = page * PAGE_SIZE;
+    const slice = matches.slice(start, start + PAGE_SIZE);
+    if (!slice.length) return `Страница ${page + 1} пуста.`;
+    const lastPage = Math.max(0, Math.ceil(matches.length / PAGE_SIZE) - 1);
+    const lines = [`<b>🪙 Самые дешёвые TV ≥32" — ${matches.length} карт. · стр. ${page + 1}/${lastPage + 1}</b>`, ''];
+    for (const p of slice) lines.push(fmtItemLine(p));
+    return { text: lines.join('\n'), reply_markup: navMarkup('pg:cheap:_', page, matches.length) };
 }
 
-function cmdFind(arg) {
+function cmdFind(arg, page = 0) {
     if (!arg) return 'Использование: <code>/find qled</code>';
     const q = arg.toLowerCase();
-    const matches = items.filter((x) => x.name.toLowerCase().includes(q));
+    const matches = items.filter((x) => x.name.toLowerCase().includes(q)).sort((a, b) => a.price - b.price);
     if (!matches.length) return `По запросу «${esc(arg)}» ничего не найдено.`;
-    const sorted = [...matches].sort((a, b) => a.price - b.price);
-    const lines = [`<b>Найдено ${matches.length} — топ-15 по цене</b>`, ''];
-    for (const p of sorted.slice(0, 15)) {
-        lines.push(`• <b>${fmt(p.price)}₽</b> ${p.diagonal ? p.diagonal + '" ' : ''}${esc(p.brand || '—')} · ${link(trim(p.name, 55), p.url)}`);
-    }
-    return lines.join('\n');
+    const start = page * PAGE_SIZE;
+    const slice = matches.slice(start, start + PAGE_SIZE);
+    if (!slice.length) return `Страница ${page + 1} пуста.`;
+    const lastPage = Math.max(0, Math.ceil(matches.length / PAGE_SIZE) - 1);
+    const lines = [`<b>«${esc(arg)}» — найдено ${matches.length} · стр. ${page + 1}/${lastPage + 1}</b>`, ''];
+    for (const p of slice) lines.push(fmtItemLine(p));
+    // Find arg can contain spaces/colons; sanitize for callback_data (max 64 bytes).
+    // Use a short hash-like key (truncate aggressively).
+    const cbArg = encodeURIComponent(q).slice(0, 40);
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:find:${cbArg}`, page, matches.length) };
 }
 
 function cmdModel(arg) {
@@ -435,21 +485,73 @@ async function handleCallback(cq) {
     if (!cq) return;
     const data = cq.data || '';
     const chatId = cq.message?.chat?.id;
+    const messageId = cq.message?.message_id;
     if (!chatId) return;
 
-    // Ack quickly so the spinner on the button stops
+    // No-op buttons (e.g. page indicator) — just ack and return
+    if (data === 'noop') {
+        await tg('answerCallbackQuery', { callback_query_id: cq.id });
+        return;
+    }
+
+    // Ack so the spinner on the button stops
     await tg('answerCallbackQuery', { callback_query_id: cq.id });
 
     let reply;
+    let editInPlace = false;
     try {
-        if (data.startsWith('brand:')) reply = cmdBrand(data.slice(6));
+        if (data.startsWith('pg:')) {
+            // pg:<type>:<arg>:<page> — paginated nav, edit existing message
+            const rest = data.slice(3);
+            const lastColon = rest.lastIndexOf(':');
+            const page = parseInt(rest.slice(lastColon + 1), 10) || 0;
+            const middle = rest.slice(0, lastColon);
+            const firstColon = middle.indexOf(':');
+            const type = middle.slice(0, firstColon);
+            const arg = middle.slice(firstColon + 1);
+            editInPlace = true;
+            switch (type) {
+                case 'brand': reply = cmdBrand(arg, page); break;
+                case 'd': reply = cmdDiagonal(arg, page); break;
+                case 'under': reply = cmdUnder(arg, page); break;
+                case 'cheap': reply = cmdCheap(arg, page); break;
+                case 'find': reply = cmdFind(decodeURIComponent(arg), page); break;
+                case 'atl': reply = cmdAtl(arg, page); break;
+                case 'deals': reply = cmdDeals(arg, page); break;
+                case 'drops': reply = cmdDrops(arg, page); break;
+                default: reply = 'Неизвестная страница.';
+            }
+        } else if (data.startsWith('brand:')) reply = cmdBrand(data.slice(6));
         else if (data.startsWith('d:')) reply = cmdDiagonal(data.slice(2));
         else if (data.startsWith('under:')) reply = cmdUnder(data.slice(6));
         else reply = 'Неизвестное действие.';
     } catch (err) {
         reply = `Ошибка: <code>${esc(err.message || String(err))}</code>`;
     }
-    if (reply) await sendReply(chatId, reply);
+
+    if (!reply) return;
+    const text = typeof reply === 'string' ? reply : reply.text;
+    const markup = typeof reply === 'object' ? reply.reply_markup : undefined;
+
+    if (editInPlace && messageId) {
+        // Edit the existing message instead of spamming a new one
+        const r = await tg('editMessageText', {
+            chat_id: chatId,
+            message_id: messageId,
+            text,
+            parse_mode: 'HTML',
+            disable_web_page_preview: true,
+            reply_markup: markup,
+        });
+        if (!r.ok) {
+            // Telegram returns 400 "message is not modified" if same content — silently ignore
+            if (!/not modified/i.test(r.description || '')) {
+                console.error('editMessageText failed:', r.description);
+            }
+        }
+    } else {
+        await sendReply(chatId, reply);
+    }
 }
 
 // ---------- module exports (for tests / reuse) ----------
