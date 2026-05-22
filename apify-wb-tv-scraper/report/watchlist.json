@@ -1,4 +1,61 @@
 {
-  "updatedAt": "2026-05-22T17:12:11.846Z",
-  "entries": []
+  "updatedAt": "2026-05-22T17:17:33.228Z",
+  "entries": [
+    {
+      "chatId": 1312189374,
+      "productId": "357676897",
+      "kind": "product",
+      "alias": "Roborock Zeo Lite (стиралка)",
+      "threshold": 50000,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:17:33.228Z",
+      "lastSnapshot": null,
+      "history": [],
+      "minSeen": null,
+      "maxSeen": null
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "458921344",
+      "kind": "product",
+      "alias": "iPhone 15 Pro 256GB",
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:17:33.228Z",
+      "lastSnapshot": null,
+      "history": [],
+      "minSeen": null,
+      "maxSeen": null
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "391105672",
+      "kind": "product",
+      "alias": "Sony WH-1000XM5",
+      "threshold": 25000,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:17:33.228Z",
+      "lastSnapshot": null,
+      "history": [],
+      "minSeen": null,
+      "maxSeen": null
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "312445678",
+      "kind": "product",
+      "alias": "Haier Grand",
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:17:33.228Z",
+      "lastSnapshot": null,
+      "history": [],
+      "minSeen": null,
+      "maxSeen": null
+    }
+  ]
 }
