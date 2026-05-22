@@ -1,0 +1,41 @@
+name: WB TV — Weekly digest
+
+# Каждый понедельник 07:00 UTC = 10:00 МСК — короткая саммари недели в канал.
+# Использует Claude Haiku если доступен ANTHROPIC_API_KEY, иначе локальный fallback.
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Распечатать в лог, не отправлять в Telegram"
+        default: "false"
+
+permissions:
+  contents: read
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      OUT_DIR: apify-wb-tv-scraper/report
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Send weekly digest
+        run: |
+          ARGS=()
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS=(--dry-run)
+          fi
+          node apify-wb-tv-scraper/scripts/weekly-digest.mjs \
+            --models "$OUT_DIR/MODELS.json" \
+            --history-dir "$OUT_DIR/history" \
+            "${ARGS[@]}"

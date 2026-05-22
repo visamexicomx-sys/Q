@@ -66,9 +66,12 @@ jobs:
           git add "$OUT_DIR/REPORT.md" "$OUT_DIR/REPORT.json" \
                   "$OUT_DIR/ANOMALIES.md" "$OUT_DIR/ANOMALIES.json" \
                   "$OUT_DIR/MODELS.md" "$OUT_DIR/MODELS.json" \
+                  "$OUT_DIR/TWINS.json" "$OUT_DIR/SELLERS.json" \
                   "$OUT_DIR/models-history.json" \
                   "$OUT_DIR/alerts-state.json" \
                   "$OUT_DIR/history"
+          # watchlist may not exist on first run
+          [ -f "$OUT_DIR/watchlist.json" ] && git add "$OUT_DIR/watchlist.json" || true
           if git diff --staged --quiet; then
             echo "No report changes — skipping commit."
             exit 0

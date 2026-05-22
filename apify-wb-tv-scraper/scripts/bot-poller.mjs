@@ -21,6 +21,10 @@ const STATE_PATH = resolve(REPORT_DIR, 'bot-state.json');
 const REPORT_PATH = resolve(REPORT_DIR, 'REPORT.json');
 const MODELS_PATH = resolve(REPORT_DIR, 'MODELS.json');
 const ANOMALIES_PATH = resolve(REPORT_DIR, 'ANOMALIES.json');
+const TWINS_PATH = resolve(REPORT_DIR, 'TWINS.json');
+const SELLERS_PATH = resolve(REPORT_DIR, 'SELLERS.json');
+const WATCHLIST_PATH = resolve(REPORT_DIR, 'watchlist.json');
+const HISTORY_PATH = resolve(REPORT_DIR, 'models-history.json');
 
 const POLL_DEADLINE_MS = Date.now() + 230_000;  // ~4 min, leaves buffer for cron 5-min slot
 
@@ -121,6 +125,13 @@ async function registerBotCommands() {
             { command: 'under', description: '💰 Модели до цены (₽)' },
             { command: 'find', description: '🔍 Поиск по названию' },
             { command: 'model', description: '📺 Детально по модели' },
+            { command: 'chart', description: '📈 График цены модели (PNG)' },
+            { command: 'forecast', description: '🔮 Прогноз: куда движется цена' },
+            { command: 'twins', description: '🪞 Panel-twins: те же экраны у разных брендов' },
+            { command: 'sellers', description: '🏪 Топ нестабильных листингов' },
+            { command: 'watch', description: '👀 Подписаться: /watch <модель> [потолок_₽]' },
+            { command: 'unwatch', description: '🚫 Отписаться: /unwatch <модель>' },
+            { command: 'watchlist', description: '📋 Мои подписки' },
             { command: 'now', description: '🕐 Время последнего снимка' },
             { command: 'scrape', description: '🔄 Запросить новый скрап' },
             { command: 'menu', description: '⌨️ Показать меню кнопок' },
@@ -141,6 +152,10 @@ let processed = 0;
 const report = existsSync(REPORT_PATH) ? JSON.parse(readFileSync(REPORT_PATH, 'utf8')) : { all: [], byBrand: [], generatedAt: null };
 const models = existsSync(MODELS_PATH) ? JSON.parse(readFileSync(MODELS_PATH, 'utf8')) : { models: [], generatedAt: null };
 const anomalies = existsSync(ANOMALIES_PATH) ? JSON.parse(readFileSync(ANOMALIES_PATH, 'utf8')) : null;
+const twins = existsSync(TWINS_PATH) ? JSON.parse(readFileSync(TWINS_PATH, 'utf8')) : { twins: [] };
+const sellersReport = existsSync(SELLERS_PATH) ? JSON.parse(readFileSync(SELLERS_PATH, 'utf8')) : { listings: [] };
+const history = existsSync(HISTORY_PATH) ? JSON.parse(readFileSync(HISTORY_PATH, 'utf8')) : { models: {} };
+let watchlist = existsSync(WATCHLIST_PATH) ? JSON.parse(readFileSync(WATCHLIST_PATH, 'utf8')) : { entries: [] };
 
 const items = report.all || [];
 const allModels = models.models || [];
@@ -167,6 +182,17 @@ function cmdHelp() {
         '/cheap — топ-15 самых дешёвых TV ≥32"',
         '/find &lt;text&gt; — поиск по названию',
         '/model &lt;code&gt; — детально по модели',
+        '',
+        '<b>📈 Аналитика</b>',
+        '/chart &lt;code&gt; — график цены модели (PNG)',
+        '/forecast &lt;code&gt; — куда движется цена + лучший день недели',
+        '/twins [diag] — те же экраны у разных брендов',
+        '/sellers — подозрительные листинги',
+        '',
+        '<b>👀 Подписки</b>',
+        '/watch &lt;code&gt; [₽] — подписаться на модель',
+        '/unwatch &lt;code&gt; — отписаться',
+        '/watchlist — мои подписки',
         '',
         '<b>⚙️ Прочее</b>',
         '/now — время последнего снимка',
@@ -458,6 +484,225 @@ async function cmdScrape() {
     return `❌ Не удалось запустить скрап: HTTP ${r.status}\n<code>${esc(body.slice(0, 200))}</code>`;
 }
 
+// ---------- new commands: chart / forecast / twins / sellers / watch ----------
+
+function findModel(q) {
+    if (!q) return null;
+    const norm = q.toLowerCase().replace(/[`'"]/g, '');
+    return allModels.find((x) => x.model.toLowerCase() === norm)
+        || allModels.find((x) => x.model.toLowerCase().includes(norm));
+}
+
+function chartUrl(m) {
+    const h = history.models?.[m.key];
+    const snaps = h?.snapshots || [];
+    if (snaps.length < 2) return null;
+    const labels = snaps.map((s) => s.at.slice(5, 10));
+    const min = snaps.map((s) => s.min);
+    const med = snaps.map((s) => s.med);
+    const cfg = {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [
+                { label: 'Мин ₽', data: min, borderColor: '#3fb950', fill: false, tension: 0.2 },
+                { label: 'Медиана ₽', data: med, borderColor: '#d29922', fill: false, tension: 0.2, borderDash: [4, 4] },
+            ],
+        },
+        options: {
+            title: { display: true, text: `${m.brand} ${m.model} · ${m.diagonals.join('/')}"` },
+            legend: { position: 'bottom' },
+        },
+    };
+    return `https://quickchart.io/chart?bkg=white&w=720&h=360&c=${encodeURIComponent(JSON.stringify(cfg))}`;
+}
+
+function cmdChart(arg) {
+    if (!arg) return 'Использование: <code>/chart qe75qn990fuxru</code>';
+    const m = findModel(arg);
+    if (!m) return `Модель <code>${esc(arg)}</code> не найдена.`;
+    const url = chartUrl(m);
+    if (!url) return `<b>${esc(m.brand)} <code>${esc(m.model)}</code></b>\nЕщё нет истории для графика (нужно ≥2 снимков).`;
+    return {
+        text: [
+            `<b>📈 ${esc(m.brand)} <code>${esc(m.model)}</code> · ${m.diagonals.join('/')}"</b>`,
+            `Текущий мин: <b>${fmt(m.min)} ₽</b> · ATL: ${fmt(m.allTimeMin)} ₽`,
+            `<a href="${esc(url)}">График открыть в полном размере →</a>`,
+        ].join('\n'),
+        // Preview enabled — Telegram renders the QuickChart PNG inline.
+        disable_web_page_preview: false,
+    };
+}
+
+function cmdForecast(arg) {
+    if (!arg) return 'Использование: <code>/forecast qe75qn990fuxru</code>';
+    const m = findModel(arg);
+    if (!m) return `Модель <code>${esc(arg)}</code> не найдена.`;
+    const lines = [
+        `<b>🔮 ${esc(m.brand)} <code>${esc(m.model)}</code> · ${m.diagonals.join('/')}"</b>`,
+        '',
+        `Текущий мин: <b>${fmt(m.min)} ₽</b>`,
+        `Медиана: ${fmt(m.median)} ₽ · ATL: ${fmt(m.allTimeMin)} ₽`,
+    ];
+    if (m.velocity != null) {
+        const arrow = m.velocity <= -1 ? '📉' : m.velocity >= 1 ? '📈' : '➡';
+        const tagLabel = {
+            'panic-sale': '🚨 PANIC SALE — продавец сбрасывает остатки, бери сейчас',
+            'falling': '📉 Падает — стоит подождать ещё пару дней',
+            'rising': '📈 Растёт — покупать прямо сейчас',
+            'flat': '➡ Стабильно — равновесие, drop'+`'у неоткуда взяться`,
+        }[m.velocityTag] || '';
+        lines.push(`Скорость: <b>${m.velocity > 0 ? '+' : ''}${m.velocity}%/день</b> ${arrow}`);
+        if (tagLabel) lines.push(`<i>${tagLabel}</i>`);
+    } else {
+        lines.push('<i>Недостаточно истории для скорости (нужно ≥3 снимков).</i>');
+    }
+    if (m.bestDow) {
+        lines.push('');
+        lines.push(`📅 Лучший день для покупки исторически: <b>${m.bestDow.day}</b> (средний мин ${fmt(m.bestDow.avg)} ₽, ${m.bestDow.samples} снимков)`);
+    }
+    if (m.nearAtl) {
+        lines.push('');
+        lines.push(`🔴 <b>Внимание: в ${m.nearAtlPct}% от исторического дна.</b> Любое движение вниз = новый ATL.`);
+    }
+    return lines.join('\n');
+}
+
+function cmdTwins(arg, page = 0) {
+    const all = twins.twins || [];
+    let filtered = all;
+    if (arg) {
+        const diag = parseInt(arg, 10);
+        if (diag) filtered = all.filter((t) => t.diagonal === diag);
+    }
+    if (!filtered.length) return arg
+        ? `Panel-twins с диагональю ${esc(arg)}" не найдены.`
+        : 'Panel-twins пока не обнаружены.';
+    const start = page * PAGE_SIZE;
+    const slice = filtered.slice(start, start + PAGE_SIZE);
+    const lastPage = Math.max(0, Math.ceil(filtered.length / PAGE_SIZE) - 1);
+    const title = arg ? `🪞 Panel-twins ${esc(arg)}" — ${filtered.length}` : `🪞 Panel-twins — ${filtered.length}`;
+    const lines = [
+        `<b>${title} · стр. ${page + 1}/${lastPage + 1}</b>`,
+        `<i>Те же диагональ/разрешение/тех — разные бренды и разная цена.</i>`,
+        '',
+    ];
+    for (const t of slice) {
+        lines.push(`<b>${t.diagonal}" · ${esc(t.resolution)} · ${esc(t.tech)}</b> — разброс <b>${t.spreadPct}%</b>`);
+        for (const mem of t.members.slice(0, 4)) {
+            lines.push(`  • ${esc(mem.brand)} <code>${esc(mem.model)}</code> — <b>${fmt(mem.min)} ₽</b> · ${link('арт. ' + mem.id, mem.url || '#')}`);
+        }
+        if (t.members.length > 4) lines.push(`  <i>…и ещё ${t.members.length - 4}</i>`);
+        lines.push('');
+    }
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:twins:${arg || '_'}`, page, filtered.length) };
+}
+
+function cmdSellers(arg, page = 0) {
+    const list = sellersReport.listings || [];
+    if (!list.length) return 'Данных по листингам пока недостаточно (нужно ≥2 истории снимка).';
+    // Worst score first = most fake/volatile
+    const start = page * PAGE_SIZE;
+    const slice = list.slice(start, start + PAGE_SIZE);
+    const lastPage = Math.max(0, Math.ceil(list.length / PAGE_SIZE) - 1);
+    const lines = [
+        `<b>🏪 Подозрительные листинги — ${list.length} · стр. ${page + 1}/${lastPage + 1}</b>`,
+        `<i>Сортировка: худшие первыми (высокая волатильность / фейк-скидки).</i>`,
+        '',
+    ];
+    for (const r of slice) {
+        const fr = Math.round(r.fakeDiscountRate * 100);
+        const vol = Math.round(r.volatility * 100);
+        lines.push(`• score <b>${r.score}</b> · ${esc(r.brand)} · ${fmt(r.priceMin)}–${fmt(r.priceMax)}₽ (vol ${vol}%, fake-disc ${fr}%) · ${link('арт. ' + r.id, r.url)}`);
+    }
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:sellers:_`, page, list.length) };
+}
+
+function reloadWatchlist() {
+    watchlist = existsSync(WATCHLIST_PATH) ? JSON.parse(readFileSync(WATCHLIST_PATH, 'utf8')) : { entries: [] };
+}
+function saveWatchlist() {
+    writeFileSync(WATCHLIST_PATH, JSON.stringify({ updatedAt: new Date().toISOString(), entries: watchlist.entries }, null, 2));
+}
+
+function cmdWatch(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Подписка возможна только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/watch &lt;модель&gt; [потолок_₽]</code>\nПример: <code>/watch qe75qn990fuxru 100000</code>';
+    const parts = arg.trim().split(/\s+/);
+    const modelArg = parts[0];
+    const threshold = parts[1] ? parseInt(parts[1].replace(/\D/g, ''), 10) : null;
+    const m = findModel(modelArg);
+    if (!m) return `Модель <code>${esc(modelArg)}</code> не найдена. Точный код модели в /atl или /deals.`;
+    reloadWatchlist();
+    const existing = watchlist.entries.findIndex((e) => e.chatId === ctx.chatId && e.modelKey === m.key);
+    const entry = {
+        chatId: ctx.chatId,
+        modelKey: m.key,
+        threshold: threshold || null,
+        label: `${m.brand} ${m.model}`,
+        addedAt: new Date().toISOString(),
+    };
+    if (existing >= 0) watchlist.entries[existing] = entry;
+    else watchlist.entries.push(entry);
+    saveWatchlist();
+    const thresholdLine = threshold
+        ? `\nПорог: <b>${fmt(threshold)} ₽</b> (триггер только при цене ≤)`
+        : '\n<i>Без порога — алёрт при любом снижении.</i>';
+    return [
+        `👀 <b>Подписка добавлена</b>`,
+        '',
+        `${esc(m.brand)} <code>${esc(m.model)}</code> · ${m.diagonals.join('/')}"`,
+        `Текущий мин: <b>${fmt(m.min)} ₽</b>${thresholdLine}`,
+        '',
+        `Список ваших подписок: /watchlist`,
+        `Отписаться: <code>/unwatch ${esc(m.model)}</code>`,
+    ].join('\n');
+}
+
+function cmdUnwatch(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Отписка возможна только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/unwatch &lt;модель&gt;</code>';
+    const m = findModel(arg);
+    const key = m?.key;
+    reloadWatchlist();
+    const before = watchlist.entries.length;
+    if (key) {
+        watchlist.entries = watchlist.entries.filter((e) => !(e.chatId === ctx.chatId && e.modelKey === key));
+    } else {
+        // fallback: substring match on label
+        const q = arg.toLowerCase();
+        watchlist.entries = watchlist.entries.filter((e) => !(e.chatId === ctx.chatId && e.label.toLowerCase().includes(q)));
+    }
+    saveWatchlist();
+    const removed = before - watchlist.entries.length;
+    return removed > 0
+        ? `🚫 Отписан от ${removed} модел${removed === 1 ? 'и' : 'ей'}.`
+        : `Подписки на «${esc(arg)}» не было.`;
+}
+
+function cmdWatchlist(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Список подписок доступен только из чата с ботом.';
+    reloadWatchlist();
+    const mine = watchlist.entries.filter((e) => e.chatId === ctx.chatId);
+    if (!mine.length) return [
+        '📋 <b>Ваших подписок нет.</b>',
+        '',
+        'Подпишитесь: <code>/watch &lt;модель&gt; [потолок_₽]</code>',
+        'Пример: <code>/watch qe75qn990fuxru 100000</code>',
+    ].join('\n');
+    const byKey = new Map(allModels.map((m) => [m.key, m]));
+    const lines = [`📋 <b>Ваши подписки — ${mine.length}</b>`, ''];
+    for (const e of mine) {
+        const m = byKey.get(e.modelKey);
+        const cur = m ? `мин <b>${fmt(m.min)} ₽</b>` : 'модели нет в текущем снимке';
+        const th = e.threshold ? ` · порог ${fmt(e.threshold)} ₽` : '';
+        lines.push(`• <code>${esc(e.modelKey.split('|')[1])}</code> · ${esc(e.label)} — ${cur}${th}`);
+    }
+    lines.push('');
+    lines.push('Отписаться: <code>/unwatch &lt;модель&gt;</code>');
+    return lines.join('\n');
+}
+
 // ---------- dispatcher ----------
 
 async function sendReply(chatId, payload, keyboard) {
@@ -491,7 +736,7 @@ async function sendReply(chatId, payload, keyboard) {
     }
 }
 
-async function dispatch(cmd, arg) {
+async function dispatch(cmd, arg, ctx = {}) {
     switch (cmd) {
         case '/start': return { text: cmdStart(), reply_markup: REPLY_KEYBOARD };
         case '/menu': return { text: '⌨️ <b>Меню кнопок:</b>', reply_markup: REPLY_KEYBOARD };
@@ -510,6 +755,13 @@ async function dispatch(cmd, arg) {
         case '/cheap': return cmdCheap();
         case '/find': return cmdFind(arg);
         case '/model': return cmdModel(arg);
+        case '/chart': return cmdChart(arg);
+        case '/forecast': return cmdForecast(arg);
+        case '/twins': return cmdTwins(arg);
+        case '/sellers': return cmdSellers(arg);
+        case '/watch': return cmdWatch(arg, ctx);
+        case '/unwatch': return cmdUnwatch(arg, ctx);
+        case '/watchlist': return cmdWatchlist(arg, ctx);
         case '/now': return cmdNow();
         case '/scrape': return await cmdScrape();
         default: return 'Неизвестная команда. /help — список.';
@@ -536,7 +788,7 @@ async function handleMessage(msg) {
 
     let reply;
     try {
-        reply = await dispatch(cmd, arg);
+        reply = await dispatch(cmd, arg, { chatId });
     } catch (err) {
         console.error('handler error', err);
         reply = `Ошибка: <code>${esc(err.message || String(err))}</code>`;
@@ -583,6 +835,8 @@ async function handleCallback(cq) {
                 case 'deals': reply = cmdDeals(arg, page); break;
                 case 'drops': reply = cmdDrops(arg, page); break;
                 case 'anom': reply = cmdAnomalyCategory(arg, page); break;
+                case 'twins': reply = cmdTwins(arg === '_' ? '' : arg, page); break;
+                case 'sellers': reply = cmdSellers(arg === '_' ? '' : arg, page); break;
                 default: reply = 'Неизвестная страница.';
             }
         } else if (data.startsWith('anom:')) {

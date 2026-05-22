@@ -89,6 +89,22 @@ for (const m of allModels) {
             fresh.push({ id, tier: 'atl', model: m });
         }
     }
+
+    // 4. Near-ATL — within 2% of dot, but not the dot itself
+    if (m.nearAtl && snapshots.length >= 3) {
+        const id = `nearatl:${m.key}:${m.min}`;
+        if (!state.dispatched[id]) {
+            fresh.push({ id, tier: 'nearatl', model: m });
+        }
+    }
+
+    // 5. Panic-sale — sustained drop ≥3 %/day
+    if (m.velocityTag === 'panic-sale' && snapshots.length >= 4) {
+        const id = `panic:${m.key}:${now.slice(0, 10)}`;
+        if (!state.dispatched[id]) {
+            fresh.push({ id, tier: 'panic', model: m });
+        }
+    }
 }
 
 if (!fresh.length) {
@@ -96,8 +112,8 @@ if (!fresh.length) {
     exit(0);
 }
 
-// Sort: dynamite > earthquake > bigdrop > hot > drop > atl
-const PRIORITY = { dynamite: 0, earthquake: 1, bigdrop: 2, hot: 3, drop: 4, atl: 5 };
+// Sort: dynamite > earthquake > panic > bigdrop > hot > drop > nearatl > atl
+const PRIORITY = { dynamite: 0, earthquake: 1, panic: 2, bigdrop: 3, hot: 4, drop: 5, nearatl: 6, atl: 7 };
 fresh.sort((a, b) => PRIORITY[a.tier] - PRIORITY[b.tier]);
 
 // ---------- shape messages (one per alert, with a leading summary) ----------
@@ -105,9 +121,11 @@ fresh.sort((a, b) => PRIORITY[a.tier] - PRIORITY[b.tier]);
 const TIER_HEADERS = {
     dynamite: '💥 <b>DYNAMITE</b>',
     earthquake: '💥 <b>EARTHQUAKE — обвал цены</b>',
+    panic: '🚨 <b>PANIC SALE</b>',
     bigdrop: '📉📉 <b>BIG DROP</b>',
     hot: '🔥 <b>HOT DEAL</b>',
     drop: '📉 <b>Падение</b>',
+    nearatl: '🔴 <b>Почти-ATL</b>',
     atl: '🟢 <b>Новый all-time low</b>',
 };
 
@@ -145,9 +163,36 @@ function renderAlert(a) {
             `${header}`,
             '',
             `<b>${esc(m.brand)} <code>${esc(m.model)}</code> · ${diag}</b>`,
-            `Новый ATL: <b>${fmt(m.allTimeMin)} ₽</b> (предыдущий минимум ${fmt(m.allTimeMin)})`,
+            `Новый ATL: <b>${fmt(m.allTimeMin)} ₽</b>`,
             `Продавцов: ${m.sellers} · Медиана: ${fmt(m.median)} ₽`,
             `${link('Открыть → ' + cheap.id, cheap.url)}`,
+        ].join('\n');
+    }
+
+    if (a.tier === 'nearatl') {
+        const cheap = m.items[0];
+        const gap = m.min - m.allTimeMin;
+        return [
+            `${header} · в ${m.nearAtlPct}% от дна`,
+            '',
+            `<b>${esc(m.brand)} <code>${esc(m.model)}</code> · ${diag}</b>`,
+            `Текущий мин: <b>${fmt(m.min)} ₽</b> · ATL: ${fmt(m.allTimeMin)} ₽ (разница ${fmt(gap)} ₽)`,
+            `Продавцов: ${m.sellers} · Медиана: ${fmt(m.median)} ₽`,
+            `<i>Ещё толчок — и новый low.</i>`,
+            `${link('Открыть → ' + cheap.id, cheap.url)}`,
+        ].join('\n');
+    }
+
+    if (a.tier === 'panic') {
+        const cheap = m.items[0];
+        return [
+            `${header} · ${m.velocity}%/день`,
+            '',
+            `<b>${esc(m.brand)} <code>${esc(m.model)}</code> · ${diag}</b>`,
+            `Цена падает <b>${m.velocity}%/день</b> несколько снимков подряд.`,
+            `Текущий мин: <b>${fmt(m.min)} ₽</b> · Медиана: ${fmt(m.median)} ₽ · ATL: ${fmt(m.allTimeMin)}`,
+            `<i>Продавец срочно сбрасывает остатки.</i>`,
+            `${link('Самый дешёвый → ' + cheap.id, cheap.url)}`,
         ].join('\n');
     }
     return '';

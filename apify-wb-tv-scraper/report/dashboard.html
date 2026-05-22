@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WB TV Tracker — Dashboard</title>
+    <style>
+        :root {
+            --bg: #0e1117; --fg: #e6edf3; --muted: #7d8590; --card: #161b22;
+            --border: #30363d; --accent: #2f81f7; --green: #3fb950; --red: #f85149;
+            --orange: #d29922; --yellow: #e3b341;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 16px; font-family: -apple-system, system-ui, sans-serif;
+               background: var(--bg); color: var(--fg); }
+        h1 { margin: 0 0 8px; font-size: 20px; }
+        .sub { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+        .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;
+                   padding: 12px; background: var(--card); border: 1px solid var(--border);
+                   border-radius: 8px; }
+        .filters > * { padding: 6px 10px; background: var(--bg); color: var(--fg);
+                       border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                 gap: 8px; margin-bottom: 12px; }
+        .stat { padding: 8px 12px; background: var(--card); border: 1px solid var(--border);
+                border-radius: 6px; }
+        .stat-n { font-size: 18px; font-weight: 600; }
+        .stat-l { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px;
+                background: var(--card); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: #0d1117; color: var(--muted); font-weight: 600; cursor: pointer;
+             user-select: none; position: sticky; top: 0; }
+        th:hover { color: var(--fg); }
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background: #1f2937; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px;
+               font-weight: 600; }
+        .tag-atl { background: rgba(63, 185, 80, 0.2); color: var(--green); }
+        .tag-near { background: rgba(248, 81, 73, 0.2); color: var(--red); }
+        .tag-panic { background: rgba(210, 153, 34, 0.2); color: var(--orange); }
+        .tag-falling { background: rgba(63, 185, 80, 0.15); color: var(--green); }
+        .tag-rising { background: rgba(248, 81, 73, 0.15); color: var(--red); }
+        .ratio-good { color: var(--green); font-weight: 600; }
+        .ratio-bad { color: var(--red); }
+        .loading { color: var(--muted); padding: 24px; text-align: center; }
+        .err { color: var(--red); padding: 16px; }
+        @media (max-width: 600px) {
+            .hide-mobile { display: none; }
+            th, td { padding: 6px 4px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🛰 WB TV Tracker</h1>
+    <div class="sub" id="meta">Загрузка…</div>
+    <div class="stats" id="stats"></div>
+    <div class="filters">
+        <select id="brand"><option value="">Все бренды</option></select>
+        <select id="diagonal"><option value="">Все диагонали</option></select>
+        <select id="tech">
+            <option value="">Все технологии</option>
+            <option>OLED</option><option>QD-OLED</option><option>Mini-LED</option>
+            <option>QLED</option><option>NanoCell</option><option>LED</option>
+        </select>
+        <select id="tag">
+            <option value="">Все теги</option>
+            <option value="atl">🟢 ATL</option>
+            <option value="near">🔴 Почти-ATL</option>
+            <option value="panic">💥 Panic-sale</option>
+            <option value="deals">💸 Deal внутри модели</option>
+        </select>
+        <input id="max" type="number" placeholder="макс ₽" style="width:120px">
+        <input id="q" type="search" placeholder="поиск…" style="flex:1; min-width:120px">
+    </div>
+    <div id="table"></div>
+
+    <script>
+        const REPO = 'visamexicomx-sys/Q';
+        const BRANCH = 'claude/scrape-wildberries-tvs-oUS2f';
+        const BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/apify-wb-tv-scraper/report`;
+
+        const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
+        let DATA = [];
+        let SORT = { col: 'min', dir: 1 };
+
+        async function load() {
+            try {
+                const r = await fetch(`${BASE}/MODELS.json?t=${Date.now()}`);
+                const j = await r.json();
+                DATA = j.models || [];
+                document.getElementById('meta').textContent =
+                    `Снимок: ${j.generatedAt?.slice(0, 16).replace('T', ' ')} UTC · моделей: ${DATA.length}`;
+                document.getElementById('stats').innerHTML = `
+                    <div class="stat"><div class="stat-n">${DATA.length}</div><div class="stat-l">всего</div></div>
+                    <div class="stat"><div class="stat-n">${DATA.filter(m => m.newAllTimeLow).length}</div><div class="stat-l">новых ATL</div></div>
+                    <div class="stat"><div class="stat-n">${DATA.filter(m => m.nearAtl).length}</div><div class="stat-l">почти ATL</div></div>
+                    <div class="stat"><div class="stat-n">${DATA.filter(m => m.velocityTag === 'panic-sale').length}</div><div class="stat-l">panic-sale</div></div>
+                    <div class="stat"><div class="stat-n">${DATA.filter(m => m.dealItems?.length).length}</div><div class="stat-l">in-model deal</div></div>
+                `;
+                fillFilters();
+                render();
+            } catch (e) {
+                document.getElementById('table').innerHTML = `<div class="err">Ошибка загрузки: ${e}</div>`;
+            }
+        }
+
+        function fillFilters() {
+            const brands = [...new Set(DATA.map(m => m.brand))].sort();
+            const diags = [...new Set(DATA.flatMap(m => m.diagonals))].sort((a, b) => a - b);
+            document.getElementById('brand').innerHTML = '<option value="">Все бренды</option>' +
+                brands.map(b => `<option>${b}</option>`).join('');
+            document.getElementById('diagonal').innerHTML = '<option value="">Все диагонали</option>' +
+                diags.map(d => `<option>${d}</option>`).join('');
+        }
+
+        function filtered() {
+            const b = document.getElementById('brand').value;
+            const d = document.getElementById('diagonal').value;
+            const t = document.getElementById('tech').value;
+            const tag = document.getElementById('tag').value;
+            const max = +document.getElementById('max').value || Infinity;
+            const q = document.getElementById('q').value.toLowerCase();
+            return DATA.filter(m => {
+                if (b && m.brand !== b) return false;
+                if (d && !m.diagonals.includes(+d)) return false;
+                if (t && m.tech !== t) return false;
+                if (m.min > max) return false;
+                if (q && !(`${m.brand} ${m.model}`.toLowerCase().includes(q))) return false;
+                if (tag === 'atl' && !m.newAllTimeLow) return false;
+                if (tag === 'near' && !m.nearAtl) return false;
+                if (tag === 'panic' && m.velocityTag !== 'panic-sale') return false;
+                if (tag === 'deals' && !m.dealItems?.length) return false;
+                return true;
+            });
+        }
+
+        function render() {
+            const rows = filtered().sort((a, b) => {
+                const av = a[SORT.col] ?? 0, bv = b[SORT.col] ?? 0;
+                return (av > bv ? 1 : av < bv ? -1 : 0) * SORT.dir;
+            });
+            const arrow = (c) => c === SORT.col ? (SORT.dir === 1 ? '↑' : '↓') : '';
+            const tags = (m) => {
+                const t = [];
+                if (m.newAllTimeLow) t.push('<span class="tag tag-atl">ATL</span>');
+                if (m.nearAtl) t.push('<span class="tag tag-near">−' + m.nearAtlPct + '%</span>');
+                if (m.velocityTag === 'panic-sale') t.push('<span class="tag tag-panic">💥</span>');
+                if (m.velocityTag === 'falling') t.push('<span class="tag tag-falling">📉</span>');
+                if (m.velocityTag === 'rising') t.push('<span class="tag tag-rising">📈</span>');
+                if (m.dealItems?.length) t.push('<span class="tag tag-atl">💸</span>');
+                return t.join(' ');
+            };
+            const minRatio = (m) => m.median ? (m.min / m.median).toFixed(2) : '—';
+
+            document.getElementById('table').innerHTML = `
+                <table>
+                    <thead><tr>
+                        <th data-c="brand">Бренд ${arrow('brand')}</th>
+                        <th data-c="model">Модель ${arrow('model')}</th>
+                        <th class="hide-mobile">Тех</th>
+                        <th>Диаг</th>
+                        <th data-c="min">Мин ₽ ${arrow('min')}</th>
+                        <th data-c="median" class="hide-mobile">Медиана ${arrow('median')}</th>
+                        <th data-c="allTimeMin" class="hide-mobile">ATL ${arrow('allTimeMin')}</th>
+                        <th data-c="velocity" class="hide-mobile">Vel %/d ${arrow('velocity')}</th>
+                        <th>Теги</th>
+                    </tr></thead>
+                    <tbody>
+                    ${rows.slice(0, 300).map(m => `
+                        <tr>
+                            <td>${m.brand}</td>
+                            <td><a href="${m.items[0]?.url || '#'}" target="_blank"><code>${m.model}</code></a></td>
+                            <td class="hide-mobile">${m.tech || ''}</td>
+                            <td>${m.diagonals.join('/')}"</td>
+                            <td><b>${fmt(m.min)}</b></td>
+                            <td class="hide-mobile">${fmt(m.median)}</td>
+                            <td class="hide-mobile">${fmt(m.allTimeMin)}</td>
+                            <td class="hide-mobile">${m.velocity != null ? m.velocity : '—'}</td>
+                            <td>${tags(m)}</td>
+                        </tr>
+                    `).join('')}
+                    </tbody>
+                </table>
+            `;
+            for (const th of document.querySelectorAll('th[data-c]')) {
+                th.onclick = () => {
+                    const c = th.dataset.c;
+                    SORT.dir = (SORT.col === c) ? -SORT.dir : 1;
+                    SORT.col = c;
+                    render();
+                };
+            }
+        }
+
+        for (const id of ['brand', 'diagonal', 'tech', 'tag', 'max', 'q']) {
+            document.getElementById(id).addEventListener('input', render);
+            document.getElementById(id).addEventListener('change', render);
+        }
+        load();
+        setInterval(load, 5 * 60 * 1000);   // auto-refresh every 5 min
+    </script>
+</body>
+</html>

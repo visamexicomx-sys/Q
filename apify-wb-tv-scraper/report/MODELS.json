@@ -49,7 +49,15 @@
           "url": "https://www.wildberries.ru/catalog/820785870/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "55|4K|QLED"
     },
     {
       "key": "xiaomi|l55mb-aru",
@@ -81,7 +89,15 @@
           "url": "https://www.wildberries.ru/catalog/614016295/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "xiaomi|l32mb-aru",
@@ -113,7 +129,15 @@
           "url": "https://www.wildberries.ru/catalog/852877857/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "HD",
+      "twinKey": "32|HD|LED"
     },
     {
       "key": "samsung|qe85q7faauxru",
@@ -145,7 +169,15 @@
           "url": "https://www.wildberries.ru/catalog/693156299/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "85|4K|QLED"
     },
     {
       "key": "samsung|qe77s90faexru",
@@ -177,7 +209,15 @@
           "url": "https://www.wildberries.ru/catalog/693156043/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "OLED",
+      "resolution": "4K",
+      "twinKey": "77|4K|OLED"
     },
     {
       "key": "sber|sdx-43f3111",
@@ -209,7 +249,15 @@
           "url": "https://www.wildberries.ru/catalog/577718242/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "FHD",
+      "twinKey": "43|FHD|LED"
     },
     {
       "key": "xiaomi|l43mb-afru",
@@ -241,7 +289,15 @@
           "url": "https://www.wildberries.ru/catalog/727189972/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "FHD",
+      "twinKey": "43|FHD|LED"
     },
     {
       "key": "tcl|85p8l",
@@ -273,7 +329,15 @@
           "url": "https://www.wildberries.ru/catalog/969774224/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "85|4K|LED"
     },
     {
       "key": "tcl|55a400",
@@ -305,7 +369,15 @@
           "url": "https://www.wildberries.ru/catalog/969774487/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "xiaomi|l43mb-apru",
@@ -337,7 +409,15 @@
           "url": "https://www.wildberries.ru/catalog/1055684498/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "яндекс|yndx-00101",
@@ -381,7 +461,15 @@
           "url": "https://www.wildberries.ru/catalog/1055669048/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "55|4K|QLED"
     },
     {
       "key": "samsung|qe43qn90fauxru",
@@ -425,7 +513,15 @@
           "url": "https://www.wildberries.ru/catalog/817474244/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Neo QLED",
+      "resolution": "4K",
+      "twinKey": "43|4K|Neo QLED"
     },
     {
       "key": "hisense|50u7s",
@@ -481,7 +577,15 @@
           "url": "https://www.wildberries.ru/catalog/890698526/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "50|4K|QLED"
     },
     {
       "key": "samsung|qe65qn80fauxru",
@@ -525,7 +629,15 @@
           "url": "https://www.wildberries.ru/catalog/1051419439/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "65|4K|QLED"
     },
     {
       "key": "hisense|65u7s",
@@ -594,7 +706,15 @@
           "diagonal": 65,
           "url": "https://www.wildberries.ru/catalog/980678340/detail.aspx"
         }
-      ]
+      ],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "65|4K|QLED"
     },
     {
       "key": "hisense|55u8q",
@@ -638,7 +758,15 @@
           "url": "https://www.wildberries.ru/catalog/797058592/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Mini-LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|Mini-LED"
     },
     {
       "key": "hisense|75u7s",
@@ -682,7 +810,15 @@
           "url": "https://www.wildberries.ru/catalog/1000894327/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "75|4K|QLED"
     },
     {
       "key": "samsung|qe85qn900fuxru",
@@ -774,7 +910,15 @@
           "url": "https://www.wildberries.ru/catalog/848984434/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "8K",
+      "twinKey": "85|8K|QLED"
     },
     {
       "key": "sony|xr-83a80l",
@@ -804,7 +948,15 @@
           "url": "https://www.wildberries.ru/catalog/1030832310/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "HD",
+      "twinKey": null
     },
     {
       "key": "samsung|qe75qn990fuxru",
@@ -908,7 +1060,15 @@
           "url": "https://www.wildberries.ru/catalog/810825784/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "8K",
+      "twinKey": "75|8K|QLED"
     },
     {
       "key": "samsung|qe65qn990fuxru",
@@ -940,7 +1100,15 @@
           "url": "https://www.wildberries.ru/catalog/810859679/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Neo QLED",
+      "resolution": "8K",
+      "twinKey": "65|8K|Neo QLED"
     },
     {
       "key": "samsung|qe98qn90fauxru",
@@ -1008,7 +1176,15 @@
           "url": "https://www.wildberries.ru/catalog/812696396/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "98|4K|QLED"
     },
     {
       "key": "samsung|qe77s95fauxru",
@@ -1100,7 +1276,15 @@
           "url": "https://www.wildberries.ru/catalog/810854125/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "OLED",
+      "resolution": "4K",
+      "twinKey": "77|4K|OLED"
     },
     {
       "key": "samsung|qe75qn900fuxru",
@@ -1132,7 +1316,15 @@
           "url": "https://www.wildberries.ru/catalog/810842895/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Neo QLED",
+      "resolution": "8K",
+      "twinKey": "75|8K|Neo QLED"
     },
     {
       "key": "samsung|qe83s95faexru",
@@ -1188,7 +1380,15 @@
           "url": "https://www.wildberries.ru/catalog/810842889/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "OLED",
+      "resolution": "4K",
+      "twinKey": "83|4K|OLED"
     },
     {
       "key": "samsung|qe85ls03fauxru",
@@ -1220,7 +1420,15 @@
           "url": "https://www.wildberries.ru/catalog/551522776/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "85|4K|QLED"
     },
     {
       "key": "hisense|55a6s",
@@ -1276,7 +1484,15 @@
           "url": "https://www.wildberries.ru/catalog/1015874859/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "hisense|32a4s",
@@ -1320,7 +1536,15 @@
           "url": "https://www.wildberries.ru/catalog/977877665/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "HD",
+      "twinKey": "32|HD|LED"
     },
     {
       "key": "samsung|qe75qn80fauxru",
@@ -1352,7 +1576,15 @@
           "url": "https://www.wildberries.ru/catalog/687222256/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "75|4K|QLED"
     },
     {
       "key": "sber|sdf-50uq7000mba",
@@ -1384,7 +1616,15 @@
           "url": "https://www.wildberries.ru/catalog/933904532/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "50|4K|QLED"
     },
     {
       "key": "samsung|u8000f",
@@ -1416,7 +1656,15 @@
           "url": "https://www.wildberries.ru/catalog/967213090/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "75|4K|LED"
     },
     {
       "key": "samsung|qe75ls03fauxru",
@@ -1448,7 +1696,15 @@
           "url": "https://www.wildberries.ru/catalog/693156219/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "75|4K|QLED"
     },
     {
       "key": "hisense|75e7s",
@@ -1517,7 +1773,15 @@
           "diagonal": 75,
           "url": "https://www.wildberries.ru/catalog/912813482/detail.aspx"
         }
-      ]
+      ],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "75|4K|LED"
     },
     {
       "key": "tcl|75p7k",
@@ -1549,7 +1813,15 @@
           "url": "https://www.wildberries.ru/catalog/434608693/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "75|4K|QLED"
     },
     {
       "key": "samsung|ue75u8000fuxru",
@@ -1593,7 +1865,15 @@
           "url": "https://www.wildberries.ru/catalog/468606439/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "75|4K|LED"
     },
     {
       "key": "hisense|75ur9s",
@@ -1637,7 +1917,15 @@
           "url": "https://www.wildberries.ru/catalog/1015967064/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "75|4K|LED"
     },
     {
       "key": "hisense|55e7s",
@@ -1693,7 +1981,15 @@
           "url": "https://www.wildberries.ru/catalog/1021878711/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "tcl|55t8c",
@@ -1725,7 +2021,15 @@
           "url": "https://www.wildberries.ru/catalog/448992993/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "55|4K|QLED"
     },
     {
       "key": "samsung|ue32f6000fuxru",
@@ -1769,7 +2073,15 @@
           "url": "https://www.wildberries.ru/catalog/621988476/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "FHD",
+      "twinKey": "32|FHD|LED"
     },
     {
       "key": "samsung|ue43f6000fuxru",
@@ -1813,7 +2125,15 @@
           "url": "https://www.wildberries.ru/catalog/496315317/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "FHD",
+      "twinKey": "43|FHD|LED"
     },
     {
       "key": "samsung|ue55u8000fuxru",
@@ -1881,7 +2201,15 @@
           "url": "https://www.wildberries.ru/catalog/466481345/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "samsung|qe50q7faauxru",
@@ -1937,7 +2265,15 @@
           "url": "https://www.wildberries.ru/catalog/588186073/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "50|4K|QLED"
     },
     {
       "key": "samsung|ue32h5000fuxru",
@@ -1993,7 +2329,15 @@
           "url": "https://www.wildberries.ru/catalog/893287778/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "FHD",
+      "twinKey": "32|FHD|LED"
     },
     {
       "key": "samsung|ue50u8000fuxru",
@@ -2049,7 +2393,15 @@
           "url": "https://www.wildberries.ru/catalog/449264440/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "samsung|qe43qef1auxru",
@@ -2081,7 +2433,15 @@
           "url": "https://www.wildberries.ru/catalog/629342349/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "43|4K|QLED"
     },
     {
       "key": "samsung|qe55q7faauxce",
@@ -2113,7 +2473,15 @@
           "url": "https://www.wildberries.ru/catalog/784297698/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "55|4K|QLED"
     },
     {
       "key": "samsung|qe50qef1auxru",
@@ -2145,7 +2513,15 @@
           "url": "https://www.wildberries.ru/catalog/632384218/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "50|4K|QLED"
     },
     {
       "key": "samsung|qe55qn1efauxru",
@@ -2177,7 +2553,15 @@
           "url": "https://www.wildberries.ru/catalog/632289453/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Mini-LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|Mini-LED"
     },
     {
       "key": "samsung|qe32ls03cbuxru",
@@ -2209,7 +2593,15 @@
           "url": "https://www.wildberries.ru/catalog/599214629/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "HD",
+      "twinKey": "32|HD|QLED"
     },
     {
       "key": "samsung|ue43u8000fuxru",
@@ -2265,7 +2657,15 @@
           "url": "https://www.wildberries.ru/catalog/489519631/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "samsung|qe65s90faexru",
@@ -2297,7 +2697,15 @@
           "url": "https://www.wildberries.ru/catalog/912646245/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "OLED",
+      "resolution": "4K",
+      "twinKey": "65|4K|OLED"
     },
     {
       "key": "samsung|qe43ls03fauxru",
@@ -2329,7 +2737,15 @@
           "url": "https://www.wildberries.ru/catalog/720809842/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "43|4K|QLED"
     },
     {
       "key": "samsung|ue55u8000fuxce",
@@ -2361,7 +2777,15 @@
           "url": "https://www.wildberries.ru/catalog/996444636/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "samsung|qe43q7faauxru",
@@ -2393,7 +2817,15 @@
           "url": "https://www.wildberries.ru/catalog/693156292/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "43|4K|QLED"
     },
     {
       "key": "samsung|ue85u8000fuxce",
@@ -2425,7 +2857,15 @@
           "url": "https://www.wildberries.ru/catalog/784441483/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "85|4K|LED"
     },
     {
       "key": "samsung|q7fa",
@@ -2457,7 +2897,15 @@
           "url": "https://www.wildberries.ru/catalog/771600282/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "65|4K|QLED"
     },
     {
       "key": "samsung|ue65u8000huxpy",
@@ -2489,7 +2937,15 @@
           "url": "https://www.wildberries.ru/catalog/1013244282/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "65|4K|LED"
     },
     {
       "key": "hisense|50u77sl",
@@ -2521,7 +2977,15 @@
           "url": "https://www.wildberries.ru/catalog/890696082/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "50|4K|QLED"
     },
     {
       "key": "hisense|55u77sl",
@@ -2553,7 +3017,15 @@
           "url": "https://www.wildberries.ru/catalog/890167319/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "55|4K|QLED"
     },
     {
       "key": "hisense|65u77sl",
@@ -2585,7 +3057,15 @@
           "url": "https://www.wildberries.ru/catalog/890289937/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "65|4K|QLED"
     },
     {
       "key": "hisense|43a6s",
@@ -2617,7 +3097,15 @@
           "url": "https://www.wildberries.ru/catalog/917843511/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "hisense|50a6s",
@@ -2685,7 +3173,15 @@
           "url": "https://www.wildberries.ru/catalog/978364422/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "hisense|32e4qt",
@@ -2717,7 +3213,15 @@
           "url": "https://www.wildberries.ru/catalog/551505117/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "HD",
+      "twinKey": "32|HD|LED"
     },
     {
       "key": "hisense|43e77q",
@@ -2749,7 +3253,15 @@
           "url": "https://www.wildberries.ru/catalog/438936036/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "hisense|55e77q",
@@ -2781,7 +3293,15 @@
           "url": "https://www.wildberries.ru/catalog/438903476/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "hisense|32e55sl",
@@ -2813,7 +3333,15 @@
           "url": "https://www.wildberries.ru/catalog/893619495/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "HD",
+      "twinKey": "32|HD|LED"
     },
     {
       "key": "hisense|43e77sl",
@@ -2845,7 +3373,15 @@
           "url": "https://www.wildberries.ru/catalog/896006700/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "hisense|43e7s",
@@ -2877,7 +3413,15 @@
           "url": "https://www.wildberries.ru/catalog/969227493/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "hisense|55e66sl",
@@ -2909,7 +3453,15 @@
           "url": "https://www.wildberries.ru/catalog/893452356/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "hisense|50a6q",
@@ -2953,7 +3505,15 @@
           "url": "https://www.wildberries.ru/catalog/444478341/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "hisense|50e66sl",
@@ -2985,7 +3545,15 @@
           "url": "https://www.wildberries.ru/catalog/893283448/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "hisense|43a6q",
@@ -3017,7 +3585,15 @@
           "url": "https://www.wildberries.ru/catalog/838184619/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "hisense|50e7s",
@@ -3049,7 +3625,15 @@
           "url": "https://www.wildberries.ru/catalog/977877418/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "hisense|65e7s",
@@ -3081,7 +3665,15 @@
           "url": "https://www.wildberries.ru/catalog/977877590/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "65|4K|LED"
     },
     {
       "key": "hisense|32a4q",
@@ -3125,7 +3717,15 @@
           "url": "https://www.wildberries.ru/catalog/433664209/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "HD",
+      "twinKey": "32|HD|LED"
     },
     {
       "key": "hisense|32a5s",
@@ -3157,7 +3757,15 @@
           "url": "https://www.wildberries.ru/catalog/1012171503/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "HD",
+      "twinKey": "32|HD|LED"
     },
     {
       "key": "hisense|65ur9s",
@@ -3201,7 +3809,15 @@
           "url": "https://www.wildberries.ru/catalog/980678332/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "65|4K|LED"
     },
     {
       "key": "hisense|55u7s",
@@ -3233,7 +3849,15 @@
           "url": "https://www.wildberries.ru/catalog/1015983930/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Mini-LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|Mini-LED"
     },
     {
       "key": "hisense|65e77sl",
@@ -3265,7 +3889,15 @@
           "url": "https://www.wildberries.ru/catalog/896498600/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "65|4K|LED"
     },
     {
       "key": "hisense|50e77sl",
@@ -3297,7 +3929,15 @@
           "url": "https://www.wildberries.ru/catalog/896059016/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "tcl|50q6cs",
@@ -3329,7 +3969,15 @@
           "url": "https://www.wildberries.ru/catalog/480904548/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Mini-LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|Mini-LED"
     },
     {
       "key": "tcl|43s5k-uz",
@@ -3373,7 +4021,15 @@
           "url": "https://www.wildberries.ru/catalog/709919951/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "FHD",
+      "twinKey": "43|FHD|QLED"
     },
     {
       "key": "tcl|43p7k",
@@ -3417,7 +4073,15 @@
           "url": "https://www.wildberries.ru/catalog/388382023/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "43|4K|QLED"
     },
     {
       "key": "tcl|43v6c",
@@ -3449,7 +4113,15 @@
           "url": "https://www.wildberries.ru/catalog/351246780/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "tcl|50p7l",
@@ -3481,7 +4153,15 @@
           "url": "https://www.wildberries.ru/catalog/969774361/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "tcl|50v6c",
@@ -3513,7 +4193,15 @@
           "url": "https://www.wildberries.ru/catalog/351253302/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "tcl|32s5k-uz",
@@ -3545,7 +4233,15 @@
           "url": "https://www.wildberries.ru/catalog/625107418/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "FHD",
+      "twinKey": "32|FHD|QLED"
     },
     {
       "key": "tcl|55t6c",
@@ -3577,7 +4273,15 @@
           "url": "https://www.wildberries.ru/catalog/351287029/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "55|4K|QLED"
     },
     {
       "key": "tcl|55q6c",
@@ -3621,7 +4325,15 @@
           "url": "https://www.wildberries.ru/catalog/986919613/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Mini-LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|Mini-LED"
     },
     {
       "key": "tcl|65c6k",
@@ -3677,7 +4389,15 @@
           "url": "https://www.wildberries.ru/catalog/709919960/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Mini-LED",
+      "resolution": "4K",
+      "twinKey": "65|4K|Mini-LED"
     },
     {
       "key": "tcl|32s4k",
@@ -3709,7 +4429,15 @@
           "url": "https://www.wildberries.ru/catalog/575985901/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "32|4K|QLED"
     },
     {
       "key": "tcl|50t6d",
@@ -3741,7 +4469,15 @@
           "url": "https://www.wildberries.ru/catalog/907498201/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "50|4K|QLED"
     },
     {
       "key": "tcl|55c6k",
@@ -3773,7 +4509,15 @@
           "url": "https://www.wildberries.ru/catalog/420266207/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "Mini-LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|Mini-LED"
     },
     {
       "key": "tcl|40s5k",
@@ -3817,7 +4561,15 @@
           "url": "https://www.wildberries.ru/catalog/423153633/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "FHD",
+      "twinKey": "40|FHD|QLED"
     },
     {
       "key": "tcl|55p7l",
@@ -3849,7 +4601,15 @@
           "url": "https://www.wildberries.ru/catalog/927118704/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "55|4K|QLED"
     },
     {
       "key": "tcl|55p69k",
@@ -3881,7 +4641,15 @@
           "url": "https://www.wildberries.ru/catalog/575900201/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "55|4K|LED"
     },
     {
       "key": "tcl|50p7k",
@@ -3913,7 +4681,15 @@
           "url": "https://www.wildberries.ru/catalog/431556117/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "50|4K|LED"
     },
     {
       "key": "tcl|65p6k",
@@ -3945,7 +4721,15 @@
           "url": "https://www.wildberries.ru/catalog/709919965/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "65|4K|LED"
     },
     {
       "key": "tcl|43t6c",
@@ -3989,7 +4773,15 @@
           "url": "https://www.wildberries.ru/catalog/103783581/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "43|4K|QLED"
     },
     {
       "key": "tcl|43p7k-uz",
@@ -4021,7 +4813,15 @@
           "url": "https://www.wildberries.ru/catalog/617793922/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "LED",
+      "resolution": "4K",
+      "twinKey": "43|4K|LED"
     },
     {
       "key": "tcl|43t6d",
@@ -4053,7 +4853,16 @@
           "url": "https://www.wildberries.ru/catalog/896375484/detail.aspx"
         }
       ],
-      "dealItems": []
+      "dealItems": [],
+      "velocity": null,
+      "velocityTag": null,
+      "nearAtl": false,
+      "nearAtlPct": null,
+      "bestDow": null,
+      "tech": "QLED",
+      "resolution": "4K",
+      "twinKey": "43|4K|QLED"
     }
-  ]
+  ],
+  "enrichedAt": "2026-05-22T05:05:00.680Z"
 }

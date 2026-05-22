@@ -10,9 +10,10 @@
 // keep them in sync until they get extracted into a shared module.
 
 const REPO = 'visamexicomx-sys/Q';
-const BRANCH = 'claude/explain-codebase-mmlhdl2dx82ks0ug-DNca4';
+const BRANCH = 'claude/scrape-wildberries-tvs-oUS2f';
 const REPORT_BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/apify-wb-tv-scraper/report`;
 const CACHE_TTL = 300;   // 5 minutes
+const WATCHLIST_PATH = 'apify-wb-tv-scraper/report/watchlist.json';
 
 // ---------- helpers ----------
 
@@ -136,18 +137,64 @@ async function fetchJson(name, ctx) {
 }
 
 async function loadData(ctx) {
-    const [report, models, anomalies] = await Promise.all([
+    const [report, models, anomalies, twins, sellers, history, watchlist] = await Promise.all([
         fetchJson('REPORT', ctx).catch(() => ({ all: [], byBrand: [], generatedAt: null })),
         fetchJson('MODELS', ctx).catch(() => ({ models: [], generatedAt: null })),
         fetchJson('ANOMALIES', ctx).catch(() => null),
+        fetchJson('TWINS', ctx).catch(() => ({ twins: [] })),
+        fetchJson('SELLERS', ctx).catch(() => ({ listings: [] })),
+        fetchJson('models-history', ctx).catch(() => ({ models: {} })),
+        fetchJson('watchlist', ctx).catch(() => ({ entries: [] })),
     ]);
     return {
         report,
         models,
         anomalies,
+        twins,
+        sellers,
+        history,
+        watchlist,
         items: report.all || [],
         allModels: models.models || [],
     };
+}
+
+// ---------- GitHub Contents API (for watchlist mutations) ----------
+
+async function ghReadWatchlist(token) {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${WATCHLIST_PATH}?ref=${BRANCH}`, {
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github+json', 'User-Agent': 'wb-tv-tracker-worker' },
+    });
+    if (r.status === 404) return { sha: null, entries: [] };
+    if (!r.ok) throw new Error(`gh read failed: ${r.status}`);
+    const j = await r.json();
+    const decoded = JSON.parse(atob(j.content.replace(/\n/g, '')));
+    return { sha: j.sha, entries: decoded.entries || [] };
+}
+
+async function ghWriteWatchlist(token, entries, sha) {
+    const body = {
+        message: `chore(watchlist): bot update (${entries.length} entries)`,
+        content: btoa(unescape(encodeURIComponent(JSON.stringify({
+            updatedAt: new Date().toISOString(), entries,
+        }, null, 2)))),
+        branch: BRANCH,
+        ...(sha ? { sha } : {}),
+    };
+    const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${WATCHLIST_PATH}`, {
+        method: 'PUT',
+        headers: {
+            Authorization: `token ${token}`,
+            Accept: 'application/vnd.github+json',
+            'User-Agent': 'wb-tv-tracker-worker',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+    });
+    if (!r.ok) {
+        const t = await r.text();
+        throw new Error(`gh write failed: ${r.status} ${t.slice(0, 200)}`);
+    }
 }
 
 // ---------- command handlers (mirror bot-poller.mjs) ----------
@@ -172,6 +219,17 @@ function cmdHelp() {
         '/cheap — самые дешёвые TV ≥32"',
         '/find &lt;text&gt; — поиск по названию',
         '/model &lt;code&gt; — детально по модели',
+        '',
+        '<b>📈 Аналитика</b>',
+        '/chart &lt;code&gt; — график цены модели (PNG)',
+        '/forecast &lt;code&gt; — куда движется цена + лучший день недели',
+        '/twins [diag] — те же экраны у разных брендов',
+        '/sellers — подозрительные листинги',
+        '',
+        '<b>👀 Подписки</b>',
+        '/watch &lt;code&gt; [₽] — подписаться на модель',
+        '/unwatch &lt;code&gt; — отписаться',
+        '/watchlist — мои подписки',
         '',
         '<b>⚙️ Прочее</b>',
         '/now — время последнего снимка',
@@ -417,9 +475,211 @@ function cmdNow({ report, models }) {
     ].join('\n');
 }
 
+// ---------- new: chart / forecast / twins / sellers / watch ----------
+
+function findModel(allModels, q) {
+    if (!q) return null;
+    const norm = q.toLowerCase().replace(/[`'"]/g, '');
+    return allModels.find((x) => x.model.toLowerCase() === norm)
+        || allModels.find((x) => x.model.toLowerCase().includes(norm));
+}
+
+function chartUrl(m, history) {
+    const h = history?.models?.[m.key];
+    const snaps = h?.snapshots || [];
+    if (snaps.length < 2) return null;
+    const labels = snaps.map((s) => s.at.slice(5, 10));
+    const min = snaps.map((s) => s.min);
+    const med = snaps.map((s) => s.med);
+    const cfg = {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [
+                { label: 'Мин ₽', data: min, borderColor: '#3fb950', fill: false, tension: 0.2 },
+                { label: 'Медиана ₽', data: med, borderColor: '#d29922', fill: false, tension: 0.2, borderDash: [4, 4] },
+            ],
+        },
+        options: {
+            title: { display: true, text: `${m.brand} ${m.model} · ${m.diagonals.join('/')}"` },
+            legend: { position: 'bottom' },
+        },
+    };
+    return `https://quickchart.io/chart?bkg=white&w=720&h=360&c=${encodeURIComponent(JSON.stringify(cfg))}`;
+}
+
+function cmdChart({ allModels, history }, arg) {
+    if (!arg) return 'Использование: <code>/chart qe75qn990fuxru</code>';
+    const m = findModel(allModels, arg);
+    if (!m) return `Модель <code>${esc(arg)}</code> не найдена.`;
+    const url = chartUrl(m, history);
+    if (!url) return `<b>${esc(m.brand)} <code>${esc(m.model)}</code></b>\nЕщё нет истории для графика (нужно ≥2 снимков).`;
+    return {
+        text: [
+            `<b>📈 ${esc(m.brand)} <code>${esc(m.model)}</code> · ${m.diagonals.join('/')}"</b>`,
+            `Текущий мин: <b>${fmt(m.min)} ₽</b> · ATL: ${fmt(m.allTimeMin)} ₽`,
+            `<a href="${esc(url)}">График открыть в полном размере →</a>`,
+        ].join('\n'),
+        disable_web_page_preview: false,
+    };
+}
+
+function cmdForecast({ allModels }, arg) {
+    if (!arg) return 'Использование: <code>/forecast qe75qn990fuxru</code>';
+    const m = findModel(allModels, arg);
+    if (!m) return `Модель <code>${esc(arg)}</code> не найдена.`;
+    const lines = [
+        `<b>🔮 ${esc(m.brand)} <code>${esc(m.model)}</code> · ${m.diagonals.join('/')}"</b>`,
+        '',
+        `Текущий мин: <b>${fmt(m.min)} ₽</b>`,
+        `Медиана: ${fmt(m.median)} ₽ · ATL: ${fmt(m.allTimeMin)} ₽`,
+    ];
+    if (m.velocity != null) {
+        const arrow = m.velocity <= -1 ? '📉' : m.velocity >= 1 ? '📈' : '➡';
+        const tagLabel = {
+            'panic-sale': '🚨 PANIC SALE — продавец сбрасывает остатки, бери сейчас',
+            'falling': '📉 Падает — стоит подождать ещё пару дней',
+            'rising': '📈 Растёт — покупать прямо сейчас',
+            'flat': '➡ Стабильно — равновесие',
+        }[m.velocityTag] || '';
+        lines.push(`Скорость: <b>${m.velocity > 0 ? '+' : ''}${m.velocity}%/день</b> ${arrow}`);
+        if (tagLabel) lines.push(`<i>${tagLabel}</i>`);
+    } else {
+        lines.push('<i>Недостаточно истории для скорости (нужно ≥3 снимков).</i>');
+    }
+    if (m.bestDow) {
+        lines.push('');
+        lines.push(`📅 Лучший день для покупки исторически: <b>${m.bestDow.day}</b> (средний мин ${fmt(m.bestDow.avg)} ₽, ${m.bestDow.samples} снимков)`);
+    }
+    if (m.nearAtl) {
+        lines.push('');
+        lines.push(`🔴 <b>Внимание: в ${m.nearAtlPct}% от дна.</b> Любое движение вниз = новый ATL.`);
+    }
+    return lines.join('\n');
+}
+
+function cmdTwins({ twins }, arg, page = 0) {
+    const all = twins?.twins || [];
+    let filtered = all;
+    if (arg) {
+        const d = parseInt(arg, 10);
+        if (d) filtered = all.filter((t) => t.diagonal === d);
+    }
+    if (!filtered.length) return arg
+        ? `Panel-twins с диагональю ${esc(arg)}" не найдены.`
+        : 'Panel-twins пока не обнаружены.';
+    const start = page * PAGE_SIZE;
+    const slice = filtered.slice(start, start + PAGE_SIZE);
+    const lastPage = Math.max(0, Math.ceil(filtered.length / PAGE_SIZE) - 1);
+    const title = arg ? `🪞 Panel-twins ${esc(arg)}" — ${filtered.length}` : `🪞 Panel-twins — ${filtered.length}`;
+    const lines = [
+        `<b>${title} · стр. ${page + 1}/${lastPage + 1}</b>`,
+        `<i>Те же диагональ/разрешение/тех — разные бренды и цены.</i>`,
+        '',
+    ];
+    for (const t of slice) {
+        lines.push(`<b>${t.diagonal}" · ${esc(t.resolution)} · ${esc(t.tech)}</b> — разброс <b>${t.spreadPct}%</b>`);
+        for (const mem of t.members.slice(0, 4)) {
+            lines.push(`  • ${esc(mem.brand)} <code>${esc(mem.model)}</code> — <b>${fmt(mem.min)} ₽</b> · ${link('арт. ' + mem.id, mem.url || '#')}`);
+        }
+        if (t.members.length > 4) lines.push(`  <i>…и ещё ${t.members.length - 4}</i>`);
+        lines.push('');
+    }
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:twins:${arg || '_'}`, page, filtered.length) };
+}
+
+function cmdSellers({ sellers }, _arg, page = 0) {
+    const list = sellers?.listings || [];
+    if (!list.length) return 'Данных по листингам пока недостаточно (нужно ≥2 истории снимка).';
+    const start = page * PAGE_SIZE;
+    const slice = list.slice(start, start + PAGE_SIZE);
+    const lastPage = Math.max(0, Math.ceil(list.length / PAGE_SIZE) - 1);
+    const lines = [
+        `<b>🏪 Подозрительные листинги — ${list.length} · стр. ${page + 1}/${lastPage + 1}</b>`,
+        `<i>Худшие первыми (высокая волатильность / фейк-скидки).</i>`,
+        '',
+    ];
+    for (const r of slice) {
+        const fr = Math.round(r.fakeDiscountRate * 100);
+        const vol = Math.round(r.volatility * 100);
+        lines.push(`• score <b>${r.score}</b> · ${esc(r.brand)} · ${fmt(r.priceMin)}–${fmt(r.priceMax)}₽ (vol ${vol}%, fake-disc ${fr}%) · ${link('арт. ' + r.id, r.url)}`);
+    }
+    return { text: lines.join('\n'), reply_markup: navMarkup(`pg:sellers:_`, page, list.length) };
+}
+
+async function cmdWatch({ allModels }, arg, ctx) {
+    if (!ctx?.chatId) return 'Подписка возможна только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/watch &lt;модель&gt; [потолок_₽]</code>\nПример: <code>/watch qe75qn990fuxru 100000</code>';
+    if (!ctx.env?.GH_PAT) return '⚠️ Подписки временно недоступны — администратор не настроил <code>GH_PAT</code> секрет в worker. Цена-алёрты по каналу продолжают работать.';
+    const parts = arg.trim().split(/\s+/);
+    const modelArg = parts[0];
+    const threshold = parts[1] ? parseInt(parts[1].replace(/\D/g, ''), 10) : null;
+    const m = findModel(allModels, modelArg);
+    if (!m) return `Модель <code>${esc(modelArg)}</code> не найдена.`;
+    const { sha, entries } = await ghReadWatchlist(ctx.env.GH_PAT);
+    const idx = entries.findIndex((e) => e.chatId === ctx.chatId && e.modelKey === m.key);
+    const entry = {
+        chatId: ctx.chatId,
+        modelKey: m.key,
+        threshold: threshold || null,
+        label: `${m.brand} ${m.model}`,
+        addedAt: new Date().toISOString(),
+    };
+    if (idx >= 0) entries[idx] = entry; else entries.push(entry);
+    await ghWriteWatchlist(ctx.env.GH_PAT, entries, sha);
+    const thresholdLine = threshold
+        ? `\nПорог: <b>${fmt(threshold)} ₽</b> (триггер только при цене ≤)`
+        : '\n<i>Без порога — алёрт при любом снижении.</i>';
+    return [
+        `👀 <b>Подписка добавлена</b>`,
+        '',
+        `${esc(m.brand)} <code>${esc(m.model)}</code> · ${m.diagonals.join('/')}"`,
+        `Текущий мин: <b>${fmt(m.min)} ₽</b>${thresholdLine}`,
+        '',
+        `Список: /watchlist · Отписаться: <code>/unwatch ${esc(m.model)}</code>`,
+    ].join('\n');
+}
+
+async function cmdUnwatch({ allModels }, arg, ctx) {
+    if (!ctx?.chatId) return 'Отписка возможна только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/unwatch &lt;модель&gt;</code>';
+    if (!ctx.env?.GH_PAT) return '⚠️ Подписки временно недоступны.';
+    const m = findModel(allModels, arg);
+    const { sha, entries } = await ghReadWatchlist(ctx.env.GH_PAT);
+    const before = entries.length;
+    const filtered = m
+        ? entries.filter((e) => !(e.chatId === ctx.chatId && e.modelKey === m.key))
+        : entries.filter((e) => !(e.chatId === ctx.chatId && e.label.toLowerCase().includes(arg.toLowerCase())));
+    await ghWriteWatchlist(ctx.env.GH_PAT, filtered, sha);
+    const removed = before - filtered.length;
+    return removed > 0 ? `🚫 Отписан от ${removed} модел${removed === 1 ? 'и' : 'ей'}.` : `Подписки на «${esc(arg)}» не было.`;
+}
+
+function cmdWatchlist({ watchlist, allModels }, _arg, ctx) {
+    if (!ctx?.chatId) return 'Список подписок доступен только из чата с ботом.';
+    const mine = (watchlist?.entries || []).filter((e) => e.chatId === ctx.chatId);
+    if (!mine.length) return [
+        '📋 <b>Ваших подписок нет.</b>',
+        '',
+        'Подпишитесь: <code>/watch &lt;модель&gt; [потолок_₽]</code>',
+        'Пример: <code>/watch qe75qn990fuxru 100000</code>',
+    ].join('\n');
+    const byKey = new Map(allModels.map((m) => [m.key, m]));
+    const lines = [`📋 <b>Ваши подписки — ${mine.length}</b>`, ''];
+    for (const e of mine) {
+        const m = byKey.get(e.modelKey);
+        const cur = m ? `мин <b>${fmt(m.min)} ₽</b>` : 'модели нет в текущем снимке';
+        const th = e.threshold ? ` · порог ${fmt(e.threshold)} ₽` : '';
+        lines.push(`• <code>${esc(e.modelKey.split('|')[1])}</code> · ${esc(e.label)} — ${cur}${th}`);
+    }
+    lines.push('');
+    lines.push('Отписаться: <code>/unwatch &lt;модель&gt;</code>');
+    return lines.join('\n');
+}
+
 // ---------- dispatcher ----------
 
-async function dispatch(data, cmd, arg) {
+async function dispatch(data, cmd, arg, ctx = {}) {
     switch (cmd) {
         case '/start': return { text: cmdStart(), reply_markup: REPLY_KEYBOARD };
         case '/menu': return { text: '⌨️ <b>Меню кнопок:</b>', reply_markup: REPLY_KEYBOARD };
@@ -438,6 +698,13 @@ async function dispatch(data, cmd, arg) {
         case '/cheap': return cmdCheap(data, arg, 0);
         case '/find': return cmdFind(data, arg, 0);
         case '/model': return cmdModel(data, arg);
+        case '/chart': return cmdChart(data, arg);
+        case '/forecast': return cmdForecast(data, arg);
+        case '/twins': return cmdTwins(data, arg, 0);
+        case '/sellers': return cmdSellers(data, arg, 0);
+        case '/watch': return await cmdWatch(data, arg, ctx);
+        case '/unwatch': return await cmdUnwatch(data, arg, ctx);
+        case '/watchlist': return cmdWatchlist(data, arg, ctx);
         case '/now': return cmdNow(data);
         case '/scrape': return 'Команда /scrape поддерживается только через GitHub Actions polling. Используйте https://github.com/' + REPO + '/actions';
         default: return 'Неизвестная команда. /help — список.';
@@ -463,6 +730,8 @@ async function dispatchCallback(data, cbData) {
             case 'deals': return cmdDeals(data, arg, page);
             case 'drops': return cmdDrops(data, arg, page);
             case 'anom': return cmdAnomalyCategory(data, arg, page);
+            case 'twins': return cmdTwins(data, arg === '_' ? '' : arg, page);
+            case 'sellers': return cmdSellers(data, arg === '_' ? '' : arg, page);
             default: return 'Неизвестная страница.';
         }
     }
@@ -515,7 +784,7 @@ async function handleMessage(data, msg, env, ctx) {
     const [cmdRaw, ...rest] = text.split(/\s+/);
     const cmd = cmdRaw.split('@')[0].toLowerCase();
     const arg = rest.join(' ');
-    const reply = await dispatch(data, cmd, arg);
+    const reply = await dispatch(data, cmd, arg, { chatId, env, ctx });
     return shapeReply(chatId, reply);
 }
 

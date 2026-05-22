@@ -18,6 +18,10 @@ set -euo pipefail
 ACTOR="${APIFY_ACTOR_ID:-powerai~wildberries-products-search-scraper}"
 OUT_DIR="${OUT_DIR:-apify-wb-tv-scraper/report}"
 MAX_ITEMS="${MAX_ITEMS:-200}"
+# WB region (dest code). Default = Санкт-Петербург (-1123300).
+# Moscow: -1257786 · St-Petersburg: -1123300 · Krasnodar: -2133462
+WB_DEST_ID="${WB_DEST_ID:--1123300}"
+WB_REGION_NAME="${WB_REGION_NAME:-Санкт-Петербург}"
 
 mkdir -p "$OUT_DIR"
 COMBINED="$(mktemp -t wb-combined.XXXXXX.json)"
@@ -49,11 +53,12 @@ BRAND_WHITELIST="${BRAND_WHITELIST:-samsung,sony,tcl,hisense,haier,xiaomi,янд
 
 echo "▸ Actor: $ACTOR"
 echo "▸ Queries: ${#QUERIES[@]}"
+echo "▸ Region: $WB_REGION_NAME (dest=$WB_DEST_ID)"
 echo "▸ Out: $OUT_DIR"
 
 start_run () {
   local qs="$1"
-  local url="https://www.wildberries.ru/catalog/0/search.aspx?${qs}"
+  local url="https://www.wildberries.ru/catalog/0/search.aspx?${qs}&dest=${WB_DEST_ID}"
   local payload
   payload=$(jq -nc --arg u "$url" --argjson n "$MAX_ITEMS" \
     '{searchUrl:$u, maxItems:$n, proxyConfiguration:{useApifyProxy:false}}')
@@ -144,6 +149,18 @@ echo "▸ Tracking models…"
 node apify-wb-tv-scraper/scripts/models.mjs \
   --input "$OUT_DIR/REPORT.json" --out-dir "$OUT_DIR"
 
+echo "▸ Enriching models (velocity, near-ATL, panel-twins)…"
+node apify-wb-tv-scraper/scripts/enrich-models.mjs \
+  --models "$OUT_DIR/MODELS.json" \
+  --history "$OUT_DIR/models-history.json" \
+  --out-dir "$OUT_DIR"
+
+echo "▸ Computing seller reputation…"
+node apify-wb-tv-scraper/scripts/seller-rep.mjs \
+  --history-dir "$OUT_DIR/history" \
+  --models "$OUT_DIR/MODELS.json" \
+  --out "$OUT_DIR/SELLERS.json"
+
 echo "▸ Detecting anomalies…"
 HIST_DIR="$OUT_DIR/history"
 mkdir -p "$HIST_DIR"
@@ -183,6 +200,13 @@ if [ -n "${TELEGRAM_BOT_TOKEN:-}" ] && [ -n "${TELEGRAM_CHAT_ID:-}" ]; then
     --history "$OUT_DIR/models-history.json" \
     --state "$OUT_DIR/alerts-state.json" \
     || echo "::warning::alerts broadcast failed (non-fatal)"
+
+  echo "▸ Checking personal watchlist…"
+  node apify-wb-tv-scraper/scripts/watchlist-check.mjs \
+    --models "$OUT_DIR/MODELS.json" \
+    --watchlist "$OUT_DIR/watchlist.json" \
+    --state "$OUT_DIR/alerts-state.json" \
+    || echo "::warning::watchlist check failed (non-fatal)"
 fi
 
 echo "▸ Done. Files in $OUT_DIR:"

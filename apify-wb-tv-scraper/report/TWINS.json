@@ -1,0 +1,857 @@
+{
+  "generatedAt": "2026-05-22T05:05:00.681Z",
+  "totalGroups": 14,
+  "twins": [
+    {
+      "key": "75|4K|LED",
+      "diagonal": 75,
+      "resolution": "4K",
+      "tech": "LED",
+      "brandsCount": 2,
+      "spreadPct": 247.4,
+      "members": [
+        {
+          "key": "samsung|u8000f",
+          "brand": "Samsung",
+          "model": "u8000f",
+          "min": 64033,
+          "median": 64033,
+          "url": "https://www.wildberries.ru/catalog/967213090/detail.aspx",
+          "id": "967213090"
+        },
+        {
+          "key": "samsung|ue75u8000fuxru",
+          "brand": "Samsung",
+          "model": "ue75u8000fuxru",
+          "min": 64105,
+          "median": 68485,
+          "url": "https://www.wildberries.ru/catalog/502568543/detail.aspx",
+          "id": "502568543"
+        },
+        {
+          "key": "hisense|75e7s",
+          "brand": "HISENSE",
+          "model": "75e7s",
+          "min": 70880,
+          "median": 90527,
+          "url": "https://www.wildberries.ru/catalog/912813482/detail.aspx",
+          "id": "912813482"
+        },
+        {
+          "key": "hisense|75ur9s",
+          "brand": "HISENSE",
+          "model": "75ur9s",
+          "min": 222450,
+          "median": 236216,
+          "url": "https://www.wildberries.ru/catalog/912813452/detail.aspx",
+          "id": "912813452"
+        }
+      ]
+    },
+    {
+      "key": "65|4K|LED",
+      "diagonal": 65,
+      "resolution": "4K",
+      "tech": "LED",
+      "brandsCount": 3,
+      "spreadPct": 223,
+      "members": [
+        {
+          "key": "samsung|ue65u8000huxpy",
+          "brand": "Samsung",
+          "model": "ue65u8000huxpy",
+          "min": 54733,
+          "median": 54733,
+          "url": "https://www.wildberries.ru/catalog/1013244282/detail.aspx",
+          "id": "1013244282"
+        },
+        {
+          "key": "tcl|65p6k",
+          "brand": "TCL",
+          "model": "65p6k",
+          "min": 54990,
+          "median": 54990,
+          "url": "https://www.wildberries.ru/catalog/709919965/detail.aspx",
+          "id": "709919965"
+        },
+        {
+          "key": "hisense|65e77sl",
+          "brand": "HISENSE",
+          "model": "65e77sl",
+          "min": 60618,
+          "median": 60618,
+          "url": "https://www.wildberries.ru/catalog/896498600/detail.aspx",
+          "id": "896498600"
+        },
+        {
+          "key": "hisense|65e7s",
+          "brand": "HISENSE",
+          "model": "65e7s",
+          "min": 66240,
+          "median": 66240,
+          "url": "https://www.wildberries.ru/catalog/977877590/detail.aspx",
+          "id": "977877590"
+        },
+        {
+          "key": "hisense|65ur9s",
+          "brand": "HISENSE",
+          "model": "65ur9s",
+          "min": 176798,
+          "median": 188394,
+          "url": "https://www.wildberries.ru/catalog/986862377/detail.aspx",
+          "id": "986862377"
+        }
+      ]
+    },
+    {
+      "key": "43|4K|QLED",
+      "diagonal": 43,
+      "resolution": "4K",
+      "tech": "QLED",
+      "brandsCount": 2,
+      "spreadPct": 173.8,
+      "members": [
+        {
+          "key": "samsung|qe43qef1auxru",
+          "brand": "Samsung",
+          "model": "qe43qef1auxru",
+          "min": 28494,
+          "median": 28494,
+          "url": "https://www.wildberries.ru/catalog/629342349/detail.aspx",
+          "id": "629342349"
+        },
+        {
+          "key": "tcl|43p7k",
+          "brand": "TCL",
+          "model": "43p7k",
+          "min": 29989,
+          "median": 29990,
+          "url": "https://www.wildberries.ru/catalog/388390170/detail.aspx",
+          "id": "388390170"
+        },
+        {
+          "key": "tcl|43t6d",
+          "brand": "TCL",
+          "model": "43t6d",
+          "min": 31999,
+          "median": 31999,
+          "url": "https://www.wildberries.ru/catalog/896375484/detail.aspx",
+          "id": "896375484"
+        },
+        {
+          "key": "samsung|qe43q7faauxru",
+          "brand": "Samsung",
+          "model": "qe43q7faauxru",
+          "min": 32468,
+          "median": 32468,
+          "url": "https://www.wildberries.ru/catalog/693156292/detail.aspx",
+          "id": "693156292"
+        },
+        {
+          "key": "tcl|43t6c",
+          "brand": "TCL",
+          "model": "43t6c",
+          "min": 33299,
+          "median": 33300,
+          "url": "https://www.wildberries.ru/catalog/351263590/detail.aspx",
+          "id": "351263590"
+        },
+        {
+          "key": "samsung|qe43ls03fauxru",
+          "brand": "Samsung",
+          "model": "qe43ls03fauxru",
+          "min": 78015,
+          "median": 78015,
+          "url": "https://www.wildberries.ru/catalog/720809842/detail.aspx",
+          "id": "720809842"
+        }
+      ]
+    },
+    {
+      "key": "75|4K|QLED",
+      "diagonal": 75,
+      "resolution": "4K",
+      "tech": "QLED",
+      "brandsCount": 3,
+      "spreadPct": 145.9,
+      "members": [
+        {
+          "key": "tcl|75p7k",
+          "brand": "TCL",
+          "model": "75p7k",
+          "min": 80799,
+          "median": 80799,
+          "url": "https://www.wildberries.ru/catalog/434608693/detail.aspx",
+          "id": "434608693"
+        },
+        {
+          "key": "hisense|75u7s",
+          "brand": "HISENSE",
+          "model": "75u7s",
+          "min": 103039,
+          "median": 117549,
+          "url": "https://www.wildberries.ru/catalog/1051364668/detail.aspx",
+          "id": "1051364668"
+        },
+        {
+          "key": "samsung|qe75ls03fauxru",
+          "brand": "Samsung",
+          "model": "qe75ls03fauxru",
+          "min": 176802,
+          "median": 176802,
+          "url": "https://www.wildberries.ru/catalog/693156219/detail.aspx",
+          "id": "693156219"
+        },
+        {
+          "key": "samsung|qe75qn80fauxru",
+          "brand": "Samsung",
+          "model": "qe75qn80fauxru",
+          "min": 198719,
+          "median": 198719,
+          "url": "https://www.wildberries.ru/catalog/687222256/detail.aspx",
+          "id": "687222256"
+        }
+      ]
+    },
+    {
+      "key": "55|4K|LED",
+      "diagonal": 55,
+      "resolution": "4K",
+      "tech": "LED",
+      "brandsCount": 4,
+      "spreadPct": 117,
+      "members": [
+        {
+          "key": "xiaomi|l55mb-aru",
+          "brand": "Xiaomi",
+          "model": "l55mb-aru",
+          "min": 27642,
+          "median": 27642,
+          "url": "https://www.wildberries.ru/catalog/614016295/detail.aspx",
+          "id": "614016295"
+        },
+        {
+          "key": "hisense|55a6s",
+          "brand": "HISENSE",
+          "model": "55a6s",
+          "min": 31490,
+          "median": 33856,
+          "url": "https://www.wildberries.ru/catalog/912813444/detail.aspx",
+          "id": "912813444"
+        },
+        {
+          "key": "hisense|55e77q",
+          "brand": "HISENSE",
+          "model": "55e77q",
+          "min": 34850,
+          "median": 34850,
+          "url": "https://www.wildberries.ru/catalog/438903476/detail.aspx",
+          "id": "438903476"
+        },
+        {
+          "key": "hisense|55e66sl",
+          "brand": "HISENSE",
+          "model": "55e66sl",
+          "min": 35360,
+          "median": 35360,
+          "url": "https://www.wildberries.ru/catalog/893452356/detail.aspx",
+          "id": "893452356"
+        },
+        {
+          "key": "tcl|55p69k",
+          "brand": "TCL",
+          "model": "55p69k",
+          "min": 36202,
+          "median": 36202,
+          "url": "https://www.wildberries.ru/catalog/575900201/detail.aspx",
+          "id": "575900201"
+        },
+        {
+          "key": "hisense|55e7s",
+          "brand": "HISENSE",
+          "model": "55e7s",
+          "min": 36340,
+          "median": 38272,
+          "url": "https://www.wildberries.ru/catalog/912813423/detail.aspx",
+          "id": "912813423"
+        },
+        {
+          "key": "samsung|ue55u8000fuxru",
+          "brand": "Samsung",
+          "model": "ue55u8000fuxru",
+          "min": 39233,
+          "median": 43297,
+          "url": "https://www.wildberries.ru/catalog/569423883/detail.aspx",
+          "id": "569423883"
+        },
+        {
+          "key": "samsung|ue55u8000fuxce",
+          "brand": "Samsung",
+          "model": "ue55u8000fuxce",
+          "min": 39643,
+          "median": 39643,
+          "url": "https://www.wildberries.ru/catalog/996444636/detail.aspx",
+          "id": "996444636"
+        },
+        {
+          "key": "tcl|55a400",
+          "brand": "TCL",
+          "model": "55a400",
+          "min": 59990,
+          "median": 59990,
+          "url": "https://www.wildberries.ru/catalog/969774487/detail.aspx",
+          "id": "969774487"
+        }
+      ]
+    },
+    {
+      "key": "65|4K|QLED",
+      "diagonal": 65,
+      "resolution": "4K",
+      "tech": "QLED",
+      "brandsCount": 2,
+      "spreadPct": 99.2,
+      "members": [
+        {
+          "key": "samsung|q7fa",
+          "brand": "Samsung",
+          "model": "q7fa",
+          "min": 66130,
+          "median": 66130,
+          "url": "https://www.wildberries.ru/catalog/771600282/detail.aspx",
+          "id": "771600282"
+        },
+        {
+          "key": "hisense|65u77sl",
+          "brand": "HISENSE",
+          "model": "65u77sl",
+          "min": 78400,
+          "median": 78400,
+          "url": "https://www.wildberries.ru/catalog/890289937/detail.aspx",
+          "id": "890289937"
+        },
+        {
+          "key": "hisense|65u7s",
+          "brand": "HISENSE",
+          "model": "65u7s",
+          "min": 87583,
+          "median": 122912,
+          "url": "https://www.wildberries.ru/catalog/980678340/detail.aspx",
+          "id": "980678340"
+        },
+        {
+          "key": "samsung|qe65qn80fauxru",
+          "brand": "Samsung",
+          "model": "qe65qn80fauxru",
+          "min": 131744,
+          "median": 134707,
+          "url": "https://www.wildberries.ru/catalog/527979827/detail.aspx",
+          "id": "527979827"
+        }
+      ]
+    },
+    {
+      "key": "55|4K|QLED",
+      "diagonal": 55,
+      "resolution": "4K",
+      "tech": "QLED",
+      "brandsCount": 4,
+      "spreadPct": 82,
+      "members": [
+        {
+          "key": "tcl|55t6c",
+          "brand": "TCL",
+          "model": "55t6c",
+          "min": 35999,
+          "median": 35999,
+          "url": "https://www.wildberries.ru/catalog/351287029/detail.aspx",
+          "id": "351287029"
+        },
+        {
+          "key": "samsung|qe55q7faauxce",
+          "brand": "Samsung",
+          "model": "qe55q7faauxce",
+          "min": 43262,
+          "median": 43262,
+          "url": "https://www.wildberries.ru/catalog/784297698/detail.aspx",
+          "id": "784297698"
+        },
+        {
+          "key": "tcl|55t8c",
+          "brand": "TCL",
+          "model": "55t8c",
+          "min": 44999,
+          "median": 44999,
+          "url": "https://www.wildberries.ru/catalog/448992993/detail.aspx",
+          "id": "448992993"
+        },
+        {
+          "key": "samsung|qe55q7f5auxru",
+          "brand": "Samsung",
+          "model": "qe55q7f5auxru",
+          "min": 48186,
+          "median": 51249,
+          "url": "https://www.wildberries.ru/catalog/498006542/detail.aspx",
+          "id": "498006542"
+        },
+        {
+          "key": "tcl|55p7l",
+          "brand": "TCL",
+          "model": "55p7l",
+          "min": 49991,
+          "median": 49991,
+          "url": "https://www.wildberries.ru/catalog/927118704/detail.aspx",
+          "id": "927118704"
+        },
+        {
+          "key": "hisense|55u77sl",
+          "brand": "HISENSE",
+          "model": "55u77sl",
+          "min": 53900,
+          "median": 53900,
+          "url": "https://www.wildberries.ru/catalog/890167319/detail.aspx",
+          "id": "890167319"
+        },
+        {
+          "key": "яндекс|yndx-00101",
+          "brand": "Яндекс",
+          "model": "yndx-00101",
+          "min": 65504,
+          "median": 74972,
+          "url": "https://www.wildberries.ru/catalog/328150665/detail.aspx",
+          "id": "328150665"
+        }
+      ]
+    },
+    {
+      "key": "85|4K|LED",
+      "diagonal": 85,
+      "resolution": "4K",
+      "tech": "LED",
+      "brandsCount": 2,
+      "spreadPct": 81.6,
+      "members": [
+        {
+          "key": "samsung|ue85u8000fuxce",
+          "brand": "Samsung",
+          "model": "ue85u8000fuxce",
+          "min": 88089,
+          "median": 88089,
+          "url": "https://www.wildberries.ru/catalog/784441483/detail.aspx",
+          "id": "784441483"
+        },
+        {
+          "key": "tcl|85p8l",
+          "brand": "TCL",
+          "model": "85p8l",
+          "min": 159991,
+          "median": 159991,
+          "url": "https://www.wildberries.ru/catalog/969774224/detail.aspx",
+          "id": "969774224"
+        }
+      ]
+    },
+    {
+      "key": "55|4K|Mini-LED",
+      "diagonal": 55,
+      "resolution": "4K",
+      "tech": "Mini-LED",
+      "brandsCount": 3,
+      "spreadPct": 78.9,
+      "members": [
+        {
+          "key": "hisense|55u7s",
+          "brand": "HISENSE",
+          "model": "55u7s",
+          "min": 54990,
+          "median": 54990,
+          "url": "https://www.wildberries.ru/catalog/1015983930/detail.aspx",
+          "id": "1015983930"
+        },
+        {
+          "key": "tcl|55c6k",
+          "brand": "TCL",
+          "model": "55c6k",
+          "min": 54991,
+          "median": 54991,
+          "url": "https://www.wildberries.ru/catalog/420266207/detail.aspx",
+          "id": "420266207"
+        },
+        {
+          "key": "tcl|55q6c",
+          "brand": "TCL",
+          "model": "55q6c",
+          "min": 54999,
+          "median": 55099,
+          "url": "https://www.wildberries.ru/catalog/915776407/detail.aspx",
+          "id": "915776407"
+        },
+        {
+          "key": "samsung|qe55qn1efauxru",
+          "brand": "Samsung",
+          "model": "qe55qn1efauxru",
+          "min": 68364,
+          "median": 68364,
+          "url": "https://www.wildberries.ru/catalog/632289453/detail.aspx",
+          "id": "632289453"
+        },
+        {
+          "key": "hisense|55u8q",
+          "brand": "HISENSE",
+          "model": "55u8q",
+          "min": 98403,
+          "median": 102745,
+          "url": "https://www.wildberries.ru/catalog/1051304677/detail.aspx",
+          "id": "1051304677"
+        }
+      ]
+    },
+    {
+      "key": "50|4K|QLED",
+      "diagonal": 50,
+      "resolution": "4K",
+      "tech": "QLED",
+      "brandsCount": 4,
+      "spreadPct": 71.1,
+      "members": [
+        {
+          "key": "sber|sdf-50uq7000mba",
+          "brand": "SBER",
+          "model": "sdf-50uq7000mba",
+          "min": 32147,
+          "median": 32147,
+          "url": "https://www.wildberries.ru/catalog/933904532/detail.aspx",
+          "id": "933904532"
+        },
+        {
+          "key": "tcl|50t6d",
+          "brand": "TCL",
+          "model": "50t6d",
+          "min": 38999,
+          "median": 38999,
+          "url": "https://www.wildberries.ru/catalog/907498201/detail.aspx",
+          "id": "907498201"
+        },
+        {
+          "key": "samsung|qe50qef1auxru",
+          "brand": "Samsung",
+          "model": "qe50qef1auxru",
+          "min": 39008,
+          "median": 39008,
+          "url": "https://www.wildberries.ru/catalog/632384218/detail.aspx",
+          "id": "632384218"
+        },
+        {
+          "key": "samsung|qe50q7faauxru",
+          "brand": "Samsung",
+          "model": "qe50q7faauxru",
+          "min": 42679,
+          "median": 43705,
+          "url": "https://www.wildberries.ru/catalog/693156298/detail.aspx",
+          "id": "693156298"
+        },
+        {
+          "key": "hisense|50u77sl",
+          "brand": "HISENSE",
+          "model": "50u77sl",
+          "min": 51940,
+          "median": 51940,
+          "url": "https://www.wildberries.ru/catalog/890696082/detail.aspx",
+          "id": "890696082"
+        },
+        {
+          "key": "hisense|50u7s",
+          "brand": "HISENSE",
+          "model": "50u7s",
+          "min": 54998,
+          "median": 54999,
+          "url": "https://www.wildberries.ru/catalog/890490091/detail.aspx",
+          "id": "890490091"
+        }
+      ]
+    },
+    {
+      "key": "32|HD|LED",
+      "diagonal": 32,
+      "resolution": "HD",
+      "tech": "LED",
+      "brandsCount": 2,
+      "spreadPct": 65,
+      "members": [
+        {
+          "key": "hisense|32e4qt",
+          "brand": "HISENSE",
+          "model": "32e4qt",
+          "min": 11880,
+          "median": 11880,
+          "url": "https://www.wildberries.ru/catalog/551505117/detail.aspx",
+          "id": "551505117"
+        },
+        {
+          "key": "hisense|32a4q",
+          "brand": "HISENSE",
+          "model": "32a4q",
+          "min": 12836,
+          "median": 13761,
+          "url": "https://www.wildberries.ru/catalog/434031962/detail.aspx",
+          "id": "434031962"
+        },
+        {
+          "key": "xiaomi|l32mb-aru",
+          "brand": "Xiaomi",
+          "model": "l32mb-aru",
+          "min": 13489,
+          "median": 13489,
+          "url": "https://www.wildberries.ru/catalog/852877857/detail.aspx",
+          "id": "852877857"
+        },
+        {
+          "key": "hisense|32a4s",
+          "brand": "HISENSE",
+          "model": "32a4s",
+          "min": 13700,
+          "median": 14063,
+          "url": "https://www.wildberries.ru/catalog/1021730496/detail.aspx",
+          "id": "1021730496"
+        },
+        {
+          "key": "hisense|32a5s",
+          "brand": "HISENSE",
+          "model": "32a5s",
+          "min": 16928,
+          "median": 16928,
+          "url": "https://www.wildberries.ru/catalog/1012171503/detail.aspx",
+          "id": "1012171503"
+        },
+        {
+          "key": "hisense|32e55sl",
+          "brand": "HISENSE",
+          "model": "32e55sl",
+          "min": 19600,
+          "median": 19600,
+          "url": "https://www.wildberries.ru/catalog/893619495/detail.aspx",
+          "id": "893619495"
+        }
+      ]
+    },
+    {
+      "key": "43|4K|LED",
+      "diagonal": 43,
+      "resolution": "4K",
+      "tech": "LED",
+      "brandsCount": 4,
+      "spreadPct": 50.9,
+      "members": [
+        {
+          "key": "hisense|43a6s",
+          "brand": "HISENSE",
+          "model": "43a6s",
+          "min": 23551,
+          "median": 23551,
+          "url": "https://www.wildberries.ru/catalog/917843511/detail.aspx",
+          "id": "917843511"
+        },
+        {
+          "key": "samsung|ue43u8000fuxru",
+          "brand": "Samsung",
+          "model": "ue43u8000fuxru",
+          "min": 25947,
+          "median": 28319,
+          "url": "https://www.wildberries.ru/catalog/569482097/detail.aspx",
+          "id": "569482097"
+        },
+        {
+          "key": "hisense|43a6q",
+          "brand": "HISENSE",
+          "model": "43a6q",
+          "min": 26716,
+          "median": 26716,
+          "url": "https://www.wildberries.ru/catalog/838184619/detail.aspx",
+          "id": "838184619"
+        },
+        {
+          "key": "hisense|43e77q",
+          "brand": "HISENSE",
+          "model": "43e77q",
+          "min": 28289,
+          "median": 28289,
+          "url": "https://www.wildberries.ru/catalog/438936036/detail.aspx",
+          "id": "438936036"
+        },
+        {
+          "key": "tcl|43v6c",
+          "brand": "TCL",
+          "model": "43v6c",
+          "min": 28999,
+          "median": 28999,
+          "url": "https://www.wildberries.ru/catalog/351246780/detail.aspx",
+          "id": "351246780"
+        },
+        {
+          "key": "hisense|43e77sl",
+          "brand": "HISENSE",
+          "model": "43e77sl",
+          "min": 29396,
+          "median": 29396,
+          "url": "https://www.wildberries.ru/catalog/896006700/detail.aspx",
+          "id": "896006700"
+        },
+        {
+          "key": "hisense|43e7s",
+          "brand": "HISENSE",
+          "model": "43e7s",
+          "min": 29808,
+          "median": 29808,
+          "url": "https://www.wildberries.ru/catalog/969227493/detail.aspx",
+          "id": "969227493"
+        },
+        {
+          "key": "tcl|43p7k-uz",
+          "brand": "TCL",
+          "model": "43p7k-uz",
+          "min": 29990,
+          "median": 29990,
+          "url": "https://www.wildberries.ru/catalog/617793922/detail.aspx",
+          "id": "617793922"
+        },
+        {
+          "key": "xiaomi|l43mb-apru",
+          "brand": "Xiaomi",
+          "model": "l43mb-apru",
+          "min": 35535,
+          "median": 35535,
+          "url": "https://www.wildberries.ru/catalog/1055684498/detail.aspx",
+          "id": "1055684498"
+        }
+      ]
+    },
+    {
+      "key": "50|4K|LED",
+      "diagonal": 50,
+      "resolution": "4K",
+      "tech": "LED",
+      "brandsCount": 3,
+      "spreadPct": 47,
+      "members": [
+        {
+          "key": "hisense|50a6s",
+          "brand": "HISENSE",
+          "model": "50a6s",
+          "min": 27199,
+          "median": 30066,
+          "url": "https://www.wildberries.ru/catalog/912813468/detail.aspx",
+          "id": "912813468"
+        },
+        {
+          "key": "hisense|50a6q",
+          "brand": "HISENSE",
+          "model": "50a6q",
+          "min": 28900,
+          "median": 29076,
+          "url": "https://www.wildberries.ru/catalog/851057972/detail.aspx",
+          "id": "851057972"
+        },
+        {
+          "key": "hisense|50e66sl",
+          "brand": "HISENSE",
+          "model": "50e66sl",
+          "min": 32340,
+          "median": 32340,
+          "url": "https://www.wildberries.ru/catalog/893283448/detail.aspx",
+          "id": "893283448"
+        },
+        {
+          "key": "hisense|50e7s",
+          "brand": "HISENSE",
+          "model": "50e7s",
+          "min": 33856,
+          "median": 33856,
+          "url": "https://www.wildberries.ru/catalog/977877418/detail.aspx",
+          "id": "977877418"
+        },
+        {
+          "key": "samsung|ue50u8000fuxru",
+          "brand": "Samsung",
+          "model": "ue50u8000fuxru",
+          "min": 34060,
+          "median": 35626,
+          "url": "https://www.wildberries.ru/catalog/693156021/detail.aspx",
+          "id": "693156021"
+        },
+        {
+          "key": "tcl|50v6c",
+          "brand": "TCL",
+          "model": "50v6c",
+          "min": 34999,
+          "median": 34999,
+          "url": "https://www.wildberries.ru/catalog/351253302/detail.aspx",
+          "id": "351253302"
+        },
+        {
+          "key": "tcl|50p7k",
+          "brand": "TCL",
+          "model": "50p7k",
+          "min": 35990,
+          "median": 35990,
+          "url": "https://www.wildberries.ru/catalog/431556117/detail.aspx",
+          "id": "431556117"
+        },
+        {
+          "key": "hisense|50e77sl",
+          "brand": "HISENSE",
+          "model": "50e77sl",
+          "min": 36371,
+          "median": 36371,
+          "url": "https://www.wildberries.ru/catalog/896059016/detail.aspx",
+          "id": "896059016"
+        },
+        {
+          "key": "tcl|50p7l",
+          "brand": "TCL",
+          "model": "50p7l",
+          "min": 39990,
+          "median": 39990,
+          "url": "https://www.wildberries.ru/catalog/969774361/detail.aspx",
+          "id": "969774361"
+        }
+      ]
+    },
+    {
+      "key": "43|FHD|LED",
+      "diagonal": 43,
+      "resolution": "FHD",
+      "tech": "LED",
+      "brandsCount": 3,
+      "spreadPct": 44.2,
+      "members": [
+        {
+          "key": "sber|sdx-43f3111",
+          "brand": "SBER",
+          "model": "sdx-43f3111",
+          "min": 14798,
+          "median": 14798,
+          "url": "https://www.wildberries.ru/catalog/577718242/detail.aspx",
+          "id": "577718242"
+        },
+        {
+          "key": "xiaomi|l43mb-afru",
+          "brand": "Xiaomi",
+          "model": "l43mb-afru",
+          "min": 20632,
+          "median": 20632,
+          "url": "https://www.wildberries.ru/catalog/727189972/detail.aspx",
+          "id": "727189972"
+        },
+        {
+          "key": "samsung|ue43f6000fuxru",
+          "brand": "Samsung",
+          "model": "ue43f6000fuxru",
+          "min": 21344,
+          "median": 26492,
+          "url": "https://www.wildberries.ru/catalog/629218813/detail.aspx",
+          "id": "629218813"
+        }
+      ]
+    }
+  ]
+}
