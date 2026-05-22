@@ -107,6 +107,17 @@ jobs:
             --state "$OUT_DIR/alerts-state.json" \
             || echo "::warning::watchlist-products fired with errors"
 
+      - name: Broadcast interesting positions (dedup 24h)
+        if: ${{ env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != '' }}
+        run: |
+          node apify-wb-tv-scraper/scripts/find-interesting.mjs \
+            --watchlist "$OUT_DIR/watchlist.json" \
+            --state "$OUT_DIR/alerts-state.json" \
+            --chat "${TELEGRAM_CHAT_ID}" \
+            --per-bucket 3 \
+            --dedup-hours 24 \
+            || echo "::warning::find-interesting fired with errors"
+
       - name: Commit updated state
         run: |
           set -euo pipefail
