@@ -41,15 +41,27 @@ function fmtItemLine(p, { showBrand = true, showDiag = true } = {}) {
 
 // ---------- UI: keyboards ----------
 
+// Legacy reply-keyboard kept for /keyboard command (one-time pop-up).
 const REPLY_KEYBOARD = {
     keyboard: [
         [{ text: '📊 Сводка' }, { text: '🟢 ATL' }, { text: '💸 Сделки' }],
         [{ text: '📉 Падения' }, { text: '🪙 Дёшево' }, { text: '🚨 Аномалии' }],
         [{ text: '🏷 Бренд' }, { text: '📏 Диагональ' }, { text: '💰 До цены' }],
-        [{ text: '🔄 Новый скрап' }, { text: '🕐 Время снимка' }, { text: 'ℹ️ Помощь' }],
+        [{ text: '📋 Мой список' }, { text: '🕐 Время снимка' }, { text: 'ℹ️ Помощь' }],
     ],
     resize_keyboard: true,
-    is_persistent: true,
+    one_time_keyboard: true,
+};
+
+// Pop-up inline menu (shown by /menu, lives above the chat, disappears on tap).
+const INLINE_MENU = {
+    inline_keyboard: [
+        [{ text: '📊 Сводка', callback_data: 'menu:snapshot' }, { text: '🟢 ATL', callback_data: 'menu:atl' }, { text: '💸 Сделки', callback_data: 'menu:deals' }],
+        [{ text: '📉 Падения', callback_data: 'menu:drops' }, { text: '🪙 Дёшево', callback_data: 'menu:cheap' }, { text: '🚨 Аномалии', callback_data: 'menu:anomalies' }],
+        [{ text: '🏷 Бренд', callback_data: 'menu:brand' }, { text: '📏 Диагональ', callback_data: 'menu:d' }, { text: '💰 До цены', callback_data: 'menu:under' }],
+        [{ text: '📋 Мой список', callback_data: 'menu:list' }, { text: '🎯 Интересное', callback_data: 'menu:interesting' }, { text: '🕐 Время', callback_data: 'menu:now' }],
+        [{ text: 'ℹ️ Помощь', callback_data: 'menu:help' }],
+    ],
 };
 
 const BRAND_KEYBOARD = {
@@ -110,7 +122,7 @@ const TEXT_TO_COMMAND = {
     '🏷 Бренд': '/brand',
     '📏 Диагональ': '/d',
     '💰 До цены': '/under',
-    '🔄 Новый скрап': '/scrape',
+    '📋 Мой список': '/list',
     '🕐 Время снимка': '/now',
     'ℹ️ Помощь': '/help',
 };
@@ -884,9 +896,11 @@ function cmdList({ watchlist, allModels }, _arg, ctx) {
 
 async function dispatch(data, cmd, arg, ctx = {}) {
     switch (cmd) {
-        case '/start': return { text: cmdStart(), reply_markup: REPLY_KEYBOARD };
-        case '/menu': return { text: '⌨️ <b>Меню кнопок:</b>', reply_markup: REPLY_KEYBOARD };
-        case '/help': return { text: cmdHelp(), reply_markup: REPLY_KEYBOARD };
+        case '/start': return { text: cmdStart(), reply_markup: INLINE_MENU };
+        case '/menu': return { text: '🛒 <b>Меню</b>\n<i>Нажми на пункт — отвечу прямо здесь.</i>', reply_markup: INLINE_MENU };
+        case '/keyboard': return { text: '⌨️ Клавиатура снизу:', reply_markup: REPLY_KEYBOARD };
+        case '/help': return { text: cmdHelp(), reply_markup: INLINE_MENU };
+        case '/interesting': return { text: '🎯 Чтобы увидеть интересные позиции — подождите ежечасный прогон, или используй /list для всего watchlist\'а.' };
         case '/snapshot':
         case '/summary': return cmdSnapshot(data);
         case '/atl': return cmdAtl(data, arg, 0);
@@ -960,6 +974,11 @@ async function dispatchCallback(data, cbData) {
         const cat = colon > 0 ? rest.slice(0, colon) : rest;
         const page = colon > 0 ? parseInt(rest.slice(colon + 1), 10) || 0 : 0;
         return cmdAnomalyCategory(data, cat, page);
+    }
+    if (cbData.startsWith('menu:')) {
+        // Pop-up menu tap — translate to slash command and run dispatch
+        const cmd = '/' + cbData.slice(5);
+        return await dispatch(data, cmd, '', { chatId: undefined, env: undefined, ctx: undefined });
     }
     if (cbData.startsWith('brand:')) return cmdBrand(data, cbData.slice(6), 0);
     if (cbData.startsWith('d:')) return cmdDiagonal(data, cbData.slice(2), 0);
