@@ -45,7 +45,11 @@ for (const t of tests) {
     const arg = rest.join(' ');
     try {
         const result = await dispatch(cmd, arg);
-        const text = typeof result === 'string' ? result : (result?.text || '');
+        // Result may be a string, an object { text, ... }, or an array of those
+        // (commands like /start emit multiple messages — concat their texts for matching).
+        const text = Array.isArray(result)
+            ? result.map((r) => typeof r === 'string' ? r : (r?.text || '')).join('\n')
+            : (typeof result === 'string' ? result : (result?.text || ''));
         const ok = t.expect.test(text);
         const tag = ok ? 'OK ' : 'FAIL';
         const preview = text.replace(/\n/g, ' / ').slice(0, 110);

@@ -896,9 +896,16 @@ function cmdList({ watchlist, allModels }, _arg, ctx) {
 
 async function dispatch(data, cmd, arg, ctx = {}) {
     switch (cmd) {
-        case '/start': return { text: cmdStart(), reply_markup: INLINE_MENU };
-        case '/menu': return { text: '🛒 <b>Меню</b>\n<i>Нажми на пункт — отвечу прямо здесь.</i>', reply_markup: INLINE_MENU };
-        case '/keyboard': return { text: '⌨️ Клавиатура снизу:', reply_markup: REPLY_KEYBOARD };
+        case '/start': return [
+            { text: '🧹 Старая клавиатура снизу убрана.', reply_markup: { remove_keyboard: true } },
+            { text: cmdStart(), reply_markup: INLINE_MENU },
+        ];
+        case '/menu': return [
+            { text: '⌨️ Скрываю нижнюю клавиатуру.', reply_markup: { remove_keyboard: true } },
+            { text: '🛒 <b>Меню</b>\n<i>Нажми на пункт — отвечу прямо здесь.</i>', reply_markup: INLINE_MENU },
+        ];
+        case '/keyboard': return { text: '⌨️ Клавиатура снизу (исчезнет после одного тапа):', reply_markup: REPLY_KEYBOARD };
+        case '/hidekb': return { text: '✅ Нижняя клавиатура убрана.', reply_markup: { remove_keyboard: true } };
         case '/help': return { text: cmdHelp(), reply_markup: INLINE_MENU };
         case '/interesting': return { text: '🎯 Чтобы увидеть интересные позиции — подождите ежечасный прогон, или используй /list для всего watchlist\'а.' };
         case '/snapshot':
@@ -1003,6 +1010,11 @@ async function dispatchCallback(data, cbData) {
 // ---------- response shaping ----------
 
 function shapeReply(chatId, payload) {
+    // Array: flatten into multiple sendMessage calls (used by /start, /menu —
+    // first message removes the old reply keyboard, second shows the inline menu).
+    if (Array.isArray(payload)) {
+        return payload.flatMap((p) => shapeReply(chatId, p));
+    }
     const text = typeof payload === 'string' ? payload : payload.text;
     const markup = (typeof payload === 'object' && payload.reply_markup) ? payload.reply_markup : undefined;
     // Telegram 4096 cap: split conservatively at 3800 on paragraph boundaries.
