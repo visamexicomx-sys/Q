@@ -64,7 +64,8 @@ for (const e of products) {
 
     if (prev.price && fresh.price !== prev.price) {
         const pct = ((fresh.price - prev.price) / prev.price * 100);
-        if (Math.abs(pct) >= 3) {
+        const threshold = parseFloat(env.WATCHLIST_PCT_THRESHOLD || '3');
+        if (Math.abs(pct) >= threshold) {
             const emoji = pct < 0 ? '📉' : '📈';
             events.push({ kind: 'price-change', emoji, pct: +pct.toFixed(1), oldPrice: prev.price });
         }

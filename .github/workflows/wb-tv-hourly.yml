@@ -1,0 +1,128 @@
+name: WB TV — Hourly tracking
+
+# Каждый час: пытается фетчить отслеживаемые товары и кидать алёрты.
+#
+# ⚠️ ВАЖНО: WB геоблочит non-RU IP, поэтому fetch с GitHub-runner'а упадёт
+# с 404/451. Для реальной работы ежечасного скана нужно деплоить:
+#   - Yandex Cloud Function (бесплатно), ИЛИ
+#   - RU VPS с cron (см. docs/SCRAPER-WITHOUT-APIFY.md)
+#
+# Этот workflow всё равно полезен: он перепроверяет watchlist на основе
+# актуальных данных (если они уже запушены из YC/VPS) и кидает алёрты
+# при изменениях. Если RU-источник не настроен — просто залогирует skip.
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+    inputs:
+      sensitivity:
+        description: "Чувствительность алёртов (%, по умолчанию 2)"
+        default: "2"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wb-tv-hourly
+  cancel-in-progress: false
+
+jobs:
+  hourly-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OUT_DIR: apify-wb-tv-scraper/report
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      WATCHLIST_PCT_THRESHOLD: ${{ github.event.inputs.sensitivity || '2' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Try fetch tracked products (best-effort, OK if geo-blocked)
+        id: fetch
+        continue-on-error: true
+        run: |
+          # Extract unique product IDs from watchlist
+          ids=$(node -e "
+            const wl = require('./$OUT_DIR/watchlist.json');
+            const ids = [...new Set((wl.entries||[]).filter(e=>e.productId).map(e=>e.productId))];
+            console.log(ids.join(','));
+          ")
+          if [ -z "$ids" ]; then echo "no tracked products — skip"; exit 0; fi
+          echo "ids_count=$(echo $ids | tr ',' '\n' | wc -l)" >> $GITHUB_OUTPUT
+          # Will fail with HTTP 404 on non-RU GitHub runner — that's OK
+          node apify-wb-tv-scraper/scripts/wb-product-fetch.mjs \
+            --ids "$ids" \
+            --dest -1123300 \
+            --out "$OUT_DIR/tracked-products-fresh.jsonl" 2>&1 || true
+          if [ -f "$OUT_DIR/tracked-products-fresh.jsonl" ]; then
+            cnt=$(wc -l < "$OUT_DIR/tracked-products-fresh.jsonl")
+            echo "fetched=$cnt" >> $GITHUB_OUTPUT
+            echo "fetched $cnt fresh product snapshots"
+          else
+            echo "fetched=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Apply fresh snapshots to watchlist
+        if: steps.fetch.outputs.fetched != '' && steps.fetch.outputs.fetched != '0'
+        run: |
+          node -e "
+            const fs = require('fs');
+            const wlPath = '$OUT_DIR/watchlist.json';
+            const fresh = fs.readFileSync('$OUT_DIR/tracked-products-fresh.jsonl', 'utf8')
+              .split('\n').filter(Boolean).map(JSON.parse);
+            const wl = JSON.parse(fs.readFileSync(wlPath, 'utf8'));
+            const freshById = new Map(fresh.map(p => [p.id, p]));
+            const now = new Date().toISOString();
+            let updated = 0;
+            for (const e of (wl.entries || [])) {
+              if (!e.productId) continue;
+              const p = freshById.get(e.productId);
+              if (!p) continue;
+              e.lastSnapshot = {
+                ...e.lastSnapshot, ...p, at: now,
+              };
+              e.history = [...(e.history || []), { at: now, price: p.price, stock: p.stock }].slice(-30);
+              e.minSeen = Math.min(e.minSeen || p.price, p.price);
+              e.maxSeen = Math.max(e.maxSeen || p.price, p.price);
+              updated++;
+            }
+            fs.writeFileSync(wlPath, JSON.stringify({ updatedAt: now, entries: wl.entries }, null, 2));
+            console.log('applied fresh snapshots to', updated, 'entries');
+          "
+
+      - name: Fire alerts (price-change / threshold / low-stock)
+        if: ${{ env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != '' }}
+        run: |
+          node apify-wb-tv-scraper/scripts/watchlist-products.mjs \
+            --watchlist "$OUT_DIR/watchlist.json" \
+            --state "$OUT_DIR/alerts-state.json" \
+            || echo "::warning::watchlist-products fired with errors"
+
+      - name: Commit updated state
+        run: |
+          set -euo pipefail
+          git config user.name "wb-tv-hourly-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT_DIR/watchlist.json" "$OUT_DIR/alerts-state.json" 2>/dev/null || true
+          rm -f "$OUT_DIR/tracked-products-fresh.jsonl"
+          if git diff --staged --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "chore(hourly): refresh watchlist $(date -u +%Y-%m-%dT%H:%MZ)"
+          # Network may be flaky — retry with backoff
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
+            sleep $((2 ** i))
+          done
+          echo "::warning::push failed after retries"

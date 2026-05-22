@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-22T17:17:33.228Z",
+  "updatedAt": "2026-05-22T17:25:15.261Z",
   "entries": [
     {
       "chatId": 1312189374,
@@ -10,10 +10,29 @@
       "region": "Санкт-Петербург",
       "dest": "-1123300",
       "addedAt": "2026-05-22T17:17:33.228Z",
-      "lastSnapshot": null,
-      "history": [],
-      "minSeen": null,
-      "maxSeen": null
+      "lastSnapshot": {
+        "price": 56754,
+        "originalPrice": 61493,
+        "discount": 8,
+        "stock": 31,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Стиральная машина с сушкой Zeo Lite, 10 6 кг, 1400 об мин",
+        "brand": "roborock",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 56754,
+          "stock": 31
+        }
+      ],
+      "minSeen": 52443,
+      "maxSeen": 61493
     },
     {
       "chatId": 1312189374,
@@ -56,6 +75,4659 @@
       "history": [],
       "minSeen": null,
       "maxSeen": null
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "942703742",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 48486,
+        "originalPrice": 49967,
+        "discount": 3,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55U7Q, серый",
+        "brand": "HISENSE",
+        "supplier": "RBT.ru",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 48486,
+          "stock": 0
+        }
+      ],
+      "minSeen": 46940,
+      "maxSeen": 49967
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "564643729",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 35999,
+        "originalPrice": 37139,
+        "discount": 3,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 43 Smart TV S4, 4K, Android TV, EVO TV 60 Гц",
+        "brand": "Haier",
+        "supplier": "Haier",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 35999,
+          "stock": 50
+        }
+      ],
+      "minSeen": 35224,
+      "maxSeen": 37139
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "575709929",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 98264,
+        "originalPrice": 134398,
+        "discount": 27,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65QNED93A6A, QNED, ИИ процессор 8 Gen2",
+        "brand": "LG",
+        "supplier": "Life is good - Жизнь прекрасна",
+        "rating": 4.3,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 98264,
+          "stock": 0
+        }
+      ],
+      "minSeen": 94492,
+      "maxSeen": 134398
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "415330499",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 99991,
+        "originalPrice": 129999,
+        "discount": 23,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 75 дюймов смарт 4K 75C6K QD-Mini LED",
+        "brand": "TCL",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 99991,
+          "stock": 0
+        }
+      ],
+      "minSeen": 98649,
+      "maxSeen": 129999
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "467703940",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 33149,
+        "originalPrice": 36105,
+        "discount": 8,
+        "stock": 12,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник B3R0CNK332HW",
+        "brand": "Beko",
+        "supplier": "AGILE",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 33149,
+          "stock": 12
+        }
+      ],
+      "minSeen": 24139,
+      "maxSeen": 36105
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "577718185",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 33999,
+        "originalPrice": 42521,
+        "discount": 20,
+        "stock": 31,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 43 HQLED S2 Pro",
+        "brand": "Haier",
+        "supplier": "ХОЛОДИЛЬНИК.ру",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 33999,
+          "stock": 31
+        }
+      ],
+      "minSeen": 25383,
+      "maxSeen": 42521
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "314299386",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 36040,
+        "originalPrice": 36040,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор UE65DU7100UX 65\" 4K UHD Smart TV Wi-Fi BT",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 36040,
+          "stock": 0
+        }
+      ],
+      "minSeen": 36040,
+      "maxSeen": 36040
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "344357745",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 48999,
+        "originalPrice": 50386,
+        "discount": 3,
+        "stock": 5,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Стиральная машина автомат HWD70-BP14929S 7 кг с сушкой 4 кг",
+        "brand": "Haier",
+        "supplier": "Haier - Официальный магазин DBS",
+        "rating": 4.6,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 48999,
+          "stock": 5
+        }
+      ],
+      "minSeen": 42616,
+      "maxSeen": 50386
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "436697548",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 79423,
+        "originalPrice": 79423,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55\" QE55QN700CUXRU, черный",
+        "brand": "Samsung",
+        "supplier": "Lite-Mobile",
+        "rating": 4.6,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 79423,
+          "stock": 0
+        }
+      ],
+      "minSeen": 79423,
+      "maxSeen": 79423
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "541794692",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 16410,
+        "originalPrice": 16410,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор (LED HD Android TV) L32M8-A2RU",
+        "brand": "Xiaomi",
+        "supplier": "Tech&home",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 16410,
+          "stock": 0
+        }
+      ],
+      "minSeen": 16410,
+      "maxSeen": 16410
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "586096053",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 107376,
+        "originalPrice": 110217,
+        "discount": 3,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65\" YNDX-00104, черный",
+        "brand": "Яндекс",
+        "supplier": "Lite-Mobile",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 107376,
+          "stock": 0
+        }
+      ],
+      "minSeen": 100557,
+      "maxSeen": 110217
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "577838740",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 38460,
+        "originalPrice": 38460,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор TV S Mini LED, 55\", 2025",
+        "brand": "Xiaomi",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 38460,
+          "stock": 0
+        }
+      ],
+      "minSeen": 38460,
+      "maxSeen": 38460
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "343299786",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 104999,
+        "originalPrice": 135771,
+        "discount": 23,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор смарт 75 дюймов 4K UHD S6 Android TV",
+        "brand": "Haier",
+        "supplier": "Haier - Официальный магазин DBS",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 104999,
+          "stock": 1
+        }
+      ],
+      "minSeen": 71667,
+      "maxSeen": 135771
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "363461680",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 66991,
+        "originalPrice": 69650,
+        "discount": 4,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 75P6K 75\" 4K UHD HVA Smart TV, Wi-Fi, HDR, 2025 г",
+        "brand": "TCL",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 66991,
+          "stock": 1
+        }
+      ],
+      "minSeen": 64364,
+      "maxSeen": 69650
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "210284652",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 108440,
+        "originalPrice": 108440,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина ECAM650.55 MS",
+        "brand": "DeLonghi",
+        "supplier": "Official Store",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 108440,
+          "stock": 0
+        }
+      ],
+      "minSeen": 108440,
+      "maxSeen": 108440
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "228722899",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 28199,
+        "originalPrice": 30704,
+        "discount": 8,
+        "stock": 53,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина Caffeo Solo E 950-766 Silver",
+        "brand": "MELITTA",
+        "supplier": "Official Store",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 28199,
+          "stock": 53
+        }
+      ],
+      "minSeen": 26020,
+      "maxSeen": 30704
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "417977935",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 68344,
+        "originalPrice": 68344,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 75P7K 75\" 4K UHD LCD Smart TV, Wi-Fi, HDR, 2025 г",
+        "brand": "TCL",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 68344,
+          "stock": 0
+        }
+      ],
+      "minSeen": 68344,
+      "maxSeen": 68344
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "555237783",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 90100,
+        "originalPrice": 90100,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 75\" 75QNED70A6A.ARUG, черный",
+        "brand": "LG",
+        "supplier": "Lite-Mobile",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 90100,
+          "stock": 0
+        }
+      ],
+      "minSeen": 90100,
+      "maxSeen": 90100
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "218506029",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 31273,
+        "originalPrice": 34051,
+        "discount": 8,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина Caffeo E 957-304",
+        "brand": "MELITTA",
+        "supplier": "Official Store",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 31273,
+          "stock": 50
+        }
+      ],
+      "minSeen": 28857,
+      "maxSeen": 34051
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "423153633",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 21999,
+        "originalPrice": 24186,
+        "discount": 9,
+        "stock": 100,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 40\" 40S5K QLED Full HD HDR GoogleTV",
+        "brand": "TCL",
+        "supplier": "TCL Официальный магазин",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 21999,
+          "stock": 100
+        }
+      ],
+      "minSeen": 21704,
+      "maxSeen": 24186
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "200532094",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 36263,
+        "originalPrice": 39485,
+        "discount": 8,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина Caffeo Passione F 530-102 Black",
+        "brand": "MELITTA",
+        "supplier": "Official Store",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 36263,
+          "stock": 50
+        }
+      ],
+      "minSeen": 33462,
+      "maxSeen": 39485
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "200529400",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 33180,
+        "originalPrice": 36127,
+        "discount": 8,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина Caffeo Passione F 530-101 Silver",
+        "brand": "MELITTA",
+        "supplier": "Official Store",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 33180,
+          "stock": 50
+        }
+      ],
+      "minSeen": 30616,
+      "maxSeen": 36127
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "622998240",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 81734,
+        "originalPrice": 81734,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65\" Q7C QD-Mini LED 4K HDR Google TV",
+        "brand": "TCL",
+        "supplier": "ООО ФАЙН ЛАЙН",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 81734,
+          "stock": 0
+        }
+      ],
+      "minSeen": 81734,
+      "maxSeen": 81734
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "532353349",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 129980,
+        "originalPrice": 133512,
+        "discount": 3,
+        "stock": 18,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор ТВ Станция Про MiniLED 75 (2025)",
+        "brand": "Яндекс",
+        "supplier": "BrandON",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 129980,
+          "stock": 18
+        }
+      ],
+      "minSeen": 128493,
+      "maxSeen": 133512
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "200537950",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 38238,
+        "originalPrice": 43740,
+        "discount": 13,
+        "stock": 3,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина Caffeo Avanza F 270-100",
+        "brand": "MELITTA",
+        "supplier": "Official Store",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 38238,
+          "stock": 3
+        }
+      ],
+      "minSeen": 35283,
+      "maxSeen": 43740
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "456690554",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 65090,
+        "originalPrice": 65090,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55\" Q7C QD-Mini LED 4K HDR Google TV",
+        "brand": "TCL",
+        "supplier": "TCL Авторизованный Магазин",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 65090,
+          "stock": 0
+        }
+      ],
+      "minSeen": 65090,
+      "maxSeen": 65090
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "200587421",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 59890,
+        "originalPrice": 65210,
+        "discount": 8,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина Caffeo Passione OT F 531-101 Silver",
+        "brand": "MELITTA",
+        "supplier": "Official Store",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 59890,
+          "stock": 50
+        }
+      ],
+      "minSeen": 51768,
+      "maxSeen": 65210
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "624650037",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 45125,
+        "originalPrice": 45125,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор LED TV A 65 2026 4K UHD черный",
+        "brand": "Xiaomi",
+        "supplier": "giper.fm",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 45125,
+          "stock": 0
+        }
+      ],
+      "minSeen": 41787,
+      "maxSeen": 45125
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "200607816",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 81010,
+        "originalPrice": 88207,
+        "discount": 8,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина Caffeo Barista T Smart SST F 840-100",
+        "brand": "MELITTA",
+        "supplier": "Official Store",
+        "rating": 4.5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 81010,
+          "stock": 50
+        }
+      ],
+      "minSeen": 74752,
+      "maxSeen": 88207
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "475204428",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 43191,
+        "originalPrice": 54683,
+        "discount": 21,
+        "stock": 30,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина D2HNE82 C",
+        "brand": "Gorenje",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 43191,
+          "stock": 30
+        }
+      ],
+      "minSeen": 41440,
+      "maxSeen": 54683
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "268331666",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 45054,
+        "originalPrice": 49386,
+        "discount": 9,
+        "stock": 53,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина New Royal OTC",
+        "brand": "SAECO",
+        "supplier": "Official Store",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 45054,
+          "stock": 53
+        }
+      ],
+      "minSeen": 39264,
+      "maxSeen": 49386
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "475204318",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 55891,
+        "originalPrice": 67780,
+        "discount": 18,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина DPNA82WIFI C кл.энер. A++ макс.загр. 8кг",
+        "brand": "Gorenje",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 55891,
+          "stock": 0
+        }
+      ],
+      "minSeen": 55204,
+      "maxSeen": 67780
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "444590043",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 121281,
+        "originalPrice": 121281,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор OLED55C5RLA.ARUG 55\" Smart",
+        "brand": "LG",
+        "supplier": "Life is good - Жизнь прекрасна",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 121281,
+          "stock": 0
+        }
+      ],
+      "minSeen": 121281,
+      "maxSeen": 121281
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "270391850",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 49011,
+        "originalPrice": 68150,
+        "discount": 28,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65\" ТВ Станция Бейсик с Алисой, Smart TV",
+        "brand": "Яндекс",
+        "supplier": "МИР ОРИГИНАЛЬНОЙ ТЕХНИКИ",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 49011,
+          "stock": 50
+        }
+      ],
+      "minSeen": 49011,
+      "maxSeen": 68150
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "505984181",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 118789,
+        "originalPrice": 129342,
+        "discount": 8,
+        "stock": 5,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина DeLonghi La Specialista Maestro EC9885 M",
+        "brand": "",
+        "supplier": "Official Store",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 118789,
+          "stock": 5
+        }
+      ],
+      "minSeen": 109612,
+      "maxSeen": 129342
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "475204259",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 46684,
+        "originalPrice": 46684,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина DPNE92GNLWIFI C кл.энер. A++ макс.загр. 9кг",
+        "brand": "Gorenje",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 46684,
+          "stock": 0
+        }
+      ],
+      "minSeen": 46684,
+      "maxSeen": 46684
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "532353495",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 60681,
+        "originalPrice": 62330,
+        "discount": 3,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор ТВ Станция Бейсик QLED с Алисой 65 (2025)",
+        "brand": "Яндекс",
+        "supplier": "BrandON",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 60681,
+          "stock": 50
+        }
+      ],
+      "minSeen": 59987,
+      "maxSeen": 62330
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "225174962",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 115866,
+        "originalPrice": 126304,
+        "discount": 8,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Кофемашина CafeRomatica NICR 970",
+        "brand": "Nivona",
+        "supplier": "ТехноДом",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 115866,
+          "stock": 1
+        }
+      ],
+      "minSeen": 115866,
+      "maxSeen": 126304
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "475204277",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 51091,
+        "originalPrice": 58904,
+        "discount": 13,
+        "stock": 49,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина D2HNA92 C",
+        "brand": "Gorenje",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 51091,
+          "stock": 49
+        }
+      ],
+      "minSeen": 49460,
+      "maxSeen": 58904
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "343299731",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 111999,
+        "originalPrice": 143977,
+        "discount": 22,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор смарт 75 дюймов 4K UHD Mini LED Android TV",
+        "brand": "Haier",
+        "supplier": "Haier - Официальный магазин DBS",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 111999,
+          "stock": 0
+        }
+      ],
+      "minSeen": 81123,
+      "maxSeen": 143977
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "269490005",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 37738,
+        "originalPrice": 37744,
+        "discount": 0,
+        "stock": 30,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Стиральная машина WW70AGAS22AELD 7 кг с паром, белый",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 4.5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 37738,
+          "stock": 30
+        }
+      ],
+      "minSeen": 34590,
+      "maxSeen": 37744
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "306487214",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 29786,
+        "originalPrice": 29786,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор Станция Бейсик YaGPT YNDX-00076 55 дюймов 4K",
+        "brand": "Яндекс",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 29786,
+          "stock": 0
+        }
+      ],
+      "minSeen": 29786,
+      "maxSeen": 29786
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "414849084",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 49784,
+        "originalPrice": 52463,
+        "discount": 5,
+        "stock": 17,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина WTN86212ME, серая",
+        "brand": "BOSCH",
+        "supplier": "Getsy",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 49784,
+          "stock": 17
+        }
+      ],
+      "minSeen": 49784,
+      "maxSeen": 52463
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "494190162",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 49872,
+        "originalPrice": 49872,
+        "discount": 0,
+        "stock": 23,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "ТВ Станция Бейсик QLED, 55\" 4K UHD",
+        "brand": "Яндекс",
+        "supplier": "Умный ДОМ",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 49872,
+          "stock": 23
+        }
+      ],
+      "minSeen": 39848,
+      "maxSeen": 49872
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "227324940",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 65692,
+        "originalPrice": 65692,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина WQG2410EPL",
+        "brand": "BOSCH",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 65692,
+          "stock": 0
+        }
+      ],
+      "minSeen": 65692,
+      "maxSeen": 65692
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "495745496",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 17544,
+        "originalPrice": 17544,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 43 Smart TV S3 (DH1U8JD06RU)",
+        "brand": "Haier",
+        "supplier": "it-store",
+        "rating": 4.6,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 17544,
+          "stock": 0
+        }
+      ],
+      "minSeen": 17544,
+      "maxSeen": 17544
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "505418629",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 44278,
+        "originalPrice": 44278,
+        "discount": 0,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55\" ТВ Станция Бейсик QLED с Алисой",
+        "brand": "Яндекс",
+        "supplier": "it-store",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 44278,
+          "stock": 50
+        }
+      ],
+      "minSeen": 38028,
+      "maxSeen": 44278
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "488574011",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 58990,
+        "originalPrice": 70680,
+        "discount": 17,
+        "stock": 110,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 4К QE55Q7FAAUXRU 55\", HDR, 60 Гц",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 58990,
+          "stock": 110
+        }
+      ],
+      "minSeen": 49299,
+      "maxSeen": 70680
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "577718153",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 21271,
+        "originalPrice": 38492,
+        "discount": 45,
+        "stock": 15,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 43 LED H1 Smart TV 4K, черный",
+        "brand": "Haier",
+        "supplier": "ХОЛОДИЛЬНИК.ру",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 21271,
+          "stock": 15
+        }
+      ],
+      "minSeen": 20613,
+      "maxSeen": 38492
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "438013022",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 67594,
+        "originalPrice": 67594,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55\" 55U7Q PRO (Цвет Gray)",
+        "brand": "HISENSE",
+        "supplier": "Lite-Mobile",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 67594,
+          "stock": 0
+        }
+      ],
+      "minSeen": 67594,
+      "maxSeen": 67594
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "343354390",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 89999,
+        "originalPrice": 90707,
+        "discount": 1,
+        "stock": 10,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник двухкамерный HRF-523DS6RU 507л 179см",
+        "brand": "Haier",
+        "supplier": "Haier - Официальный магазин DBS",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 89999,
+          "stock": 10
+        }
+      ],
+      "minSeen": 80837,
+      "maxSeen": 90707
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "504066059",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 27784,
+        "originalPrice": 27784,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Встраиваемая посудомоечная машина HI 5C59 D",
+        "brand": "Hotpoint",
+        "supplier": "AGILE",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 27784,
+          "stock": 0
+        }
+      ],
+      "minSeen": 27784,
+      "maxSeen": 27784
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "371390314",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 83199,
+        "originalPrice": 84999,
+        "discount": 2,
+        "stock": 30,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник двухкамерный HRF-522DW6RU 507л 179см",
+        "brand": "Haier",
+        "supplier": "Haier - Официальный магазин DBS",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 83199,
+          "stock": 30
+        }
+      ],
+      "minSeen": 76346,
+      "maxSeen": 84999
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "467703942",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 32707,
+        "originalPrice": 35877,
+        "discount": 9,
+        "stock": 15,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина BM3T37220A",
+        "brand": "Beko",
+        "supplier": "AGILE",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 32707,
+          "stock": 15
+        }
+      ],
+      "minSeen": 30704,
+      "maxSeen": 35877
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "468651240",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 40991,
+        "originalPrice": 41537,
+        "discount": 1,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник MDRB472MGF01OM, 346 л, NoFrost",
+        "brand": "Midea",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 40991,
+          "stock": 1
+        }
+      ],
+      "minSeen": 37500,
+      "maxSeen": 41537
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "371238333",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 76093,
+        "originalPrice": 76093,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник двухкамерный HRF-522DS6RU 507л 179см",
+        "brand": "Haier",
+        "supplier": "Haier - Официальный магазин DBS",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 76093,
+          "stock": 0
+        }
+      ],
+      "minSeen": 76093,
+      "maxSeen": 76093
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "533581909",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 54296,
+        "originalPrice": 57269,
+        "discount": 5,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина Serie 4 WTN86211ME",
+        "brand": "BOSCH",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 54296,
+          "stock": 0
+        }
+      ],
+      "minSeen": 54091,
+      "maxSeen": 57269
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "150926472",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 49569,
+        "originalPrice": 52903,
+        "discount": 6,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник Side-by-Side SBS-647NFID",
+        "brand": "Willmark",
+        "supplier": "giper.fm",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 49569,
+          "stock": 1
+        }
+      ],
+      "minSeen": 49569,
+      "maxSeen": 52903
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "551757059",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 23068,
+        "originalPrice": 23068,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Сушильная машина DF7412GB, до 7 кг, 15 программ, черный",
+        "brand": "Beko",
+        "supplier": "ТехноДом",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 23068,
+          "stock": 0
+        }
+      ],
+      "minSeen": 23068,
+      "maxSeen": 23068
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "624643988",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 27710,
+        "originalPrice": 27814,
+        "discount": 0,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор LED TV A Pro 43 2026 4K UHD черный",
+        "brand": "Xiaomi",
+        "supplier": "giper.fm",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 27710,
+          "stock": 1
+        }
+      ],
+      "minSeen": 24232,
+      "maxSeen": 27814
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "316149803",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 52014,
+        "originalPrice": 54870,
+        "discount": 5,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник двухдверный для кухни большой SBS 300 IX NF",
+        "brand": "Leran",
+        "supplier": "Tech&home",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 52014,
+          "stock": 0
+        }
+      ],
+      "minSeen": 52014,
+      "maxSeen": 54870
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "518141149",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 29385,
+        "originalPrice": 32787,
+        "discount": 10,
+        "stock": 60,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор LED TV A Pro 50 2026 4K UHD черный",
+        "brand": "Xiaomi",
+        "supplier": "giper.fm",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 29385,
+          "stock": 60
+        }
+      ],
+      "minSeen": 28949,
+      "maxSeen": 32787
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "454714089",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 20379,
+        "originalPrice": 22856,
+        "discount": 11,
+        "stock": 5,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 32S5K, 32\" 1920 x 1080",
+        "brand": "TCL",
+        "supplier": "КомпьютерМаркет",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 20379,
+          "stock": 5
+        }
+      ],
+      "minSeen": 15705,
+      "maxSeen": 22856
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "229578739",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 46938,
+        "originalPrice": 46938,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник Side-by-Side CS4502F NoFrost, белый",
+        "brand": "HYUNDAI",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 46938,
+          "stock": 0
+        }
+      ],
+      "minSeen": 46938,
+      "maxSeen": 46938
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "593957758",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 28820,
+        "originalPrice": 31235,
+        "discount": 8,
+        "stock": 3,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 32\" QLED, FullHD, Wi-Fi, 60 Гц, Google TV 32S5K",
+        "brand": "TCL",
+        "supplier": "A+!МАРКЕТ ТЕХНО",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 28820,
+          "stock": 3
+        }
+      ],
+      "minSeen": 28820,
+      "maxSeen": 31235
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "566253237",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 18620,
+        "originalPrice": 19632,
+        "discount": 5,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 32S5K",
+        "brand": "TCL",
+        "supplier": "Юг-БытТех",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 18620,
+          "stock": 1
+        }
+      ],
+      "minSeen": 18062,
+      "maxSeen": 19632
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "482816416",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 49694,
+        "originalPrice": 58512,
+        "discount": 15,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор S Mini LED TV 55 2025 (L55MA-SPLRU)",
+        "brand": "Xiaomi",
+        "supplier": "giper.fm",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 49694,
+          "stock": 0
+        }
+      ],
+      "minSeen": 49694,
+      "maxSeen": 58512
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "488572681",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 68947,
+        "originalPrice": 84025,
+        "discount": 18,
+        "stock": 35,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 4К QE65Q7FAAUXRU 65\", HDR, 60 Гц",
+        "brand": "Samsung",
+        "supplier": "giper.fm",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 68947,
+          "stock": 35
+        }
+      ],
+      "minSeen": 67699,
+      "maxSeen": 84025
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "624643987",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 49490,
+        "originalPrice": 51180,
+        "discount": 3,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор LED TV A Pro 65 2026 4K UHD черный",
+        "brand": "Xiaomi",
+        "supplier": "giper.fm",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 49490,
+          "stock": 50
+        }
+      ],
+      "minSeen": 43279,
+      "maxSeen": 51180
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "169794988",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 44854,
+        "originalPrice": 44854,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник NORDFROST RFS 480D NFB inverter",
+        "brand": "NORD",
+        "supplier": "Завод NORD",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 44854,
+          "stock": 0
+        }
+      ],
+      "minSeen": 44854,
+      "maxSeen": 44854
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "459524365",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 64784,
+        "originalPrice": 77294,
+        "discount": 16,
+        "stock": 15,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор QE65Q7FAAUXRU 65\" 4K UHD QLED Smart TV, Wi-Fi, HDR",
+        "brand": "Samsung",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 64784,
+          "stock": 15
+        }
+      ],
+      "minSeen": 64042,
+      "maxSeen": 77294
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "585208728",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 62062,
+        "originalPrice": 62062,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор QLED 75\" 75Q67H Smart TV 4K Ultra HD",
+        "brand": "Skyworth",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 62062,
+          "stock": 0
+        }
+      ],
+      "minSeen": 62062,
+      "maxSeen": 62062
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "488574013",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 82990,
+        "originalPrice": 97946,
+        "discount": 15,
+        "stock": 35,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 4К QE65Q7FAAUXRU 65\", HDR, 60 Гц",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 82990,
+          "stock": 35
+        }
+      ],
+      "minSeen": 69854,
+      "maxSeen": 97946
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "463441791",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 28551,
+        "originalPrice": 29324,
+        "discount": 3,
+        "stock": 23,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Холодильник ITS 4180 W",
+        "brand": "Indesit",
+        "supplier": "AGILE",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 28551,
+          "stock": 23
+        }
+      ],
+      "minSeen": 27793,
+      "maxSeen": 29324
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "494820729",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 44990,
+        "originalPrice": 44990,
+        "discount": 0,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 43 дюйма смарт 4K QE43Q7FAAUXRU",
+        "brand": "Samsung",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 44990,
+          "stock": 50
+        }
+      ],
+      "minSeen": 33980,
+      "maxSeen": 44990
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "404425107",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 52214,
+        "originalPrice": 52214,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55C6K",
+        "brand": "TCL",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 52214,
+          "stock": 0
+        }
+      ],
+      "minSeen": 52214,
+      "maxSeen": 52214
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "326149397",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 33300,
+        "originalPrice": 33300,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор UE50DU8000UX 50\" 4K UHD Smart TV Wi-Fi BT",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 33300,
+          "stock": 0
+        }
+      ],
+      "minSeen": 33300,
+      "maxSeen": 33300
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "286473941",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 132596,
+        "originalPrice": 137999,
+        "discount": 4,
+        "stock": 71,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Трехкамерный холодильник Side-by-Side RF48A4000B4 WT, 468 л",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 132596,
+          "stock": 71
+        }
+      ],
+      "minSeen": 127501,
+      "maxSeen": 137999
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "497536541",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 47499,
+        "originalPrice": 54990,
+        "discount": 14,
+        "stock": 51,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор LED UE55U8000FUXRU (2025) 55\" Smart TV Crystal UHD",
+        "brand": "Samsung",
+        "supplier": "Умный ТВ",
+        "rating": 4.4,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 47499,
+          "stock": 51
+        }
+      ],
+      "minSeen": 40309,
+      "maxSeen": 54990
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "241260868",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 38172,
+        "originalPrice": 45990,
+        "discount": 17,
+        "stock": 81,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Узкая стиральная машина WW70AG6S23ATLP, 7 кг",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 38172,
+          "stock": 81
+        }
+      ],
+      "minSeen": 33821,
+      "maxSeen": 45990
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "557895983",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 45015,
+        "originalPrice": 45015,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Встраиваемая посудомоечная машина SPV4HMX10E",
+        "brand": "BOSCH",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 45015,
+          "stock": 0
+        }
+      ],
+      "minSeen": 45015,
+      "maxSeen": 45015
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "227018649",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 34898,
+        "originalPrice": 34898,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Встраиваемый электрический духовой шкаф HBF534ES0Q сталь",
+        "brand": "BOSCH",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 34898,
+          "stock": 0
+        }
+      ],
+      "minSeen": 34898,
+      "maxSeen": 34898
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "235593796",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 30552,
+        "originalPrice": 30552,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор SDX-65U4124B 65\" 4K, черный",
+        "brand": "SBER",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 30552,
+          "stock": 0
+        }
+      ],
+      "minSeen": 30552,
+      "maxSeen": 30552
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "248933859",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 52274,
+        "originalPrice": 52274,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65 Smart TV S2 Pro 65 дюймов 4K, серый",
+        "brand": "Haier",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 52274,
+          "stock": 0
+        }
+      ],
+      "minSeen": 52274,
+      "maxSeen": 52274
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "385079102",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 53703,
+        "originalPrice": 108332,
+        "discount": 50,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65 Smart TV S4, 4K Ultra HD, WiFi и Bluetooth",
+        "brand": "Haier",
+        "supplier": "Haier - авторизованный магазин",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 53703,
+          "stock": 0
+        }
+      ],
+      "minSeen": 46559,
+      "maxSeen": 108332
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "256344993",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 54057,
+        "originalPrice": 54057,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65 Smart TV S6",
+        "brand": "Haier",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 54057,
+          "stock": 0
+        }
+      ],
+      "minSeen": 54057,
+      "maxSeen": 54057
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "540546577",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 53525,
+        "originalPrice": 65876,
+        "discount": 19,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65 дюймов Смарт, Безрамочный",
+        "brand": "TCL",
+        "supplier": "Tech&home",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 53525,
+          "stock": 1
+        }
+      ],
+      "minSeen": 53525,
+      "maxSeen": 65876
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "523811848",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 58320,
+        "originalPrice": 58320,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 65C655 QLED 4K UltraHD",
+        "brand": "TCL",
+        "supplier": "ООО АНТЕС",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 58320,
+          "stock": 0
+        }
+      ],
+      "minSeen": 58320,
+      "maxSeen": 58320
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "415419750",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 107697,
+        "originalPrice": 133987,
+        "discount": 20,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор LED 65\" 65C6K QD-Mini LED Smart TV 4K Ultra HD",
+        "brand": "TCL",
+        "supplier": "СИТИЛИНК Самовывоз",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 107697,
+          "stock": 0
+        }
+      ],
+      "minSeen": 91664,
+      "maxSeen": 133987
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "300639595",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 34508,
+        "originalPrice": 34508,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор SDX-55U4139 55 дюймов 4K, черный",
+        "brand": "SBER",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 4.6,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 34508,
+          "stock": 0
+        }
+      ],
+      "minSeen": 34508,
+      "maxSeen": 34508
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "417665469",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 139990,
+        "originalPrice": 139990,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55 дюймов смарт wi‑fi OLED55C5RLA.ARUG 4K Ultra HD",
+        "brand": "LG",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 139990,
+          "stock": 0
+        }
+      ],
+      "minSeen": 139990,
+      "maxSeen": 139990
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "248244811",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 48575,
+        "originalPrice": 48575,
+        "discount": 0,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55 дюймов смарт 4K UE55DU7100UXRU",
+        "brand": "Samsung",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 48575,
+          "stock": 1
+        }
+      ],
+      "minSeen": 43048,
+      "maxSeen": 48575
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "489519630",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 44340,
+        "originalPrice": 54991,
+        "discount": 19,
+        "stock": 41,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55 дюймов смарт 4K UE55U8000FUXRU",
+        "brand": "Samsung",
+        "supplier": "СИТИЛИНК",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 44340,
+          "stock": 41
+        }
+      ],
+      "minSeen": 44340,
+      "maxSeen": 54991
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "248244810",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 45558,
+        "originalPrice": 45558,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55\" UE55DU8000UXRU Series 8 4K UHD Smart TV HDR10+",
+        "brand": "Samsung",
+        "supplier": "СИТИЛИНК Доставка",
+        "rating": 4.4,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 45558,
+          "stock": 0
+        }
+      ],
+      "minSeen": 45558,
+      "maxSeen": 45558
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "527979868",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 69184,
+        "originalPrice": 78376,
+        "discount": 12,
+        "stock": 3,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор смарт, 55, дюймов, QE55Q8FAAUXRU, черный",
+        "brand": "Samsung",
+        "supplier": "ЕКОМ",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 69184,
+          "stock": 3
+        }
+      ],
+      "minSeen": 69184,
+      "maxSeen": 78376
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "488561264",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 50081,
+        "originalPrice": 60087,
+        "discount": 17,
+        "stock": 110,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 4К QE55Q7FAAUXRU 55\", HDR, 60 Гц",
+        "brand": "Samsung",
+        "supplier": "giper.fm",
+        "rating": 4.4,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 50081,
+          "stock": 110
+        }
+      ],
+      "minSeen": 48936,
+      "maxSeen": 60087
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "550200986",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 126574,
+        "originalPrice": 126574,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор QE55S85FAEXRU",
+        "brand": "Samsung",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 126574,
+          "stock": 0
+        }
+      ],
+      "minSeen": 126574,
+      "maxSeen": 126574
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "415419694",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 69999,
+        "originalPrice": 69999,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор LED 55\" 55C7K QD-Mini LED Smart TV 4K Ultra HD",
+        "brand": "TCL",
+        "supplier": "СИТИЛИНК Самовывоз",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 69999,
+          "stock": 0
+        }
+      ],
+      "minSeen": 69999,
+      "maxSeen": 69999
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "404425106",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 70383,
+        "originalPrice": 70383,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Телевизор 55C7K",
+        "brand": "TCL",
+        "supplier": "ХОЛОДИЛЬНИК.ру Бережно доставит",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 70383,
+          "stock": 0
+        }
+      ],
+      "minSeen": 70383,
+      "maxSeen": 70383
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "403373127",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 20514,
+        "originalPrice": 21879,
+        "discount": 6,
+        "stock": 9,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Моющий пылесос BWD420HYG",
+        "brand": "BOSCH",
+        "supplier": "Wildberries",
+        "rating": 4.5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 20514,
+          "stock": 9
+        }
+      ],
+      "minSeen": 20514,
+      "maxSeen": 21879
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "556866923",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 21689,
+        "originalPrice": 21689,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Пылесос BWD41740, фиолетовый",
+        "brand": "BOSCH",
+        "supplier": "Технолэнд",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 21689,
+          "stock": 0
+        }
+      ],
+      "minSeen": 21689,
+      "maxSeen": 21689
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "534432309",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 97003,
+        "originalPrice": 97011,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25 Ultra 12+256GB Titanium Gray",
+        "brand": "Samsung",
+        "supplier": "билайн - официальный магазин",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 97003,
+          "stock": 0
+        }
+      ],
+      "minSeen": 97003,
+      "maxSeen": 97011
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "543047229",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 87995,
+        "originalPrice": 87995,
+        "discount": 0,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 Ultra 5G 12+256GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 87995,
+          "stock": 1
+        }
+      ],
+      "minSeen": 87995,
+      "maxSeen": 87995
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "533428909",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 76795,
+        "originalPrice": 76795,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 Ultra 5G 12+256GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 76795,
+          "stock": 0
+        }
+      ],
+      "minSeen": 76795,
+      "maxSeen": 76795
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "320750461",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 120113,
+        "originalPrice": 123344,
+        "discount": 3,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25 Ultra 5G 12+256 Гб чёрный, Ростест (ЕАС)",
+        "brand": "Samsung",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 4.3,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 120113,
+          "stock": 1
+        }
+      ],
+      "minSeen": 118708,
+      "maxSeen": 123344
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "543047232",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 97015,
+        "originalPrice": 97015,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 Ultra 5G 12+512GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 4.5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 97015,
+          "stock": 0
+        }
+      ],
+      "minSeen": 97015,
+      "maxSeen": 97015
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "320750457",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 133432,
+        "originalPrice": 137021,
+        "discount": 3,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25 Ultra 5G 12+512 Гб чёрный, Ростест (ЕАС)",
+        "brand": "Samsung",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 133432,
+          "stock": 1
+        }
+      ],
+      "minSeen": 131870,
+      "maxSeen": 137021
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "494378314",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 58075,
+        "originalPrice": 58075,
+        "discount": 0,
+        "stock": 16,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 5G 12+128GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 58075,
+          "stock": 16
+        }
+      ],
+      "minSeen": 47186,
+      "maxSeen": 58075
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "321522336",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 46525,
+        "originalPrice": 46525,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 5G 12+128GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 46525,
+          "stock": 0
+        }
+      ],
+      "minSeen": 46525,
+      "maxSeen": 46525
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "568113644",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 74408,
+        "originalPrice": 116468,
+        "discount": 36,
+        "stock": 2,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25 5G 12 256GB Черный",
+        "brand": "Samsung",
+        "supplier": "М.Видео",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 74408,
+          "stock": 2
+        }
+      ],
+      "minSeen": 74408,
+      "maxSeen": 116468
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "561471433",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 58001,
+        "originalPrice": 58001,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 5G 12+256GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 58001,
+          "stock": 0
+        }
+      ],
+      "minSeen": 58001,
+      "maxSeen": 58001
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "561471383",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 64547,
+        "originalPrice": 64547,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 5G 12+256GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 64547,
+          "stock": 0
+        }
+      ],
+      "minSeen": 64547,
+      "maxSeen": 64547
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "326961319",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 44571,
+        "originalPrice": 44571,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25 5G 12 128GB Синий",
+        "brand": "Samsung",
+        "supplier": "Эльдорадо",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 44571,
+          "stock": 0
+        }
+      ],
+      "minSeen": 44571,
+      "maxSeen": 44571
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "495623384",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 120990,
+        "originalPrice": 120990,
+        "discount": 0,
+        "stock": 5,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Galaxy S25 5G 12+256GB",
+        "brand": "Samsung",
+        "supplier": "Wildberries",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 120990,
+          "stock": 5
+        }
+      ],
+      "minSeen": 120990,
+      "maxSeen": 120990
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "521563873",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 51877,
+        "originalPrice": 57259,
+        "discount": 9,
+        "stock": 90,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25 FE SM-S731BDBCCAU 8+256 GB синий",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 51877,
+          "stock": 90
+        }
+      ],
+      "minSeen": 48819,
+      "maxSeen": 57259
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "521563874",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 52015,
+        "originalPrice": 67385,
+        "discount": 23,
+        "stock": 95,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25 FE SM-S731BLBHCAU 8+512 GB голубой",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 52015,
+          "stock": 95
+        }
+      ],
+      "minSeen": 51943,
+      "maxSeen": 67385
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "458601337",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 59086,
+        "originalPrice": 89638,
+        "discount": 34,
+        "stock": 2,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Galaxy S25+ 12+256 Gb SM-S936BDBBCAU",
+        "brand": "Samsung",
+        "supplier": "Samsung-фирменный магазин",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 59086,
+          "stock": 2
+        }
+      ],
+      "minSeen": 59086,
+      "maxSeen": 89638
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "445433487",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 28747,
+        "originalPrice": 28747,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Робот-пылесос Q Revo черный",
+        "brand": "roborock",
+        "supplier": "Wildberries",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 28747,
+          "stock": 0
+        }
+      ],
+      "minSeen": 27884,
+      "maxSeen": 28747
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "473102269",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 74612,
+        "originalPrice": 100426,
+        "discount": 26,
+        "stock": 21,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Робот-пылесос Bot L40s Pro Ultra (RLL74CE), сух влаж, RU",
+        "brand": "Dreame",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 74612,
+          "stock": 21
+        }
+      ],
+      "minSeen": 62008,
+      "maxSeen": 100426
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "473104654",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 69987,
+        "originalPrice": 79993,
+        "discount": 13,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Робот-пылесос Bot L40s Ultra (RLL22SE), сух влаж, RU",
+        "brand": "Dreame",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 4.6,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 69987,
+          "stock": 0
+        }
+      ],
+      "minSeen": 52473,
+      "maxSeen": 79993
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "541280924",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 111725,
+        "originalPrice": 148491,
+        "discount": 25,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Робот-пылесос Matrix10 Ultra RU",
+        "brand": "Dreame",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 111725,
+          "stock": 50
+        }
+      ],
+      "minSeen": 110884,
+      "maxSeen": 148491
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "165553683",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 34918,
+        "originalPrice": 38044,
+        "discount": 8,
+        "stock": 31,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Робот-пылесос L10 Ultra (RLS6LADC-6)",
+        "brand": "Dreame",
+        "supplier": "Modern Device",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 34918,
+          "stock": 31
+        }
+      ],
+      "minSeen": 34529,
+      "maxSeen": 38044
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "482577581",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 28610,
+        "originalPrice": 41655,
+        "discount": 31,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Вертикальный пылесос Z20 Essential (VZV24A)",
+        "brand": "Dreame",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 28610,
+          "stock": 1
+        }
+      ],
+      "minSeen": 28610,
+      "maxSeen": 41655
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "302443006",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 31688,
+        "originalPrice": 49621,
+        "discount": 36,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Моющий вертикальный пылесос Wet and Dry Vacuum H13 Pro Black",
+        "brand": "Dreame",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 4.3,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 31688,
+          "stock": 0
+        }
+      ],
+      "minSeen": 31688,
+      "maxSeen": 49621
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "463536295",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 31590,
+        "originalPrice": 79309,
+        "discount": 60,
+        "stock": 50,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Моющий вертикальный пылесос H13 Pro",
+        "brand": "Dreame",
+        "supplier": "Dreame Official Store",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 31590,
+          "stock": 50
+        }
+      ],
+      "minSeen": 31590,
+      "maxSeen": 79309
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "494877319",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 64990,
+        "originalPrice": 73096,
+        "discount": 11,
+        "stock": 56,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Моющий вертикальный пылесос H15 Pro Heat",
+        "brand": "Dreame",
+        "supplier": "Dreame Official Store",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 64990,
+          "stock": 56
+        }
+      ],
+      "minSeen": 48713,
+      "maxSeen": 73096
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "302706607",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 81882,
+        "originalPrice": 104492,
+        "discount": 22,
+        "stock": 6,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Вертикальный пылесос Z40 Station (VZV33A)",
+        "brand": "Dreame",
+        "supplier": "ХОБОТ ДОСТАВИТ",
+        "rating": 3.6,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 81882,
+          "stock": 6
+        }
+      ],
+      "minSeen": 62743,
+      "maxSeen": 104492
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "439432193",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 41182,
+        "originalPrice": 45644,
+        "discount": 10,
+        "stock": 2,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "пылесос для дома L40 Ultra CE (RLD52SE)",
+        "brand": "Dreame",
+        "supplier": "STL",
+        "rating": 4.7,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 41182,
+          "stock": 2
+        }
+      ],
+      "minSeen": 40946,
+      "maxSeen": 45644
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "439623100",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 39172,
+        "originalPrice": 41154,
+        "discount": 5,
+        "stock": 8,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "пылесос для дома D20 Ultra (RLD31SE)",
+        "brand": "Dreame",
+        "supplier": "STL",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 39172,
+          "stock": 8
+        }
+      ],
+      "minSeen": 34470,
+      "maxSeen": 41154
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "769081806",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 20130,
+        "originalPrice": 20130,
+        "discount": 0,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Робот-пылесос Bot F10 Plus с влажной уборкой, RLF11SE",
+        "brand": "Dreame",
+        "supplier": "Wildberries",
+        "rating": 4.9,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 20130,
+          "stock": 1
+        }
+      ],
+      "minSeen": 20130,
+      "maxSeen": 20130
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "463536313",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 19872,
+        "originalPrice": 19872,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Робот-пылесос Bot D10s Plus",
+        "brand": "Dreame",
+        "supplier": "Dreame Official Store",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 19872,
+          "stock": 0
+        }
+      ],
+      "minSeen": 19872,
+      "maxSeen": 19872
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "769005046",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 36501,
+        "originalPrice": 36501,
+        "discount": 0,
+        "stock": 30,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Вертикальный моющий пылесос Z20 Aqua Cycle, VZV66A",
+        "brand": "Dreame",
+        "supplier": "Wildberries",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 36501,
+          "stock": 30
+        }
+      ],
+      "minSeen": 36501,
+      "maxSeen": 36501
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "270777761",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 73514,
+        "originalPrice": 115065,
+        "discount": 36,
+        "stock": 3,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон iPhone 16 128GB nanoSim eSim White",
+        "brand": "Apple",
+        "supplier": "М.Видео",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 73514,
+          "stock": 3
+        }
+      ],
+      "minSeen": 73514,
+      "maxSeen": 115065
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "364804135",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 36517,
+        "originalPrice": 36517,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон iPhone 16e 128GB nanoSim eSim White",
+        "brand": "Apple",
+        "supplier": "М.Видео",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 36517,
+          "stock": 0
+        }
+      ],
+      "minSeen": 36517,
+      "maxSeen": 36517
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "364804216",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 34963,
+        "originalPrice": 34963,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон iPhone 16e 128GB nanoSim eSim Black",
+        "brand": "Apple",
+        "supplier": "М.Видео",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 34963,
+          "stock": 0
+        }
+      ],
+      "minSeen": 34963,
+      "maxSeen": 34963
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "250475454",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 55470,
+        "originalPrice": 55487,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон iPhone 13 128GB nanoSim eSim Midnight",
+        "brand": "Apple",
+        "supplier": "М.Видео",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 55470,
+          "stock": 0
+        }
+      ],
+      "minSeen": 33234,
+      "maxSeen": 55487
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "250517447",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 40570,
+        "originalPrice": 40570,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон iPhone 15 128GB Pink",
+        "brand": "Apple",
+        "supplier": "М.Видео",
+        "rating": null,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 40570,
+          "stock": 0
+        }
+      ],
+      "minSeen": 40570,
+      "maxSeen": 40570
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "338764970",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 74013,
+        "originalPrice": 74013,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Смартфон Mate 70 Pro 12 512GB Black",
+        "brand": "Huawei",
+        "supplier": "М.Видео",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 74013,
+          "stock": 0
+        }
+      ],
+      "minSeen": 74013,
+      "maxSeen": 74013
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "500121248",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 35689,
+        "originalPrice": 39038,
+        "discount": 9,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Ноутбук MagicBook X14 2025 i3-1315U 8+512 5301ALXB без ОС",
+        "brand": "HONOR",
+        "supplier": "it-store",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 35689,
+          "stock": 0
+        }
+      ],
+      "minSeen": 35689,
+      "maxSeen": 39038
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "423169544",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 73041,
+        "originalPrice": 73041,
+        "discount": 0,
+        "stock": 1,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "Планшет Galaxy Tab S10 FE+ Wi-Fi 8 128GB Gray",
+        "brand": "Samsung",
+        "supplier": "М.Видео",
+        "rating": 5,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 73041,
+          "stock": 1
+        }
+      ],
+      "minSeen": 73041,
+      "maxSeen": 73041
+    },
+    {
+      "chatId": 1312189374,
+      "productId": "496561552",
+      "kind": "product",
+      "alias": null,
+      "threshold": null,
+      "region": "Санкт-Петербург",
+      "dest": "-1123300",
+      "addedAt": "2026-05-22T17:25:15.261Z",
+      "lastSnapshot": {
+        "price": 110483,
+        "originalPrice": 110483,
+        "discount": 0,
+        "stock": 0,
+        "at": "2026-05-22T17:25:15.261Z",
+        "name": "18\" Ноутбук TUF A18 FA808UH-S8049, AMD Ryzen 7 260, 16 512",
+        "brand": "Asus",
+        "supplier": "Getsy",
+        "rating": 4.8,
+        "feedbacks": null,
+        "deliveryAt": null,
+        "deliveryType": null
+      },
+      "history": [
+        {
+          "at": "2026-05-22T17:25:15.261Z",
+          "price": 110483,
+          "stock": 0
+        }
+      ],
+      "minSeen": 110483,
+      "maxSeen": 110483
     }
   ]
 }
