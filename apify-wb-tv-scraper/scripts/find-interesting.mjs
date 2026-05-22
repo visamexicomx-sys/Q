@@ -17,11 +17,21 @@ const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i
 const watchlistPath = arg('watchlist', 'apify-wb-tv-scraper/report/watchlist.json');
 const statePath = arg('state', 'apify-wb-tv-scraper/report/alerts-state.json');
 // Accept --chat (single, primary recipient — used for watchlist filter) and
-// --extra (comma-separated additional chat_ids that ALSO receive the broadcast)
-const chat = parseInt(arg('chat', env.TELEGRAM_CHAT_ID || ''), 10);
+// --extra (comma-separated additional chat_ids that ALSO receive the broadcast).
+// Also reads report/recipients.json — both lists are merged & deduped.
+const recipientsPath = arg('recipients', 'apify-wb-tv-scraper/report/recipients.json');
+let chat = parseInt(arg('chat', env.TELEGRAM_CHAT_ID || ''), 10);
 const extraIds = (arg('extra', env.TELEGRAM_EXTRA_CHAT_IDS || ''))
     .split(',').map((s) => parseInt(s.trim(), 10)).filter(Boolean);
-const recipients = [...new Set([chat, ...extraIds].filter(Boolean))];
+let fileExtras = [];
+if (existsSync(recipientsPath)) {
+    try {
+        const r = JSON.parse(readFileSync(recipientsPath, 'utf8'));
+        if (!chat && r.primaryChatId) chat = r.primaryChatId;
+        if (Array.isArray(r.extraChatIds)) fileExtras = r.extraChatIds.map((x) => parseInt(x, 10)).filter(Boolean);
+    } catch { /* ignore parse errors */ }
+}
+const recipients = [...new Set([chat, ...extraIds, ...fileExtras].filter(Boolean))];
 const perBucket = parseInt(arg('per-bucket', '3'), 10);
 const dedupHours = parseInt(arg('dedup-hours', '24'), 10);  // suppress repeats within N hours
 const token = env.TELEGRAM_BOT_TOKEN;

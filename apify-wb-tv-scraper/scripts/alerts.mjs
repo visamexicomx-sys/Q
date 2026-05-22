@@ -31,7 +31,25 @@ const statePath = arg('state', 'apify-wb-tv-scraper/report/alerts-state.json');
 const dryRun = has('dry-run');
 
 const token = env.TELEGRAM_BOT_TOKEN;
-const chat = env.TELEGRAM_ALERT_CHAT_ID || env.TELEGRAM_CHAT_ID;
+let chat = env.TELEGRAM_ALERT_CHAT_ID || env.TELEGRAM_CHAT_ID;
+
+// Multi-recipient: env + recipients.json. Channel-wide alerts go to ALL.
+const recipientsPath = 'apify-wb-tv-scraper/report/recipients.json';
+let extraRecipients = (env.TELEGRAM_EXTRA_CHAT_IDS || '')
+    .split(',').map((s) => parseInt(s.trim(), 10)).filter(Boolean);
+if (existsSync(recipientsPath)) {
+    try {
+        const r = JSON.parse(readFileSync(recipientsPath, 'utf8'));
+        if (!chat && r.primaryChatId) chat = String(r.primaryChatId);
+        if (Array.isArray(r.extraChatIds)) {
+            for (const id of r.extraChatIds) {
+                const n = parseInt(id, 10);
+                if (n) extraRecipients.push(n);
+            }
+        }
+    } catch { /* ignore */ }
+}
+const allRecipients = [...new Set([parseInt(chat, 10), ...extraRecipients].filter(Boolean))];
 
 if (!dryRun && (!token || !chat)) {
     console.log('alerts: missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID — skipping');
@@ -209,14 +227,15 @@ async function tg(method, body) {
 }
 
 if (fresh.length > 1) {
-    // Send a one-line digest first
     const counts = fresh.reduce((acc, a) => { acc[a.tier] = (acc[a.tier] || 0) + 1; return acc; }, {});
     const parts = Object.entries(counts).map(([t, n]) => `${TIER_HEADERS[t].replace(/<[^>]+>/g, '').trim()}×${n}`);
     const digest = `⚡️ <b>${fresh.length} новых сигналов</b>\n${parts.join(' · ')}`;
     if (dryRun) {
         console.log('---DRY DIGEST---'); console.log(digest);
     } else {
-        await tg('sendMessage', { chat_id: chat, text: digest, parse_mode: 'HTML', disable_web_page_preview: true });
+        for (const r of allRecipients) {
+            await tg('sendMessage', { chat_id: r, text: digest, parse_mode: 'HTML', disable_web_page_preview: true });
+        }
     }
 }
 
@@ -228,14 +247,15 @@ for (const a of fresh.slice(0, 30)) {
         console.log(text);
         console.log('');
     } else {
-        const r = await tg('sendMessage', {
-            chat_id: chat,
-            text,
-            parse_mode: 'HTML',
-            disable_web_page_preview: true,
-        });
-        if (!r.ok) { console.error('alerts: send failed', JSON.stringify(r)); continue; }
-        await new Promise((res) => setTimeout(res, 300));   // pace
+        let anyOk = false;
+        for (const rid of allRecipients) {
+            const r = await tg('sendMessage', {
+                chat_id: rid, text, parse_mode: 'HTML', disable_web_page_preview: true,
+            });
+            if (r.ok) anyOk = true;
+            await new Promise((res) => setTimeout(res, 200));
+        }
+        if (!anyOk) { console.error('alerts: all sends failed'); continue; }
     }
     state.dispatched[a.id] = now;
 }

@@ -1,0 +1,7 @@
+{
+  "_comment": "Список chat_id'ов, получающих рассылки (find-interesting, alerts). Чтобы добавить ещё — допиши id в extraChatIds.",
+  "primaryChatId": 1312189374,
+  "extraChatIds": [
+    1180508992
+  ]
+}
