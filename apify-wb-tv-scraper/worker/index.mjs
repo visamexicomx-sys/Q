@@ -79,22 +79,25 @@ const PRICE_KEYBOARD = {
 
 const ANOMALY_KEYBOARD = {
     inline_keyboard: [
-        [{ text: '🚨 Заглушки', callback_data: 'anom:sentinels:0' }, { text: '📈 Дорогие выбросы', callback_data: 'anom:expensiveOutliers:0' }],
-        [{ text: '📉 Дешёвые выбросы', callback_data: 'anom:cheapOutliers:0' }, { text: '🎭 Фейк-скидки', callback_data: 'anom:fakeDiscounts:0' }],
-        [{ text: '🔄 Дубли модели', callback_data: 'anom:dupes:0' }, { text: '💎 Дешёвый премиум', callback_data: 'anom:premiumLow:0' }],
+        [{ text: '🚨 Заглушки', callback_data: 'anom:sentinels:0' }, { text: '🤖 Невозможная цена', callback_data: 'anom:absurdPrice:0' }],
+        [{ text: '🎭 Фейк-скидки', callback_data: 'anom:fakeDiscounts:0' }, { text: '🔄 Дубли модели', callback_data: 'anom:dupes:0' }],
+        [{ text: '📈 Дорогие выбросы', callback_data: 'anom:expensiveOutliers:0' }, { text: '📉 Дешёвые выбросы', callback_data: 'anom:cheapOutliers:0' }],
+        [{ text: '💎 Дешёвый премиум', callback_data: 'anom:premiumLow:0' }, { text: '📊 Движение моделей', callback_data: 'anom:modelMoved:0' }],
         [{ text: '⬇ Подешевели', callback_data: 'anom:dropped:0' }, { text: '⬆ Подорожали', callback_data: 'anom:jumped:0' }],
     ],
 };
 
 const ANOMALY_LABELS = {
     sentinels: { title: '🚨 Sentinel-цены', desc: 'Заглушки продавцов (1 ₽, 999999 ₽ и т.п.)' },
-    expensiveOutliers: { title: '📈 Дорогие выбросы', desc: 'Цена выше типовой для своей диагонали' },
-    cheapOutliers: { title: '📉 Дешёвые выбросы', desc: 'Цена ниже типовой — может быть deal или ошибка' },
-    fakeDiscounts: { title: '🎭 Фейк-скидки', desc: 'RRP надут, реальная скидка ≪ заявленной' },
+    absurdPrice: { title: '🤖 Невозможная цена', desc: 'Цена ниже физического минимума для своей диагонали — typo/scam' },
+    fakeDiscounts: { title: '🎭 Устойчивые фейк-скидки', desc: 'Скидка ≥70%, которая держится snapshot за snapshot' },
     dupes: { title: '🔄 Дубли модели', desc: 'Один артикул у нескольких продавцов с разбросом ≥1.4×' },
+    expensiveOutliers: { title: '📈 Дорогие выбросы', desc: 'Цена выше типовой для своей диагонали (z ≥ 2.5)' },
+    cheapOutliers: { title: '📉 Дешёвые выбросы', desc: 'Цена ниже типовой — может быть deal или ошибка (z ≤ −2)' },
     premiumLow: { title: '💎 Дешёвый премиум', desc: 'Премиум-бренд по подозрительно низкой цене' },
-    dropped: { title: '⬇ Подешевели', desc: 'Цена упала ≥X% vs прошлый снимок' },
-    jumped: { title: '⬆ Подорожали', desc: 'Цена выросла ≥X% vs прошлый снимок' },
+    modelMoved: { title: '📊 Движение моделей', desc: 'Модель сдвинулась ≥15% по min или median vs прошлый снимок' },
+    dropped: { title: '⬇ Подешевели', desc: 'Модели, у которых min упал ≥10% к прошлому снимку' },
+    jumped: { title: '⬆ Подорожали', desc: 'Модели, у которых min вырос ≥15% к прошлому снимку' },
 };
 
 const TEXT_TO_COMMAND = {
@@ -358,6 +361,13 @@ function cmdAnomalyCategory({ anomalies }, cat, page = 0) {
             lines.push(`• <code>${esc(model)}</code> · ${esc(brand || '—')} · ${d.arr.length} продавцов · ${fmt(d.min)}–${fmt(d.max)} ₽ (×${d.spread?.toFixed?.(2)})`);
             const cheap = d.arr[0];
             if (cheap) lines.push(`  └ ${link('арт. ' + cheap.id, cheap.url)} — ${fmt(cheap.price)} ₽`);
+        }
+    } else if (cat === 'modelMoved') {
+        for (const m of slice) {
+            const dmin = m.moveMin > 0 ? `+${m.moveMin}%` : `${m.moveMin}%`;
+            const dmed = m.moveMed > 0 ? `+${m.moveMed}%` : `${m.moveMed}%`;
+            const arrow = m.moveMin <= -10 ? '📉' : m.moveMin >= 10 ? '📈' : '↔';
+            lines.push(`• ${arrow} <code>${esc(m.model)}</code> · ${esc(m.brand)} ${m.diagonal || '?'}" · min ${dmin} (${fmt(m.prevMin)}→<b>${fmt(m.curMin)}</b>) · med ${dmed}${m.cheapId ? ' · ' + link('арт. ' + m.cheapId, m.url || '#') : ''}`);
         }
     } else {
         for (const it of slice) {
