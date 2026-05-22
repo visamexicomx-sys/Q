@@ -1,0 +1,113 @@
+name: WB TV — Post-process direct scrape
+
+# Триггерится когда Yandex Cloud Function (или RU VPS) пушит
+# apify-wb-tv-scraper/report/REPORT-raw.jsonl. Сама эта workflow
+# в WB не ходит — только перемалывает данные, ловит алёрты, обновляет
+# дашборд и пушит обратно REPORT.json / MODELS.json / ANOMALIES.json /
+# TWINS.json / SELLERS.json.
+#
+# Использует те же шаги, что run-scrape-direct.sh, минус скрап-шаг.
+
+on:
+  push:
+    paths:
+      - "apify-wb-tv-scraper/report/REPORT-raw.jsonl"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wb-tv-postproc
+  cancel-in-progress: false
+
+jobs:
+  postproc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OUT_DIR: apify-wb-tv-scraper/report
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sanity check raw file
+        run: |
+          [ -f "$OUT_DIR/REPORT-raw.jsonl" ] || { echo "::error::no REPORT-raw.jsonl"; exit 1; }
+          n=$(wc -l < "$OUT_DIR/REPORT-raw.jsonl")
+          echo "raw rows: $n"
+          [ "$n" -gt 0 ] || { echo "::error::empty raw file"; exit 1; }
+
+      - name: Build report → models → enrich → seller-rep → anomalies
+        run: |
+          set -e
+          node apify-wb-tv-scraper/scripts/build-report.mjs \
+            --input "$OUT_DIR/REPORT-raw.jsonl" --out-dir "$OUT_DIR" \
+            --brands "samsung,sony,tcl,hisense,haier,xiaomi,яндекс,sber"
+          node apify-wb-tv-scraper/scripts/models.mjs \
+            --input "$OUT_DIR/REPORT.json" --out-dir "$OUT_DIR"
+          node apify-wb-tv-scraper/scripts/enrich-models.mjs \
+            --models "$OUT_DIR/MODELS.json" \
+            --history "$OUT_DIR/models-history.json" \
+            --out-dir "$OUT_DIR"
+          node apify-wb-tv-scraper/scripts/seller-rep.mjs \
+            --history-dir "$OUT_DIR/history" \
+            --models "$OUT_DIR/MODELS.json" \
+            --out "$OUT_DIR/SELLERS.json"
+          HIST_DIR="$OUT_DIR/history"
+          mkdir -p "$HIST_DIR"
+          PREV_SNAPSHOT="$(ls -t "$HIST_DIR"/*.json 2>/dev/null | head -1 || true)"
+          PREV_ARG=()
+          [ -n "$PREV_SNAPSHOT" ] && PREV_ARG=(--prev "$PREV_SNAPSHOT")
+          node apify-wb-tv-scraper/scripts/anomalies.mjs \
+            --input "$OUT_DIR/REPORT.json" --out-dir "$OUT_DIR" "${PREV_ARG[@]}"
+          STAMP=$(date -u +%Y-%m-%d)
+          cp "$OUT_DIR/REPORT.json" "$HIST_DIR/$STAMP.json"
+          ls -t "$HIST_DIR"/*.json | tail -n +31 | xargs -r rm -f
+
+      - name: Telegram summary + alerts + watchlist
+        if: ${{ env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != '' }}
+        run: |
+          node apify-wb-tv-scraper/scripts/notify-telegram.mjs \
+            --models "$OUT_DIR/MODELS.json" \
+            --report "$OUT_DIR/REPORT.json" \
+            --anomalies "$OUT_DIR/ANOMALIES.json" \
+            || echo "::warning::notify failed"
+          node apify-wb-tv-scraper/scripts/alerts.mjs \
+            --models "$OUT_DIR/MODELS.json" \
+            --history "$OUT_DIR/models-history.json" \
+            --state "$OUT_DIR/alerts-state.json" \
+            || echo "::warning::alerts failed"
+          node apify-wb-tv-scraper/scripts/watchlist-check.mjs \
+            --models "$OUT_DIR/MODELS.json" \
+            --watchlist "$OUT_DIR/watchlist.json" \
+            --state "$OUT_DIR/alerts-state.json" \
+            || echo "::warning::watchlist failed"
+
+      - name: Commit and push processed files
+        run: |
+          set -euo pipefail
+          git config user.name "wb-tv-postproc-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$OUT_DIR/REPORT.md" "$OUT_DIR/REPORT.json" \
+                  "$OUT_DIR/ANOMALIES.md" "$OUT_DIR/ANOMALIES.json" \
+                  "$OUT_DIR/MODELS.md" "$OUT_DIR/MODELS.json" \
+                  "$OUT_DIR/TWINS.json" "$OUT_DIR/SELLERS.json" \
+                  "$OUT_DIR/models-history.json" \
+                  "$OUT_DIR/alerts-state.json" \
+                  "$OUT_DIR/history"
+          [ -f "$OUT_DIR/watchlist.json" ] && git add "$OUT_DIR/watchlist.json" || true
+          git rm -f "$OUT_DIR/REPORT-raw.jsonl" 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          stamp=$(date -u +%Y-%m-%d)
+          git commit -m "chore(report): post-process direct scrape ${stamp}"
+          git push
