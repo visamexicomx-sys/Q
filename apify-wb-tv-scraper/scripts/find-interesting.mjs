@@ -16,7 +16,12 @@ import { env, argv, exit } from 'node:process';
 const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i + 1] : d; };
 const watchlistPath = arg('watchlist', 'apify-wb-tv-scraper/report/watchlist.json');
 const statePath = arg('state', 'apify-wb-tv-scraper/report/alerts-state.json');
+// Accept --chat (single, primary recipient — used for watchlist filter) and
+// --extra (comma-separated additional chat_ids that ALSO receive the broadcast)
 const chat = parseInt(arg('chat', env.TELEGRAM_CHAT_ID || ''), 10);
+const extraIds = (arg('extra', env.TELEGRAM_EXTRA_CHAT_IDS || ''))
+    .split(',').map((s) => parseInt(s.trim(), 10)).filter(Boolean);
+const recipients = [...new Set([chat, ...extraIds].filter(Boolean))];
 const perBucket = parseInt(arg('per-bucket', '3'), 10);
 const dedupHours = parseInt(arg('dedup-hours', '24'), 10);  // suppress repeats within N hours
 const token = env.TELEGRAM_BOT_TOKEN;
@@ -134,19 +139,19 @@ if (!total) {
     exit(0);
 }
 
-await tg('sendMessage', {
-    chat_id: chat, parse_mode: 'HTML', disable_web_page_preview: true,
-    text: [
-        `🎯 <b>Интересные позиции прямо сейчас — ${total}</b>`,
-        '',
-        `🟢 На минимуме: <b>${atLow.length}</b>`,
-        `🔥 Скидка ≥25% от max: <b>${deepOff.length}</b>`,
-        `⚡ Hot-deal (≥15% off, рейтинг ≥4.7): <b>${hotDeal.length}</b>`,
-        `📦 Urgent (стока ≤5, рейтинг ≥4.7): <b>${urgent.length}</b>`,
-        '',
-        '<i>Дальше прилетят отдельные карточки по каждой позиции.</i>',
-    ].join('\n'),
-});
+const summary = [
+    `🎯 <b>Интересные позиции прямо сейчас — ${total}</b>`,
+    '',
+    `🟢 На минимуме: <b>${atLow.length}</b>`,
+    `🔥 Скидка ≥25% от max: <b>${deepOff.length}</b>`,
+    `⚡ Hot-deal (≥15% off, рейтинг ≥4.7): <b>${hotDeal.length}</b>`,
+    `📦 Urgent (стока ≤5, рейтинг ≥4.7): <b>${urgent.length}</b>`,
+    '',
+    '<i>Дальше прилетят отдельные карточки по каждой позиции.</i>',
+].join('\n');
+for (const r of recipients) {
+    await tg('sendMessage', { chat_id: r, parse_mode: 'HTML', disable_web_page_preview: true, text: summary });
+}
 
 const buckets = [
     ['atlow', atLow],
@@ -158,16 +163,22 @@ let sent = 0;
 const nowIso = new Date().toISOString();
 for (const [tier, items] of buckets) {
     for (const item of items) {
-        const r = await tg('sendMessage', {
-            chat_id: chat, parse_mode: 'HTML', disable_web_page_preview: true,
-            text: render(item, tier),
-            reply_markup: productCardKeyboard(item.e.productId),
-        });
-        if (r.ok) {
+        const text = render(item, tier);
+        const markup = productCardKeyboard(item.e.productId);
+        let anyOk = false;
+        for (const rid of recipients) {
+            const r = await tg('sendMessage', {
+                chat_id: rid, parse_mode: 'HTML', disable_web_page_preview: true,
+                text, reply_markup: markup,
+            });
+            if (r.ok) anyOk = true;
+            await sleep(200);
+        }
+        if (anyOk) {
             state.dispatched[`int:${item.e.productId}:${item.cur}`] = nowIso;
             sent++;
         }
-        await sleep(800);   // pace
+        await sleep(400);   // pace between cards
     }
 }
 

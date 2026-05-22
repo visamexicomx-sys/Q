@@ -914,6 +914,17 @@ async function dispatch(data, cmd, arg, ctx = {}) {
         case '/threshold': return await cmdThreshold(data, arg, ctx);
         case '/list': return cmdList(data, arg, ctx);
         case '/now': return cmdNow(data);
+        case '/myid':
+        case '/whoami': return ctx.chatId
+            ? [
+                `🆔 <b>Твой chat_id: <code>${ctx.chatId}</code></b>`,
+                '',
+                'Передай этот номер админу бота — он добавит тебя в общую рассылку алёртов.',
+                '',
+                'Или сразу начни вести свой watchlist:',
+                '<code>/track &lt;ссылка-WB&gt;</code>',
+            ].join('\n')
+            : 'chat_id недоступен.';
         case '/scrape': return 'Команда /scrape поддерживается только через GitHub Actions polling. Используйте https://github.com/' + REPO + '/actions';
         default: return 'Неизвестная команда. /help — список.';
     }

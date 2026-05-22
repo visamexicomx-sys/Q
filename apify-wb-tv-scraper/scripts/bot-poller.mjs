@@ -1012,6 +1012,17 @@ async function dispatch(cmd, arg, ctx = {}) {
         case '/list': return cmdList(arg, ctx);
         case '/exportcsv': return await cmdExportCsv(arg, ctx);
         case '/now': return cmdNow();
+        case '/myid':
+        case '/whoami': return ctx.chatId
+            ? [
+                `🆔 <b>Твой chat_id: <code>${ctx.chatId}</code></b>`,
+                '',
+                'Передай этот номер админу бота — он добавит тебя в общую рассылку алёртов.',
+                '',
+                'Или сразу начни вести свой watchlist:',
+                '<code>/track &lt;ссылка-WB&gt;</code>',
+            ].join('\n')
+            : 'chat_id недоступен.';
         case '/scrape': return await cmdScrape();
         default: return 'Неизвестная команда. /help — список.';
     }
