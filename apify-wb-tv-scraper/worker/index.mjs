@@ -687,6 +687,199 @@ function cmdWatchlist({ watchlist, allModels }, _arg, ctx) {
     return lines.join('\n');
 }
 
+// ---------- per-product tracker ----------
+
+const WB_URL_RE = /(?:wildberries\.ru|wb\.ru)\/catalog\/(\d{6,11})/i;
+const RAW_ID_RE = /^\d{6,11}$/;
+
+function parseUrlOrId(input) {
+    if (!input) return null;
+    const s = String(input).trim();
+    if (RAW_ID_RE.test(s)) return s;
+    const m = s.match(WB_URL_RE);
+    return m ? m[1] : null;
+}
+
+function productCardKeyboard(id) {
+    return {
+        inline_keyboard: [
+            [{ text: '📈 Динамика', callback_data: `p:dyn:${id}` }, { text: '✏️ Имя', callback_data: `p:ren:${id}` }],
+            [{ text: '🎯 Порог', callback_data: `p:thr:${id}` }, { text: '🗑 Удалить', callback_data: `p:del:${id}` }],
+            [{ text: '🪞 Двойник', callback_data: `p:twin:${id}` }, { text: '🔮 Прогноз', callback_data: `p:fc:${id}` }],
+        ],
+    };
+}
+
+function renderProductCard(entry, snap) {
+    const lines = [];
+    lines.push(`🛒 <b>${esc(entry.alias || snap.name || 'Товар WB')}</b>`);
+    lines.push('');
+    if (snap.rating) lines.push(`⭐ <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
+    if (snap.supplier) lines.push(`🏪 Магазин: <b>${esc(snap.supplier)}</b>`);
+    if (snap.brand) lines.push(`🏷 Бренд: <b>${esc(snap.brand)}</b>`);
+    if (entry.region) lines.push(`📍 Регион: ${esc(entry.region)}`);
+    lines.push(`🔢 Артикул: <code>${entry.productId}</code>`);
+    if (snap.price) {
+        const disc = snap.discount ? ` (−${snap.discount}%, было ${fmt(snap.originalPrice)})` : '';
+        lines.push(`💰 Цена: <b>${fmt(snap.price)} ₽</b>${disc}`);
+    }
+    if (snap.stock != null) lines.push(`📦 Осталось: <b>${snap.stock} шт</b>`);
+    if (snap.deliveryType || snap.deliveryAt) {
+        lines.push(`🚚 Доставка: ${esc(snap.deliveryType || '')}${snap.deliveryAt ? ' · ' + snap.deliveryAt : ''}`);
+    }
+    if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
+        lines.push(`📊 Min / Max: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+    }
+    if (entry.threshold) lines.push(`🎯 Ваш порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
+    lines.push('');
+    lines.push(`<a href="https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx">Открыть на Wildberries →</a>`);
+    return lines.join('\n');
+}
+
+async function mutateWatchlist({ env, chatId }, mutator) {
+    if (!env?.GH_PAT) return { error: '⚠️ Подписки временно недоступны — нет worker-секрета <code>GH_PAT</code>.' };
+    const { sha, entries } = await ghReadWatchlist(env.GH_PAT);
+    const next = mutator(entries, chatId);
+    await ghWriteWatchlist(env.GH_PAT, next, sha);
+    return { entries: next };
+}
+
+async function cmdTrack({ allModels }, arg, ctx) {
+    if (!ctx?.chatId) return 'Доступно только из чата с ботом.';
+    if (!arg) return [
+        '🛒 <b>/track</b> — добавить любой товар WB в отслеживание.',
+        '',
+        '<code>/track 357676897</code>',
+        '<code>/track https://www.wildberries.ru/catalog/357676897/detail.aspx</code>',
+        '<code>/track 357676897 --threshold 50000 --alias Стиралка</code>',
+        '',
+        'Или пришли мне ссылку WB — я сам распознаю.',
+    ].join('\n');
+    const tokens = arg.trim().split(/\s+/);
+    const id = parseUrlOrId(tokens[0]);
+    if (!id) return `Не похоже на артикул или ссылку WB: <code>${esc(tokens[0])}</code>`;
+    let threshold = null, alias = null;
+    for (let i = 1; i < tokens.length; i++) {
+        if (tokens[i] === '--threshold' || tokens[i] === '-t') {
+            threshold = parseInt(String(tokens[++i] || '').replace(/\D/g, ''), 10) || null;
+        } else if (tokens[i] === '--alias' || tokens[i] === '-a') {
+            alias = tokens.slice(i + 1).join(' '); break;
+        }
+    }
+    const result = await mutateWatchlist(ctx, (entries) => {
+        const idx = entries.findIndex((e) => e.chatId === ctx.chatId && e.productId === id);
+        const existing = idx >= 0 ? entries[idx] : {};
+        const e = {
+            chatId: ctx.chatId,
+            productId: id,
+            kind: 'product',
+            alias: alias || existing.alias || null,
+            threshold: threshold || existing.threshold || null,
+            region: existing.region || 'Санкт-Петербург',
+            dest: existing.dest || '-1123300',
+            addedAt: existing.addedAt || new Date().toISOString(),
+            lastSnapshot: existing.lastSnapshot || null,
+            history: existing.history || [],
+            minSeen: existing.minSeen || null,
+            maxSeen: existing.maxSeen || null,
+        };
+        if (idx >= 0) entries[idx] = e; else entries.push(e);
+        return entries;
+    });
+    if (result.error) return result.error;
+    return {
+        text: `✅ <b>Добавил в watchlist</b>\n\n🔢 Артикул: <code>${id}</code>${alias ? `\n📝 Имя: <b>${esc(alias)}</b>` : ''}${threshold ? `\n🎯 Порог: ≤ <b>${fmt(threshold)} ₽</b>` : ''}\n\n<i>Свежие данные появятся при следующем cron-прогоне scraper'а.</i>`,
+        reply_markup: productCardKeyboard(id),
+    };
+}
+
+async function cmdUntrack(_data, arg, ctx) {
+    if (!ctx?.chatId) return 'Доступно только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/untrack &lt;артикул&gt;</code>';
+    const id = parseUrlOrId(arg);
+    if (!id) return `Не похоже на артикул: <code>${esc(arg)}</code>`;
+    let removed = 0;
+    const result = await mutateWatchlist(ctx, (entries) => {
+        const before = entries.length;
+        const next = entries.filter((e) => !(e.chatId === ctx.chatId && e.productId === id));
+        removed = before - next.length;
+        return next;
+    });
+    if (result.error) return result.error;
+    return removed > 0 ? `🗑 Удалил <code>${id}</code> из watchlist.` : `Этого товара в твоём watchlist нет.`;
+}
+
+async function cmdRename(_data, arg, ctx) {
+    if (!ctx?.chatId) return 'Доступно только из чата с ботом.';
+    const m = arg.match(/^(\d{6,11})\s+(.+)$/);
+    if (!m) return 'Использование: <code>/rename &lt;артикул&gt; &lt;новое имя&gt;</code>';
+    const [, id, alias] = m;
+    let found = false;
+    const result = await mutateWatchlist(ctx, (entries) => {
+        const e = entries.find((x) => x.chatId === ctx.chatId && x.productId === id);
+        if (e) { e.alias = alias.trim().slice(0, 80); found = true; }
+        return entries;
+    });
+    if (result.error) return result.error;
+    return found ? `✏️ Переименовал <code>${id}</code> в «<b>${esc(alias.trim().slice(0, 80))}</b>».` : `Товар <code>${id}</code> не отслеживается.`;
+}
+
+async function cmdThreshold(_data, arg, ctx) {
+    if (!ctx?.chatId) return 'Доступно только из чата с ботом.';
+    const m = arg.match(/^(\d{6,11})\s+(.+)$/);
+    if (!m) return 'Использование: <code>/threshold &lt;артикул&gt; &lt;рублей&gt;</code>';
+    const [, id, raw] = m;
+    const threshold = parseInt(String(raw).replace(/\D/g, ''), 10);
+    if (!threshold) return 'Цена должна быть числом в рублях.';
+    let found = false;
+    const result = await mutateWatchlist(ctx, (entries) => {
+        const e = entries.find((x) => x.chatId === ctx.chatId && x.productId === id);
+        if (e) { e.threshold = threshold; found = true; }
+        return entries;
+    });
+    if (result.error) return result.error;
+    return found ? `🎯 Установлен порог для <code>${id}</code>: ≤ <b>${fmt(threshold)} ₽</b>` : `Товар <code>${id}</code> не отслеживается.`;
+}
+
+function cmdList({ watchlist, allModels }, _arg, ctx) {
+    if (!ctx?.chatId) return 'Доступно только из чата с ботом.';
+    const mine = (watchlist?.entries || []).filter((e) => e.chatId === ctx.chatId);
+    const products = mine.filter((e) => e.productId);
+    const modelsList = mine.filter((e) => e.modelKey && !e.productId);
+    if (!mine.length) return [
+        '📋 <b>Ваших отслеживаемых товаров нет.</b>',
+        '',
+        'Добавить: пришли ссылку WB или <code>/track &lt;арт&gt;</code>',
+    ].join('\n');
+    const lines = [];
+    if (products.length) {
+        lines.push(`📋 <b>Товары — ${products.length}</b>`, '');
+        for (const e of products) {
+            const snap = e.lastSnapshot || {};
+            const price = snap.price ? `${fmt(snap.price)} ₽` : '—';
+            const stock = snap.stock != null ? ` · ${snap.stock} шт` : '';
+            const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
+            lines.push(`• <code>${e.productId}</code> · <b>${esc(e.alias || snap.name || 'товар')}</b> — ${price}${stock}${th}`);
+        }
+        lines.push('');
+    }
+    if (modelsList.length) {
+        const byKey = new Map(allModels.map((m) => [m.key, m]));
+        lines.push(`📺 <b>Модели TV — ${modelsList.length}</b>`, '');
+        for (const e of modelsList) {
+            const m = byKey.get(e.modelKey);
+            const cur = m ? `${fmt(m.min)} ₽` : '—';
+            const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
+            lines.push(`• <code>${esc(e.modelKey.split('|')[1])}</code> · ${esc(e.label)} — ${cur}${th}`);
+        }
+        lines.push('');
+    }
+    lines.push('<i>Команды:</i>');
+    lines.push('/track &lt;ссылка&gt; · /untrack &lt;арт&gt; · /rename &lt;арт&gt; &lt;имя&gt;');
+    lines.push('/threshold &lt;арт&gt; &lt;руб&gt; · /exportcsv');
+    return lines.join('\n');
+}
+
 // ---------- dispatcher ----------
 
 async function dispatch(data, cmd, arg, ctx = {}) {
@@ -715,6 +908,11 @@ async function dispatch(data, cmd, arg, ctx = {}) {
         case '/watch': return await cmdWatch(data, arg, ctx);
         case '/unwatch': return await cmdUnwatch(data, arg, ctx);
         case '/watchlist': return cmdWatchlist(data, arg, ctx);
+        case '/track': return await cmdTrack(data, arg, ctx);
+        case '/untrack': return await cmdUntrack(data, arg, ctx);
+        case '/rename': return await cmdRename(data, arg, ctx);
+        case '/threshold': return await cmdThreshold(data, arg, ctx);
+        case '/list': return cmdList(data, arg, ctx);
         case '/now': return cmdNow(data);
         case '/scrape': return 'Команда /scrape поддерживается только через GitHub Actions polling. Используйте https://github.com/' + REPO + '/actions';
         default: return 'Неизвестная команда. /help — список.';
@@ -755,6 +953,20 @@ async function dispatchCallback(data, cbData) {
     if (cbData.startsWith('brand:')) return cmdBrand(data, cbData.slice(6), 0);
     if (cbData.startsWith('d:')) return cmdDiagonal(data, cbData.slice(2), 0);
     if (cbData.startsWith('under:')) return cmdUnder(data, cbData.slice(6), 0);
+    if (cbData.startsWith('p:')) {
+        const m = cbData.match(/^p:(\w+):(\d+)$/);
+        if (!m) return 'Битый callback.';
+        const [, action, id] = m;
+        switch (action) {
+            case 'del': return 'Чтобы удалить пришли <code>/untrack ' + id + '</code>';
+            case 'ren': return `✏️ Переименовать:\n<code>/rename ${id} &lt;новое имя&gt;</code>`;
+            case 'thr': return `🎯 Поставить порог:\n<code>/threshold ${id} &lt;рублей&gt;</code>`;
+            case 'dyn': return `📈 График по артикулу появится, когда накопится история. Пока: <a href="https://www.wildberries.ru/catalog/${id}/detail.aspx">открыть WB</a>.`;
+            case 'twin': return `🪞 Поиск двойников по артикулу — для TV /twins.`;
+            case 'fc': return `🔮 Прогноз появится после ≥3 ежедневных проверок цены.`;
+            default: return `Неизвестное действие: ${esc(action)}`;
+        }
+    }
     return 'Неизвестное действие.';
 }
 
@@ -789,7 +1001,11 @@ async function handleMessage(data, msg, env, ctx) {
     let text = (msg.text || '').trim();
     if (!text) return null;
     if (TEXT_TO_COMMAND[text]) text = TEXT_TO_COMMAND[text];
-    if (!text.startsWith('/')) text = '/find ' + text;
+    if (!text.startsWith('/')) {
+        const wbId = parseUrlOrId(text);
+        if (wbId) text = '/track ' + wbId;
+        else text = '/find ' + text;
+    }
 
     const [cmdRaw, ...rest] = text.split(/\s+/);
     const cmd = cmdRaw.split('@')[0].toLowerCase();

@@ -134,7 +134,13 @@ async function registerBotCommands() {
             { command: 'sellers', description: '🏪 Топ нестабильных листингов' },
             { command: 'watch', description: '👀 Подписаться: /watch <модель> [потолок_₽]' },
             { command: 'unwatch', description: '🚫 Отписаться: /unwatch <модель>' },
-            { command: 'watchlist', description: '📋 Мои подписки' },
+            { command: 'watchlist', description: '📋 Мои подписки (модели TV)' },
+            { command: 'track', description: '🛒 Трекать любой товар: пришли ссылку или /track <арт>' },
+            { command: 'untrack', description: '🗑 Снять с трекинга: /untrack <арт>' },
+            { command: 'rename', description: '✏️ Имя товара: /rename <арт> <имя>' },
+            { command: 'threshold', description: '🎯 Порог цены: /threshold <арт> <руб>' },
+            { command: 'list', description: '📋 Все мои товары + модели' },
+            { command: 'exportcsv', description: '📄 Скачать список (.csv)' },
             { command: 'now', description: '🕐 Время последнего снимка' },
             { command: 'scrape', description: '🔄 Запросить новый скрап' },
             { command: 'menu', description: '⌨️ Показать меню кнопок' },
@@ -714,6 +720,232 @@ function cmdWatchlist(arg, ctx = {}) {
     return lines.join('\n');
 }
 
+// ---------- per-product tracker (universal — not just TV) ----------
+
+const WB_URL_RE = /(?:wildberries\.ru|wb\.ru)\/catalog\/(\d{6,11})/i;
+const RAW_ID_RE = /^\d{6,11}$/;
+
+function parseUrlOrId(input) {
+    if (!input) return null;
+    const s = String(input).trim();
+    if (RAW_ID_RE.test(s)) return s;
+    const m = s.match(WB_URL_RE);
+    return m ? m[1] : null;
+}
+
+function productCardKeyboard(id) {
+    return {
+        inline_keyboard: [
+            [{ text: '📈 Динамика', callback_data: `p:dyn:${id}` }, { text: '✏️ Имя', callback_data: `p:ren:${id}` }],
+            [{ text: '🎯 Порог', callback_data: `p:thr:${id}` }, { text: '🗑 Удалить', callback_data: `p:del:${id}` }],
+            [{ text: '🪞 Двойник', callback_data: `p:twin:${id}` }, { text: '🔮 Прогноз', callback_data: `p:fc:${id}` }],
+        ],
+    };
+}
+
+function renderProductCard(entry, snap) {
+    const lines = [];
+    lines.push(`🛒 <b>${esc(entry.alias || snap.name || 'Товар WB')}</b>`);
+    lines.push('');
+    if (snap.rating) lines.push(`⭐ <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
+    if (snap.supplier) lines.push(`🏪 Магазин: <b>${esc(snap.supplier)}</b>`);
+    if (snap.brand) lines.push(`🏷 Бренд: <b>${esc(snap.brand)}</b>`);
+    if (entry.region) lines.push(`📍 Регион: ${esc(entry.region)}`);
+    lines.push(`🔢 Артикул: <code>${entry.productId}</code>`);
+    if (snap.price) {
+        const disc = snap.discount ? ` (−${snap.discount}%, было ${fmt(snap.originalPrice)})` : '';
+        lines.push(`💰 Цена: <b>${fmt(snap.price)} ₽</b>${disc}`);
+    }
+    if (snap.stock != null) lines.push(`📦 Осталось: <b>${snap.stock} шт</b>`);
+    if (snap.deliveryType || snap.deliveryAt) {
+        lines.push(`🚚 Доставка: ${esc(snap.deliveryType || '')}${snap.deliveryAt ? ' · ' + snap.deliveryAt : ''}`);
+    }
+    if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
+        lines.push(`📊 Min / Max: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+    }
+    if (entry.threshold) lines.push(`🎯 Ваш порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
+    lines.push('');
+    lines.push(`<a href="https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx">Открыть на Wildberries →</a>`);
+    return lines.join('\n');
+}
+
+function cmdTrack(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    if (!arg) return [
+        '🛒 <b>/track</b> — добавить любой товар WB в отслеживание.',
+        '',
+        '<b>Примеры:</b>',
+        '<code>/track 357676897</code>',
+        '<code>/track https://www.wildberries.ru/catalog/357676897/detail.aspx</code>',
+        '<code>/track 357676897 --threshold 50000 --alias Стиралка</code>',
+        '',
+        'Или просто пришли мне ссылку с WB — я сам распознаю.',
+    ].join('\n');
+    // parse: first token = id/url, --threshold N, --alias rest
+    const tokens = arg.trim().split(/\s+/);
+    const id = parseUrlOrId(tokens[0]);
+    if (!id) return `Не похоже на артикул или ссылку WB: <code>${esc(tokens[0])}</code>`;
+    let threshold = null, alias = null;
+    for (let i = 1; i < tokens.length; i++) {
+        if (tokens[i] === '--threshold' || tokens[i] === '-t') {
+            threshold = parseInt(String(tokens[++i] || '').replace(/\D/g, ''), 10) || null;
+        } else if (tokens[i] === '--alias' || tokens[i] === '-a') {
+            alias = tokens.slice(i + 1).join(' '); break;
+        }
+    }
+    reloadWatchlist();
+    const idx = watchlist.entries.findIndex((e) => e.chatId === ctx.chatId && e.productId === id);
+    const entry = {
+        chatId: ctx.chatId,
+        productId: id,
+        kind: 'product',
+        alias: alias || (idx >= 0 ? watchlist.entries[idx].alias : null),
+        threshold: threshold || (idx >= 0 ? watchlist.entries[idx].threshold : null),
+        region: 'Санкт-Петербург',
+        dest: '-1123300',
+        addedAt: idx >= 0 ? watchlist.entries[idx].addedAt : new Date().toISOString(),
+        lastSnapshot: idx >= 0 ? watchlist.entries[idx].lastSnapshot : null,
+        history: idx >= 0 ? watchlist.entries[idx].history : [],
+        minSeen: idx >= 0 ? watchlist.entries[idx].minSeen : null,
+        maxSeen: idx >= 0 ? watchlist.entries[idx].maxSeen : null,
+    };
+    if (idx >= 0) watchlist.entries[idx] = entry;
+    else watchlist.entries.push(entry);
+    saveWatchlist();
+
+    const verb = idx >= 0 ? 'Обновил' : 'Добавил';
+    const snap = entry.lastSnapshot || {};
+    const card = entry.lastSnapshot
+        ? renderProductCard(entry, snap)
+        : [
+            `🛒 <b>${esc(alias || 'Товар WB')}</b>`,
+            `🔢 Артикул: <code>${id}</code>`,
+            entry.threshold ? `🎯 Порог: ≤ <b>${fmt(entry.threshold)} ₽</b>` : '',
+            '',
+            '<i>Свежие данные подгрузятся при следующем cron-прогоне scraper\'а.</i>',
+        ].filter(Boolean).join('\n');
+    return {
+        text: `✅ <b>${verb} в watchlist</b>\n\n` + card,
+        reply_markup: productCardKeyboard(id),
+    };
+}
+
+function cmdUntrack(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/untrack &lt;артикул&gt;</code>';
+    const id = parseUrlOrId(arg);
+    if (!id) return `Не похоже на артикул: <code>${esc(arg)}</code>`;
+    reloadWatchlist();
+    const before = watchlist.entries.length;
+    watchlist.entries = watchlist.entries.filter((e) => !(e.chatId === ctx.chatId && e.productId === id));
+    saveWatchlist();
+    return before > watchlist.entries.length
+        ? `🗑 Удалил <code>${id}</code> из watchlist.`
+        : `Этого товара в твоём watchlist нет.`;
+}
+
+function cmdRename(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    const m = arg.match(/^(\d{6,11})\s+(.+)$/);
+    if (!m) return 'Использование: <code>/rename &lt;артикул&gt; &lt;новое имя&gt;</code>';
+    const [, id, alias] = m;
+    reloadWatchlist();
+    const e = watchlist.entries.find((x) => x.chatId === ctx.chatId && x.productId === id);
+    if (!e) return `Товар <code>${id}</code> не отслеживается.`;
+    e.alias = alias.trim().slice(0, 80);
+    saveWatchlist();
+    return `✏️ Переименовал <code>${id}</code> в «<b>${esc(e.alias)}</b>».`;
+}
+
+function cmdThreshold(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    const m = arg.match(/^(\d{6,11})\s+(.+)$/);
+    if (!m) return 'Использование: <code>/threshold &lt;артикул&gt; &lt;рублей&gt;</code>';
+    const [, id, raw] = m;
+    const threshold = parseInt(String(raw).replace(/\D/g, ''), 10);
+    if (!threshold) return 'Цена должна быть числом в рублях.';
+    reloadWatchlist();
+    const e = watchlist.entries.find((x) => x.chatId === ctx.chatId && x.productId === id);
+    if (!e) return `Товар <code>${id}</code> не отслеживается.`;
+    e.threshold = threshold;
+    saveWatchlist();
+    return `🎯 Установлен порог для <code>${id}</code>: ≤ <b>${fmt(threshold)} ₽</b>`;
+}
+
+function cmdList(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    reloadWatchlist();
+    const mine = watchlist.entries.filter((e) => e.chatId === ctx.chatId);
+    const products = mine.filter((e) => e.productId);
+    const modelsList = mine.filter((e) => e.modelKey && !e.productId);
+    if (!mine.length) return [
+        '📋 <b>Ваших отслеживаемых товаров нет.</b>',
+        '',
+        'Добавить: пришли ссылку WB или <code>/track &lt;арт&gt;</code>',
+    ].join('\n');
+    const lines = [];
+    if (products.length) {
+        lines.push(`📋 <b>Товары — ${products.length}</b>`, '');
+        for (const e of products) {
+            const snap = e.lastSnapshot || {};
+            const price = snap.price ? `${fmt(snap.price)} ₽` : '—';
+            const stock = snap.stock != null ? ` · ${snap.stock} шт` : '';
+            const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
+            lines.push(`• <code>${e.productId}</code> · <b>${esc(e.alias || snap.name || 'товар')}</b> — ${price}${stock}${th}`);
+        }
+        lines.push('');
+    }
+    if (modelsList.length) {
+        const byKey = new Map(allModels.map((m) => [m.key, m]));
+        lines.push(`📺 <b>Модели TV — ${modelsList.length}</b>`, '');
+        for (const e of modelsList) {
+            const m = byKey.get(e.modelKey);
+            const cur = m ? `${fmt(m.min)} ₽` : '—';
+            const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
+            lines.push(`• <code>${esc(e.modelKey.split('|')[1])}</code> · ${esc(e.label)} — ${cur}${th}`);
+        }
+        lines.push('');
+    }
+    lines.push('<i>Команды:</i>');
+    lines.push('/track &lt;ссылка&gt; · /untrack &lt;арт&gt; · /rename &lt;арт&gt; &lt;имя&gt;');
+    lines.push('/threshold &lt;арт&gt; &lt;руб&gt; · /exportcsv');
+    return lines.join('\n');
+}
+
+async function cmdExportCsv(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    reloadWatchlist();
+    const mine = watchlist.entries.filter((e) => e.chatId === ctx.chatId);
+    if (!mine.length) return 'Watchlist пуст — нечего экспортировать.';
+    const cols = ['kind', 'id_or_key', 'alias', 'currentPrice', 'stock', 'threshold', 'minSeen', 'maxSeen', 'addedAt', 'url'];
+    const rows = mine.map((e) => {
+        const snap = e.lastSnapshot || {};
+        const id = e.productId || e.modelKey;
+        const url = e.productId ? `https://www.wildberries.ru/catalog/${e.productId}/detail.aspx` : '';
+        return [
+            e.productId ? 'product' : 'model',
+            id, e.alias || e.label || '',
+            snap.price ?? '', snap.stock ?? '',
+            e.threshold ?? '', e.minSeen ?? '', e.maxSeen ?? '',
+            e.addedAt || '', url,
+        ];
+    });
+    const csv = [cols, ...rows].map((r) => r.map((c) => {
+        const s = String(c ?? '');
+        return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }).join(',')).join('\n') + '\n';
+
+    // Telegram sendDocument with inline content (multipart/form-data)
+    const stamp = new Date().toISOString().replace(/[:T.]/g, '-').slice(0, 16);
+    const filename = `wb-watchlist_${stamp}_UTC.csv`;
+    const form = new FormData();
+    form.append('chat_id', String(ctx.chatId));
+    form.append('document', new Blob([csv], { type: 'text/csv' }), filename);
+    form.append('caption', `📋 Список отслеживаемых товаров (${mine.length})`);
+    await fetch(`https://api.telegram.org/bot${TOKEN}/sendDocument`, { method: 'POST', body: form });
+    return null; // we already sent the document
+}
+
 // ---------- dispatcher ----------
 
 async function sendReply(chatId, payload, keyboard) {
@@ -773,6 +1005,12 @@ async function dispatch(cmd, arg, ctx = {}) {
         case '/watch': return cmdWatch(arg, ctx);
         case '/unwatch': return cmdUnwatch(arg, ctx);
         case '/watchlist': return cmdWatchlist(arg, ctx);
+        case '/track': return cmdTrack(arg, ctx);
+        case '/untrack': return cmdUntrack(arg, ctx);
+        case '/rename': return cmdRename(arg, ctx);
+        case '/threshold': return cmdThreshold(arg, ctx);
+        case '/list': return cmdList(arg, ctx);
+        case '/exportcsv': return await cmdExportCsv(arg, ctx);
         case '/now': return cmdNow();
         case '/scrape': return await cmdScrape();
         default: return 'Неизвестная команда. /help — список.';
@@ -789,8 +1027,11 @@ async function handleMessage(msg) {
     if (TEXT_TO_COMMAND[text]) text = TEXT_TO_COMMAND[text];
 
     if (!text.startsWith('/')) {
-        // Free-text fallback: treat as /find query.
-        text = '/find ' + text;
+        // Auto-detect WB URL — if the message contains a wildberries.ru link
+        // or a bare 6-11 digit article id, treat it as /track to add to watchlist.
+        const wbId = parseUrlOrId(text);
+        if (wbId) text = '/track ' + wbId;
+        else text = '/find ' + text;
     }
 
     const [cmdRaw, ...rest] = text.split(/\s+/);
@@ -861,6 +1102,23 @@ async function handleCallback(cq) {
         } else if (data.startsWith('brand:')) reply = cmdBrand(data.slice(6));
         else if (data.startsWith('d:')) reply = cmdDiagonal(data.slice(2));
         else if (data.startsWith('under:')) reply = cmdUnder(data.slice(6));
+        else if (data.startsWith('p:')) {
+            // Per-product card buttons: p:<action>:<id>
+            const m = data.match(/^p:(\w+):(\d+)$/);
+            if (m) {
+                const [, action, id] = m;
+                const ctx2 = { chatId };
+                switch (action) {
+                    case 'del': reply = cmdUntrack(id, ctx2); break;
+                    case 'ren': reply = `✏️ Чтобы переименовать <code>${id}</code>:\n<code>/rename ${id} &lt;новое имя&gt;</code>`; break;
+                    case 'thr': reply = `🎯 Чтобы поставить порог на <code>${id}</code>:\n<code>/threshold ${id} &lt;рублей&gt;</code>`; break;
+                    case 'dyn': reply = `📈 График по конкретному артикулу будет, когда накопится история (≥3 ежедневных снимка). Пока: <a href="https://www.wildberries.ru/catalog/${id}/detail.aspx">открыть на WB</a>.`; break;
+                    case 'twin': reply = `🪞 Поиск двойников по артикулу ${id} — пока работает только для трекаемых TV-моделей. /twins покажет все панель-близнецы.`; break;
+                    case 'fc': reply = `🔮 Прогноз по артикулу появится после ≥3 ежедневных проверок цены. Для TV-моделей: /forecast &lt;модель&gt;.`; break;
+                    default: reply = `Неизвестное действие: ${esc(action)}`;
+                }
+            } else reply = 'Битый callback.';
+        }
         else reply = 'Неизвестное действие.';
     } catch (err) {
         reply = `Ошибка: <code>${esc(err.message || String(err))}</code>`;
