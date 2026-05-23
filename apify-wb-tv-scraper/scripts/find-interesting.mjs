@@ -114,31 +114,28 @@ function productCardKeyboard(id) {
 
 function render(item, tier) {
     const { e, snap, cur, min, max, offMaxPct, aboveMinPct, atLow } = item;
-    const tierLabel = {
-        atlow: 'Минимальная цена за всё время',
-        deep:  `Большая скидка от максимума — −${offMaxPct}%`,
-        hot:   `Лучшая сделка — −${offMaxPct}%, рейтинг ${snap.rating}`,
-        urgent:`Срочно — осталось ${snap.stock} шт, рейтинг ${snap.rating}`,
+    const url = `https://www.wildberries.ru/catalog/${e.productId}/detail.aspx`;
+    const tierBanner = {
+        atlow: '🟢 <b>Минимальная цена за всё время</b>',
+        deep:  `🔥 <b>Большая скидка — на ${offMaxPct}% ниже максимума</b>`,
+        hot:   `⚡ <b>Лучшая сделка — на ${offMaxPct}% ниже максимума</b>`,
+        urgent:`📦 <b>Срочно — осталось ${snap.stock} шт</b>`,
     }[tier];
-    const lines = [
-        `<b>${tierLabel}</b>`,
-        '',
-        `<b>${esc(e.alias || trim(snap.name, 80))}</b>`,
-        '',
-    ];
-    if (snap.rating) lines.push(`Рейтинг: <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
-    if (snap.supplier) lines.push(`Магазин: <b>${esc(snap.supplier)}</b>`);
-    if (snap.brand) lines.push(`Бренд: <b>${esc(snap.brand)}</b>`);
-    lines.push(`Регион: ${esc(e.region || 'Санкт-Петербург')}`);
-    lines.push(`Артикул: <b><code>${e.productId}</code></b>`);
-    lines.push(`Цена: <b>${fmt(cur)} ₽</b>`);
-    lines.push(`Мин./Макс.: ${fmt(min)} / ${fmt(max)} ₽`);
-    if (atLow) lines.push(`Состояние: на минимуме за всё время отслеживания`);
-    else lines.push(`От мин.: +${aboveMinPct}% · от макс.: −${offMaxPct}%`);
-    if (snap.stock != null) lines.push(`Остаток: <b>${snap.stock} шт</b>`);
-    if (e.threshold) lines.push(`Ваш порог: ≤ ${fmt(e.threshold)} ₽`);
+    const lines = [];
+    lines.push(`<b>Товар:</b> <a href="${esc(url)}">${esc(e.alias || trim(snap.name, 80))}</a>`);
     lines.push('');
-    lines.push(`<a href="https://www.wildberries.ru/catalog/${e.productId}/detail.aspx">Открыть на Wildberries</a>`);
+    if (snap.rating) lines.push(`<b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
+    if (snap.supplier) lines.push(`<b>Магазин:</b> ${esc(snap.supplier)}`);
+    if (snap.brand) lines.push(`<b>Бренд:</b> ${esc(snap.brand)}`);
+    lines.push(`<b>Регион:</b> ${esc(e.region || 'Санкт-Петербург')}`);
+    lines.push(`<b>Артикул:</b> ${e.productId}`);
+    lines.push(`<b>Цена:</b> ${fmt(cur)} ₽`);
+    if (snap.stock != null) lines.push(`<b>Осталось:</b> ${snap.stock} шт`);
+    lines.push(`<b>Мин. / Макс. цена:</b> ${fmt(min)} / ${fmt(max)} ₽`);
+    if (e.threshold) lines.push(`<b>Порог:</b> ≤ ${fmt(e.threshold)} ₽`);
+    lines.push('');
+    lines.push(tierBanner);
+    if (!atLow) lines.push(`<i>От минимума +${aboveMinPct}% · до максимума −${offMaxPct}%</i>`);
     return lines.join('\n');
 }
 
