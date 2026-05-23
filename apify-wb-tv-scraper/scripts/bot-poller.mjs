@@ -756,30 +756,73 @@ function productCardKeyboard(id) {
     };
 }
 
-function renderProductCard(entry, snap) {
+// Render a product card in the "WB Tracker" style: labelled fields, no
+// per-field icons, optional price-change banner + footer. `change` is
+// optional — when present (after a snapshot diff) it emits the highlighted
+// delta block + "fixed price" footer.
+function renderProductCard(entry, snap, change = null) {
+    const url = `https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx`;
+    const name = entry.alias || snap.name || 'Товар WB';
     const lines = [];
-    lines.push(`<b>${esc(entry.alias || snap.name || 'Товар WB')}</b>`);
+    lines.push(`Товар: <a href="${esc(url)}">${esc(name)}</a>`);
     lines.push('');
-    if (snap.rating) lines.push(`Рейтинг: <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
-    if (snap.supplier) lines.push(`Магазин: <b>${esc(snap.supplier)}</b>`);
-    if (snap.brand) lines.push(`Бренд: <b>${esc(snap.brand)}</b>`);
+    if (snap.rating) lines.push(`Рейтинг: ${snap.rating}${snap.feedbacks ? ` (<i>оценок: ${snap.feedbacks}</i>)` : ''}`);
+    if (snap.supplier) lines.push(`Магазин: ${esc(snap.supplier)}`);
+    if (snap.brand) lines.push(`Бренд: ${esc(snap.brand)}`);
     lines.push(`Регион: ${esc(entry.region || 'Санкт-Петербург')}`);
-    lines.push(`Артикул: <b><code>${entry.productId}</code></b>`);
-    if (snap.price) {
-        const disc = snap.discount ? ` (−${snap.discount}%, было ${fmt(snap.originalPrice)})` : '';
-        lines.push(`Цена: <b>${fmt(snap.price)} ₽</b>${disc}`);
-    }
-    if (snap.stock != null) lines.push(`Остаток: <b>${snap.stock} шт</b>`);
-    if (snap.deliveryType || snap.deliveryAt) {
-        lines.push(`Доставка: ${esc(snap.deliveryType || '')}${snap.deliveryAt ? ' · ' + snap.deliveryAt : ''}`);
-    }
+    lines.push(`Артикул: <b>${entry.productId}</b>`);
+    if (snap.price) lines.push(`Цена: <b>${fmt(snap.price)} ₽</b>`);
+    if (snap.reviewBonus) lines.push(`✦ Рубли за отзыв: <b>${fmt(snap.reviewBonus)} ₽</b>`);
+    if (snap.stock != null) lines.push(`Осталось: ${snap.stock} шт`);
+    if (snap.deliveryType) lines.push(`Доставка: ${esc(snap.deliveryType)}`);
+    if (snap.deliveryAt) lines.push(`Дата доставки: ${snap.deliveryAt}`);
     if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
-        lines.push(`Мин./Макс.: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+        lines.push(`Мин. / Макс. цена: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
     if (entry.threshold) lines.push(`Порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
-    lines.push('');
-    lines.push(`<a href="https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx">Открыть на Wildberries</a>`);
+
+    // ---- Price-change "fishky" ----
+    if (change) {
+        lines.push('');
+        for (const banner of changeBanners(change, entry, snap)) lines.push(banner);
+        lines.push('');
+        lines.push(`☀ Для дальнейшего отслеживания зафиксирована текущая цена ${fmt(snap.price)} ₽`);
+    }
     return lines.join('\n');
+}
+
+// Decorations layered onto a card when there's a meaningful diff.
+function changeBanners(change, entry, snap) {
+    const out = [];
+    const { delta, pct, oldPrice, kind } = change;
+    if (kind === 'price-down') {
+        const big = Math.abs(pct) >= 20;
+        out.push(`${big ? '💥' : '🔻'} Цена снизилась на <b>${fmt(Math.abs(delta))} ₽</b> (<b>${pct}%</b>)`);
+        if (big) out.push(`🚨 Сильное падение — продавец может срочно сбрасывать остатки.`);
+    } else if (kind === 'price-up') {
+        const big = pct >= 20;
+        out.push(`${big ? '⚠' : '🔺'} Цена выросла на <b>${fmt(delta)} ₽</b> (<b>+${pct}%</b>)`);
+    } else if (kind === 'threshold-hit') {
+        out.push(`🔔 <b>Сработал ваш порог</b> — цена достигла ≤ ${fmt(entry.threshold)} ₽`);
+    } else if (kind === 'new-atl') {
+        out.push(`🟢 <b>НОВЫЙ ИСТОРИЧЕСКИЙ МИНИМУМ</b>`);
+        out.push(`Цена ещё ни разу не была так низко за всё время отслеживания.`);
+    } else if (kind === 'near-atl') {
+        out.push(`🔴 Почти ATL — до исторического дна осталось <b>${fmt(snap.price - entry.minSeen)} ₽</b>`);
+    } else if (kind === 'low-stock') {
+        out.push(`📦 Осталось всего <b>${snap.stock} шт</b> — может закончиться в любой момент.`);
+    } else if (kind === 'out-of-stock') {
+        out.push(`❌ <b>Товар закончился</b> на складе.`);
+    }
+
+    // Optional extras — added below the main banner when relevant
+    if (kind === 'price-down' && entry.minSeen && snap.price <= entry.minSeen * 1.02 && snap.price > entry.minSeen) {
+        out.push(`🔴 Это в пределах 2% от исторического минимума (${fmt(entry.minSeen)} ₽).`);
+    }
+    if (snap.stock != null && snap.stock <= 5 && kind !== 'low-stock' && kind !== 'out-of-stock') {
+        out.push(`📦 Внимание: остаток <b>${snap.stock} шт</b>.`);
+    }
+    return out;
 }
 
 function cmdTrack(arg, ctx = {}) {
