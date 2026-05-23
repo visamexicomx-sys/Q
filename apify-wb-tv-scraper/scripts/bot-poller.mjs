@@ -12,6 +12,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { wbImageUrl } from './wb-image.mjs';
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 if (!TOKEN) { console.error('TELEGRAM_BOT_TOKEN missing'); process.exit(1); }
@@ -748,36 +749,36 @@ function parseUrlOrId(input) {
 function productCardKeyboard(id) {
     return {
         inline_keyboard: [
-            [{ text: '📈 Динамика', callback_data: `p:dyn:${id}` }, { text: '✏️ Имя', callback_data: `p:ren:${id}` }],
-            [{ text: '🎯 Порог', callback_data: `p:thr:${id}` }, { text: '🗑 Удалить', callback_data: `p:del:${id}` }],
-            [{ text: '🪞 Двойник', callback_data: `p:twin:${id}` }, { text: '🔮 Прогноз', callback_data: `p:fc:${id}` }],
+            [{ text: 'Динамика', callback_data: `p:dyn:${id}` }, { text: 'Имя', callback_data: `p:ren:${id}` }],
+            [{ text: 'Порог', callback_data: `p:thr:${id}` }, { text: 'Удалить', callback_data: `p:del:${id}` }],
+            [{ text: 'Двойник', callback_data: `p:twin:${id}` }, { text: 'Прогноз', callback_data: `p:fc:${id}` }],
         ],
     };
 }
 
 function renderProductCard(entry, snap) {
     const lines = [];
-    lines.push(`🛒 <b>${esc(entry.alias || snap.name || 'Товар WB')}</b>`);
+    lines.push(`<b>${esc(entry.alias || snap.name || 'Товар WB')}</b>`);
     lines.push('');
-    if (snap.rating) lines.push(`⭐ <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
-    if (snap.supplier) lines.push(`🏪 Магазин: <b>${esc(snap.supplier)}</b>`);
-    if (snap.brand) lines.push(`🏷 Бренд: <b>${esc(snap.brand)}</b>`);
-    if (entry.region) lines.push(`📍 Регион: ${esc(entry.region)}`);
-    lines.push(`🔢 Артикул: <code>${entry.productId}</code>`);
+    if (snap.rating) lines.push(`Рейтинг: <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
+    if (snap.supplier) lines.push(`Магазин: <b>${esc(snap.supplier)}</b>`);
+    if (snap.brand) lines.push(`Бренд: <b>${esc(snap.brand)}</b>`);
+    lines.push(`Регион: ${esc(entry.region || 'Санкт-Петербург')}`);
+    lines.push(`Артикул: <b><code>${entry.productId}</code></b>`);
     if (snap.price) {
         const disc = snap.discount ? ` (−${snap.discount}%, было ${fmt(snap.originalPrice)})` : '';
-        lines.push(`💰 Цена: <b>${fmt(snap.price)} ₽</b>${disc}`);
+        lines.push(`Цена: <b>${fmt(snap.price)} ₽</b>${disc}`);
     }
-    if (snap.stock != null) lines.push(`📦 Осталось: <b>${snap.stock} шт</b>`);
+    if (snap.stock != null) lines.push(`Остаток: <b>${snap.stock} шт</b>`);
     if (snap.deliveryType || snap.deliveryAt) {
-        lines.push(`🚚 Доставка: ${esc(snap.deliveryType || '')}${snap.deliveryAt ? ' · ' + snap.deliveryAt : ''}`);
+        lines.push(`Доставка: ${esc(snap.deliveryType || '')}${snap.deliveryAt ? ' · ' + snap.deliveryAt : ''}`);
     }
     if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
-        lines.push(`📊 Min / Max: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+        lines.push(`Мин./Макс.: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
-    if (entry.threshold) lines.push(`🎯 Ваш порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
+    if (entry.threshold) lines.push(`Порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
     lines.push('');
-    lines.push(`<a href="https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx">Открыть на Wildberries →</a>`);
+    lines.push(`<a href="https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx">Открыть на Wildberries</a>`);
     return lines.join('\n');
 }
 
@@ -830,14 +831,16 @@ function cmdTrack(arg, ctx = {}) {
     const card = entry.lastSnapshot
         ? renderProductCard(entry, snap)
         : [
-            `🛒 <b>${esc(alias || 'Товар WB')}</b>`,
-            `🔢 Артикул: <code>${id}</code>`,
-            entry.threshold ? `🎯 Порог: ≤ <b>${fmt(entry.threshold)} ₽</b>` : '',
+            `<b>${esc(alias || 'Товар WB')}</b>`,
+            `Регион: ${esc(entry.region)}`,
+            `Артикул: <b><code>${id}</code></b>`,
+            entry.threshold ? `Порог: ≤ <b>${fmt(entry.threshold)} ₽</b>` : '',
             '',
             '<i>Свежие данные подгрузятся при следующем cron-прогоне scraper\'а.</i>',
         ].filter(Boolean).join('\n');
     return {
-        text: `✅ <b>${verb} в watchlist</b>\n\n` + card,
+        text: `<b>${verb} в watchlist</b>\n\n` + card,
+        photo: wbImageUrl(id),
         reply_markup: productCardKeyboard(id),
     };
 }
@@ -970,6 +973,18 @@ async function sendReply(chatId, payload, keyboard) {
     }
     const text = typeof payload === 'string' ? payload : payload.text;
     const markup = (typeof payload === 'object' && payload.reply_markup) ? payload.reply_markup : keyboard;
+    const photo = (typeof payload === 'object') ? payload.photo : null;
+
+    // If the payload has a photo URL and the caption fits in 1024 chars, try
+    // sendPhoto first and fall back to sendMessage on any failure.
+    if (photo && text && text.length <= 1024) {
+        const r = await tg('sendPhoto', {
+            chat_id: chatId, photo, caption: text,
+            parse_mode: 'HTML', reply_markup: markup,
+        });
+        if (r.ok) return;
+        // else: fall through to plain text below
+    }
 
     // Telegram limit: 4096 chars; cap defensively at 3800 with paragraph-aware split.
     const chunks = [];

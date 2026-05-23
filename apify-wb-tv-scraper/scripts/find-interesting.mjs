@@ -12,6 +12,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { env, argv, exit } from 'node:process';
+import { wbImageUrl } from './wb-image.mjs';
 
 const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i + 1] : d; };
 const watchlistPath = arg('watchlist', 'apify-wb-tv-scraper/report/watchlist.json');
@@ -105,39 +106,39 @@ const urgent = enriched
 function productCardKeyboard(id) {
     return {
         inline_keyboard: [
-            [{ text: '📈 Динамика', callback_data: `p:dyn:${id}` }, { text: '✏️ Имя', callback_data: `p:ren:${id}` }],
-            [{ text: '🎯 Порог', callback_data: `p:thr:${id}` }, { text: '🗑 Удалить', callback_data: `p:del:${id}` }],
+            [{ text: 'Динамика', callback_data: `p:dyn:${id}` }, { text: 'Имя', callback_data: `p:ren:${id}` }],
+            [{ text: 'Порог', callback_data: `p:thr:${id}` }, { text: 'Удалить', callback_data: `p:del:${id}` }],
         ],
     };
 }
 
 function render(item, tier) {
     const { e, snap, cur, min, max, offMaxPct, aboveMinPct, atLow } = item;
-    const tierEmoji = { atlow: '🟢', deep: '🔥', hot: '⚡', urgent: '📦' }[tier];
-    const tierName = {
-        atlow: 'AT-LOW — цена на историческом минимуме',
-        deep: `DEEP-OFF-MAX — −${offMaxPct}% от максимума`,
-        hot: `HOT-DEAL — −${offMaxPct}% от max, рейтинг ${snap.rating}`,
-        urgent: `URGENT — осталось ${snap.stock} шт, рейтинг ${snap.rating}`,
+    const tierLabel = {
+        atlow: 'Минимальная цена за всё время',
+        deep:  `Большая скидка от максимума — −${offMaxPct}%`,
+        hot:   `Лучшая сделка — −${offMaxPct}%, рейтинг ${snap.rating}`,
+        urgent:`Срочно — осталось ${snap.stock} шт, рейтинг ${snap.rating}`,
     }[tier];
     const lines = [
-        `${tierEmoji} <b>${tierName}</b>`,
+        `<b>${tierLabel}</b>`,
         '',
-        `🛒 <b>${esc(e.alias || trim(snap.name, 70))}</b>`,
+        `<b>${esc(e.alias || trim(snap.name, 80))}</b>`,
         '',
     ];
-    if (snap.rating) lines.push(`⭐ <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
-    if (snap.supplier) lines.push(`🏪 ${esc(snap.supplier)}`);
-    if (snap.brand) lines.push(`🏷 ${esc(snap.brand)}`);
-    lines.push(`🔢 Артикул: <code>${e.productId}</code>`);
-    lines.push(`💰 Цена: <b>${fmt(cur)} ₽</b>`);
-    lines.push(`📊 Min / Max: ${fmt(min)} / ${fmt(max)} ₽`);
-    if (atLow) lines.push(`🟢 Сейчас на минимуме за всё время отслеживания`);
-    else lines.push(`📍 От min: +${aboveMinPct}% · от max: −${offMaxPct}%`);
-    if (snap.stock != null) lines.push(`📦 Остаток: <b>${snap.stock} шт</b>`);
-    if (e.threshold) lines.push(`🎯 Твой порог: ≤ ${fmt(e.threshold)} ₽`);
+    if (snap.rating) lines.push(`Рейтинг: <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
+    if (snap.supplier) lines.push(`Магазин: <b>${esc(snap.supplier)}</b>`);
+    if (snap.brand) lines.push(`Бренд: <b>${esc(snap.brand)}</b>`);
+    lines.push(`Регион: ${esc(e.region || 'Санкт-Петербург')}`);
+    lines.push(`Артикул: <b><code>${e.productId}</code></b>`);
+    lines.push(`Цена: <b>${fmt(cur)} ₽</b>`);
+    lines.push(`Мин./Макс.: ${fmt(min)} / ${fmt(max)} ₽`);
+    if (atLow) lines.push(`Состояние: на минимуме за всё время отслеживания`);
+    else lines.push(`От мин.: +${aboveMinPct}% · от макс.: −${offMaxPct}%`);
+    if (snap.stock != null) lines.push(`Остаток: <b>${snap.stock} шт</b>`);
+    if (e.threshold) lines.push(`Ваш порог: ≤ ${fmt(e.threshold)} ₽`);
     lines.push('');
-    lines.push(`<a href="https://www.wildberries.ru/catalog/${e.productId}/detail.aspx">Открыть на WB →</a>`);
+    lines.push(`<a href="https://www.wildberries.ru/catalog/${e.productId}/detail.aspx">Открыть на Wildberries</a>`);
     return lines.join('\n');
 }
 
@@ -150,14 +151,14 @@ if (!total) {
 }
 
 const summary = [
-    `🎯 <b>Интересные позиции прямо сейчас — ${total}</b>`,
+    `<b>Интересные позиции прямо сейчас — ${total}</b>`,
     '',
-    `🟢 На минимуме: <b>${atLow.length}</b>`,
-    `🔥 Скидка ≥25% от max: <b>${deepOff.length}</b>`,
-    `⚡ Hot-deal (≥15% off, рейтинг ≥4.7): <b>${hotDeal.length}</b>`,
-    `📦 Urgent (стока ≤5, рейтинг ≥4.7): <b>${urgent.length}</b>`,
+    `На минимуме: <b>${atLow.length}</b>`,
+    `Большая скидка от максимума: <b>${deepOff.length}</b>`,
+    `Лучшая сделка (рейтинг ≥4.7): <b>${hotDeal.length}</b>`,
+    `Срочно (остаток ≤5): <b>${urgent.length}</b>`,
     '',
-    '<i>Дальше прилетят отдельные карточки по каждой позиции.</i>',
+    '<i>Дальше прилетят отдельные карточки.</i>',
 ].join('\n');
 for (const r of recipients) {
     await tg('sendMessage', { chat_id: r, parse_mode: 'HTML', disable_web_page_preview: true, text: summary });
@@ -173,14 +174,30 @@ let sent = 0;
 const nowIso = new Date().toISOString();
 for (const [tier, items] of buckets) {
     for (const item of items) {
-        const text = render(item, tier);
+        const caption = render(item, tier);
         const markup = productCardKeyboard(item.e.productId);
+        const photo = wbImageUrl(item.e.productId);
         let anyOk = false;
         for (const rid of recipients) {
-            const r = await tg('sendMessage', {
-                chat_id: rid, parse_mode: 'HTML', disable_web_page_preview: true,
-                text, reply_markup: markup,
-            });
+            let r;
+            if (photo && caption.length <= 1024) {
+                // Try sendPhoto first — gives a visual card with image
+                r = await tg('sendPhoto', {
+                    chat_id: rid, photo, caption, parse_mode: 'HTML', reply_markup: markup,
+                });
+                // Fall back to text if Telegram couldn't fetch the image
+                if (!r.ok) {
+                    r = await tg('sendMessage', {
+                        chat_id: rid, text: caption, parse_mode: 'HTML',
+                        disable_web_page_preview: true, reply_markup: markup,
+                    });
+                }
+            } else {
+                r = await tg('sendMessage', {
+                    chat_id: rid, text: caption, parse_mode: 'HTML',
+                    disable_web_page_preview: true, reply_markup: markup,
+                });
+            }
             if (r.ok) anyOk = true;
             await sleep(200);
         }

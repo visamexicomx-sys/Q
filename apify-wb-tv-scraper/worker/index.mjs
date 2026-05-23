@@ -11,6 +11,59 @@
 
 const REPO = 'visamexicomx-sys/Q';
 const BRANCH = 'claude/scrape-wildberries-tvs-oUS2f';
+
+// WB CDN image URL builder. Inlined here so the worker stays a single file
+// (mirror of scripts/wb-image.mjs — keep in sync). Empirical basket ranges.
+function wbBasket(id) {
+    const t = Math.floor(id / 1e5);
+    if (t <= 143) return '01';
+    if (t <= 287) return '02';
+    if (t <= 431) return '03';
+    if (t <= 719) return '04';
+    if (t <= 1006) return '05';
+    if (t <= 1061) return '06';
+    if (t <= 1115) return '07';
+    if (t <= 1181) return '08';
+    if (t <= 1319) return '09';
+    if (t <= 1454) return '10';
+    if (t <= 1655) return '11';
+    if (t <= 1837) return '12';
+    if (t <= 2045) return '13';
+    if (t <= 2189) return '14';
+    if (t <= 2389) return '15';
+    if (t <= 2706) return '16';
+    if (t <= 2864) return '17';
+    if (t <= 2873) return '18';
+    if (t <= 3261) return '19';
+    if (t <= 3433) return '20';
+    if (t <= 3643) return '21';
+    if (t <= 3804) return '22';
+    if (t <= 3963) return '23';
+    if (t <= 4231) return '24';
+    if (t <= 4385) return '25';
+    if (t <= 4677) return '26';
+    if (t <= 4885) return '27';
+    if (t <= 5405) return '28';
+    if (t <= 5646) return '29';
+    if (t <= 5995) return '30';
+    if (t <= 6190) return '31';
+    if (t <= 6390) return '32';
+    if (t <= 6590) return '33';
+    if (t <= 6790) return '34';
+    if (t <= 6990) return '35';
+    if (t <= 7995) return '36';
+    if (t <= 8500) return '37';
+    if (t <= 8800) return '38';
+    if (t <= 9100) return '39';
+    if (t <= 9500) return '40';
+    if (t <= 9999) return '41';
+    return '42';
+}
+function wbImageUrl(id) {
+    const n = parseInt(id, 10);
+    if (!n) return null;
+    return `https://basket-${wbBasket(n)}.wbbasket.ru/vol${Math.floor(n / 1e5)}/part${Math.floor(n / 1e3)}/${n}/images/big/1.webp`;
+}
 const REPORT_BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/apify-wb-tv-scraper/report`;
 const CACHE_TTL = 300;   // 5 minutes
 const WATCHLIST_PATH = 'apify-wb-tv-scraper/report/watchlist.json';
@@ -715,36 +768,36 @@ function parseUrlOrId(input) {
 function productCardKeyboard(id) {
     return {
         inline_keyboard: [
-            [{ text: '📈 Динамика', callback_data: `p:dyn:${id}` }, { text: '✏️ Имя', callback_data: `p:ren:${id}` }],
-            [{ text: '🎯 Порог', callback_data: `p:thr:${id}` }, { text: '🗑 Удалить', callback_data: `p:del:${id}` }],
-            [{ text: '🪞 Двойник', callback_data: `p:twin:${id}` }, { text: '🔮 Прогноз', callback_data: `p:fc:${id}` }],
+            [{ text: 'Динамика', callback_data: `p:dyn:${id}` }, { text: 'Имя', callback_data: `p:ren:${id}` }],
+            [{ text: 'Порог', callback_data: `p:thr:${id}` }, { text: 'Удалить', callback_data: `p:del:${id}` }],
+            [{ text: 'Двойник', callback_data: `p:twin:${id}` }, { text: 'Прогноз', callback_data: `p:fc:${id}` }],
         ],
     };
 }
 
 function renderProductCard(entry, snap) {
     const lines = [];
-    lines.push(`🛒 <b>${esc(entry.alias || snap.name || 'Товар WB')}</b>`);
+    lines.push(`<b>${esc(entry.alias || snap.name || 'Товар WB')}</b>`);
     lines.push('');
-    if (snap.rating) lines.push(`⭐ <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
-    if (snap.supplier) lines.push(`🏪 Магазин: <b>${esc(snap.supplier)}</b>`);
-    if (snap.brand) lines.push(`🏷 Бренд: <b>${esc(snap.brand)}</b>`);
-    if (entry.region) lines.push(`📍 Регион: ${esc(entry.region)}`);
-    lines.push(`🔢 Артикул: <code>${entry.productId}</code>`);
+    if (snap.rating) lines.push(`Рейтинг: <b>${snap.rating}</b>${snap.feedbacks ? ` (${snap.feedbacks} оценок)` : ''}`);
+    if (snap.supplier) lines.push(`Магазин: <b>${esc(snap.supplier)}</b>`);
+    if (snap.brand) lines.push(`Бренд: <b>${esc(snap.brand)}</b>`);
+    lines.push(`Регион: ${esc(entry.region || 'Санкт-Петербург')}`);
+    lines.push(`Артикул: <b><code>${entry.productId}</code></b>`);
     if (snap.price) {
         const disc = snap.discount ? ` (−${snap.discount}%, было ${fmt(snap.originalPrice)})` : '';
-        lines.push(`💰 Цена: <b>${fmt(snap.price)} ₽</b>${disc}`);
+        lines.push(`Цена: <b>${fmt(snap.price)} ₽</b>${disc}`);
     }
-    if (snap.stock != null) lines.push(`📦 Осталось: <b>${snap.stock} шт</b>`);
+    if (snap.stock != null) lines.push(`Остаток: <b>${snap.stock} шт</b>`);
     if (snap.deliveryType || snap.deliveryAt) {
-        lines.push(`🚚 Доставка: ${esc(snap.deliveryType || '')}${snap.deliveryAt ? ' · ' + snap.deliveryAt : ''}`);
+        lines.push(`Доставка: ${esc(snap.deliveryType || '')}${snap.deliveryAt ? ' · ' + snap.deliveryAt : ''}`);
     }
     if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
-        lines.push(`📊 Min / Max: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+        lines.push(`Мин./Макс.: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
-    if (entry.threshold) lines.push(`🎯 Ваш порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
+    if (entry.threshold) lines.push(`Порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
     lines.push('');
-    lines.push(`<a href="https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx">Открыть на Wildberries →</a>`);
+    lines.push(`<a href="https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx">Открыть на Wildberries</a>`);
     return lines.join('\n');
 }
 
@@ -800,7 +853,8 @@ async function cmdTrack({ allModels }, arg, ctx) {
     });
     if (result.error) return result.error;
     return {
-        text: `✅ <b>Добавил в watchlist</b>\n\n🔢 Артикул: <code>${id}</code>${alias ? `\n📝 Имя: <b>${esc(alias)}</b>` : ''}${threshold ? `\n🎯 Порог: ≤ <b>${fmt(threshold)} ₽</b>` : ''}\n\n<i>Свежие данные появятся при следующем cron-прогоне scraper'а.</i>`,
+        text: `<b>Добавил в watchlist</b>\n\nАртикул: <b><code>${id}</code></b>${alias ? `\nИмя: <b>${esc(alias)}</b>` : ''}\nРегион: Санкт-Петербург${threshold ? `\nПорог: ≤ <b>${fmt(threshold)} ₽</b>` : ''}\n\n<i>Свежие данные появятся при следующем прогоне скрапера.</i>`,
+        photo: wbImageUrl(id),
         reply_markup: productCardKeyboard(id),
     };
 }
@@ -1017,6 +1071,18 @@ function shapeReply(chatId, payload) {
     }
     const text = typeof payload === 'string' ? payload : payload.text;
     const markup = (typeof payload === 'object' && payload.reply_markup) ? payload.reply_markup : undefined;
+    const photo = (typeof payload === 'object') ? payload.photo : null;
+    // Photo path: sendPhoto with caption when image URL is provided and caption fits.
+    if (photo && text && text.length <= 1024) {
+        return [{
+            method: 'sendPhoto',
+            chat_id: chatId,
+            photo,
+            caption: text,
+            parse_mode: 'HTML',
+            ...(markup ? { reply_markup: markup } : {}),
+        }];
+    }
     // Telegram 4096 cap: split conservatively at 3800 on paragraph boundaries.
     const chunks = [];
     let cur = '';
