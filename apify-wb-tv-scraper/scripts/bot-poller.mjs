@@ -792,17 +792,17 @@ function renderProductCard(entry, snap, change = null) {
     return lines.join('\n');
 }
 
-// Banner pattern: bold lead phrase, then the numbers as regular text.
+// Banner pattern matches the reference card: bright marker, bold phrase,
+// direction triangle with the percent in parentheses.
 function changeBanners(change, entry, snap) {
     const out = [];
     const { delta, pct, kind } = change;
     if (kind === 'price-down') {
         const big = Math.abs(pct) >= 20;
-        out.push(`${big ? '💥' : '🔻'} <b>Цена снизилась</b> на ${fmt(Math.abs(delta))} ₽ (${pct}%)`);
+        out.push(`${big ? '💥' : '🔶'} <b>Цена снизилась на ${fmt(Math.abs(delta))} ₽</b> (🔻 ${pct}%)`);
         if (big) out.push(`🚨 <b>Сильное падение</b> — <i>продавец может срочно сбрасывать остатки.</i>`);
     } else if (kind === 'price-up') {
-        const big = pct >= 20;
-        out.push(`${big ? '⚠' : '🔺'} <b>Цена выросла</b> на ${fmt(delta)} ₽ (+${pct}%)`);
+        out.push(`🔶 <b>Цена выросла на ${fmt(delta)} ₽</b> (🔺 +${pct}%)`);
     } else if (kind === 'threshold-hit') {
         out.push(`🔔 <b>Сработал ваш порог</b> — цена достигла ≤ ${fmt(entry.threshold)} ₽`);
     } else if (kind === 'new-atl') {
