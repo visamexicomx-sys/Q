@@ -779,28 +779,28 @@ function renderProductCard(entry, snap, change = null) {
     const url = `https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx`;
     const name = entry.alias || snap.name || 'Товар WB';
     const lines = [];
-    lines.push(`Товар: <a href="${esc(url)}">${esc(name)}</a>`);
+    lines.push(`<b>Товар:</b> <a href="${esc(url)}">${esc(name)}</a>`);
     lines.push('');
-    if (snap.rating) lines.push(`Рейтинг: ${snap.rating}${snap.feedbacks ? ` (<i>оценок: ${snap.feedbacks}</i>)` : ''}`);
-    if (snap.supplier) lines.push(`Магазин: ${esc(snap.supplier)}`);
-    if (snap.brand) lines.push(`Бренд: ${esc(snap.brand)}`);
-    lines.push(`Регион: ${esc(entry.region || 'Санкт-Петербург')}`);
-    lines.push(`Артикул: <b>${entry.productId}</b>`);
-    if (snap.price) lines.push(`Цена: <b>${fmt(snap.price)} ₽</b>`);
-    if (snap.reviewBonus) lines.push(`✦ Рубли за отзыв: <b>${fmt(snap.reviewBonus)} ₽</b>`);
-    if (snap.stock != null) lines.push(`Осталось: ${snap.stock} шт`);
-    if (snap.deliveryType) lines.push(`Доставка: ${esc(snap.deliveryType)}`);
-    if (snap.deliveryAt) lines.push(`Дата доставки: ${snap.deliveryAt}`);
+    if (snap.rating) lines.push(`<b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
+    if (snap.supplier) lines.push(`<b>Магазин:</b> ${esc(snap.supplier)}`);
+    if (snap.brand) lines.push(`<b>Бренд:</b> ${esc(snap.brand)}`);
+    lines.push(`<b>Регион:</b> ${esc(entry.region || 'Санкт-Петербург')}`);
+    lines.push(`<b>Артикул:</b> ${entry.productId}`);
+    if (snap.price) lines.push(`<b>Цена:</b> ${fmt(snap.price)} ₽`);
+    if (snap.reviewBonus) lines.push(`<b>✦ Рубли за отзыв:</b> ${fmt(snap.reviewBonus)} ₽`);
+    if (snap.stock != null) lines.push(`<b>Осталось:</b> ${snap.stock} шт`);
+    if (snap.deliveryType) lines.push(`<b>Доставка:</b> ${esc(snap.deliveryType)}`);
+    if (snap.deliveryAt) lines.push(`<b>Дата доставки:</b> ${snap.deliveryAt}`);
     if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
-        lines.push(`Мин. / Макс. цена: ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+        lines.push(`<b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
-    if (entry.threshold) lines.push(`Порог: ≤ <b>${fmt(entry.threshold)} ₽</b>`);
+    if (entry.threshold) lines.push(`<b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
 
     if (change) {
         lines.push('');
         for (const banner of changeBanners(change, entry, snap)) lines.push(banner);
         lines.push('');
-        lines.push(`☀ Для дальнейшего отслеживания зафиксирована текущая цена ${fmt(snap.price)} ₽`);
+        lines.push(`<i>☀ Для дальнейшего отслеживания зафиксирована текущая цена ${fmt(snap.price)} ₽</i>`);
     }
     return lines.join('\n');
 }
@@ -810,28 +810,28 @@ function changeBanners(change, entry, snap) {
     const { delta, pct, kind } = change;
     if (kind === 'price-down') {
         const big = Math.abs(pct) >= 20;
-        out.push(`${big ? '💥' : '🔻'} Цена снизилась на <b>${fmt(Math.abs(delta))} ₽</b> (<b>${pct}%</b>)`);
-        if (big) out.push(`🚨 Сильное падение — продавец может срочно сбрасывать остатки.`);
+        out.push(`${big ? '💥' : '🔻'} <b>Цена снизилась</b> на ${fmt(Math.abs(delta))} ₽ (${pct}%)`);
+        if (big) out.push(`🚨 <b>Сильное падение</b> — <i>продавец может срочно сбрасывать остатки.</i>`);
     } else if (kind === 'price-up') {
         const big = pct >= 20;
-        out.push(`${big ? '⚠' : '🔺'} Цена выросла на <b>${fmt(delta)} ₽</b> (<b>+${pct}%</b>)`);
+        out.push(`${big ? '⚠' : '🔺'} <b>Цена выросла</b> на ${fmt(delta)} ₽ (+${pct}%)`);
     } else if (kind === 'threshold-hit') {
         out.push(`🔔 <b>Сработал ваш порог</b> — цена достигла ≤ ${fmt(entry.threshold)} ₽`);
     } else if (kind === 'new-atl') {
         out.push(`🟢 <b>НОВЫЙ ИСТОРИЧЕСКИЙ МИНИМУМ</b>`);
-        out.push(`Цена ещё ни разу не была так низко за всё время отслеживания.`);
+        out.push(`<i>Цена ещё ни разу не была так низко за всё время отслеживания.</i>`);
     } else if (kind === 'near-atl') {
-        out.push(`🔴 Почти ATL — до исторического дна осталось <b>${fmt(snap.price - entry.minSeen)} ₽</b>`);
+        out.push(`🔴 <b>Почти ATL</b> — до исторического дна осталось ${fmt(snap.price - entry.minSeen)} ₽`);
     } else if (kind === 'low-stock') {
-        out.push(`📦 Осталось всего <b>${snap.stock} шт</b> — может закончиться в любой момент.`);
+        out.push(`📦 <b>Осталось всего ${snap.stock} шт</b> — <i>может закончиться в любой момент.</i>`);
     } else if (kind === 'out-of-stock') {
         out.push(`❌ <b>Товар закончился</b> на складе.`);
     }
     if (kind === 'price-down' && entry.minSeen && snap.price <= entry.minSeen * 1.02 && snap.price > entry.minSeen) {
-        out.push(`🔴 Это в пределах 2% от исторического минимума (${fmt(entry.minSeen)} ₽).`);
+        out.push(`<i>🔴 В пределах 2% от исторического минимума (${fmt(entry.minSeen)} ₽).</i>`);
     }
     if (snap.stock != null && snap.stock <= 5 && kind !== 'low-stock' && kind !== 'out-of-stock') {
-        out.push(`📦 Внимание: остаток <b>${snap.stock} шт</b>.`);
+        out.push(`<i>📦 Остаток ${snap.stock} шт — спешите.</i>`);
     }
     return out;
 }
