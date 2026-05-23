@@ -89,6 +89,112 @@ const REPORT_BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/apify-w
 const CACHE_TTL = 300;   // 5 minutes
 const WATCHLIST_PATH = 'apify-wb-tv-scraper/report/watchlist.json';
 
+// ---------- insights (mirror of scripts/insights.mjs) ----------
+
+const SPARK = '▁▂▃▄▅▆▇█';
+function sparkline(values) {
+    const v = (values || []).filter((x) => x > 0);
+    if (v.length < 2) return '';
+    const min = Math.min(...v), max = Math.max(...v);
+    if (max === min) return SPARK[0].repeat(v.length);
+    return v.map((x) => SPARK[Math.round((x - min) / (max - min) * (SPARK.length - 1))]).join('');
+}
+function velocityFromHistory(history) {
+    const pts = (history || []).filter((h) => h.price > 0).slice(-7);
+    if (pts.length < 3) return null;
+    const t0 = new Date(pts[0].at).getTime();
+    const xs = pts.map((p) => (new Date(p.at).getTime() - t0) / 86400000);
+    const ys = pts.map((p) => p.price);
+    const n = pts.length, sx = xs.reduce((a, b) => a + b, 0), sy = ys.reduce((a, b) => a + b, 0);
+    const sxy = xs.reduce((a, x, i) => a + x * ys[i], 0), sxx = xs.reduce((a, x) => a + x * x, 0);
+    const d = n * sxx - sx * sx; if (!d) return null;
+    const slope = (n * sxy - sx * sy) / d, mean = sy / n; if (!mean) return null;
+    return +((slope / mean) * 100).toFixed(2);
+}
+function buyVerdict(entry, snap, vel = null) {
+    const cur = snap.price, min = entry.minSeen || cur, max = entry.maxSeen || cur;
+    const span = max - min, pos = span > 0 ? (cur - min) / span : 0;
+    let score = 0;
+    if (pos <= 0.12) score += 2; else if (pos <= 0.40) score += 1; else if (pos >= 0.75) score -= 2;
+    if (vel != null) { if (vel <= -1.5) score += 2; else if (vel <= -0.4) score += 1; else if (vel >= 1) score -= 1; }
+    if (score >= 2) return { light: '🟢', text: 'БЕРИ — цена у исторического дна' };
+    if (score <= -1) return { light: '🔴', text: 'ДОРОГО СЕЙЧАС — лучше подождать' };
+    return { light: '🟡', text: 'МОЖНО ПОДОЖДАТЬ — цена в середине коридора' };
+}
+function daysToThreshold(snap, entry, vel) {
+    if (!entry.threshold || vel == null || vel >= 0) return null;
+    if (snap.price <= entry.threshold) return 0;
+    const r = 1 + vel / 100; if (r <= 0 || r >= 1) return null;
+    const days = Math.log(entry.threshold / snap.price) / Math.log(r);
+    if (!isFinite(days) || days <= 0 || days > 365) return null;
+    return Math.ceil(days);
+}
+function detectCategory(name = '') {
+    const s = name.toLowerCase();
+    if (/телевизор|smart\s?tv|\bqled\b|\boled\b|mini[\s-]?led|\bтв\b|станц/.test(s)) return 'Телевизоры';
+    if (/холодильник|side[\s-]?by[\s-]?side|морозильн|многокамерн/.test(s)) return 'Холодильники';
+    if (/стиральн|стиралк/.test(s)) return 'Стиральные машины';
+    if (/сушильн/.test(s)) return 'Сушильные машины';
+    if (/посудомоечн/.test(s)) return 'Посудомоечные';
+    if (/кофемашина|кофеварк|кофе/.test(s)) return 'Кофемашины';
+    if (/пылесос/.test(s)) return 'Пылесосы';
+    if (/смартфон|iphone|galaxy\s?s|mate\s|camon/.test(s)) return 'Смартфоны';
+    if (/планшет|ipad|matepad|tab\s/.test(s)) return 'Планшеты';
+    if (/ноутбук|macbook|magicbook/.test(s)) return 'Ноутбуки';
+    if (/духов|варочн|панель/.test(s)) return 'Встройка';
+    if (/колонка|акустическ|jbl|синтезатор/.test(s)) return 'Аудио';
+    return 'Прочее';
+}
+function nextWbSale(now = new Date()) {
+    const y = now.getUTCFullYear();
+    const cand = [
+        ['Гендерные дни (к 23 Февраля)', `${y}-02-15`], ['Распродажа к 8 Марта', `${y}-03-04`],
+        ['Весенняя распродажа', `${y}-04-22`], ['Летняя распродажа', `${y}-06-24`],
+        ['День холостяка 11.11', `${y}-11-08`], ['Чёрная пятница', `${y}-11-24`],
+        ['Новогодняя распродажа', `${y}-12-18`], ['Гендерные дни (к 23 Февраля)', `${y + 1}-02-15`],
+    ];
+    const t = now.getTime();
+    for (const [name, date] of cand) {
+        const dt = new Date(date + 'T00:00:00Z').getTime();
+        if (dt >= t) return { name, date, days: Math.ceil((dt - t) / 86400000) };
+    }
+    return null;
+}
+function watchlistStats(entries) {
+    const products = entries.filter((e) => e.productId && e.lastSnapshot && e.lastSnapshot.price);
+    const byCat = {}; let totalValue = 0, totalSavings = 0, inStock = 0, atLow = 0;
+    const deals = [];
+    for (const e of products) {
+        const s = e.lastSnapshot, cur = s.price, min = e.minSeen || cur, max = e.maxSeen || cur;
+        const cat = detectCategory(s.name || e.alias || '');
+        byCat[cat] = (byCat[cat] || 0) + 1;
+        totalValue += cur; if (max > cur) totalSavings += (max - cur);
+        if (s.stock > 0) inStock += 1; if (min > 0 && cur <= min * 1.01) atLow += 1;
+        deals.push({ id: e.productId, name: e.alias || s.name, cur, offMax: max > cur ? Math.round((1 - cur / max) * 100) : 0 });
+    }
+    deals.sort((a, b) => b.offMax - a.offMax);
+    return { total: products.length, inStock, atLowCount: atLow, totalValue, totalSavingsFromMax: totalSavings, byCat, topDeals: deals.slice(0, 3) };
+}
+function insightLines(entry, snap) {
+    const out = [];
+    const prices = (entry.history || []).map((h) => h.price);
+    const spark = sparkline(prices);
+    if (spark) out.push(`📈 <b>Динамика:</b> <code>${spark}</code> <i>(${prices.length} точек)</i>`);
+    const vel = velocityFromHistory(entry.history);
+    const v = buyVerdict(entry, snap, vel);
+    out.push(`${v.light} <b>${v.text}</b>`);
+    const d = daysToThreshold(snap, entry, vel);
+    if (d != null) out.push(`⏳ <i>Порог достижим примерно через ${d} дн.</i>`);
+    const cat = detectCategory(snap.name || entry.alias || '');
+    if (cat !== 'Прочее') out.push(`🗂 <b>Категория:</b> ${cat}`);
+    if (entry.crossMarket?.ozonPrice) {
+        const cm = entry.crossMarket;
+        const cheaper = cm.deltaPct < 0;
+        out.push(`🛒 <b>Ozon:</b> ${fmt(cm.ozonPrice)} ₽ ${cheaper ? `<b>(дешевле на ${Math.abs(cm.deltaPct)}%)</b>` : `(дороже на ${cm.deltaPct}%)`}`);
+    }
+    return out;
+}
+
 // ---------- helpers ----------
 
 const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
@@ -919,6 +1025,8 @@ function renderProductCard(entry, snap, change = null) {
     }
     if (entry.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
 
+    for (const line of insightLines(entry, snap)) lines.push(line);
+
     if (change) {
         lines.push('');
         for (const banner of changeBanners(change, entry, snap)) lines.push(banner);
@@ -1077,14 +1185,22 @@ function cmdList({ watchlist, allModels }, _arg, ctx) {
     const lines = [];
     if (products.length) {
         lines.push(`📋 <b>Товары — ${products.length}</b>`, '');
+        const groups = {};
         for (const e of products) {
-            const snap = e.lastSnapshot || {};
-            const price = snap.price ? `${fmt(snap.price)} ₽` : '—';
-            const stock = snap.stock != null ? ` · ${snap.stock} шт` : '';
-            const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
-            lines.push(`• <code>${e.productId}</code> · <b>${esc(e.alias || snap.name || 'товар')}</b> — ${price}${stock}${th}`);
+            const cat = detectCategory(e.lastSnapshot?.name || e.alias || '');
+            (groups[cat] = groups[cat] || []).push(e);
         }
-        lines.push('');
+        for (const cat of Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length)) {
+            lines.push(`<b>🗂 ${cat} (${groups[cat].length})</b>`);
+            for (const e of groups[cat]) {
+                const snap = e.lastSnapshot || {};
+                const price = snap.price ? `${fmt(snap.price)} ₽` : '—';
+                const stock = snap.stock != null ? ` · ${snap.stock} шт` : '';
+                const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
+                lines.push(`• <code>${e.productId}</code> ${esc(e.alias || snap.name || 'товар')} — ${price}${stock}${th}`);
+            }
+            lines.push('');
+        }
     }
     if (modelsList.length) {
         const byKey = new Map(allModels.map((m) => [m.key, m]));
@@ -1101,6 +1217,78 @@ function cmdList({ watchlist, allModels }, _arg, ctx) {
     lines.push('/track &lt;ссылка&gt; · /untrack &lt;арт&gt; · /rename &lt;арт&gt; &lt;имя&gt;');
     lines.push('/threshold &lt;арт&gt; &lt;руб&gt; · /exportcsv');
     return lines.join('\n');
+}
+
+function cmdStats({ watchlist }, _arg, ctx) {
+    if (!ctx?.chatId) return 'Доступно только из чата с ботом.';
+    const mine = (watchlist?.entries || []).filter((e) => e.chatId === ctx.chatId);
+    const st = watchlistStats(mine);
+    if (!st.total) return 'Watchlist пуст. Пришли ссылку WB чтобы добавить.';
+    const lines = [
+        `📊 <b>Аналитика твоего watchlist'a</b>`, '',
+        `Товаров: <b>${st.total}</b> · в наличии: <b>${st.inStock}</b> · на минимуме: <b>${st.atLowCount}</b>`,
+        `Суммарная стоимость: <b>${fmt(st.totalValue)} ₽</b>`,
+        `Экономия от макс-цен: <b>${fmt(st.totalSavingsFromMax)} ₽</b>`,
+        '', `<b>🗂 По категориям:</b>`,
+    ];
+    for (const [cat, n] of Object.entries(st.byCat).sort((a, b) => b[1] - a[1])) lines.push(`• ${cat}: ${n}`);
+    if (st.topDeals.length) {
+        lines.push('', `<b>🔥 Топ сделки сейчас:</b>`);
+        for (const d of st.topDeals) lines.push(`• −${d.offMax}% · <code>${d.id}</code> ${esc((d.name || '').slice(0, 40))} — ${fmt(d.cur)} ₽`);
+    }
+    return lines.join('\n');
+}
+
+function cmdSale() {
+    const s = nextWbSale(new Date());
+    if (!s) return 'Ближайшая распродажа не найдена.';
+    const w = s.days === 1 ? 'день' : (s.days < 5 ? 'дня' : 'дней');
+    return [`🛍 <b>Ближайшая распродажа WB</b>`, '', `<b>${esc(s.name)}</b>`,
+        `Старт: ${s.date} · через <b>${s.days} ${w}</b>`, '',
+        s.days <= 5 ? '<i>Совсем скоро — есть смысл подождать большие скидки.</i>' : '<i>Если цена не на дне — можно дождаться распродажи.</i>'].join('\n');
+}
+
+async function cmdSovet({ watchlist }, arg, ctx) {
+    if (!ctx?.chatId) return 'Доступно только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/sovet &lt;артикул&gt;</code>';
+    const id = (String(arg).match(/\d{6,12}/) || [])[0];
+    const e = (watchlist?.entries || []).find((x) => x.chatId === ctx.chatId && x.productId === id);
+    if (!e || !e.lastSnapshot) return `Товар <code>${esc(arg)}</code> не отслеживается. Добавь через /track.`;
+    const snap = e.lastSnapshot, vel = velocityFromHistory(e.history), verdict = buyVerdict(e, snap, vel);
+    const apiKey = ctx.env?.ANTHROPIC_API_KEY;
+    if (apiKey) {
+        try {
+            const ai = await aiAdvice(apiKey, e, snap, vel);
+            if (ai) return `${verdict.light} <b>${verdict.text}</b>\n\n${ai}`;
+        } catch { /* fall through */ }
+    }
+    const min = e.minSeen || snap.price, max = e.maxSeen || snap.price;
+    const offMax = max > snap.price ? Math.round((1 - snap.price / max) * 100) : 0;
+    const aboveMin = min > 0 ? Math.round((snap.price / min - 1) * 100) : 0;
+    return [`${verdict.light} <b>${verdict.text}</b>`, '',
+        `Сейчас: <b>${fmt(snap.price)} ₽</b> · от дна +${aboveMin}% · от макс −${offMax}%`,
+        vel != null ? `Скорость: ${vel > 0 ? '+' : ''}${vel}%/день` : 'История пока копится.'].join('\n');
+}
+
+async function aiAdvice(apiKey, e, snap, vel) {
+    const c = { name: e.alias || snap.name, price: snap.price, minSeen: e.minSeen, maxSeen: e.maxSeen,
+        stock: snap.stock, threshold: e.threshold, velocityPctPerDay: vel, rating: snap.rating,
+        history: (e.history || []).slice(-10).map((h) => h.price) };
+    const prompt = `Ты — эксперт по покупкам на Wildberries. По данным товара дай краткий (≤500 знаков) совет на русском: брать сейчас или ждать, и почему. HTML <b>/<i> можно. Данные:\n${JSON.stringify(c)}`;
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 512, messages: [{ role: 'user', content: prompt }] }),
+    });
+    const j = await r.json();
+    return r.ok ? (j.content?.[0]?.text || null) : null;
+}
+
+function cmdDashboard(origin) {
+    return {
+        text: '📊 <b>Дашборд</b>\nИнтерактивная таблица с фильтрами и графиками внутри Telegram:',
+        reply_markup: { inline_keyboard: [[{ text: '📊 Открыть дашборд', web_app: { url: `${origin}/dashboard` } }]] },
+    };
 }
 
 // ---------- dispatcher ----------
@@ -1145,6 +1333,12 @@ async function dispatch(data, cmd, arg, ctx = {}) {
         case '/rename': return await cmdRename(data, arg, ctx);
         case '/threshold': return await cmdThreshold(data, arg, ctx);
         case '/list': return cmdList(data, arg, ctx);
+        case '/stats': return cmdStats(data, arg, ctx);
+        case '/sale':
+        case '/sales': return cmdSale();
+        case '/sovet':
+        case '/advice': return await cmdSovet(data, arg, ctx);
+        case '/dashboard': return cmdDashboard(ctx.origin || 'https://wb-tv-tracker-bot.valet-bd8bb6.workers.dev');
         case '/now': return cmdNow(data);
         case '/myid':
         case '/whoami': return ctx.chatId
@@ -1260,7 +1454,7 @@ function shapeReply(chatId, payload) {
 
 // ---------- Telegram update handlers ----------
 
-async function handleMessage(data, msg, env, ctx) {
+async function handleMessage(data, msg, env, ctx, origin) {
     if (!msg) return null;
     const chatId = msg.chat.id;
     let text = (msg.text || '').trim();
@@ -1275,8 +1469,47 @@ async function handleMessage(data, msg, env, ctx) {
     const [cmdRaw, ...rest] = text.split(/\s+/);
     const cmd = cmdRaw.split('@')[0].toLowerCase();
     const arg = rest.join(' ');
-    const reply = await dispatch(data, cmd, arg, { chatId, env, ctx });
+    const reply = await dispatch(data, cmd, arg, { chatId, env, ctx, origin });
     return shapeReply(chatId, reply);
+}
+
+// Inline mode: type "@bot <query>" in any chat to share a product card.
+// Matches tracked products by article id or name substring.
+async function handleInlineQuery(data, iq) {
+    const q = (iq.query || '').trim().toLowerCase();
+    const all = (data.watchlist?.entries || []).filter((e) => e.productId && e.lastSnapshot?.price);
+    let matches = all;
+    if (q) {
+        matches = all.filter((e) =>
+            e.productId.includes(q) ||
+            (e.lastSnapshot.name || '').toLowerCase().includes(q) ||
+            (e.alias || '').toLowerCase().includes(q));
+    }
+    const results = matches.slice(0, 20).map((e) => {
+        const s = e.lastSnapshot;
+        const title = e.alias || s.name || `Товар ${e.productId}`;
+        const card = renderProductCard(e, s);
+        const photo = wbImageUrl(e.productId);
+        return {
+            type: 'article',
+            id: e.productId,
+            title: title.slice(0, 60),
+            description: `${fmt(s.price)} ₽ · ${s.brand || ''} · ${s.stock ?? '?'} шт`,
+            thumb_url: photo,
+            input_message_content: {
+                message_text: card,
+                parse_mode: 'HTML',
+                disable_web_page_preview: false,
+            },
+        };
+    });
+    return [{
+        method: 'answerInlineQuery',
+        inline_query_id: iq.id,
+        results,
+        cache_time: 60,
+        is_personal: true,
+    }];
 }
 
 async function handleCallback(data, cq, env, ctx) {
@@ -1336,6 +1569,14 @@ export default {
         if (url.pathname === '/' && request.method === 'GET') {
             return new Response('WB TV Tracker bot — alive. POST /webhook for Telegram.\n', { headers: { 'Content-Type': 'text/plain' } });
         }
+        // Telegram Mini App — serve the dashboard HTML from the repo.
+        if (url.pathname === '/dashboard' && request.method === 'GET') {
+            const r = await fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/apify-wb-tv-scraper/report/dashboard.html`, {
+                cf: { cacheTtl: 300, cacheEverything: true },
+            });
+            const html = await r.text();
+            return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+        }
         if (url.pathname === '/setup' && request.method === 'POST') {
             // Returns the URL you should pass to setWebhook
             return Response.json({
@@ -1356,8 +1597,9 @@ export default {
 
         let responses = null;
         try {
-            if (update.message) responses = await handleMessage(data, update.message, env, ctx);
+            if (update.message) responses = await handleMessage(data, update.message, env, ctx, url.origin);
             else if (update.callback_query) responses = await handleCallback(data, update.callback_query, env, ctx);
+            else if (update.inline_query) responses = await handleInlineQuery(data, update.inline_query);
         } catch (err) {
             console.error('handler error:', err.stack || err.message);
             if (update.message?.chat?.id) {

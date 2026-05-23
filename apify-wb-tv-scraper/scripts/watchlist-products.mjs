@@ -20,6 +20,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { argv, env, exit } from 'node:process';
 import { fetchProduct } from './wb-product-fetch.mjs';
 import { wbImageUrl, resolveWbImageUrl } from './wb-image.mjs';
+import { sparkline, velocityFromHistory, buyVerdict, daysToThreshold, detectCategory } from './insights.mjs';
 
 const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i + 1] : d; };
 
@@ -75,6 +76,17 @@ function renderProductCard(entry, snap, change = null) {
         lines.push(`📊 <b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
     if (entry.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
+    {
+        const spark = sparkline((entry.history || []).map((h) => h.price));
+        if (spark) lines.push(`📈 <b>Динамика:</b> <code>${spark}</code>`);
+        const vel = velocityFromHistory(entry.history);
+        const v = buyVerdict(entry, snap, vel);
+        lines.push(`${v.light} <b>${v.text}</b>`);
+        const d = daysToThreshold(snap, entry, vel);
+        if (d != null) lines.push(`⏳ <i>Порог достижим примерно через ${d} дн.</i>`);
+        const cat = detectCategory(snap.name || entry.alias || '');
+        if (cat !== 'Прочее') lines.push(`🗂 <b>Категория:</b> ${cat}`);
+    }
     if (change) {
         lines.push('');
         for (const banner of changeBanners(change, entry, snap)) lines.push(banner);

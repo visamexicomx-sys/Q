@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { wbImageUrl, resolveWbImageUrl } from './wb-image.mjs';
+import { sparkline, velocityFromHistory, buyVerdict, daysToThreshold, detectCategory, nextWbSale, watchlistStats } from './insights.mjs';
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 if (!TOKEN) { console.error('TELEGRAM_BOT_TOKEN missing'); process.exit(1); }
@@ -152,7 +153,11 @@ async function registerBotCommands() {
             { command: 'untrack', description: '🗑 Снять с трекинга: /untrack <арт>' },
             { command: 'rename', description: '✏️ Имя товара: /rename <арт> <имя>' },
             { command: 'threshold', description: '🎯 Порог цены: /threshold <арт> <руб>' },
-            { command: 'list', description: '📋 Все мои товары + модели' },
+            { command: 'list', description: '📋 Все мои товары (по категориям)' },
+            { command: 'stats', description: '📊 Аналитика watchlist\'a' },
+            { command: 'sovet', description: '🚦 Совет: брать или ждать' },
+            { command: 'sale', description: '🛍 Ближайшая распродажа WB' },
+            { command: 'dashboard', description: '📊 Дашборд (Mini App)' },
             { command: 'exportcsv', description: '📄 Скачать список (.csv)' },
             { command: 'now', description: '🕐 Время последнего снимка' },
             { command: 'scrape', description: '🔄 Запросить новый скрап' },
@@ -762,6 +767,27 @@ function productCardKeyboard(id) {
 // delta block + "fixed price" footer.
 // Each row is "<b>Label:</b> value" — bold lead-in, regular value.
 // Footer line is italic so the eye lands on the data, then trails off.
+// Builds the analytics block appended to every product card.
+function insightLines(entry, snap) {
+    const out = [];
+    const prices = (entry.history || []).map((h) => h.price);
+    const spark = sparkline(prices);
+    if (spark) out.push(`📈 <b>Динамика:</b> <code>${spark}</code> <i>(${prices.length} точек)</i>`);
+    const vel = velocityFromHistory(entry.history);
+    const v = buyVerdict(entry, snap, vel);
+    out.push(`${v.light} <b>${v.text}</b>`);
+    const d = daysToThreshold(snap, entry, vel);
+    if (d != null) out.push(`⏳ <i>Порог достижим примерно через ${d} дн. при текущей скорости</i>`);
+    const cat = detectCategory(snap.name || entry.alias || '');
+    if (cat !== 'Прочее') out.push(`🗂 <b>Категория:</b> ${cat}`);
+    if (entry.crossMarket?.ozonPrice) {
+        const cm = entry.crossMarket;
+        const cheaper = cm.deltaPct < 0;
+        out.push(`🛒 <b>Ozon:</b> ${fmt(cm.ozonPrice)} ₽ ${cheaper ? `<b>(дешевле на ${Math.abs(cm.deltaPct)}%)</b>` : `(дороже на ${cm.deltaPct}%)`}`);
+    }
+    return out;
+}
+
 function renderProductCard(entry, snap, change = null) {
     const url = `https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx`;
     const name = entry.alias || snap.name || 'Товар WB';
@@ -782,6 +808,9 @@ function renderProductCard(entry, snap, change = null) {
         lines.push(`📊 <b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
     if (entry.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
+
+    // ---- insights: sparkline + buy verdict + time-to-threshold + category ----
+    for (const line of insightLines(entry, snap)) lines.push(line);
 
     if (change) {
         lines.push('');
@@ -943,14 +972,23 @@ function cmdList(arg, ctx = {}) {
     const lines = [];
     if (products.length) {
         lines.push(`📋 <b>Товары — ${products.length}</b>`, '');
+        // group by detected category
+        const groups = {};
         for (const e of products) {
-            const snap = e.lastSnapshot || {};
-            const price = snap.price ? `${fmt(snap.price)} ₽` : '—';
-            const stock = snap.stock != null ? ` · ${snap.stock} шт` : '';
-            const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
-            lines.push(`• <code>${e.productId}</code> · <b>${esc(e.alias || snap.name || 'товар')}</b> — ${price}${stock}${th}`);
+            const cat = detectCategory(e.lastSnapshot?.name || e.alias || '');
+            (groups[cat] = groups[cat] || []).push(e);
         }
-        lines.push('');
+        for (const cat of Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length)) {
+            lines.push(`<b>🗂 ${cat} (${groups[cat].length})</b>`);
+            for (const e of groups[cat]) {
+                const snap = e.lastSnapshot || {};
+                const price = snap.price ? `${fmt(snap.price)} ₽` : '—';
+                const stock = snap.stock != null ? ` · ${snap.stock} шт` : '';
+                const th = e.threshold ? ` · 🎯 ${fmt(e.threshold)}` : '';
+                lines.push(`• <code>${e.productId}</code> ${esc(e.alias || snap.name || 'товар')} — ${price}${stock}${th}`);
+            }
+            lines.push('');
+        }
     }
     if (modelsList.length) {
         const byKey = new Map(allModels.map((m) => [m.key, m]));
@@ -1001,6 +1039,105 @@ async function cmdExportCsv(arg, ctx = {}) {
     form.append('caption', `📋 Список отслеживаемых товаров (${mine.length})`);
     await fetch(`https://api.telegram.org/bot${TOKEN}/sendDocument`, { method: 'POST', body: form });
     return null; // we already sent the document
+}
+
+function cmdStats(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    reloadWatchlist();
+    const mine = watchlist.entries.filter((e) => e.chatId === ctx.chatId);
+    const st = watchlistStats(mine);
+    if (!st.total) return 'Watchlist пуст — нечего анализировать. Пришли ссылку WB чтобы добавить.';
+    const lines = [
+        `📊 <b>Аналитика твоего watchlist'a</b>`,
+        '',
+        `Товаров: <b>${st.total}</b> · в наличии: <b>${st.inStock}</b> · на минимуме: <b>${st.atLowCount}</b>`,
+        `Суммарная стоимость: <b>${fmt(st.totalValue)} ₽</b>`,
+        `Экономия от макс-цен: <b>${fmt(st.totalSavingsFromMax)} ₽</b>`,
+        '',
+        `<b>🗂 По категориям:</b>`,
+    ];
+    for (const [cat, n] of Object.entries(st.byCat).sort((a, b) => b[1] - a[1])) {
+        lines.push(`• ${cat}: ${n}`);
+    }
+    if (st.topDeals.length) {
+        lines.push('', `<b>🔥 Топ сделки сейчас:</b>`);
+        for (const d of st.topDeals) {
+            lines.push(`• −${d.offMax}% · <code>${d.id}</code> ${esc((d.name || '').slice(0, 40))} — ${fmt(d.cur)} ₽`);
+        }
+    }
+    return lines.join('\n');
+}
+
+function cmdSale() {
+    const s = nextWbSale(new Date());
+    if (!s) return 'Ближайшая распродажа не найдена.';
+    const dayWord = s.days === 1 ? 'день' : (s.days < 5 ? 'дня' : 'дней');
+    return [
+        `🛍 <b>Ближайшая распродажа WB</b>`,
+        '',
+        `<b>${esc(s.name)}</b>`,
+        `Старт: ${s.date} · через <b>${s.days} ${dayWord}</b>`,
+        '',
+        s.days <= 5
+            ? '<i>Совсем скоро — есть смысл подождать большие скидки.</i>'
+            : '<i>Если цена не на дне — можно дождаться распродажи.</i>',
+    ].join('\n');
+}
+
+async function cmdSovet(arg, ctx = {}) {
+    if (!ctx.chatId) return 'Доступно только из чата с ботом.';
+    if (!arg) return 'Использование: <code>/sovet &lt;артикул&gt;</code> — совет «брать или ждать».';
+    const id = (String(arg).match(/\d{6,12}/) || [])[0];
+    reloadWatchlist();
+    const e = watchlist.entries.find((x) => x.chatId === ctx.chatId && x.productId === id);
+    if (!e || !e.lastSnapshot) return `Товар <code>${esc(arg)}</code> не отслеживается или нет данных. Добавь через /track.`;
+    const snap = e.lastSnapshot;
+    const vel = velocityFromHistory(e.history);
+    const verdict = buyVerdict(e, snap, vel);
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (apiKey) {
+        try {
+            const ai = await aiAdvice(apiKey, e, snap, vel);
+            if (ai) return `${verdict.light} <b>${verdict.text}</b>\n\n${ai}`;
+        } catch { /* fall through */ }
+    }
+    // Deterministic fallback
+    const min = e.minSeen || snap.price, max = e.maxSeen || snap.price;
+    const offMax = max > snap.price ? Math.round((1 - snap.price / max) * 100) : 0;
+    const aboveMin = min > 0 ? Math.round((snap.price / min - 1) * 100) : 0;
+    return [
+        `${verdict.light} <b>${verdict.text}</b>`,
+        '',
+        `Сейчас: <b>${fmt(snap.price)} ₽</b> · от дна +${aboveMin}% · от макс −${offMax}%`,
+        vel != null ? `Скорость: ${vel > 0 ? '+' : ''}${vel}%/день` : 'История пока копится.',
+        '',
+        '<i>Подключи ANTHROPIC_API_KEY для развёрнутого AI-совета.</i>',
+    ].join('\n');
+}
+
+async function aiAdvice(apiKey, e, snap, vel) {
+    const ctx = {
+        name: e.alias || snap.name, price: snap.price,
+        minSeen: e.minSeen, maxSeen: e.maxSeen, stock: snap.stock,
+        threshold: e.threshold, velocityPctPerDay: vel, rating: snap.rating,
+        history: (e.history || []).slice(-10).map((h) => h.price),
+    };
+    const prompt = `Ты — эксперт по покупкам на Wildberries. По данным товара дай краткий (≤500 знаков) совет на русском: брать сейчас или ждать, и почему. HTML-теги <b>/<i> можно. Без оговорок про "недостаточно данных". Данные:\n${JSON.stringify(ctx)}`;
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 512, messages: [{ role: 'user', content: prompt }] }),
+    });
+    const j = await r.json();
+    return r.ok ? (j.content?.[0]?.text || null) : null;
+}
+
+const DASHBOARD_URL = 'https://wb-tv-tracker-bot.valet-bd8bb6.workers.dev/dashboard';
+function cmdDashboard() {
+    return {
+        text: '📊 <b>Дашборд</b>\nОткрой интерактивную таблицу с фильтрами и графиками прямо в Telegram:',
+        reply_markup: { inline_keyboard: [[{ text: '📊 Открыть дашборд', web_app: { url: DASHBOARD_URL } }]] },
+    };
 }
 
 // ---------- dispatcher ----------
@@ -1093,6 +1230,12 @@ async function dispatch(cmd, arg, ctx = {}) {
         case '/rename': return cmdRename(arg, ctx);
         case '/threshold': return cmdThreshold(arg, ctx);
         case '/list': return cmdList(arg, ctx);
+        case '/stats': return cmdStats(arg, ctx);
+        case '/sale':
+        case '/sales': return cmdSale();
+        case '/sovet':
+        case '/advice': return await cmdSovet(arg, ctx);
+        case '/dashboard': return cmdDashboard();
         case '/exportcsv': return await cmdExportCsv(arg, ctx);
         case '/now': return cmdNow();
         case '/myid':

@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { env, argv, exit } from 'node:process';
 import { wbImageUrl, resolveWbImageUrl } from './wb-image.mjs';
+import { sparkline, velocityFromHistory, buyVerdict } from './insights.mjs';
 
 const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i + 1] : d; };
 const watchlistPath = arg('watchlist', 'apify-wb-tv-scraper/report/watchlist.json');
@@ -133,9 +134,13 @@ function render(item, tier) {
     if (snap.stock != null) lines.push(`📦 <b>Осталось:</b> ${snap.stock} шт`);
     lines.push(`📊 <b>Мин. / Макс. цена:</b> ${fmt(min)} / ${fmt(max)} ₽`);
     if (e.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(e.threshold)} ₽`);
+    const spark = sparkline((e.history || []).map((h) => h.price));
+    if (spark) lines.push(`📈 <b>Динамика:</b> <code>${spark}</code>`);
     lines.push('');
     lines.push(tierBanner);
     if (!atLow) lines.push(`<i>От минимума +${aboveMinPct}% · до максимума −${offMaxPct}%</i>`);
+    const v = buyVerdict(e, snap, velocityFromHistory(e.history));
+    lines.push(`${v.light} <b>${v.text}</b>`);
     return lines.join('\n');
 }
 
