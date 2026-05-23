@@ -1,19 +1,20 @@
-name: WB TV — Hourly tracking
+name: WB TV — Half-hourly tracking
 
-# Каждый час: пытается фетчить отслеживаемые товары и кидать алёрты.
+# Каждые 30 минут: фетчит свежие цены по watchlist'у, выкидывает алёрты,
+# обновляет «интересные» позиции с дедупом 12ч.
 #
 # ⚠️ ВАЖНО: WB геоблочит non-RU IP, поэтому fetch с GitHub-runner'а упадёт
-# с 404/451. Для реальной работы ежечасного скана нужно деплоить:
+# с 404/451. Для реального полуторачасового скана нужно подключить:
 #   - Yandex Cloud Function (бесплатно), ИЛИ
-#   - RU VPS с cron (см. docs/SCRAPER-WITHOUT-APIFY.md)
+#   - RU VPS с cron каждые 30 минут (см. docs/SCRAPER-WITHOUT-APIFY.md)
 #
-# Этот workflow всё равно полезен: он перепроверяет watchlist на основе
+# Этот workflow всё равно полезен: перепроверяет watchlist на основе
 # актуальных данных (если они уже запушены из YC/VPS) и кидает алёрты
 # при изменениях. Если RU-источник не настроен — просто залогирует skip.
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
     inputs:
       sensitivity:
@@ -25,11 +26,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: wb-tv-hourly
+  group: wb-tv-tick
   cancel-in-progress: false
 
 jobs:
-  hourly-check:
+  tick:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -108,7 +109,7 @@ jobs:
             --state "$OUT_DIR/alerts-state.json" \
             || echo "::warning::watchlist-products fired with errors"
 
-      - name: Broadcast interesting positions (dedup 24h)
+      - name: Broadcast interesting positions (dedup 12h)
         if: ${{ env.TELEGRAM_BOT_TOKEN != '' && env.TELEGRAM_CHAT_ID != '' }}
         run: |
           node apify-wb-tv-scraper/scripts/find-interesting.mjs \
@@ -116,7 +117,7 @@ jobs:
             --state "$OUT_DIR/alerts-state.json" \
             --chat "${TELEGRAM_CHAT_ID}" \
             --per-bucket 3 \
-            --dedup-hours 24 \
+            --dedup-hours 12 \
             || echo "::warning::find-interesting fired with errors"
 
       - name: Commit updated state

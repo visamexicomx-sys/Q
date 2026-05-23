@@ -205,7 +205,7 @@ async function fetchJson(name, ctx) {
 }
 
 async function loadData(ctx) {
-    const [report, models, anomalies, twins, sellers, history, watchlist] = await Promise.all([
+    const [report, models, anomalies, twins, sellers, history, watchlist, recipients] = await Promise.all([
         fetchJson('REPORT', ctx).catch(() => ({ all: [], byBrand: [], generatedAt: null })),
         fetchJson('MODELS', ctx).catch(() => ({ models: [], generatedAt: null })),
         fetchJson('ANOMALIES', ctx).catch(() => null),
@@ -213,6 +213,7 @@ async function loadData(ctx) {
         fetchJson('SELLERS', ctx).catch(() => ({ listings: [] })),
         fetchJson('models-history', ctx).catch(() => ({ models: {} })),
         fetchJson('watchlist', ctx).catch(() => ({ entries: [] })),
+        fetchJson('recipients', ctx).catch(() => ({ primaryChatId: null, extraChatIds: [] })),
     ]);
     return {
         report,
@@ -222,9 +223,110 @@ async function loadData(ctx) {
         sellers,
         history,
         watchlist,
+        recipients,
         items: report.all || [],
         allModels: models.models || [],
     };
+}
+
+// ---------- scheduled broadcast (Cloudflare Cron Trigger) ----------
+
+// Classify every tracked product into an interestingness tier. Returns a
+// deterministically-sorted list so the time-bucket rotation is stable.
+function computeInteresting(watchlist, chatId) {
+    const all = (watchlist?.entries || []).filter(
+        (e) => e.productId && e.chatId === chatId && e.lastSnapshot && e.lastSnapshot.price);
+    const scored = [];
+    for (const e of all) {
+        const s = e.lastSnapshot;
+        const cur = s.price;
+        const min = e.minSeen || cur;
+        const max = e.maxSeen || cur;
+        const offMax = max > cur ? Math.round((1 - cur / max) * 100) : 0;
+        const aboveMin = min > 0 ? Math.round((cur / min - 1) * 100) : 0;
+        const atLow = min > 0 && cur <= min * 1.01;
+        const rating = s.rating ?? 0;
+        let tier = null;
+        if (atLow && s.stock > 0) tier = 'atlow';
+        else if (offMax >= 25 && s.stock > 0) tier = 'deep';
+        else if (offMax >= 15 && s.stock > 0 && rating >= 4.7) tier = 'hot';
+        else if (s.stock > 0 && s.stock <= 5 && rating >= 4.7) tier = 'urgent';
+        if (tier) scored.push({ e, s, cur, min, max, offMax, aboveMin, atLow, tier });
+    }
+    const order = { atlow: 0, deep: 1, hot: 2, urgent: 3 };
+    scored.sort((a, b) => (order[a.tier] - order[b.tier]) || (b.offMax - a.offMax) || (a.cur - b.cur));
+    return scored;
+}
+
+function tierHeadline(item) {
+    const { tier, offMax, s } = item;
+    if (tier === 'atlow') return '🟢 <b>Минимальная цена за всё время</b>';
+    if (tier === 'deep') return `🔥 <b>Большая скидка от максимума — −${offMax}%</b>`;
+    if (tier === 'hot') return `⚡ <b>Лучшая сделка — −${offMax}%, рейтинг ${s.rating}</b>`;
+    return `📦 <b>Срочно — осталось ${s.stock} шт, рейтинг ${s.rating}</b>`;
+}
+
+async function tgSend(token, method, body) {
+    const r = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+    });
+    return r.json();
+}
+
+// Runs on the cron schedule. Picks a rotating batch of hot deals (so each
+// tick shows DIFFERENT items) and broadcasts them to every recipient.
+async function runScheduledBroadcast(env, ctx) {
+    const token = env.TELEGRAM_BOT_TOKEN;
+    if (!token) { console.log('scheduled: no TELEGRAM_BOT_TOKEN'); return; }
+    const data = await loadData(ctx);
+    const primary = data.recipients?.primaryChatId
+        || (data.watchlist?.entries?.find((e) => e.chatId)?.chatId);
+    if (!primary) { console.log('scheduled: no primary chat'); return; }
+    const recipients = [...new Set([primary, ...(data.recipients?.extraChatIds || [])].filter(Boolean))];
+
+    const deals = computeInteresting(data.watchlist, primary);
+    if (!deals.length) { console.log('scheduled: no interesting deals'); return; }
+
+    // Stateless rotation: which batch fires this half-hour.
+    const BATCH = 5;
+    const numBatches = Math.ceil(deals.length / BATCH);
+    const idx = Math.floor(Date.now() / (30 * 60 * 1000)) % numBatches;
+    const slice = deals.slice(idx * BATCH, idx * BATCH + BATCH);
+
+    // Lead summary
+    for (const rid of recipients) {
+        await tgSend(token, 'sendMessage', {
+            chat_id: rid, parse_mode: 'HTML', disable_web_page_preview: true,
+            text: `<b>Свежая подборка хот-дилов</b> <i>(${idx + 1}/${numBatches})</i>\n${slice.length} позиций из ${deals.length} интересных в watchlist'е.`,
+        });
+    }
+
+    for (const item of slice) {
+        const caption = tierHeadline(item) + '\n\n' + renderProductCard(item.e, item.s);
+        const photo = wbImageUrl(item.e.productId);
+        const markup = productCardKeyboard(item.e.productId);
+        for (const rid of recipients) {
+            let r;
+            if (photo && caption.length <= 1024) {
+                r = await tgSend(token, 'sendPhoto', {
+                    chat_id: rid, photo, caption, parse_mode: 'HTML', reply_markup: markup,
+                });
+                if (!r.ok) {
+                    r = await tgSend(token, 'sendMessage', {
+                        chat_id: rid, text: caption, parse_mode: 'HTML',
+                        disable_web_page_preview: true, reply_markup: markup,
+                    });
+                }
+            } else {
+                await tgSend(token, 'sendMessage', {
+                    chat_id: rid, text: caption, parse_mode: 'HTML',
+                    disable_web_page_preview: true, reply_markup: markup,
+                });
+            }
+        }
+    }
+    console.log(`scheduled: sent batch ${idx + 1}/${numBatches} (${slice.length} cards) to ${recipients.length} recipient(s)`);
 }
 
 // ---------- GitHub Contents API (for watchlist mutations) ----------
@@ -1255,5 +1357,11 @@ export default {
         const [first, ...rest] = responses;
         if (rest.length) ctx.waitUntil(Promise.all(rest.map((b) => sendOne(token, b))));
         return Response.json(first);
+    },
+
+    // Cloudflare Cron Trigger — fires on the schedule configured for this
+    // worker (every 30 min). Broadcasts a rotating batch of hot deals.
+    async scheduled(event, env, ctx) {
+        ctx.waitUntil(runScheduledBroadcast(env, ctx));
     },
 };
