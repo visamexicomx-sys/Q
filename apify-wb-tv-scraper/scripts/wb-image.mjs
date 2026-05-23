@@ -8,13 +8,38 @@
 // the product may have no image, or the basket # may have shifted on a newer
 // range we haven't seen yet.
 
-export function wbImageUrl(id, slot = 1) {
+export function wbImageUrl(id, slot = 1, basket = null) {
     const n = parseInt(id, 10);
     if (!n) return null;
-    const basket = wbBasket(n);
+    const b = basket || wbBasket(n);
     const vol = Math.floor(n / 1e5);
     const part = Math.floor(n / 1e3);
-    return `https://basket-${basket}.wbbasket.ru/vol${vol}/part${part}/${n}/images/big/${slot}.webp`;
+    return `https://basket-${b}.wbbasket.ru/vol${vol}/part${part}/${n}/images/big/${slot}.webp`;
+}
+
+// The static basket table is occasionally off by ±1 for certain id ranges,
+// which 404s the image. wbbasket.ru is NOT geo-blocked, so we can verify:
+// probe the computed basket then nearby shards and return the first that
+// responds 200. Returns null if none work (product has no image).
+export async function resolveWbImageUrl(id, fetchFn = fetch) {
+    const n = parseInt(id, 10);
+    if (!n) return null;
+    const base = parseInt(wbBasket(n), 10);
+    const vol = Math.floor(n / 1e5);
+    const part = Math.floor(n / 1e3);
+    // Check computed basket first, then ±1, ±2 (covers observed off-by-one drift)
+    const offsets = [0, 1, -1, 2, -2];
+    for (const off of offsets) {
+        const b = base + off;
+        if (b < 1 || b > 99) continue;
+        const bb = String(b).padStart(2, '0');
+        const url = `https://basket-${bb}.wbbasket.ru/vol${vol}/part${part}/${n}/images/big/1.webp`;
+        try {
+            const r = await fetchFn(url, { method: 'HEAD' });
+            if (r.ok) return url;
+        } catch { /* try next */ }
+    }
+    return null;
 }
 
 export function wbBasket(id) {

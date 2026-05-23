@@ -59,10 +59,31 @@ function wbBasket(id) {
     if (t <= 9999) return '41';
     return '42';
 }
-function wbImageUrl(id) {
+function wbImageUrl(id, basket = null) {
     const n = parseInt(id, 10);
     if (!n) return null;
-    return `https://basket-${wbBasket(n)}.wbbasket.ru/vol${Math.floor(n / 1e5)}/part${Math.floor(n / 1e3)}/${n}/images/big/1.webp`;
+    const b = basket || wbBasket(n);
+    return `https://basket-${b}.wbbasket.ru/vol${Math.floor(n / 1e5)}/part${Math.floor(n / 1e3)}/${n}/images/big/1.webp`;
+}
+// Probe computed basket ±2 to dodge the static table's off-by-one drift.
+// wbbasket.ru isn't geo-blocked, so this works from the CF edge too.
+async function resolveWbImageUrl(id) {
+    const n = parseInt(id, 10);
+    if (!n) return null;
+    const base = parseInt(wbBasket(n), 10);
+    const vol = Math.floor(n / 1e5);
+    const part = Math.floor(n / 1e3);
+    for (const off of [0, 1, -1, 2, -2]) {
+        const b = base + off;
+        if (b < 1 || b > 99) continue;
+        const bb = String(b).padStart(2, '0');
+        const url = `https://basket-${bb}.wbbasket.ru/vol${vol}/part${part}/${n}/images/big/1.webp`;
+        try {
+            const r = await fetch(url, { method: 'HEAD' });
+            if (r.ok) return url;
+        } catch { /* next */ }
+    }
+    return null;
 }
 const REPORT_BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/apify-wb-tv-scraper/report`;
 const CACHE_TTL = 300;   // 5 minutes
@@ -304,7 +325,7 @@ async function runScheduledBroadcast(env, ctx) {
 
     for (const item of slice) {
         const caption = tierHeadline(item) + '\n\n' + renderProductCard(item.e, item.s);
-        const photo = wbImageUrl(item.e.productId);
+        const photo = await resolveWbImageUrl(item.e.productId);
         const markup = productCardKeyboard(item.e.productId);
         for (const rid of recipients) {
             let r;
@@ -881,22 +902,22 @@ function renderProductCard(entry, snap, change = null) {
     const url = `https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx`;
     const name = entry.alias || snap.name || 'Товар WB';
     const lines = [];
-    lines.push(`<b>Товар:</b> <a href="${esc(url)}">${esc(name)}</a>`);
+    lines.push(`🛒 <b>Товар:</b> <a href="${esc(url)}">${esc(name)}</a>`);
     lines.push('');
-    if (snap.rating) lines.push(`<b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
-    if (snap.supplier) lines.push(`<b>Магазин:</b> ${esc(snap.supplier)}`);
-    if (snap.brand) lines.push(`<b>Бренд:</b> ${esc(snap.brand)}`);
-    lines.push(`<b>Регион:</b> ${esc(entry.region || 'Санкт-Петербург')}`);
-    lines.push(`<b>Артикул:</b> ${entry.productId}`);
-    if (snap.price) lines.push(`<b>Цена:</b> ${fmt(snap.price)} ₽`);
-    if (snap.reviewBonus) lines.push(`<b>✦ Рубли за отзыв:</b> ${fmt(snap.reviewBonus)} ₽`);
-    if (snap.stock != null) lines.push(`<b>Осталось:</b> ${snap.stock} шт`);
-    if (snap.deliveryType) lines.push(`<b>Доставка:</b> ${esc(snap.deliveryType)}`);
-    if (snap.deliveryAt) lines.push(`<b>Дата доставки:</b> ${snap.deliveryAt}`);
+    if (snap.rating) lines.push(`⭐ <b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
+    if (snap.supplier) lines.push(`🏪 <b>Магазин:</b> ${esc(snap.supplier)}`);
+    if (snap.brand) lines.push(`🏷 <b>Бренд:</b> ${esc(snap.brand)}`);
+    lines.push(`📍 <b>Регион:</b> ${esc(entry.region || 'Санкт-Петербург')}`);
+    lines.push(`🔢 <b>Артикул:</b> ${entry.productId}`);
+    if (snap.price) lines.push(`💰 <b>Цена:</b> ${fmt(snap.price)} ₽`);
+    if (snap.reviewBonus) lines.push(`✦ <b>Рубли за отзыв:</b> ${fmt(snap.reviewBonus)} ₽`);
+    if (snap.stock != null) lines.push(`📦 <b>Осталось:</b> ${snap.stock} шт`);
+    if (snap.deliveryType) lines.push(`🚚 <b>Доставка:</b> ${esc(snap.deliveryType)}`);
+    if (snap.deliveryAt) lines.push(`📅 <b>Дата доставки:</b> ${snap.deliveryAt}`);
     if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
-        lines.push(`<b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+        lines.push(`📊 <b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
-    if (entry.threshold) lines.push(`<b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
+    if (entry.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
 
     if (change) {
         lines.push('');
@@ -989,8 +1010,8 @@ async function cmdTrack({ allModels }, arg, ctx) {
     });
     if (result.error) return result.error;
     return {
-        text: `<b>Добавил в watchlist</b>\n\nАртикул: <b><code>${id}</code></b>${alias ? `\nИмя: <b>${esc(alias)}</b>` : ''}\nРегион: Санкт-Петербург${threshold ? `\nПорог: ≤ <b>${fmt(threshold)} ₽</b>` : ''}\n\n<i>Свежие данные появятся при следующем прогоне скрапера.</i>`,
-        photo: wbImageUrl(id),
+        text: `🛒 <b>Добавил в watchlist</b>\n\n🔢 <b>Артикул:</b> ${id}${alias ? `\n📝 <b>Имя:</b> ${esc(alias)}` : ''}\n📍 <b>Регион:</b> Санкт-Петербург${threshold ? `\n🎯 <b>Порог:</b> ≤ ${fmt(threshold)} ₽` : ''}\n\n<i>Свежие данные появятся при следующем прогоне скрапера.</i>`,
+        photo: await resolveWbImageUrl(id),
         reply_markup: productCardKeyboard(id),
     };
 }

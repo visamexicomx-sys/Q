@@ -12,7 +12,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { env, argv, exit } from 'node:process';
-import { wbImageUrl } from './wb-image.mjs';
+import { wbImageUrl, resolveWbImageUrl } from './wb-image.mjs';
 
 const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i + 1] : d; };
 const watchlistPath = arg('watchlist', 'apify-wb-tv-scraper/report/watchlist.json');
@@ -122,17 +122,17 @@ function render(item, tier) {
         urgent:`📦 <b>Срочно — осталось ${snap.stock} шт</b>`,
     }[tier];
     const lines = [];
-    lines.push(`<b>Товар:</b> <a href="${esc(url)}">${esc(e.alias || trim(snap.name, 80))}</a>`);
+    lines.push(`🛒 <b>Товар:</b> <a href="${esc(url)}">${esc(e.alias || trim(snap.name, 80))}</a>`);
     lines.push('');
-    if (snap.rating) lines.push(`<b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
-    if (snap.supplier) lines.push(`<b>Магазин:</b> ${esc(snap.supplier)}`);
-    if (snap.brand) lines.push(`<b>Бренд:</b> ${esc(snap.brand)}`);
-    lines.push(`<b>Регион:</b> ${esc(e.region || 'Санкт-Петербург')}`);
-    lines.push(`<b>Артикул:</b> ${e.productId}`);
-    lines.push(`<b>Цена:</b> ${fmt(cur)} ₽`);
-    if (snap.stock != null) lines.push(`<b>Осталось:</b> ${snap.stock} шт`);
-    lines.push(`<b>Мин. / Макс. цена:</b> ${fmt(min)} / ${fmt(max)} ₽`);
-    if (e.threshold) lines.push(`<b>Порог:</b> ≤ ${fmt(e.threshold)} ₽`);
+    if (snap.rating) lines.push(`⭐ <b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
+    if (snap.supplier) lines.push(`🏪 <b>Магазин:</b> ${esc(snap.supplier)}`);
+    if (snap.brand) lines.push(`🏷 <b>Бренд:</b> ${esc(snap.brand)}`);
+    lines.push(`📍 <b>Регион:</b> ${esc(e.region || 'Санкт-Петербург')}`);
+    lines.push(`🔢 <b>Артикул:</b> ${e.productId}`);
+    lines.push(`💰 <b>Цена:</b> ${fmt(cur)} ₽`);
+    if (snap.stock != null) lines.push(`📦 <b>Осталось:</b> ${snap.stock} шт`);
+    lines.push(`📊 <b>Мин. / Макс. цена:</b> ${fmt(min)} / ${fmt(max)} ₽`);
+    if (e.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(e.threshold)} ₽`);
     lines.push('');
     lines.push(tierBanner);
     if (!atLow) lines.push(`<i>От минимума +${aboveMinPct}% · до максимума −${offMaxPct}%</i>`);
@@ -173,7 +173,7 @@ for (const [tier, items] of buckets) {
     for (const item of items) {
         const caption = render(item, tier);
         const markup = productCardKeyboard(item.e.productId);
-        const photo = wbImageUrl(item.e.productId);
+        const photo = await resolveWbImageUrl(item.e.productId);
         let anyOk = false;
         for (const rid of recipients) {
             let r;

@@ -12,7 +12,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { wbImageUrl } from './wb-image.mjs';
+import { wbImageUrl, resolveWbImageUrl } from './wb-image.mjs';
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 if (!TOKEN) { console.error('TELEGRAM_BOT_TOKEN missing'); process.exit(1); }
@@ -766,22 +766,22 @@ function renderProductCard(entry, snap, change = null) {
     const url = `https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx`;
     const name = entry.alias || snap.name || 'Товар WB';
     const lines = [];
-    lines.push(`<b>Товар:</b> <a href="${esc(url)}">${esc(name)}</a>`);
+    lines.push(`🛒 <b>Товар:</b> <a href="${esc(url)}">${esc(name)}</a>`);
     lines.push('');
-    if (snap.rating) lines.push(`<b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
-    if (snap.supplier) lines.push(`<b>Магазин:</b> ${esc(snap.supplier)}`);
-    if (snap.brand) lines.push(`<b>Бренд:</b> ${esc(snap.brand)}`);
-    lines.push(`<b>Регион:</b> ${esc(entry.region || 'Санкт-Петербург')}`);
-    lines.push(`<b>Артикул:</b> ${entry.productId}`);
-    if (snap.price) lines.push(`<b>Цена:</b> ${fmt(snap.price)} ₽`);
-    if (snap.reviewBonus) lines.push(`<b>✦ Рубли за отзыв:</b> ${fmt(snap.reviewBonus)} ₽`);
-    if (snap.stock != null) lines.push(`<b>Осталось:</b> ${snap.stock} шт`);
-    if (snap.deliveryType) lines.push(`<b>Доставка:</b> ${esc(snap.deliveryType)}`);
-    if (snap.deliveryAt) lines.push(`<b>Дата доставки:</b> ${snap.deliveryAt}`);
+    if (snap.rating) lines.push(`⭐ <b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
+    if (snap.supplier) lines.push(`🏪 <b>Магазин:</b> ${esc(snap.supplier)}`);
+    if (snap.brand) lines.push(`🏷 <b>Бренд:</b> ${esc(snap.brand)}`);
+    lines.push(`📍 <b>Регион:</b> ${esc(entry.region || 'Санкт-Петербург')}`);
+    lines.push(`🔢 <b>Артикул:</b> ${entry.productId}`);
+    if (snap.price) lines.push(`💰 <b>Цена:</b> ${fmt(snap.price)} ₽`);
+    if (snap.reviewBonus) lines.push(`✦ <b>Рубли за отзыв:</b> ${fmt(snap.reviewBonus)} ₽`);
+    if (snap.stock != null) lines.push(`📦 <b>Осталось:</b> ${snap.stock} шт`);
+    if (snap.deliveryType) lines.push(`🚚 <b>Доставка:</b> ${esc(snap.deliveryType)}`);
+    if (snap.deliveryAt) lines.push(`📅 <b>Дата доставки:</b> ${snap.deliveryAt}`);
     if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
-        lines.push(`<b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+        lines.push(`📊 <b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
-    if (entry.threshold) lines.push(`<b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
+    if (entry.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
 
     if (change) {
         lines.push('');
@@ -824,7 +824,7 @@ function changeBanners(change, entry, snap) {
     return out;
 }
 
-function cmdTrack(arg, ctx = {}) {
+async function cmdTrack(arg, ctx = {}) {
     if (!ctx.chatId) return 'Доступно только из чата с ботом.';
     if (!arg) return [
         '🛒 <b>/track</b> — добавить любой товар WB в отслеживание.',
@@ -882,7 +882,7 @@ function cmdTrack(arg, ctx = {}) {
         ].filter(Boolean).join('\n');
     return {
         text: `<b>${verb} в watchlist</b>\n\n` + card,
-        photo: wbImageUrl(id),
+        photo: await resolveWbImageUrl(id),
         reply_markup: productCardKeyboard(id),
     };
 }
@@ -1088,7 +1088,7 @@ async function dispatch(cmd, arg, ctx = {}) {
         case '/watch': return cmdWatch(arg, ctx);
         case '/unwatch': return cmdUnwatch(arg, ctx);
         case '/watchlist': return cmdWatchlist(arg, ctx);
-        case '/track': return cmdTrack(arg, ctx);
+        case '/track': return await cmdTrack(arg, ctx);
         case '/untrack': return cmdUntrack(arg, ctx);
         case '/rename': return cmdRename(arg, ctx);
         case '/threshold': return cmdThreshold(arg, ctx);

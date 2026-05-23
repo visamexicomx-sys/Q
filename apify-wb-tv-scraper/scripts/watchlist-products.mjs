@@ -19,7 +19,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { argv, env, exit } from 'node:process';
 import { fetchProduct } from './wb-product-fetch.mjs';
-import { wbImageUrl } from './wb-image.mjs';
+import { wbImageUrl, resolveWbImageUrl } from './wb-image.mjs';
 
 const arg = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 ? argv[i + 1] : d; };
 
@@ -60,21 +60,21 @@ function productCardKeyboard(id) {
 function renderProductCard(entry, snap, change = null) {
     const url = `https://www.wildberries.ru/catalog/${entry.productId}/detail.aspx`;
     const name = entry.alias || snap.name || 'Товар WB';
-    const lines = [`<b>Товар:</b> <a href="${esc(url)}">${esc(name)}</a>`, ''];
-    if (snap.rating) lines.push(`<b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
-    if (snap.supplier) lines.push(`<b>Магазин:</b> ${esc(snap.supplier)}`);
-    if (snap.brand) lines.push(`<b>Бренд:</b> ${esc(snap.brand)}`);
-    lines.push(`<b>Регион:</b> ${esc(entry.region || 'Санкт-Петербург')}`);
-    lines.push(`<b>Артикул:</b> ${entry.productId}`);
-    if (snap.price) lines.push(`<b>Цена:</b> ${fmt(snap.price)} ₽`);
-    if (snap.reviewBonus) lines.push(`<b>✦ Рубли за отзыв:</b> ${fmt(snap.reviewBonus)} ₽`);
-    if (snap.stock != null) lines.push(`<b>Осталось:</b> ${snap.stock} шт`);
-    if (snap.deliveryType) lines.push(`<b>Доставка:</b> ${esc(snap.deliveryType)}`);
-    if (snap.deliveryAt) lines.push(`<b>Дата доставки:</b> ${snap.deliveryAt}`);
+    const lines = [`🛒 <b>Товар:</b> <a href="${esc(url)}">${esc(name)}</a>`, ''];
+    if (snap.rating) lines.push(`⭐ <b>Рейтинг:</b> ${snap.rating}${snap.feedbacks ? ` <i>(оценок: ${snap.feedbacks})</i>` : ''}`);
+    if (snap.supplier) lines.push(`🏪 <b>Магазин:</b> ${esc(snap.supplier)}`);
+    if (snap.brand) lines.push(`🏷 <b>Бренд:</b> ${esc(snap.brand)}`);
+    lines.push(`📍 <b>Регион:</b> ${esc(entry.region || 'Санкт-Петербург')}`);
+    lines.push(`🔢 <b>Артикул:</b> ${entry.productId}`);
+    if (snap.price) lines.push(`💰 <b>Цена:</b> ${fmt(snap.price)} ₽`);
+    if (snap.reviewBonus) lines.push(`✦ <b>Рубли за отзыв:</b> ${fmt(snap.reviewBonus)} ₽`);
+    if (snap.stock != null) lines.push(`📦 <b>Осталось:</b> ${snap.stock} шт`);
+    if (snap.deliveryType) lines.push(`🚚 <b>Доставка:</b> ${esc(snap.deliveryType)}`);
+    if (snap.deliveryAt) lines.push(`📅 <b>Дата доставки:</b> ${snap.deliveryAt}`);
     if (entry.minSeen && entry.maxSeen && entry.minSeen !== entry.maxSeen) {
-        lines.push(`<b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
+        lines.push(`📊 <b>Мин. / Макс. цена:</b> ${fmt(entry.minSeen)} / ${fmt(entry.maxSeen)} ₽`);
     }
-    if (entry.threshold) lines.push(`<b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
+    if (entry.threshold) lines.push(`🎯 <b>Порог:</b> ≤ ${fmt(entry.threshold)} ₽`);
     if (change) {
         lines.push('');
         for (const banner of changeBanners(change, entry, snap)) lines.push(banner);
@@ -170,7 +170,7 @@ for (const e of products) {
     if (state.dispatched[alertId]) continue;
 
     const text = renderProductCard(e, e.lastSnapshot, change);
-    const photo = wbImageUrl(fresh.id);
+    const photo = await resolveWbImageUrl(fresh.id);
     const markup = productCardKeyboard(fresh.id);
 
     if (dryRun) {
