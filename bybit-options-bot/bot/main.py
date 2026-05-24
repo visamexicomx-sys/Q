@@ -16,6 +16,7 @@ from .config import Config, load_config
 from .execution import Executor
 from .market import fetch_option_chain, fetch_perp_spec
 from .notify import Notifier
+from .pnl import build_report, format_report
 from .risk import RiskManager
 from .scanner import Signal, scan_underlying
 from .state import load_state, save_state
@@ -67,7 +68,28 @@ class Bot:
         self._perp_specs[base_coin] = spec
         return spec
 
+    def _pnl_categories(self) -> list[str]:
+        cats = ["option", self.cfg.runtime.perp_category]
+        seen, out = set(), []
+        for c in cats:
+            if c not in seen:
+                seen.add(c)
+                out.append(c)
+        return out
+
+    def reconcile_pnl(self) -> None:
+        """Ground the daily-loss counter in Bybit's actual booked P&L."""
+        if self.demo or not (self.cfg.client.api_key and self.cfg.client.api_secret):
+            return
+        try:
+            report = build_report(self.client, self._pnl_categories())
+        except Exception as exc:
+            self.notifier.console(f"pnl reconcile failed: {exc}")
+            return
+        self.risk.state.realized_pnl_today = report.realized_today
+
     def run_cycle(self, allow_execute: bool = True) -> int:
+        self.reconcile_pnl()
         now_ms = int(time.time() * 1000)
         all_signals: list[tuple[Signal, dict]] = []  # (signal, specs-by-symbol)
 
@@ -176,6 +198,24 @@ def _check(cfg: Config) -> int:
     return 0
 
 
+def _pnl(cfg: Config) -> int:
+    if not (cfg.client.api_key and cfg.client.api_secret):
+        print("FAILED: P&L needs API credentials (set BYBIT_API_KEY/SECRET)")
+        return 1
+    client = BybitClient(cfg.client)
+    cats = ["option", cfg.runtime.perp_category]
+    cats = list(dict.fromkeys(cats))
+    try:
+        report = build_report(client, cats)
+    except Exception as exc:
+        print(f"FAILED: {exc}")
+        return 1
+    text = format_report(report)
+    print(text)
+    Notifier(cfg.runtime.log_file, cfg.telegram).telegram_push(text)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Bybit cheap-options delta-neutral bot")
     parser.add_argument("--config", default="config.yaml", help="path to config.yaml")
@@ -201,6 +241,9 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="list chat/channel IDs the bot can see (to find your channel id)",
     )
+    parser.add_argument(
+        "--pnl", action="store_true", help="print a P&L report (and push to Telegram) then exit"
+    )
     args = parser.parse_args(argv)
 
     cfg = load_config(args.config)
@@ -217,6 +260,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.check:
         return _check(cfg)
+
+    if args.pnl:
+        return _pnl(cfg)
     if args.demo:
         cfg.dry_run = True  # demo never sends real orders
     bot = Bot(cfg, demo=args.demo)

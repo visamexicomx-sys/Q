@@ -151,6 +151,15 @@ class BybitClient:
         result = self._request("GET", "/v5/position/list", params, signed=True)
         return result.get("list", [])
 
+    def get_closed_pnl(
+        self, category: str, start_time: int | None = None, limit: int = 100
+    ) -> list[dict]:
+        params: dict = {"category": category, "limit": limit}
+        if start_time is not None:
+            params["startTime"] = start_time
+        result = self._request("GET", "/v5/position/closed-pnl", params, signed=True)
+        return result.get("list", [])
+
     def place_order(
         self,
         category: str,

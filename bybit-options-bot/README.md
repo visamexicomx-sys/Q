@@ -132,7 +132,17 @@ Standalone health checks (also used by setup.sh):
 python run.py --check            # probe Bybit public API + private auth
 python run.py --test-telegram    # send a Telegram test message
 python run.py --telegram-chat-id # list chat/channel IDs the bot can see
+python run.py --pnl              # P&L report (realized today/recent + unrealized)
 ```
+
+### P&L tracking
+
+`--pnl` pulls Bybit's authoritative closed-PnL and open-position data across
+options + perps and prints realized (today and recent), unrealized, and net,
+broken down by symbol. It also pushes the summary to your Telegram channel. The
+running bot reconciles **realized-since-midnight** into the risk manager every
+cycle, so the `max_daily_loss` kill-switch halts trading based on actual booked
+losses — not estimates.
 
 ### Dedicated Telegram channel (isolated from other bots)
 
@@ -161,9 +171,10 @@ sudo cp deploy/bybit-options-bot.service /etc/systemd/system/
 sudo systemctl daemon-reload && sudo systemctl enable --now bybit-options-bot
 journalctl -u bybit-options-bot -f      # follow logs
 
-# docker compose (recommended for containers):
-docker compose -f deploy/docker-compose.yml up -d --build
-docker compose -f deploy/docker-compose.yml logs -f
+# docker compose (recommended) — pick ONE profile:
+docker compose -f deploy/docker-compose.yml --profile live up -d --build  # full loop
+docker compose -f deploy/docker-compose.yml --profile scan up -d --build  # scan-only
+docker compose -f deploy/docker-compose.yml --profile live logs -f
 
 # plain docker:
 docker build -f deploy/Dockerfile -t bybit-options-bot .

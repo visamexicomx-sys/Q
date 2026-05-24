@@ -1,8 +1,12 @@
-# Run the bot 24/7 in Docker.
-#   cd bybit-options-bot
-#   cp .env.example .env   # fill in NEW keys + dedicated Telegram channel
-#   docker compose -f deploy/docker-compose.yml up -d --build
-#   docker compose -f deploy/docker-compose.yml logs -f
+# Run the bot 24/7 in Docker. Pick ONE profile (no default — explicit by design):
+#   cd bybit-options-bot && cp .env.example .env   # NEW keys + dedicated channel
+#
+#   # full loop (honours BYBIT_LIVE; trades if enabled):
+#   docker compose -f deploy/docker-compose.yml --profile live up -d --build
+#   # scan-only (never trades, no API keys needed):
+#   docker compose -f deploy/docker-compose.yml --profile scan up -d --build
+#
+#   docker compose -f deploy/docker-compose.yml --profile live logs -f
 # Emergency stop: `touch .KILL` (mounted in), or `docker compose ... down`.
 services:
   bybit-options-bot:
@@ -19,6 +23,23 @@ services:
       - ../state:/app/state
       - ../config.yaml:/app/config.yaml:ro
       - ../.KILL:/app/.KILL:ro # create ../.KILL on host to halt trading
-    # Default = full loop (honours BYBIT_LIVE). For scan-only, override:
-    # command: ["python", "run.py", "--no-exec"]
+    # Full loop (honours BYBIT_LIVE).
     command: ["python", "run.py"]
+    profiles: ["live"]
+
+  # Scan-only variant — never trades, no API keys needed (public data + Telegram).
+  #   docker compose -f deploy/docker-compose.yml --profile scan up -d --build
+  bybit-options-scan:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: bybit-options-bot
+    container_name: bybit-options-scan
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    volumes:
+      - ../logs:/app/logs
+      - ../config.yaml:/app/config.yaml:ro
+    command: ["python", "run.py", "--no-exec"]
+    profiles: ["scan"]
