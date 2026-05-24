@@ -97,6 +97,16 @@ python run.py --once
 anomalies through scanner → strategy → risk → executor so you can see exactly
 what a fired signal and its hedge look like.
 
+## Profiles
+
+- [`config.yaml`](config.yaml) — balanced default.
+- [`config.lottery.yaml`](config.lottery.yaml) — **aggressive "за центы"** profile:
+  ultra-cheap far-OTM tickets (`cheap_tail_max_price: 1.0`), looser thresholds,
+  small stakes, more positions. Many more (noisier) signals.
+  ```bash
+  python run.py --no-exec --config config.lottery.yaml
+  ```
+
 ## Configuration
 
 Strategy/risk knobs live in [`config.yaml`](config.yaml). **Secrets and the live

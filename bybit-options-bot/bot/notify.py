@@ -14,8 +14,21 @@ from .scanner import Signal
 from .strategy import TradePlan
 
 
+_RU_MONTHS = ["", "янв", "фев", "мар", "апр", "май", "июн",
+              "июл", "авг", "сен", "окт", "ноя", "дек"]
+
+
 def _ts(ms: int) -> str:
     return datetime.fromtimestamp(ms / 1000, tz=timezone.utc).strftime("%d%b%y").upper()
+
+
+def _ts_ru(ms: int) -> str:
+    d = datetime.fromtimestamp(ms / 1000, tz=timezone.utc)
+    return f"{d.day} {_RU_MONTHS[d.month]} {d.year}"
+
+
+def _esc(s: str) -> str:
+    return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 _KIND_TAG = {
@@ -27,13 +40,20 @@ _KIND_TAG = {
     "BUTTERFLY_ARB": "FLY",
 }
 
-_KIND_EMOJI = {
-    "ARBITRAGE": "\U0001f6a8",  # siren
-    "CHEAP_VOL": "\U0001fa99",  # coin
-    "CHEAP_TAIL": "\U0001f3b0",  # slot machine (lottery / "за центы")
-    "PARITY_ARB": "⚖️",  # scales
-    "VERTICAL_ARB": "\U0001f4d0",  # triangle ruler
-    "BUTTERFLY_ARB": "\U0001f98b",  # butterfly
+# emoji, Russian title, one-line plain-language explanation + suggested action.
+_KIND_INFO = {
+    "ARBITRAGE": ("\U0001f6a8", "АРБИТРАЖ",
+                  "Аск ниже внутренней стоимости — почти безрисковая прибыль. Купить."),
+    "CHEAP_VOL": ("\U0001fa99", "ДЕШЁВАЯ ВОЛАТИЛЬНОСТЬ",
+                  "IV аска ниже справедливой улыбки. Купить опцион + захеджировать дельту перпом (бета-нейтрально)."),
+    "CHEAP_TAIL": ("\U0001f3b0", "ДЕШЁВЫЙ ХВОСТ «за центы»",
+                   "Дальний OTM за копейки — модель оценивает в разы дороже. Лотерейный билет: купить и держать."),
+    "PARITY_ARB": ("⚖️", "ПУТ-КОЛЛ ПАРИТЕТ",
+                   "Нарушен паритет call−put vs форвард. Безмодельный арбитраж — исполнять все ноги одновременно."),
+    "VERTICAL_ARB": ("\U0001f4d0", "ВЕРТИКАЛЬНЫЙ АРБИТРАЖ",
+                     "Цены по страйку нарушают монотонность — риск-фри кредит-спред. Все ноги вместе."),
+    "BUTTERFLY_ARB": ("\U0001f98b", "БАБОЧКА (выпуклость)",
+                      "Средний страйк дисбалансирован — риск-фри бабочка. Все ноги вместе."),
 }
 
 
@@ -52,6 +72,37 @@ def signal_line(sig: Signal) -> str:
         f"askIV={sig.ask_iv:.0%} fairIV={sig.fair_iv:.0%} "
         f"Δ={sig.delta:+.2f} {sig.days_to_expiry:.0f}d score={sig.score:.1f}"
     )
+
+
+def signal_html(sig: Signal) -> str:
+    """Rich, human-readable HTML message for Telegram."""
+    emoji, title, explain = _KIND_INFO.get(sig.kind, ("\U0001fa99", sig.kind, ""))
+    head = f"{emoji} <b>{title}</b>"
+    exp = f"{_ts_ru(sig.expiry_ms)} ({sig.days_to_expiry:.0f} дн)"
+
+    if not sig.tradeable:  # structural, multi-leg, alert-only
+        lines = [
+            head,
+            f"<b>{_esc(sig.base_coin)}</b> · {exp}",
+            f"💰 Заработок: <b>{sig.edge_usd:.2f} USDC</b>",
+            f"🦵 Ноги: <code>{_esc(sig.legs)}</code>",
+            "",
+            f"ℹ️ {explain}",
+        ]
+        return "\n".join(lines)
+
+    cp = "колл" if sig.is_call else "пут"
+    lines = [
+        head,
+        f"<b>{_esc(sig.base_coin)}</b> · {cp} · страйк <b>{sig.strike:g}</b> · {exp}",
+        f"🏷 Аск: <b>{sig.ask:g} USDC</b> → справедливо <b>{sig.fair_price:.2f}</b>",
+        f"📈 Выгода: <b>{sig.edge_pct:.0%}</b>  (+{sig.edge_usd:.2f} USDC / контракт)",
+    ]
+    if sig.kind != "ARBITRAGE":
+        lines.append(f"🌊 Волатильность: аск <b>{sig.ask_iv:.0%}</b> vs модель <b>{sig.fair_iv:.0%}</b>")
+    lines.append(f"⚖️ Дельта: <b>{sig.delta:+.2f}</b>")
+    lines += ["", f"ℹ️ {explain}"]
+    return "\n".join(lines)
 
 
 class Notifier:
@@ -73,11 +124,9 @@ class Notifier:
             fh.write(json.dumps(event, default=str) + "\n")
 
     def emit_signal(self, sig: Signal) -> None:
-        line = signal_line(sig)
-        self.console(line)
+        self.console(signal_line(sig))
         self.log_event({"type": "signal", "signal": sig.__dict__})
-        emoji = _KIND_EMOJI.get(sig.kind, "\U0001fa99")
-        self.telegram_push(f"{emoji} {sig.kind}\n{line}")
+        self.telegram_push(signal_html(sig), html=True)
 
     def emit_trade(self, plan: TradePlan, executed: bool, detail: str = "") -> None:
         tag = "FILLED" if executed else "PLAN"
@@ -105,16 +154,33 @@ class Notifier:
             }
         )
         if executed:
-            self.telegram_push(f"✅ {msg}")
+            self.telegram_push(self._trade_html(plan, detail), html=True)
 
-    def telegram_push(self, text: str) -> None:
+    def _trade_html(self, plan: TradePlan, detail: str) -> str:
+        opt = plan.option_leg
+        lines = [
+            "✅ <b>СДЕЛКА ИСПОЛНЕНА</b>",
+            f"🛒 Покупка <b>{opt.qty:g}</b> {_esc(opt.symbol)} @ <b>{opt.price}</b>",
+            f"💵 Премия: <b>{plan.premium_usd:.2f} USDC</b> · ожид. выгода ≈ {plan.expected_edge_usd:.2f}",
+        ]
+        if plan.hedge_leg:
+            h = plan.hedge_leg
+            lines.append(f"🛡 Хедж: {h.side} <b>{h.qty:g}</b> {_esc(h.symbol)} (дельта-нейтрально)")
+        if detail:
+            lines.append(f"<i>{_esc(detail)}</i>")
+        return "\n".join(lines)
+
+    def telegram_push(self, text: str, html: bool = False) -> None:
         tg = self.telegram
         if not tg or not tg.enabled or not tg.bot_token or not tg.chat_id:
             return
+        payload = {"chat_id": tg.chat_id, "text": text, "disable_web_page_preview": True}
+        if html:
+            payload["parse_mode"] = "HTML"
         try:
             requests.post(
                 f"https://api.telegram.org/bot{tg.bot_token}/sendMessage",
-                json={"chat_id": tg.chat_id, "text": text, "disable_web_page_preview": True},
+                json=payload,
                 timeout=8,
             )
         except requests.RequestException as exc:
