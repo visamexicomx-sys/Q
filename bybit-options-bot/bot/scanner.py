@@ -97,6 +97,9 @@ class Signal:
     notes: str = ""
     tradeable: bool = True  # False for multi-leg structural arbs (alert only)
     legs: str = ""  # human description of a multi-leg trade
+    open_interest: float = 0.0
+    volume_24h: float = 0.0
+    bid: float = 0.0
 
 
 def _spread_pct(bid: float, ask: float) -> float:
@@ -196,6 +199,9 @@ def _evaluate_quote(
             vega=q.vega or 0.0,
             score=1e6 + edge,  # arbitrage always ranks above vol signals
             notes="ask below intrinsic (incl. fees)",
+            open_interest=q.open_interest,
+            volume_24h=q.volume_24h,
+            bid=q.bid,
         )
 
     # Shared fair-value calc for the vol-based strategies below.
@@ -246,6 +252,9 @@ def _evaluate_quote(
             vega=q.vega or 0.0,
             score=score,
             notes=note,
+            open_interest=q.open_interest,
+            volume_24h=q.volume_24h,
+            bid=q.bid,
         )
 
     # --- 2. Cheap volatility vs fitted smile (delta-hedged) ---------------

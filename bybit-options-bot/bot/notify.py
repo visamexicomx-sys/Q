@@ -92,16 +92,56 @@ def signal_html(sig: Signal) -> str:
         return "\n".join(lines)
 
     cp = "колл" if sig.is_call else "пут"
+    max_cost = sig.ask * sig.ask_size  # cost to lift the whole resting ask
     lines = [
         head,
         f"<b>{_esc(sig.base_coin)}</b> · {cp} · страйк <b>{sig.strike:g}</b> · {exp}",
         f"🏷 Аск: <b>{sig.ask:g} USDC</b> → справедливо <b>{sig.fair_price:.2f}</b>",
         f"📈 Выгода: <b>{sig.edge_pct:.0%}</b>  (+{sig.edge_usd:.2f} USDC / контракт)",
+        f"📦 Доступно на аске: <b>{sig.ask_size:g}</b> монет (≈ {max_cost:.2f} USDC) · бид {sig.bid:g}",
+        f"📊 OI {sig.open_interest:g} · объём 24ч {sig.volume_24h:g}",
     ]
     if sig.kind != "ARBITRAGE":
         lines.append(f"🌊 Волатильность: аск <b>{sig.ask_iv:.0%}</b> vs модель <b>{sig.fair_iv:.0%}</b>")
     lines.append(f"⚖️ Дельта: <b>{sig.delta:+.2f}</b>")
     lines += ["", f"ℹ️ {explain}"]
+    return "\n".join(lines)
+
+
+def startup_html(mode: str, net: str, underlyings: list[str], poll: float) -> str:
+    return "\n".join([
+        "🚀 <b>Сканер аномалий запущен</b>",
+        f"Режим: <b>{_esc(mode)}</b> · Сеть: <b>{_esc(net)}</b>",
+        f"Монеты: <b>{_esc(', '.join(underlyings))}</b>",
+        f"Период скана: каждые {poll:g} сек",
+        "Ищу: арбитраж · дешёвую волатильность · «за центы» · паритет · вертикаль · бабочку",
+    ])
+
+
+def heartbeat_html(stats: dict, cycles: int, minutes: float) -> str:
+    """Periodic full-info status: coins, options scanned, anomalies by type."""
+    per = stats.get("per_coin", {})
+    by_kind = stats.get("by_kind", {})
+    coin_bits = " / ".join(
+        f"{c} {d['options']}" for c, d in per.items()
+    ) or "—"
+    lines = [
+        "💓 <b>Сканер активен</b>",
+        f"За последние {minutes:g} мин: <b>{cycles}</b> циклов",
+        f"Просканировано: <b>{stats.get('scanned', 0)}</b> опционов "
+        f"({coin_bits}), экспираций: {stats.get('expiries', 0)}",
+    ]
+    if by_kind:
+        order = ["ARBITRAGE", "CHEAP_VOL", "CHEAP_TAIL", "PARITY_ARB",
+                 "VERTICAL_ARB", "BUTTERFLY_ARB"]
+        parts = []
+        for k in order:
+            if by_kind.get(k):
+                emoji = _KIND_INFO.get(k, ("•",))[0]
+                parts.append(f"{emoji} {_KIND_TAG.get(k, k)}: <b>{by_kind[k]}</b>")
+        lines.append("Аномалии сейчас: " + (" · ".join(parts) if parts else "нет"))
+    else:
+        lines.append("Аномалии сейчас: <b>нет</b>")
     return "\n".join(lines)
 
 

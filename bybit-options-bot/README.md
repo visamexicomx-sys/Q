@@ -188,6 +188,16 @@ For the scheduled GitHub Action, store them as repo secrets
 `BYBIT_TG_BOT_TOKEN` / `BYBIT_TG_CHANNEL_ID` (see
 `.github/workflows/bybit-options-scan.yml`).
 
+### Continuous anomaly scanning (24/7)
+
+`python run.py` (no flags) IS the permanent scanner: every `poll_interval_sec`
+it pulls the full chain, detects **all** anomalies (nothing capped — the cap
+only limits auto-*trades*), de-dupes repeats, and alerts. It posts a startup
+message, then a periodic **heartbeat** (`heartbeat_minutes`) with full scan info
+— coins, options scanned per coin, expiries, and a live anomaly count by type —
+so you always know it's alive and miss nothing. Each signal includes available
+size (coins on the ask), OI and 24h volume.
+
 Run it 24/7:
 
 ```bash

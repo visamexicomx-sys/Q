@@ -15,7 +15,7 @@ from .bybit_client import BybitClient
 from .config import Config, load_config
 from .execution import Executor
 from .market import fetch_option_chain, fetch_perp_spec
-from .notify import Notifier
+from .notify import Notifier, heartbeat_html, startup_html
 from .pnl import build_report, format_report
 from .risk import RiskManager
 from .scanner import Signal, scan_underlying
@@ -88,24 +88,37 @@ class Bot:
             return
         self.risk.state.realized_pnl_today = report.realized_today
 
-    def run_cycle(self, allow_execute: bool = True) -> int:
+    def run_cycle(self, allow_execute: bool = True) -> dict:
         self.reconcile_pnl()
         now_ms = int(time.time() * 1000)
         all_signals: list[tuple[Signal, dict]] = []  # (signal, specs-by-symbol)
+        per_coin: dict[str, dict] = {}
+        scanned = 0
+        expiries_total = 0
 
         for base in self.cfg.runtime.underlyings:
             try:
                 quotes, specs = self._fetch_chain(base)
             except Exception as exc:
                 self.notifier.console(f"chain fetch failed for {base}: {exc}")
+                per_coin[base] = {"options": 0, "expiries": 0}
                 continue
+            n_exp = len({q.expiry_ms for q in quotes})
+            per_coin[base] = {"options": len(quotes), "expiries": n_exp}
+            scanned += len(quotes)
+            expiries_total += n_exp
             signals = scan_underlying(quotes, now_ms, self.cfg.scan)
             for s in signals:
                 all_signals.append((s, specs))
 
         all_signals.sort(key=lambda pair: pair[0].score, reverse=True)
 
-        # Alert on every fresh signal.
+        by_kind: dict[str, int] = {}
+        for sig, _ in all_signals:
+            by_kind[sig.kind] = by_kind.get(sig.kind, 0) + 1
+
+        # Alert on EVERY fresh anomaly (no cap) so nothing is missed; the `seen`
+        # set only suppresses an identical repeat of the same quote.
         fresh = 0
         for sig, _ in all_signals:
             key = _signal_key(sig)
@@ -121,7 +134,18 @@ class Bot:
             self.notifier.console("TRADING HALTED (kill-switch or daily-loss limit) — scan only")
 
         save_state(self.cfg.runtime.state_file, self.risk.state, self.seen)
-        return fresh
+        self.notifier.console(
+            f"scan: {scanned} options across {len(per_coin)} coins, "
+            f"{len(all_signals)} anomalies, {fresh} new"
+        )
+        return {
+            "fresh": fresh,
+            "scanned": scanned,
+            "expiries": expiries_total,
+            "per_coin": per_coin,
+            "by_kind": by_kind,
+            "found": len(all_signals),
+        }
 
     def _act_on(self, all_signals: list[tuple[Signal, dict]]) -> None:
         acted = 0
@@ -150,14 +174,33 @@ class Bot:
 
     def loop(self) -> None:
         self._banner()
+        mode = "LIVE TRADING" if (self.cfg.live and not self.cfg.dry_run) else "DRY-RUN"
+        net = "TESTNET" if self.cfg.client.testnet else "MAINNET"
+        self.notifier.telegram_push(
+            startup_html(mode, net, self.cfg.runtime.underlyings,
+                         self.cfg.runtime.poll_interval_sec),
+            html=True,
+        )
+        hb_secs = self.cfg.runtime.heartbeat_minutes * 60.0
+        last_hb = time.time()
+        cycles = 0
+        last_stats: dict = {}
         while True:
             try:
-                self.run_cycle()
+                last_stats = self.run_cycle()
+                cycles += 1
             except KeyboardInterrupt:
                 self.notifier.console("interrupted — exiting")
                 break
             except Exception as exc:
                 self.notifier.console(f"cycle error: {exc}")
+            if hb_secs > 0 and time.time() - last_hb >= hb_secs:
+                self.notifier.telegram_push(
+                    heartbeat_html(last_stats, cycles, self.cfg.runtime.heartbeat_minutes),
+                    html=True,
+                )
+                last_hb = time.time()
+                cycles = 0
             time.sleep(self.cfg.runtime.poll_interval_sec)
 
     def _banner(self) -> None:
@@ -272,8 +315,10 @@ def main(argv: list[str] | None = None) -> int:
         args.once = True  # demo implies a single illustrative cycle
     if args.once:
         bot._banner()
-        n = bot.run_cycle(allow_execute=not args.no_exec)
-        bot.notifier.console(f"single cycle complete — {n} fresh signal(s)")
+        stats = bot.run_cycle(allow_execute=not args.no_exec)
+        bot.notifier.console(
+            f"single cycle complete — {stats['found']} anomalies, {stats['fresh']} new"
+        )
         return 0
     if args.no_exec:
         cfg.dry_run = True  # belt-and-suspenders

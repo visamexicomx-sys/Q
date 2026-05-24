@@ -8,6 +8,7 @@ runtime:
   perp_category: linear
   poll_interval_sec: 30
   max_signals_per_cycle: 5
+  heartbeat_minutes: 60 # periodic "scanner alive" status to the channel (0 = off)
   log_file: logs/signals.jsonl
   state_file: state/bot_state.json
 
