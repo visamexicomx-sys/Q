@@ -79,18 +79,20 @@ class TestScanner(unittest.TestCase):
         self.assertGreater(arbs[0].score, 1e5)  # arbitrage ranks above vol signals
 
     def test_wide_spread_rejected(self):
+        # Isolate the CHEAP_VOL spread filter (structural arbs use raw quotes).
         quotes = fair_chain()
         cheap_iv = smile_iv(110_000) - 0.20
         q = make_quote(110_000, True, cheap_iv, bid_factor=0.30)  # ~70% spread
         quotes.append(q)
-        signals = scan_underlying(quotes, NOW)
+        cfg = ScanConfig(structural_arb_enabled=False)
+        signals = scan_underlying(quotes, NOW, cfg)
         self.assertFalse([s for s in signals if abs(s.strike - 110_000) < 1])
 
     def test_min_ask_size_filter(self):
         quotes = fair_chain()
         cheap_iv = smile_iv(95_000) - 0.20
         quotes.append(make_quote(95_000, False, cheap_iv, ask_size=0.0))
-        cfg = ScanConfig(min_ask_size=1.0)
+        cfg = ScanConfig(min_ask_size=1.0, structural_arb_enabled=False)
         signals = scan_underlying(quotes, NOW, cfg)
         self.assertFalse([s for s in signals if abs(s.strike - 95_000) < 1])
 

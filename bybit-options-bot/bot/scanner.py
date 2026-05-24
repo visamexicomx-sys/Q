@@ -49,6 +49,7 @@ class OptionQuote:
 class ScanConfig:
     risk_free_rate: float = 0.0
     fee_rate: float = 0.0003  # taker fee fraction of premium per side (Bybit options)
+    perp_fee_rate: float = 0.00055  # taker fee fraction of notional on the perp hedge
     min_edge_pct: float = 0.08  # ask must be >= 8% below fair value
     min_edge_usd: float = 1.0  # and at least this many USDC of edge per contract
     min_vol_edge: float = 0.03  # ask IV must be >= 3 vol points below fair IV
@@ -58,9 +59,16 @@ class ScanConfig:
     min_oi: float = 0.0
     min_days_to_expiry: float = 0.25
     max_days_to_expiry: float = 120.0
-    min_abs_delta: float = 0.05  # skip near-worthless wings
+    min_abs_delta: float = 0.05  # skip near-worthless wings (CHEAP_VOL only)
     max_abs_delta: float = 0.90  # skip deep ITM (mostly intrinsic, no vol edge)
     min_smile_points: int = 4
+    # CHEAP_TAIL: cheap "за центы" lottery tickets the vol filter would skip.
+    cheap_tail_enabled: bool = True
+    cheap_tail_max_price: float = 5.0  # ask <= this (USDC) counts as "cheap"
+    cheap_tail_min_ratio: float = 2.0  # model fair value >= ratio * ask
+    # Model-free structural arbitrage (alert-only, multi-leg).
+    structural_arb_enabled: bool = True
+    min_arb_edge_usd: float = 1.0
 
 
 @dataclass
@@ -87,6 +95,8 @@ class Signal:
     vega: float
     score: float
     notes: str = ""
+    tradeable: bool = True  # False for multi-leg structural arbs (alert only)
+    legs: str = ""  # human description of a multi-leg trade
 
 
 def _spread_pct(bid: float, ask: float) -> float:
@@ -135,6 +145,11 @@ def scan_underlying(
             if sig is not None:
                 signals.append(sig)
 
+        if cfg.structural_arb_enabled:
+            from .structural import detect_structural
+
+            signals.extend(detect_structural(group, t, days, cfg))
+
     signals.sort(key=lambda s: s.score, reverse=True)
     return signals
 
@@ -148,8 +163,9 @@ def _evaluate_quote(
         return None
     if q.open_interest < cfg.min_oi:
         return None
-    if _spread_pct(q.bid, q.ask) > cfg.max_spread_pct:
-        return None
+    # NB: the bid/ask-spread filter is applied to CHEAP_VOL only. Arbitrage and
+    # cheap-tail lottery tickets are bought at the ask and held, so a wide
+    # spread (normal for cents-priced wings) must not veto them.
 
     df_intrinsic = max(q.forward - q.strike, 0.0) if q.is_call else max(q.strike - q.forward, 0.0)
     fee = q.ask * cfg.fee_rate
@@ -182,7 +198,7 @@ def _evaluate_quote(
             notes="ask below intrinsic (incl. fees)",
         )
 
-    # --- 2. Cheap volatility vs fitted smile ------------------------------
+    # Shared fair-value calc for the vol-based strategies below.
     fair_iv = smile.fair_iv(log_moneyness(q.strike, q.forward))
     ask_iv = q.ask_iv
     if ask_iv is None or ask_iv <= 0:
@@ -191,54 +207,71 @@ def _evaluate_quote(
         return None
 
     vol_edge = fair_iv - ask_iv
-    if vol_edge < cfg.min_vol_edge:
-        return None
-
-    resid_std = max(smile.residual_std, 1e-4)
-    resid_sigma = vol_edge / resid_std
-    if smile.n_points >= cfg.min_smile_points and resid_sigma < cfg.min_resid_sigma:
-        return None
+    if vol_edge <= 0:
+        return None  # ask isn't cheap vs fair on either strategy
 
     fair_price = black76_price(q.forward, q.strike, fair_iv, t, q.is_call, cfg.risk_free_rate)
     edge_usd = fair_price - q.ask
-    if edge_usd < cfg.min_edge_usd:
-        return None
-    edge_pct = edge_usd / q.ask
-    if edge_pct < cfg.min_edge_pct:
-        return None
+    edge_pct = edge_usd / q.ask if q.ask > 0 else 0.0
+    resid_std = max(smile.residual_std, 1e-4)
+    resid_sigma = vol_edge / resid_std
 
     delta = q.delta
     if delta is None:
         from .pricing import black76_greeks
 
         delta = black76_greeks(q.forward, q.strike, ask_iv, t, q.is_call, cfg.risk_free_rate).delta
-    if not (cfg.min_abs_delta <= abs(delta) <= cfg.max_abs_delta):
-        return None
 
-    # Score blends relative edge, statistical confidence and liquidity so the
-    # strategy layer acts on the most reliable mispricings first.
-    score = edge_pct * 100.0 + resid_sigma * 5.0 + min(q.ask_size, 5.0)
-    return Signal(
-        kind="CHEAP_VOL",
-        symbol=q.symbol,
-        base_coin=q.base_coin,
-        is_call=q.is_call,
-        strike=q.strike,
-        expiry_ms=q.expiry_ms,
-        days_to_expiry=days,
-        forward=q.forward,
-        ask=q.ask,
-        ask_size=q.ask_size,
-        fair_price=fair_price,
-        fair_iv=fair_iv,
-        ask_iv=ask_iv,
-        edge_usd=edge_usd,
-        edge_pct=edge_pct,
-        vol_edge=vol_edge,
-        resid_sigma=resid_sigma,
-        delta=delta,
-        gamma=q.gamma or 0.0,
-        vega=q.vega or 0.0,
-        score=score,
-        notes=f"ask IV {ask_iv:.1%} vs fair {fair_iv:.1%}",
+    def _mk(kind: str, score: float, note: str) -> Signal:
+        return Signal(
+            kind=kind,
+            symbol=q.symbol,
+            base_coin=q.base_coin,
+            is_call=q.is_call,
+            strike=q.strike,
+            expiry_ms=q.expiry_ms,
+            days_to_expiry=days,
+            forward=q.forward,
+            ask=q.ask,
+            ask_size=q.ask_size,
+            fair_price=fair_price,
+            fair_iv=fair_iv,
+            ask_iv=ask_iv,
+            edge_usd=edge_usd,
+            edge_pct=edge_pct,
+            vol_edge=vol_edge,
+            resid_sigma=resid_sigma,
+            delta=delta,
+            gamma=q.gamma or 0.0,
+            vega=q.vega or 0.0,
+            score=score,
+            notes=note,
+        )
+
+    # --- 2. Cheap volatility vs fitted smile (delta-hedged) ---------------
+    cheap_vol_ok = (
+        vol_edge >= cfg.min_vol_edge
+        and edge_usd >= cfg.min_edge_usd
+        and edge_pct >= cfg.min_edge_pct
+        and cfg.min_abs_delta <= abs(delta) <= cfg.max_abs_delta
+        and _spread_pct(q.bid, q.ask) <= cfg.max_spread_pct
+        and not (smile.n_points >= cfg.min_smile_points and resid_sigma < cfg.min_resid_sigma)
     )
+    if cheap_vol_ok:
+        score = edge_pct * 100.0 + resid_sigma * 5.0 + min(q.ask_size, 5.0)
+        return _mk("CHEAP_VOL", score, f"ask IV {ask_iv:.1%} vs fair {fair_iv:.1%}")
+
+    # --- 3. Cheap tail / "за центы" lottery ticket ------------------------
+    # Tiny absolute premium, model says it's worth a multiple of the ask. We
+    # skip the lower delta floor here on purpose — these live in the wings.
+    if (
+        cfg.cheap_tail_enabled
+        and 0 < q.ask <= cfg.cheap_tail_max_price
+        and fair_price >= q.ask * cfg.cheap_tail_min_ratio
+        and abs(delta) <= cfg.max_abs_delta
+    ):
+        ratio = fair_price / q.ask if q.ask > 0 else 0.0
+        score = 1000.0 + ratio * 10.0  # rank above CHEAP_VOL, below true arb
+        return _mk("CHEAP_TAIL", score, f"{ratio:.1f}x fair vs ask {q.ask:g} USDC")
+
+    return None

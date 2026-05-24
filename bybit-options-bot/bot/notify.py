@@ -18,11 +18,35 @@ def _ts(ms: int) -> str:
     return datetime.fromtimestamp(ms / 1000, tz=timezone.utc).strftime("%d%b%y").upper()
 
 
+_KIND_TAG = {
+    "ARBITRAGE": "ARB",
+    "CHEAP_VOL": "CHEAP",
+    "CHEAP_TAIL": "TAIL",
+    "PARITY_ARB": "PARITY",
+    "VERTICAL_ARB": "VERT",
+    "BUTTERFLY_ARB": "FLY",
+}
+
+_KIND_EMOJI = {
+    "ARBITRAGE": "\U0001f6a8",  # siren
+    "CHEAP_VOL": "\U0001fa99",  # coin
+    "CHEAP_TAIL": "\U0001f3b0",  # slot machine (lottery / "за центы")
+    "PARITY_ARB": "⚖️",  # scales
+    "VERTICAL_ARB": "\U0001f4d0",  # triangle ruler
+    "BUTTERFLY_ARB": "\U0001f98b",  # butterfly
+}
+
+
 def signal_line(sig: Signal) -> str:
-    kind = "ARB" if sig.kind == "ARBITRAGE" else "CHEAP"
+    tag = _KIND_TAG.get(sig.kind, sig.kind)
+    if not sig.tradeable:  # multi-leg structural arb
+        return (
+            f"[{tag}] {sig.base_coin} {_ts(sig.expiry_ms)} edge={sig.edge_usd:.2f}USDC "
+            f"{sig.days_to_expiry:.0f}d | {sig.legs}"
+        )
     cp = "C" if sig.is_call else "P"
     return (
-        f"[{kind}] {sig.base_coin} {_ts(sig.expiry_ms)} {sig.strike:g}{cp} "
+        f"[{tag}] {sig.base_coin} {_ts(sig.expiry_ms)} {sig.strike:g}{cp} "
         f"ask={sig.ask:g} fair={sig.fair_price:.2f} "
         f"edge={sig.edge_pct:.0%}/{sig.edge_usd:.2f}USDC "
         f"askIV={sig.ask_iv:.0%} fairIV={sig.fair_iv:.0%} "
@@ -52,10 +76,8 @@ class Notifier:
         line = signal_line(sig)
         self.console(line)
         self.log_event({"type": "signal", "signal": sig.__dict__})
-        if sig.kind == "ARBITRAGE":
-            self.telegram_push(f"\U0001f6a8 ARBITRAGE\n{line}")
-        else:
-            self.telegram_push(f"\U0001fa99 Cheap option\n{line}")
+        emoji = _KIND_EMOJI.get(sig.kind, "\U0001fa99")
+        self.telegram_push(f"{emoji} {sig.kind}\n{line}")
 
     def emit_trade(self, plan: TradePlan, executed: bool, detail: str = "") -> None:
         tag = "FILLED" if executed else "PLAN"

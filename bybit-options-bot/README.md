@@ -18,15 +18,33 @@ and hedge its delta with the linear perpetual — so the residual position is
 
 ## The edge it looks for
 
+Single-leg, auto-tradeable (delta-hedged):
+
 1. **`ARBITRAGE`** — the ask (plus fees) is below the option's discounted
    intrinsic value. Essentially free money. Highest priority, rare.
 2. **`CHEAP_VOL`** — the implied vol of the *ask* sits well below the fitted
    smile for that expiry. You buy cheap vol and delta-hedge it. The trade wins
    if the option re-prices toward fair, or if realised volatility beats the
    cheap implied you paid — independent of market direction.
+3. **`CHEAP_TAIL`** — cheap "за центы" lottery tickets: tiny absolute premium
+   (e.g. ≤ a few USDC, or set `cheap_tail_max_price` ~0.5 for literal cents) on
+   far-OTM wings the vol filter skips, where the model says the option is worth
+   a multiple of its ask. Low delta, asymmetric payoff, bought and held.
 
-Every candidate must also clear liquidity, bid/ask-spread, time-to-expiry and
-delta filters, so the bot never chases a stale or untradeable quote.
+Model-free structural arbitrage (alert-only, multi-leg — flagged for you to
+execute manually, since they need all legs filled together):
+
+4. **`PARITY_ARB`** — put-call parity vs the forward is violated; lock it with
+   call/put + a perp hedge.
+5. **`VERTICAL_ARB`** — call prices must fall (puts rise) with strike; a
+   crossed pair is a riskless credit spread.
+6. **`BUTTERFLY_ARB`** — option prices must be convex in strike; a dislocated
+   middle strike is a riskless butterfly.
+
+Single-leg candidates must also clear liquidity, time-to-expiry and delta
+filters (CHEAP_VOL additionally requires a tight bid/ask spread; ARBITRAGE and
+CHEAP_TAIL are bought at the ask and held, so wide wing spreads don't veto
+them).
 
 ## Why "beta-neutral"?
 

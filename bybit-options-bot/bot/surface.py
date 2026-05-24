@@ -32,10 +32,16 @@ class Smile:
     n_points: int
     residual_std: float  # robust std of residuals, in vol points
     fallback_iv: float  # median iv, used when the fit is degenerate
+    k_lo: float = 0.0  # observed log-moneyness range (for clamped extrapolation)
+    k_hi: float = 0.0
 
     def fair_iv(self, k: float) -> float:
+        # Clamp to the observed strike range: a quadratic extrapolated into the
+        # far wings explodes and would fake "cheap" options. Clamping keeps the
+        # tail fair IV at the nearest fitted edge.
+        if self.k_hi > self.k_lo:
+            k = max(self.k_lo, min(self.k_hi, k))
         v = self.a + self.b * k + self.c * k * k
-        # Never return a non-physical vol.
         if v <= 0.0 or v != v:  # NaN guard
             return self.fallback_iv
         return v
@@ -100,10 +106,12 @@ def fit_smile(expiry_ms: int, points: list[SmilePoint], min_points: int = 4) -> 
     a, b, c = coeffs
 
     # Robust outlier rejection: drop points > 3 * MAD from the fit, refit once.
+    # Only when there is meaningful dispersion — for a near-perfect fit the MAD
+    # collapses toward zero and would reject points on floating-point noise.
     residuals = [p.iv - (a + b * p.k + c * p.k * p.k) for p in pts]
     abs_res = [abs(r) for r in residuals]
     mad = statistics.median(abs_res) if abs_res else 0.0
-    if mad > 0:
+    if mad > 1e-4:
         threshold = 3.0 * 1.4826 * mad  # MAD -> approx std
         kept = [p for p, r in zip(pts, abs_res) if r <= threshold]
         if len(kept) >= min_points and len(kept) < len(pts):
@@ -114,4 +122,5 @@ def fit_smile(expiry_ms: int, points: list[SmilePoint], min_points: int = 4) -> 
                 residuals = [p.iv - (a + b * p.k + c * p.k * p.k) for p in pts]
 
     resid_std = statistics.pstdev(residuals) if len(residuals) > 1 else 0.0
-    return Smile(expiry_ms, a, b, c, len(pts), resid_std, median_iv)
+    ks = [p.k for p in pts]
+    return Smile(expiry_ms, a, b, c, len(pts), resid_std, median_iv, min(ks), max(ks))

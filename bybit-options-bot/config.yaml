@@ -15,6 +15,7 @@ runtime:
 scan:
   risk_free_rate: 0.0
   fee_rate: 0.0003 # Bybit options taker fee (fraction of premium)
+  perp_fee_rate: 0.00055 # perp taker fee (fraction of notional) for hedge/arb legs
   min_edge_pct: 0.08 # ask must be >= 8% below fair value
   min_edge_usd: 1.0 # and >= 1 USDC edge per contract
   min_vol_edge: 0.03 # ask IV >= 3 vol points below fair IV
@@ -24,9 +25,16 @@ scan:
   min_oi: 0.0 # minimum open interest
   min_days_to_expiry: 0.25
   max_days_to_expiry: 120
-  min_abs_delta: 0.05 # skip near-worthless wings
+  min_abs_delta: 0.05 # skip near-worthless wings (CHEAP_VOL only)
   max_abs_delta: 0.90 # skip deep ITM (mostly intrinsic)
   min_smile_points: 4
+  # CHEAP_TAIL — cheap "за центы" lottery tickets the vol filter would skip.
+  cheap_tail_enabled: true
+  cheap_tail_max_price: 5.0 # ask <= this (USDC) counts as "cheap"; set ~0.5 for literal cents
+  cheap_tail_min_ratio: 2.0 # only if model fair value >= ratio * ask
+  # Model-free structural arbitrage (alert-only, multi-leg).
+  structural_arb_enabled: true
+  min_arb_edge_usd: 1.0
 
 # Position sizing + delta hedge.
 strategy:

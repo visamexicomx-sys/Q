@@ -74,14 +74,48 @@ def demo_chain(base_coin: str):
         quotes.append(q)
         specs[sym] = InstrumentSpec(sym, qty_step=qty_step, min_qty=qty_step, tick_size=0.05)
 
-    # Planted anomaly: 105% call priced 12 vol points cheap.
+    # Planted anomaly 1 — CHEAP_VOL: 105% call priced 12 vol points cheap.
     cheap_strike = round(forward * 1.05 / qty_step) * qty_step
     sym, q = _quote(base_coin, forward, cheap_strike, True,
                     _smile_iv(cheap_strike, forward) - 0.12, qty_step)
     quotes.append(q)
     specs[sym] = InstrumentSpec(sym, qty_step=qty_step, min_qty=qty_step, tick_size=0.05)
 
+    # Planted anomaly 2 — CHEAP_TAIL "за центы": far-OTM call worth ~3x its ask.
+    tail_strike = round(forward * 2.0 / qty_step) * qty_step
+    tail_iv = _smile_iv(tail_strike, forward)
+    tail_fair = black76_price(forward, tail_strike, tail_iv, 30 / 365, True)
+    tsym = f"{base_coin}-DEMO-{int(tail_strike)}-C"
+    quotes.append(OptionQuote(
+        symbol=tsym, base_coin=base_coin, expiry_ms=_EXPIRY, strike=float(tail_strike),
+        is_call=True, forward=forward, bid=max(0.01, tail_fair * 0.15),
+        bid_size=20.0, ask=max(0.02, tail_fair * 0.30), ask_size=20.0,
+        mark_price=tail_fair * 0.5, mark_iv=tail_iv, ask_iv=None, open_interest=30.0,
+    ))
+    specs[tsym] = InstrumentSpec(tsym, qty_step=qty_step, min_qty=qty_step, tick_size=0.01)
+
+    # Planted anomaly 3 — VERTICAL_ARB (alert-only): a higher-strike call bid set
+    # above the lower-strike call ask (a fat-finger), a model-free arbitrage.
+    klo = round(forward * 1.30 / qty_step) * qty_step
+    khi = round(forward * 1.35 / qty_step) * qty_step
+    for strike, bid, ask in (
+        (klo, _q_price(forward, klo) * 0.98, _q_price(forward, klo)),
+        (khi, _q_price(forward, klo) * 1.4, _q_price(forward, klo) * 1.5),  # bid > klo ask
+    ):
+        s = f"{base_coin}-DEMO-{int(strike)}-C"
+        quotes.append(OptionQuote(
+            symbol=s, base_coin=base_coin, expiry_ms=_EXPIRY, strike=float(strike),
+            is_call=True, forward=forward, bid=bid, bid_size=5, ask=ask, ask_size=5,
+            mark_price=(bid + ask) / 2, mark_iv=_smile_iv(strike, forward),
+            ask_iv=None, open_interest=20,
+        ))
+        specs[s] = InstrumentSpec(s, qty_step=qty_step, min_qty=qty_step, tick_size=0.05)
+
     return quotes, specs
+
+
+def _q_price(forward: float, strike: float) -> float:
+    return black76_price(forward, strike, _smile_iv(strike, forward), 30 / 365, True)
 
 
 def demo_perp_spec(base_coin: str) -> InstrumentSpec | None:

@@ -128,6 +128,8 @@ class Bot:
         for sig, specs in all_signals:
             if acted >= self.cfg.runtime.max_signals_per_cycle:
                 break
+            if not sig.tradeable:
+                continue  # multi-leg structural arbs are alert-only
             option_spec = specs.get(sig.symbol)
             if option_spec is None:
                 continue
