@@ -1,0 +1,56 @@
+# Bybit cheap-options bot configuration.
+# Secrets (API keys, Telegram token) are NOT here — set them as env vars.
+# See .env.example. Live trading is OFF unless BYBIT_LIVE=true.
+
+runtime:
+  underlyings: [BTC, ETH, SOL]
+  perp_map: { BTC: BTCUSDT, ETH: ETHUSDT, SOL: SOLUSDT }
+  perp_category: linear
+  poll_interval_sec: 30
+  max_signals_per_cycle: 5
+  log_file: logs/signals.jsonl
+  state_file: state/bot_state.json
+
+# Anomaly detection thresholds. Tighten these to reduce false positives.
+scan:
+  risk_free_rate: 0.0
+  fee_rate: 0.0003 # Bybit options taker fee (fraction of premium)
+  min_edge_pct: 0.08 # ask must be >= 8% below fair value
+  min_edge_usd: 1.0 # and >= 1 USDC edge per contract
+  min_vol_edge: 0.03 # ask IV >= 3 vol points below fair IV
+  min_resid_sigma: 1.5 # gap must exceed 1.5x the smile's residual noise
+  min_ask_size: 0.0 # require resting ask liquidity (coin units)
+  max_spread_pct: 0.35 # reject books wider than 35%
+  min_oi: 0.0 # minimum open interest
+  min_days_to_expiry: 0.25
+  max_days_to_expiry: 120
+  min_abs_delta: 0.05 # skip near-worthless wings
+  max_abs_delta: 0.90 # skip deep ITM (mostly intrinsic)
+  min_smile_points: 4
+
+# Position sizing + delta hedge.
+strategy:
+  max_premium_per_trade: 50 # USDC budget per option position
+  max_contracts_per_trade: 10 # coin units
+  safety_margin: 0.02 # never pay above fair*(1-margin)
+  fill_buffer_ticks: 0
+  hedge_enabled: true
+  hedge_with_market: true
+  min_hedge_qty_ratio: 0.5
+
+# Hard risk limits (fail-closed). The bot halts if any is breached.
+risk:
+  max_premium_per_trade: 50
+  max_total_premium: 300 # total open option premium across all positions
+  max_open_positions: 8
+  max_positions_per_underlying: 4
+  max_daily_loss: 100 # realised USDC loss before trading halts for the day
+  min_edge_pct: 0.05
+  kill_switch_file: .KILL # create this file to instantly stop all trading
+
+client:
+  timeout: 10
+  max_retries: 4
+
+telegram:
+  enabled: false # or set TELEGRAM_ENABLED=true; token/chat_id come from env
