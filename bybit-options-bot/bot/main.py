@@ -196,9 +196,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--test-telegram", action="store_true", help="send a Telegram test message and exit"
     )
+    parser.add_argument(
+        "--telegram-chat-id",
+        action="store_true",
+        help="list chat/channel IDs the bot can see (to find your channel id)",
+    )
     args = parser.parse_args(argv)
 
     cfg = load_config(args.config)
+
+    if args.telegram_chat_id:
+        ok, detail = Notifier(cfg.runtime.log_file, cfg.telegram).list_telegram_chats()
+        print(detail)
+        return 0 if ok else 1
 
     if args.test_telegram:
         ok, detail = Notifier(cfg.runtime.log_file, cfg.telegram).test_telegram()

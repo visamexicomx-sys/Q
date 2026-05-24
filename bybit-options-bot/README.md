@@ -129,9 +129,26 @@ bash deploy/setup.sh
 Standalone health checks (also used by setup.sh):
 
 ```bash
-python run.py --check           # probe Bybit public API + private auth
-python run.py --test-telegram   # send a Telegram test message
+python run.py --check            # probe Bybit public API + private auth
+python run.py --test-telegram    # send a Telegram test message
+python run.py --telegram-chat-id # list chat/channel IDs the bot can see
 ```
+
+### Dedicated Telegram channel (isolated from other bots)
+
+The bot's alerts are fully separate from any other Telegram bot — they go only
+to the token + chat you configure. To use a **dedicated Bybit channel**:
+
+1. Create a new Telegram channel (e.g. "Bybit Cheap Options").
+2. Create/choose a bot via @BotFather and **add it as an admin** of the channel.
+3. Post any message in the channel, then run `python run.py --telegram-chat-id`
+   to read the channel id (looks like `-1001234567890`).
+4. Put that bot token + channel id in `.env` as `TELEGRAM_BOT_TOKEN` /
+   `TELEGRAM_CHAT_ID`, set `TELEGRAM_ENABLED=true`, and `--test-telegram`.
+
+For the scheduled GitHub Action, store them as repo secrets
+`BYBIT_TG_BOT_TOKEN` / `BYBIT_TG_CHANNEL_ID` (see
+`.github/workflows/bybit-options-scan.yml`).
 
 Run it 24/7:
 
@@ -144,11 +161,18 @@ sudo cp deploy/bybit-options-bot.service /etc/systemd/system/
 sudo systemctl daemon-reload && sudo systemctl enable --now bybit-options-bot
 journalctl -u bybit-options-bot -f      # follow logs
 
-# docker:
+# docker compose (recommended for containers):
+docker compose -f deploy/docker-compose.yml up -d --build
+docker compose -f deploy/docker-compose.yml logs -f
+
+# plain docker:
 docker build -f deploy/Dockerfile -t bybit-options-bot .
 docker run --rm --env-file .env -v "$PWD/logs:/app/logs" -v "$PWD/state:/app/state" \
   bybit-options-bot python run.py --no-exec
 ```
+
+A scheduled **scan-only** alerting pass (no trading) to the dedicated channel is
+provided as a GitHub Action: `.github/workflows/bybit-options-scan.yml`.
 
 **Emergency stop:** `touch .KILL` halts all trading instantly (the file is
 checked before every order); `systemctl stop` ends the process.

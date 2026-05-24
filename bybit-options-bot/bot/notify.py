@@ -98,6 +98,36 @@ class Notifier:
         except requests.RequestException as exc:
             self.console(f"telegram push failed: {exc}")
 
+    def list_telegram_chats(self) -> tuple[bool, str]:
+        """List chats/channels the bot can see (via getUpdates) to find chat_id.
+
+        For a channel: add the bot as an admin, post once, then run this.
+        """
+        tg = self.telegram
+        if not tg or not tg.bot_token:
+            return False, "missing TELEGRAM_BOT_TOKEN"
+        try:
+            r = requests.get(
+                f"https://api.telegram.org/bot{tg.bot_token}/getUpdates", timeout=8
+            )
+            data = r.json()
+            if not data.get("ok"):
+                return False, f"telegram API: {r.status_code} {r.text[:200]}"
+            seen: dict[str, str] = {}
+            for upd in data.get("result", []):
+                msg = upd.get("message") or upd.get("channel_post") or {}
+                chat = msg.get("chat") or {}
+                cid = chat.get("id")
+                if cid is not None:
+                    title = chat.get("title") or chat.get("username") or chat.get("type", "")
+                    seen[str(cid)] = title
+            if not seen:
+                return False, "no chats seen — post a message in the channel/chat first"
+            lines = "\n".join(f"  {cid}  {title}" for cid, title in seen.items())
+            return True, "chats visible to the bot:\n" + lines
+        except requests.RequestException as exc:
+            return False, f"network error: {exc}"
+
     def test_telegram(self) -> tuple[bool, str]:
         """Send a probe message and surface the outcome (for --test-telegram)."""
         tg = self.telegram
