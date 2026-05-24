@@ -150,6 +150,32 @@ class Bot:
             )
 
 
+def _check(cfg: Config) -> int:
+    """One-shot health check: public market data + (if keys set) private auth."""
+    client = BybitClient(cfg.client)
+    net = "TESTNET" if cfg.client.testnet else "MAINNET"
+    try:
+        client.get_server_time()
+        print(f"OK: reached Bybit {net} public API")
+    except Exception as exc:
+        print(f"FAILED: cannot reach Bybit {net} public API: {exc}")
+        print("  (api.bybit.com is geo-blocked in some regions — run from a permitted IP)")
+        return 1
+    if not (cfg.client.api_key and cfg.client.api_secret):
+        print("WARN: no API credentials set — scan/alert only (no trading possible)")
+        return 0
+    try:
+        bal = client.get_wallet_balance()
+        coins = (bal.get("list") or [{}])[0].get("totalEquity", "?")
+        print(f"OK: API key authenticated (UNIFIED equity={coins})")
+    except Exception as exc:
+        print(f"FAILED: API auth failed: {exc}")
+        return 1
+    live = cfg.live and not cfg.dry_run
+    print(f"mode={'LIVE TRADING' if live else 'DRY-RUN'} net={net} — ready")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Bybit cheap-options delta-neutral bot")
     parser.add_argument("--config", default="config.yaml", help="path to config.yaml")
@@ -162,9 +188,25 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="run the full pipeline against a synthetic chain (offline, dry-run)",
     )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="probe Bybit connectivity + API auth, then exit (no trading)",
+    )
+    parser.add_argument(
+        "--test-telegram", action="store_true", help="send a Telegram test message and exit"
+    )
     args = parser.parse_args(argv)
 
     cfg = load_config(args.config)
+
+    if args.test_telegram:
+        ok, detail = Notifier(cfg.runtime.log_file, cfg.telegram).test_telegram()
+        print(("OK: " if ok else "FAILED: ") + detail)
+        return 0 if ok else 1
+
+    if args.check:
+        return _check(cfg)
     if args.demo:
         cfg.dry_run = True  # demo never sends real orders
     bot = Bot(cfg, demo=args.demo)

@@ -116,12 +116,42 @@ The bot **forces dry-run** if `BYBIT_LIVE=true` but credentials are missing, and
 the risk gate blocks every trade while `.KILL` exists or the daily loss limit is
 hit.
 
-## Run it 24/7
+## One-shot setup & deploy (on your server / VPS)
+
+Run from a region where Bybit is reachable. The setup script creates the venv,
+installs deps, writes a gitignored `.env` (your secrets never touch git), and
+runs connectivity + Telegram checks:
 
 ```bash
-nohup python run.py > bot.out 2>&1 &     # simple
-# or run under systemd / pm2 / a container with the env vars set.
+bash deploy/setup.sh
 ```
+
+Standalone health checks (also used by setup.sh):
+
+```bash
+python run.py --check           # probe Bybit public API + private auth
+python run.py --test-telegram   # send a Telegram test message
+```
+
+Run it 24/7:
+
+```bash
+# simple:
+source .env && nohup python run.py > bot.out 2>&1 &
+
+# systemd (recommended) — edit paths/User in the unit first:
+sudo cp deploy/bybit-options-bot.service /etc/systemd/system/
+sudo systemctl daemon-reload && sudo systemctl enable --now bybit-options-bot
+journalctl -u bybit-options-bot -f      # follow logs
+
+# docker:
+docker build -f deploy/Dockerfile -t bybit-options-bot .
+docker run --rm --env-file .env -v "$PWD/logs:/app/logs" -v "$PWD/state:/app/state" \
+  bybit-options-bot python run.py --no-exec
+```
+
+**Emergency stop:** `touch .KILL` halts all trading instantly (the file is
+checked before every order); `systemctl stop` ends the process.
 
 ## Tests
 

@@ -97,3 +97,20 @@ class Notifier:
             )
         except requests.RequestException as exc:
             self.console(f"telegram push failed: {exc}")
+
+    def test_telegram(self) -> tuple[bool, str]:
+        """Send a probe message and surface the outcome (for --test-telegram)."""
+        tg = self.telegram
+        if not tg or not tg.bot_token or not tg.chat_id:
+            return False, "missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID"
+        try:
+            r = requests.post(
+                f"https://api.telegram.org/bot{tg.bot_token}/sendMessage",
+                json={"chat_id": tg.chat_id, "text": "✅ bybit-options-bot: Telegram connected."},
+                timeout=8,
+            )
+            if r.ok and r.json().get("ok"):
+                return True, "message delivered"
+            return False, f"telegram API: {r.status_code} {r.text[:200]}"
+        except requests.RequestException as exc:
+            return False, f"network error: {exc}"
