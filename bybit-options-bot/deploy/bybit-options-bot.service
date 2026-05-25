@@ -1,0 +1,34 @@
+# systemd unit for 24/7 operation.
+# Install:
+#   sudo cp deploy/bybit-options-bot.service /etc/systemd/system/
+#   # edit WorkingDirectory / User / paths below to match your host
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now bybit-options-bot
+# Logs:    journalctl -u bybit-options-bot -f
+# Stop:    sudo systemctl stop bybit-options-bot   (or: touch .KILL)
+
+[Unit]
+Description=Bybit cheap-options delta-neutral bot
+After=network-online.target
+Wants=network-online.target
+# Fully autonomous: never stop retrying to start.
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+# Run as a non-root user that owns the install directory.
+User=trader
+WorkingDirectory=/opt/bybit-options-bot
+EnvironmentFile=/opt/bybit-options-bot/.env
+# For the aggressive profile: append  --config config.lottery.yaml
+ExecStart=/opt/bybit-options-bot/.venv/bin/python run.py
+# Autonomous operation: restart on ANY exit, and keep the scanner alive 24/7.
+Restart=always
+RestartSec=10
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

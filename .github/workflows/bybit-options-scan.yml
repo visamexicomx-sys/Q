@@ -1,0 +1,45 @@
+# Scheduled SCAN-ONLY pass for the Bybit cheap-options bot.
+#
+# Pushes anomaly alerts to a DEDICATED Bybit Telegram channel (separate from the
+# WB-TV tracker bot). This workflow never trades: it runs `--once --no-exec`
+# and uses only public market data, so NO Bybit API keys are required — only the
+# channel's bot token + chat id.
+#
+# Required repo secrets:
+#   BYBIT_TG_BOT_TOKEN   - token of the bot that posts to the Bybit channel
+#   BYBIT_TG_CHANNEL_ID  - the channel chat id (e.g. -1001234567890)
+#
+# NOTE: GitHub-hosted runners are often geo-blocked by Bybit (CloudFront). If the
+# run reports it can't reach Bybit, switch `runs-on` to a self-hosted runner in a
+# permitted region. Continuous/low-latency trading should run via systemd/Docker
+# on your own VPS — Actions is only a periodic alerting convenience.
+
+name: Bybit options scan
+
+on:
+  schedule:
+    - cron: "*/30 * * * *" # every 30 minutes
+  workflow_dispatch: {}
+
+concurrency:
+  group: bybit-options-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    # runs-on: [self-hosted, bybit-region]   # use if hosted runners are geo-blocked
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install -r bybit-options-bot/requirements.txt
+      - name: Scan and alert (no trading)
+        working-directory: bybit-options-bot
+        env:
+          TELEGRAM_ENABLED: "true"
+          TELEGRAM_BOT_TOKEN: ${{ secrets.BYBIT_TG_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.BYBIT_TG_CHANNEL_ID }}
+        run: python run.py --once --no-exec

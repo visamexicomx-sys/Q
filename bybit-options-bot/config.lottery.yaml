@@ -1,0 +1,65 @@
+# AGGRESSIVE "lottery" profile — tuned for ultra-cheap "за центы" options.
+# Run with:  python run.py --config config.lottery.yaml
+#
+# Casts a wide net for tiny-premium, far-OTM mispricings. Expect MANY more
+# (and noisier) signals than the default config. Bets are kept small per trade.
+# Still DRY-RUN unless BYBIT_LIVE=true. Keep .KILL handy.
+
+runtime:
+  underlyings: [BTC, ETH, SOL]
+  perp_map: { BTC: BTCUSDT, ETH: ETHUSDT, SOL: SOLUSDT }
+  perp_category: linear
+  poll_interval_sec: 20 # scan a bit more often
+  max_signals_per_cycle: 12
+  heartbeat_minutes: 30 # status + balance/P&L every 30 min
+  digest_minutes: 5 # full list of anomalies + total edge every 5 min
+  log_file: logs/signals.jsonl
+  state_file: state/bot_state.json
+
+scan:
+  risk_free_rate: 0.0
+  fee_rate: 0.0003
+  perp_fee_rate: 0.00055
+  min_edge_pct: 0.05 # accept 5%+ mispricing
+  min_edge_usd: 0.02 # cents-scale absolute edge
+  min_vol_edge: 0.02 # 2 vol points
+  min_resid_sigma: 1.0 # looser statistical bar
+  min_ask_size: 0.0
+  max_spread_pct: 0.60 # wings have wide spreads
+  min_oi: 0.0
+  min_days_to_expiry: 0.10
+  max_days_to_expiry: 180
+  min_abs_delta: 0.01 # reach deep into the wings
+  max_abs_delta: 0.95
+  min_smile_points: 4
+  # The "за центы" core:
+  cheap_tail_enabled: true
+  cheap_tail_max_price: 1.0 # ask <= 1 USDC counts as "за центы"
+  cheap_tail_min_ratio: 1.5 # model only needs to be 1.5x the ask
+  structural_arb_enabled: true
+  min_arb_edge_usd: 0.25
+
+strategy:
+  max_premium_per_trade: 10 # small lottery stakes
+  max_contracts_per_trade: 200 # cheap options -> allow many contracts
+  safety_margin: 0.01
+  fill_buffer_ticks: 1 # nudge above ask to improve fills on thin wings
+  hedge_enabled: true
+  hedge_with_market: true
+  min_hedge_qty_ratio: 0.5
+
+risk:
+  max_premium_per_trade: 10
+  max_total_premium: 100 # total at risk across all lottery tickets
+  max_open_positions: 30
+  max_positions_per_underlying: 15
+  max_daily_loss: 50
+  min_edge_pct: 0.03
+  kill_switch_file: .KILL
+
+client:
+  timeout: 10
+  max_retries: 4
+
+telegram:
+  enabled: false
