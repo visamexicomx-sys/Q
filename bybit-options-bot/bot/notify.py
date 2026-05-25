@@ -27,6 +27,11 @@ def _ts_ru(ms: int) -> str:
     return f"{d.day} {_RU_MONTHS[d.month]} {d.year}"
 
 
+def _ts_short(ms: int) -> str:
+    d = datetime.fromtimestamp(ms / 1000, tz=timezone.utc)
+    return f"{d.day}.{d.month:02d}"
+
+
 def _esc(s: str) -> str:
     return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
@@ -116,6 +121,36 @@ def startup_html(mode: str, net: str, underlyings: list[str], poll: float) -> st
         f"Период скана: каждые {poll:g} сек",
         "Ищу: арбитраж · дешёвую волатильность · «за центы» · паритет · вертикаль · бабочку",
     ])
+
+
+def _digest_line(sig: Signal) -> str:
+    emoji = _KIND_INFO.get(sig.kind, ("•",))[0]
+    if not sig.tradeable:  # structural multi-leg
+        return (f"{emoji} <b>{_esc(sig.base_coin)}</b> {_KIND_TAG.get(sig.kind, sig.kind)} "
+                f"+{sig.edge_usd:.2f}$ — <code>{_esc(sig.legs)}</code>")
+    cp = "к" if sig.is_call else "п"
+    if sig.kind == "CHEAP_TAIL":
+        ratio = sig.fair_price / sig.ask if sig.ask else 0.0
+        extra = f"×{ratio:.1f}"
+    elif sig.kind == "ARBITRAGE":
+        extra = "арбитраж"
+    else:
+        extra = f"IV {sig.ask_iv:.0%}→{sig.fair_iv:.0%}"
+    return (f"{emoji} <b>{_esc(sig.base_coin)}</b> {sig.strike:g}{cp} {_ts_short(sig.expiry_ms)} "
+            f"— аск <b>{sig.ask:g}</b>, +{sig.edge_pct:.0%} ({extra}), "
+            f"{sig.ask_size:g} монет")
+
+
+def digest_html(signals: list[Signal], limit: int = 25) -> str:
+    """Consolidated list of the current anomalies (sorted by score)."""
+    if not signals:
+        return "📋 <b>Аномалии сейчас:</b> нет"
+    ordered = sorted(signals, key=lambda s: s.score, reverse=True)
+    head = f"📋 <b>Список аномалий сейчас: {len(ordered)}</b>"
+    lines = [head] + [_digest_line(s) for s in ordered[:limit]]
+    if len(ordered) > limit:
+        lines.append(f"…и ещё {len(ordered) - limit} (см. отдельные сообщения)")
+    return "\n".join(lines)
 
 
 def heartbeat_html(stats: dict, cycles: int, minutes: float) -> str:

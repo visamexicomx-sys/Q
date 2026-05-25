@@ -15,7 +15,7 @@ from .bybit_client import BybitClient
 from .config import Config, load_config
 from .execution import Executor
 from .market import fetch_option_chain, fetch_perp_spec
-from .notify import Notifier, heartbeat_html, startup_html
+from .notify import Notifier, digest_html, heartbeat_html, startup_html
 from .pnl import build_report, format_report
 from .risk import RiskManager
 from .scanner import Signal, scan_underlying
@@ -145,6 +145,7 @@ class Bot:
             "per_coin": per_coin,
             "by_kind": by_kind,
             "found": len(all_signals),
+            "signals": [s for s, _ in all_signals],
         }
 
     def _act_on(self, all_signals: list[tuple[Signal, dict]]) -> None:
@@ -184,11 +185,18 @@ class Bot:
         hb_secs = self.cfg.runtime.heartbeat_minutes * 60.0
         last_hb = time.time()
         cycles = 0
+        first = True
         last_stats: dict = {}
         while True:
             try:
                 last_stats = self.run_cycle()
                 cycles += 1
+                if first:
+                    # Immediate consolidated list so the channel shows results now.
+                    self.notifier.telegram_push(
+                        digest_html(last_stats.get("signals", [])), html=True
+                    )
+                    first = False
             except KeyboardInterrupt:
                 self.notifier.console("interrupted — exiting")
                 break
@@ -198,6 +206,9 @@ class Bot:
                 self.notifier.telegram_push(
                     heartbeat_html(last_stats, cycles, self.cfg.runtime.heartbeat_minutes),
                     html=True,
+                )
+                self.notifier.telegram_push(
+                    digest_html(last_stats.get("signals", [])), html=True
                 )
                 last_hb = time.time()
                 cycles = 0
