@@ -315,6 +315,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--pnl", action="store_true", help="print a P&L report (and push to Telegram) then exit"
     )
+    parser.add_argument("--backtest", metavar="FILE", help="backtest strategies on a data file")
+    parser.add_argument(
+        "--backtest-demo", action="store_true", help="backtest on a synthetic dataset"
+    )
+    parser.add_argument(
+        "--backtest-mode", choices=["to_expiry", "convergence"], default="to_expiry"
+    )
     args = parser.parse_args(argv)
 
     cfg = load_config(args.config)
@@ -334,6 +341,29 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.pnl:
         return _pnl(cfg)
+
+    if args.backtest or args.backtest_demo:
+        from .backtest import (
+            BacktestConfig,
+            Backtester,
+            format_metrics,
+            generate_synthetic,
+            load_data,
+        )
+
+        if args.backtest_demo:
+            snapshots, settlement = generate_synthetic()
+        else:
+            snapshots, settlement = load_data(args.backtest)
+        bt = Backtester(
+            cfg.scan,
+            cfg.strategy,
+            BacktestConfig(mode=args.backtest_mode,
+                           max_total_premium=cfg.risk.max_total_premium),
+        )
+        result = bt.run(snapshots, settlement)
+        print(format_metrics(result.metrics()))
+        return 0
     if args.demo:
         cfg.dry_run = True  # demo never sends real orders
     bot = Bot(cfg, demo=args.demo)

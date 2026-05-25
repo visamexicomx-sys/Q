@@ -226,6 +226,28 @@ provided as a GitHub Action: `.github/workflows/bybit-options-scan.yml`.
 **Emergency stop:** `touch .KILL` halts all trading instantly (the file is
 checked before every order); `systemctl stop` ends the process.
 
+## Backtesting (validate the edge before risking money)
+
+An optopsy-style backtester replays historical chain snapshots through the same
+scanner + strategy code and reports trade-by-trade P&L plus metrics (win rate,
+profit factor, max drawdown, per-trade Sharpe, P&L by strategy).
+
+```bash
+python run.py --backtest-demo                          # synthetic dataset
+python run.py --backtest-demo --backtest-mode convergence
+python run.py --backtest data.json                     # your own history
+```
+
+Two modes:
+- **`to_expiry`** — realises each position at expiry against recorded settlement
+  prices (static delta hedge; honest but path-dependent — use lots of data).
+- **`convergence`** — assumes a fraction (`convergence_factor`) of the
+  theoretical edge is captured; quick check that an edge exists.
+
+Data file format (`data.json`): `{"settlement": {"<expiry_ms>": {"BTC": price}},
+"snapshots": [{"ts": ms, "quotes": [<OptionQuote dict>, ...]}]}`. Record live
+snapshots by logging `fetch_option_chain` output on your VPS.
+
 ## Tests
 
 ```bash
