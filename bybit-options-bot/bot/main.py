@@ -41,6 +41,8 @@ class Bot:
             self.client, self.notifier, cfg.live, cfg.dry_run, cfg.runtime.perp_category
         )
         self._perp_specs: dict[str, InstrumentSpec | None] = {}
+        self._pnl = None  # latest PnLReport (for heartbeat)
+        self._equity: float | None = None
 
     def _fetch_chain(self, base: str):
         if self.demo:
@@ -78,15 +80,22 @@ class Bot:
         return out
 
     def reconcile_pnl(self) -> None:
-        """Ground the daily-loss counter in Bybit's actual booked P&L."""
+        """Ground the daily-loss counter in Bybit's actual booked P&L + balance."""
         if self.demo or not (self.cfg.client.api_key and self.cfg.client.api_secret):
             return
         try:
             report = build_report(self.client, self._pnl_categories())
+            self._pnl = report
+            self.risk.state.realized_pnl_today = report.realized_today
         except Exception as exc:
             self.notifier.console(f"pnl reconcile failed: {exc}")
-            return
-        self.risk.state.realized_pnl_today = report.realized_today
+        try:
+            bal = self.client.get_wallet_balance()
+            row = (bal.get("list") or [{}])[0]
+            eq = row.get("totalEquity", "")
+            self._equity = float(eq) if eq not in ("", None) else self._equity
+        except Exception:
+            pass
 
     def run_cycle(self, allow_execute: bool = True) -> dict:
         self.reconcile_pnl()
@@ -183,7 +192,8 @@ class Bot:
             html=True,
         )
         hb_secs = self.cfg.runtime.heartbeat_minutes * 60.0
-        last_hb = time.time()
+        dg_secs = self.cfg.runtime.digest_minutes * 60.0
+        last_hb = last_dg = time.time()
         cycles = 0
         first = True
         last_stats: dict = {}
@@ -197,20 +207,25 @@ class Bot:
                         digest_html(last_stats.get("signals", [])), html=True
                     )
                     first = False
+                    last_dg = time.time()
             except KeyboardInterrupt:
                 self.notifier.console("interrupted — exiting")
                 break
             except Exception as exc:
                 self.notifier.console(f"cycle error: {exc}")
-            if hb_secs > 0 and time.time() - last_hb >= hb_secs:
-                self.notifier.telegram_push(
-                    heartbeat_html(last_stats, cycles, self.cfg.runtime.heartbeat_minutes),
-                    html=True,
-                )
+            now = time.time()
+            if dg_secs > 0 and now - last_dg >= dg_secs:
                 self.notifier.telegram_push(
                     digest_html(last_stats.get("signals", [])), html=True
                 )
-                last_hb = time.time()
+                last_dg = now
+            if hb_secs > 0 and now - last_hb >= hb_secs:
+                self.notifier.telegram_push(
+                    heartbeat_html(last_stats, cycles, self.cfg.runtime.heartbeat_minutes,
+                                   pnl=self._pnl, equity=self._equity),
+                    html=True,
+                )
+                last_hb = now
                 cycles = 0
             time.sleep(self.cfg.runtime.poll_interval_sec)
 

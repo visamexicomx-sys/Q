@@ -11,6 +11,8 @@
 Description=Bybit cheap-options delta-neutral bot
 After=network-online.target
 Wants=network-online.target
+# Fully autonomous: never stop retrying to start.
+StartLimitIntervalSec=0
 
 [Service]
 Type=simple
@@ -18,8 +20,10 @@ Type=simple
 User=trader
 WorkingDirectory=/opt/bybit-options-bot
 EnvironmentFile=/opt/bybit-options-bot/.env
+# For the aggressive profile: append  --config config.lottery.yaml
 ExecStart=/opt/bybit-options-bot/.venv/bin/python run.py
-Restart=on-failure
+# Autonomous operation: restart on ANY exit, and keep the scanner alive 24/7.
+Restart=always
 RestartSec=10
 # Hardening
 NoNewPrivileges=true

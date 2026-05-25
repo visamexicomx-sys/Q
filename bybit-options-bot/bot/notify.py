@@ -146,15 +146,20 @@ def digest_html(signals: list[Signal], limit: int = 25) -> str:
     if not signals:
         return "📋 <b>Аномалии сейчас:</b> нет"
     ordered = sorted(signals, key=lambda s: s.score, reverse=True)
-    head = f"📋 <b>Список аномалий сейчас: {len(ordered)}</b>"
-    lines = [head] + [_digest_line(s) for s in ordered[:limit]]
+    total_edge = sum(s.edge_usd for s in ordered)
+    lines = [
+        f"📋 <b>Список аномалий сейчас: {len(ordered)}</b>",
+        f"💰 Суммарная потенц. выгода: <b>{total_edge:.2f} USDC</b>",
+    ]
+    lines += [_digest_line(s) for s in ordered[:limit]]
     if len(ordered) > limit:
         lines.append(f"…и ещё {len(ordered) - limit} (см. отдельные сообщения)")
     return "\n".join(lines)
 
 
-def heartbeat_html(stats: dict, cycles: int, minutes: float) -> str:
-    """Periodic full-info status: coins, options scanned, anomalies by type."""
+def heartbeat_html(stats: dict, cycles: int, minutes: float,
+                   pnl=None, equity: float | None = None) -> str:
+    """Periodic full-info status: coins, options scanned, anomalies by type, P&L."""
     per = stats.get("per_coin", {})
     by_kind = stats.get("by_kind", {})
     coin_bits = " / ".join(
@@ -166,6 +171,13 @@ def heartbeat_html(stats: dict, cycles: int, minutes: float) -> str:
         f"Просканировано: <b>{stats.get('scanned', 0)}</b> опционов "
         f"({coin_bits}), экспираций: {stats.get('expiries', 0)}",
     ]
+    if equity is not None:
+        lines.append(f"💼 Баланс (equity): <b>{equity:.2f} USDC</b>")
+    if pnl is not None:
+        lines.append(
+            f"📈 P&L сегодня: реализ. <b>{pnl.realized_today:+.2f}</b> · "
+            f"нереализ. <b>{pnl.unrealized:+.2f}</b> · нетто <b>{pnl.net_today:+.2f}</b>"
+        )
     if by_kind:
         order = ["ARBITRAGE", "CHEAP_VOL", "CHEAP_TAIL", "PARITY_ARB",
                  "VERTICAL_ARB", "BUTTERFLY_ARB"]

@@ -35,7 +35,8 @@ class RuntimeConfig:
     perp_category: str = "linear"
     poll_interval_sec: float = 30.0
     max_signals_per_cycle: int = 5  # most-confident signals to act on per loop
-    heartbeat_minutes: float = 60.0  # periodic "still alive" status to channel (0 = off)
+    heartbeat_minutes: float = 60.0  # periodic "still alive" + P&L status (0 = off)
+    digest_minutes: float = 15.0  # periodic full list of current anomalies (0 = off)
     log_file: str = "logs/signals.jsonl"
     state_file: str = "state/bot_state.json"
 

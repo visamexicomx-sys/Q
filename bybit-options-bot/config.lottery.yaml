@@ -11,7 +11,8 @@ runtime:
   perp_category: linear
   poll_interval_sec: 20 # scan a bit more often
   max_signals_per_cycle: 12
-  heartbeat_minutes: 30 # status to the channel every 30 min
+  heartbeat_minutes: 30 # status + balance/P&L every 30 min
+  digest_minutes: 5 # full list of anomalies + total edge every 5 min
   log_file: logs/signals.jsonl
   state_file: state/bot_state.json
 
