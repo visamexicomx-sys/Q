@@ -1,0 +1,81 @@
+{
+  "_comment": "BLOG POST TEMPLATE — replace [VARIABLES] for each post. Place in <head> of each blog page.",
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://mexvisapro.com/blog/[POST-SLUG]/#article",
+      "headline": "[POST TITLE — max 110 chars]",
+      "description": "[Meta description — 150–160 chars]",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://mexvisapro.com/blog/[POST-SLUG]/og-image.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "datePublished": "[YYYY-MM-DD]T00:00:00-05:00",
+      "dateModified": "[YYYY-MM-DD]T00:00:00-05:00",
+      "author": {
+        "@type": "Person",
+        "name": "[AUTHOR NAME — use real expert name, not 'MexVisa Pro Team']",
+        "url": "https://mexvisapro.com/team/[author-slug]/",
+        "jobTitle": "Mexico Immigration Specialist",
+        "worksFor": {
+          "@id": "https://mexvisapro.com/#organization"
+        }
+      },
+      "publisher": {
+        "@id": "https://mexvisapro.com/#organization"
+      },
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://mexvisapro.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mexvisapro.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://mexvisapro.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "[POST TITLE SHORT]",
+          "item": "https://mexvisapro.com/blog/[POST-SLUG]/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "_comment": "Add this block ONLY if the blog post includes a FAQ section",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "[Question 1 from FAQ section]",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "[Complete answer — 40–60 words, self-contained]"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "[Question 2 from FAQ section]",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "[Complete answer — 40–60 words, self-contained]"
+          }
+        }
+      ]
+    }
+  ]
+}

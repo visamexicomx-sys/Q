@@ -1,0 +1,142 @@
+{
+  "_comment": "HOMEPAGE — place this JSON-LD in <head> of mexvisapro.com homepage",
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://mexvisapro.com/#organization",
+      "name": "MexVisa Pro",
+      "alternateName": "MexVisa Pro Immigration Services",
+      "url": "https://mexvisapro.com",
+      "logo": "https://mexvisapro.com/logo.png",
+      "image": "https://mexvisapro.com/og-image.jpg",
+      "description": "Professional immigration consulting in Riviera Maya. Temporary residency, permanent residency, work permits, and Mexican citizenship. 4-day processing. 100% approval rate.",
+      "telephone": "+52-998-758-3392",
+      "email": "info@mexvisapro.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Playa del Carmen",
+        "addressRegion": "Quintana Roo",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "20.6296",
+        "longitude": "-87.0739"
+      },
+      "areaServed": [
+        "Playa del Carmen",
+        "Tulum",
+        "Cancún",
+        "Cozumel",
+        "Riviera Maya",
+        "Quintana Roo"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "10:00",
+          "closes": "14:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "sameAs": [
+        "https://wa.me/529987583392"
+      ],
+      "priceRange": "$500–$1,500 USD"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mexvisapro.com/#website",
+      "url": "https://mexvisapro.com",
+      "name": "MexVisa Pro",
+      "description": "Mexico immigration consulting — visas, residency, work permits, and citizenship in Riviera Maya",
+      "publisher": {
+        "@id": "https://mexvisapro.com/#organization"
+      },
+      "inLanguage": ["en","es","ru","zh"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does Mexico temporary residency take to process?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MexVisa Pro processes temporary residency applications in as little as 4 business days once all documents are submitted. The full timeline from initial consultation to receiving your residency card is typically 2–4 weeks depending on INM appointment availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What income do I need for Mexico temporary residency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For 2026, Mexico temporary residency requires proof of approximately $1,620 USD/month in regular income (such as salary or pension) OR approximately $27,000 USD in savings or investment accounts. Requirements are updated annually by INM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I apply for Mexico residency while in the country?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. You can apply for temporary residency directly at an INM office in Mexico if you entered with a valid tourist permit (FMM). You can also apply at a Mexican consulate in your home country before traveling. MexVisa Pro handles both in-country and consular applications."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I work in Mexico with temporary residency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Temporary residency alone does not automatically authorize you to work for a Mexican employer. You need to add a work permit (permiso de trabajo) to your residency, which MexVisa Pro can process in 2–5 weeks from $600 USD."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does Mexico immigration consulting cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MexVisa Pro consulting fees start at $500 USD for temporary residency and family reunification visas, $600 for work permits, $700 for permanent residency, $1,200 for investor visas, and $1,500 for citizenship. Initial consultation is free. Government INM fees are additional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Mexico have a digital nomad visa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mexico does not have a formal 'digital nomad visa' but remote workers can legally work from Mexico using a temporary residency permit (valid 1–4 years) while keeping their foreign employer and income. Temporary residency through MexVisa Pro is processed in 4 days from $500 USD."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between temporary and permanent residency in Mexico?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Temporary residency (Residente Temporal) allows you to live in Mexico for 1–4 years and must be renewed annually. Permanent residency (Residente Permanente) is indefinite with no renewal required. You can apply for permanent residency after 4 years of temporary residency, or directly if you meet income, retirement, or family tie requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to get Mexican citizenship?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mexican citizenship through naturalization typically takes 6–12 months and requires at least 5 years of legal residency (reducible to 2 years for spouses of Mexican nationals or Latin American/Spanish citizens). MexVisa Pro handles the full citizenship process from $1,500 USD."
+          }
+        }
+      ]
+    }
+  ]
+}
