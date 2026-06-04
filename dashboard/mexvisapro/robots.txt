@@ -1,0 +1,78 @@
+# Robots.txt — mexvisapro.com
+# Updated with explicit AI bot permissions
+
+# General rules
+User-agent: *
+Allow: /
+Allow: /en/
+Allow: /es/
+Allow: /ru/
+Allow: /zh/
+Allow: /blog/
+Allow: /sitemap.xml
+Disallow: /sw.js
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# AI Search Engines — explicitly allowed for AI Overview & citation
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap
+Sitemap: https://mexvisapro.com/sitemap.xml
+
+# Host
+Host: https://mexvisapro.com
