@@ -1,0 +1,181 @@
+# ============================================================
+# MexVisa Pro — Apache / LiteSpeed .htaccess
+# mexvisapro.com | Playa del Carmen, Quintana Roo, México
+# ============================================================
+
+Options -Indexes
+
+# ------------------------------------------------------------
+# 1. FORCE HTTPS
+# ------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect all HTTP traffic to HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# ------------------------------------------------------------
+# 2. REMOVE WWW (canonical non-www)
+# ------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect www.mexvisapro.com → mexvisapro.com
+  RewriteCond %{HTTP_HOST} ^www\.mexvisapro\.com$ [NC]
+  RewriteRule ^ https://mexvisapro.com%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# ------------------------------------------------------------
+# 3. CLEAN URLs / DIRECTORY INDEX
+# ------------------------------------------------------------
+DirectoryIndex index.html index.php
+
+# ------------------------------------------------------------
+# 4. SERVE .md FILES WITH CORRECT CONTENT TYPE
+# ------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType text/markdown;charset=utf-8 .md
+</IfModule>
+
+# Force correct Content-Type header for .md via headers module as fallback
+<FilesMatch "\.md$">
+  <IfModule mod_headers.c>
+    Header set Content-Type "text/markdown; charset=utf-8"
+  </IfModule>
+</FilesMatch>
+
+# ------------------------------------------------------------
+# 5. SECURITY HEADERS
+# ------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Prevent MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Disallow framing by other origins
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Basic XSS protection for older browsers
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Referrer policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ------------------------------------------------------------
+# 6. CACHE HEADERS
+# ------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Default fallback
+  ExpiresDefault "access plus 1 hour"
+
+  # CSS and JavaScript — 1 year
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/javascript           "access plus 1 year"
+
+  # Images — 1 month
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType image/gif                 "access plus 1 month"
+  ExpiresByType image/webp                "access plus 1 month"
+  ExpiresByType image/avif                "access plus 1 month"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+  ExpiresByType image/x-icon              "access plus 1 month"
+  ExpiresByType image/vnd.microsoft.icon  "access plus 1 month"
+
+  # Fonts — 1 year
+  ExpiresByType font/woff                 "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/font-woff     "access plus 1 year"
+  ExpiresByType application/font-woff2    "access plus 1 year"
+
+  # HTML — 1 hour
+  ExpiresByType text/html                 "access plus 1 hour"
+
+  # robots.txt and sitemap.xml — 1 day
+  ExpiresByType application/xml           "access plus 1 day"
+  ExpiresByType text/xml                  "access plus 1 day"
+  ExpiresByType text/plain                "access plus 1 day"
+</IfModule>
+
+# Explicit Cache-Control for robots.txt and sitemap.xml
+<FilesMatch "^(robots\.txt|sitemap\.xml)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=86400"
+  </IfModule>
+</FilesMatch>
+
+# Cache-Control for CSS and JS
+<FilesMatch "\.(css|js)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </IfModule>
+</FilesMatch>
+
+# Cache-Control for images
+<FilesMatch "\.(jpe?g|png|gif|webp|avif|svg|ico)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=2592000"
+  </IfModule>
+</FilesMatch>
+
+# Cache-Control for HTML
+<FilesMatch "\.html$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=3600"
+  </IfModule>
+</FilesMatch>
+
+# ------------------------------------------------------------
+# 7. GZIP COMPRESSION
+# ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/markdown
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/atom+xml
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE application/font-woff
+  AddOutputFilterByType DEFLATE application/font-woff2
+
+  # Remove browser bugs (only needed for really old browsers)
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+# LiteSpeed mod_gzip fallback (Hostinger LiteSpeed servers)
+<IfModule mod_gzip.c>
+  mod_gzip_on Yes
+  mod_gzip_dechunk Yes
+  mod_gzip_item_include file \.(html?|txt|css|js|xml|md)$
+  mod_gzip_item_include handler ^cgi-script$
+  mod_gzip_item_include mime ^text/.*
+  mod_gzip_item_include mime ^application/javascript.*
+  mod_gzip_item_exclude mime ^image/.*
+  mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</IfModule>
+
+# ------------------------------------------------------------
+# 8. 404 ERROR DOCUMENT
+# ------------------------------------------------------------
+ErrorDocument 404 /index.html
+
+# ============================================================
+# END OF .htaccess
+# ============================================================
