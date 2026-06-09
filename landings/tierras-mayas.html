@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tierras Mayas — Luxury Land Sales · Riviera Maya & Quintana Roo</title>
+  <meta name="description" content="Tierras Mayas is an exclusive land sales agency specialising in high-value lots and macro parcels across Tulum, Playa del Carmen, Akumal, Bacalar, and the greater Quintana Roo corridor. AMPI member." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --earth:  #1A120A;
+      --soil:   #2C1A0E;
+      --amber:  #C97D2E;
+      --gold:   #D4A843;
+      --jungle: #3B6B28;
+      --mist:   #E8DFC8;
+      --mist-20: rgba(232,223,200,0.20);
+      --mist-08: rgba(232,223,200,0.08);
+      --amber-20: rgba(201,125,46,0.20);
+      --amber-60: rgba(201,125,46,0.60);
+      --gold-10: rgba(212,168,67,0.10);
+      --gold-30: rgba(212,168,67,0.30);
+      --ticker-h: 36px;
+      --nav-h: 68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--earth);
+      color: var(--mist);
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── 1. Market Stats Ticker ────────────────────────────────── */
+    .ticker-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      height: var(--ticker-h);
+      background: var(--amber);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: tickerScroll 40s linear infinite;
+    }
+    .ticker-bar:hover .ticker-track { animation-play-state: paused; }
+    .ticker-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--earth);
+      letter-spacing: 0.08em;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .ticker-item::after {
+      content: '·';
+      font-size: 20px;
+      opacity: 0.4;
+    }
+    @keyframes tickerScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── 2. Navigation ─────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: var(--ticker-h);
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      transition: background 0.3s, backdrop-filter 0.3s, border-bottom 0.3s;
+    }
+    .nav.scrolled {
+      background: rgba(26,18,10,0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--amber-20);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      color: var(--mist);
+    }
+    .nav-logo span { color: var(--amber); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mist);
+      opacity: 0.75;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-lang {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--mist);
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    .nav-lang:hover { opacity: 0.9; }
+    .nav-cta {
+      display: none;
+      padding: 9px 22px;
+      background: var(--amber);
+      color: var(--earth);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); }
+    .nav.scrolled .nav-cta { display: block; }
+
+    /* ─── 3. Hero ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: calc(var(--ticker-h) + var(--nav-h));
+    }
+    .hero-topo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .topo-ellipse {
+      transform-origin: center;
+      animation: topoExpand 6s ease-in-out infinite;
+    }
+    .topo-ellipse:nth-child(1)  { animation-delay: 0s; }
+    .topo-ellipse:nth-child(2)  { animation-delay: 0.6s; }
+    .topo-ellipse:nth-child(3)  { animation-delay: 1.2s; }
+    .topo-ellipse:nth-child(4)  { animation-delay: 1.8s; }
+    .topo-ellipse:nth-child(5)  { animation-delay: 2.4s; }
+    .topo-ellipse:nth-child(6)  { animation-delay: 3.0s; }
+    .topo-ellipse:nth-child(7)  { animation-delay: 3.6s; }
+    .topo-ellipse:nth-child(8)  { animation-delay: 4.2s; }
+    .topo-ellipse:nth-child(9)  { animation-delay: 4.8s; }
+    .topo-ellipse:nth-child(10) { animation-delay: 5.4s; }
+    @keyframes topoExpand {
+      0%   { transform: scale(0.88); opacity: 0.05; }
+      45%  { opacity: 0.30; }
+      100% { transform: scale(1.12); opacity: 0.05; }
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,125,46,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,125,46,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 1;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(26,18,10,0.45) 0%,
+        rgba(26,18,10,0.25) 40%,
+        rgba(26,18,10,0.70) 100%
+      );
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 860px;
+      padding: 0 24px;
+    }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      width: 48px;
+      height: 1px;
+      background: var(--amber);
+      opacity: 0.5;
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 1.05;
+      color: var(--mist);
+      margin-bottom: 24px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.70);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 44px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 16px 40px;
+      background: var(--amber);
+      color: var(--earth);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+    .btn-outline {
+      padding: 16px 40px;
+      background: transparent;
+      color: var(--mist);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(232,223,200,0.30);
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scrollDrop 2s ease-in-out infinite;
+    }
+    @keyframes scrollDrop {
+      0%, 100% { transform: scaleY(1); opacity: 0.6; }
+      50% { transform: scaleY(0.6); opacity: 1; }
+    }
+    .scroll-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.6;
+    }
+
+    /* ─── 4. Market Data Cards ──────────────────────────────────── */
+    .section { padding: 100px 48px; }
+    .section-alt { background: var(--soil); }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 56px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--amber);
+      opacity: 0.35;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(201,125,46,0.12);
+      border: 1px solid rgba(201,125,46,0.12);
+    }
+    .stat-card {
+      background: var(--earth);
+      padding: 48px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.25s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s, background 0.25s;
+    }
+    .stat-card.revealed { opacity: 1; transform: translateY(0); }
+    .stat-card:hover { background: rgba(44,26,14,0.8); }
+    .stat-icon {
+      width: 36px;
+      height: 36px;
+      color: var(--amber);
+      opacity: 0.7;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(232,223,200,0.55);
+      text-transform: uppercase;
+    }
+    .stat-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--amber);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── 5. Featured Properties ────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 24px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.1;
+      color: var(--mist);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border-bottom: 1px solid var(--amber-60);
+      padding-bottom: 2px;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .section-link:hover { color: var(--gold); }
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .property-card {
+      position: relative;
+      background: var(--soil);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .property-card.revealed { opacity: 1; transform: translateY(0); }
+    .property-card:hover .property-img { transform: scale(1.04); }
+    .property-img-wrap {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+    .property-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .prop-placeholder {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.6s ease;
+    }
+    .status-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      padding: 5px 12px;
+      background: var(--amber);
+      color: var(--earth);
+      z-index: 2;
+    }
+    .type-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      background: rgba(26,18,10,0.75);
+      border: 1px solid rgba(201,125,46,0.35);
+      color: var(--mist);
+      z-index: 2;
+    }
+    .property-body {
+      padding: 28px 32px 32px;
+    }
+    .property-zone {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+    .property-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.2;
+      color: var(--mist);
+      margin-bottom: 20px;
+    }
+    .property-price {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .property-specs {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .spec-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--mist);
+    }
+    .spec-key {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(232,223,200,0.40);
+    }
+    .property-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border-bottom: 1px solid var(--amber-60);
+      padding-bottom: 2px;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .property-cta:hover { color: var(--gold); gap: 12px; }
+
+    /* ─── 6. Zones ──────────────────────────────────────────────── */
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: rgba(201,125,46,0.10);
+      border: 1px solid rgba(201,125,46,0.10);
+    }
+    .zone-card {
+      background: var(--soil);
+      padding: 36px 24px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s, transform 0.5s, background 0.3s;
+    }
+    .zone-card.revealed { opacity: 1; transform: translateY(0); }
+    .zone-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .zone-card:hover { background: rgba(44,26,14,0.95); }
+    .zone-card:hover::before { transform: scaleX(1); }
+    .zone-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--mist);
+      margin-bottom: 4px;
+    }
+    .zone-country {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(232,223,200,0.35);
+      margin-bottom: 20px;
+    }
+    .zone-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .zone-unit {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: rgba(232,223,200,0.4);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .zone-attr {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.60);
+      line-height: 1.5;
+    }
+    .zone-hover-detail {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,18,10,0.92);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .zone-card:hover .zone-hover-detail { opacity: 1; }
+    .zone-hover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .zone-hover-text {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.75);
+      line-height: 1.7;
+    }
+
+    /* ─── 7. Journal ────────────────────────────────────────────── */
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .article-card {
+      background: var(--soil);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s, transform 0.55s;
+    }
+    .article-card.revealed { opacity: 1; transform: translateY(0); }
+    .article-card:hover .article-img-wrap div { transform: scale(1.05); }
+    .article-img-wrap {
+      height: 220px;
+      overflow: hidden;
+    }
+    .article-img-wrap div {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    .article-body { padding: 28px 28px 32px; }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .tag-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--amber);
+      color: var(--amber);
+    }
+    .article-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(232,223,200,0.35);
+    }
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.3;
+      color: var(--mist);
+      margin-bottom: 12px;
+    }
+    .article-excerpt {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.55);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .article-link {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .article-link:hover { color: var(--gold); }
+
+    /* ─── 8. DataRoom Form ──────────────────────────────────────── */
+    .dataroom-section {
+      padding: 100px 48px;
+      background: var(--earth);
+      border-top: 1px solid rgba(201,125,46,0.25);
+      border-bottom: 1px solid rgba(201,125,46,0.25);
+      position: relative;
+    }
+    .dataroom-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--amber), var(--gold));
+    }
+    .dataroom-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .dataroom-left {}
+    .dataroom-headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.1;
+      color: var(--mist);
+      margin-bottom: 24px;
+    }
+    .dataroom-headline em { font-style: italic; color: var(--gold); }
+    .dataroom-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.60);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .dataroom-contents {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dataroom-contents li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(232,223,200,0.70);
+    }
+    .dataroom-contents li::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+    .form-row {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-row-3 { grid-template-columns: repeat(3, 1fr); }
+    .form-row-2 { grid-template-columns: repeat(2, 1fr); }
+    .form-row-1 { grid-template-columns: 1fr; }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(232,223,200,0.45);
+    }
+    .form-label span { color: var(--amber); }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: rgba(44,26,14,0.60);
+      border: 1px solid rgba(201,125,46,0.20);
+      padding: 12px 16px;
+      color: var(--mist);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus { border-color: var(--amber); }
+    .form-input::placeholder { color: rgba(232,223,200,0.25); }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C97D2E'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .form-select option { background: var(--soil); }
+    .nda-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 16px 0;
+      padding: 16px;
+      border: 1px solid rgba(201,125,46,0.25);
+      background: rgba(201,125,46,0.04);
+    }
+    .nda-check {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--amber);
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .nda-text {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(232,223,200,0.65);
+      line-height: 1.6;
+    }
+    .nda-text strong { color: var(--amber); }
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--amber);
+      color: var(--earth);
+      border: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 16px;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--gold); }
+    .form-note {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.35);
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* ─── 9. Trust Signals ──────────────────────────────────────── */
+    .trust-section {
+      padding: 100px 48px;
+      background: var(--soil);
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+    .trust-counter {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .counter-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(56px, 8vw, 100px);
+      line-height: 1;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .counter-label {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.55);
+      line-height: 1.6;
+      max-width: 300px;
+    }
+    .map-placeholder {
+      background: #0e0a06;
+      height: 320px;
+      position: relative;
+      border: 1px solid rgba(201,125,46,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .map-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,125,46,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,125,46,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .map-dots {
+      position: absolute;
+      inset: 0;
+    }
+    .map-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+    .map-dot::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid var(--amber);
+      opacity: 0.35;
+      animation: mapPulse 3s ease-in-out infinite;
+    }
+    @keyframes mapPulse {
+      0%, 100% { transform: scale(1); opacity: 0.35; }
+      50% { transform: scale(1.8); opacity: 0; }
+    }
+    .map-label {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.7;
+    }
+    .banks-row {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+    }
+    .banks-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(232,223,200,0.30);
+      flex-shrink: 0;
+    }
+    .bank-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      color: rgba(232,223,200,0.25);
+      text-transform: uppercase;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .testimonial-card {
+      background: var(--earth);
+      padding: 40px;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      color: var(--amber);
+      opacity: 0.15;
+      position: absolute;
+      top: 12px;
+      left: 32px;
+      line-height: 1;
+    }
+    .testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.65;
+      color: rgba(232,223,200,0.80);
+      margin-bottom: 24px;
+      padding-top: 20px;
+    }
+    .testimonial-attr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+    .ampi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(201,125,46,0.30);
+      padding: 10px 20px;
+      margin-bottom: 48px;
+    }
+    .ampi-badge span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--amber);
+    }
+
+    /* ─── 10. Footer ────────────────────────────────────────────── */
+    .footer {
+      background: #110B06;
+      padding: 80px 48px 0;
+      border-top: 1px solid rgba(201,125,46,0.12);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 60px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(201,125,46,0.10);
+    }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--mist);
+      margin-bottom: 16px;
+    }
+    .footer-brand-name span { color: var(--amber); }
+    .footer-brand-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.40);
+      line-height: 1.8;
+      margin-bottom: 28px;
+      max-width: 260px;
+    }
+    .footer-ampi {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: var(--amber);
+      opacity: 0.6;
+    }
+    .footer-col-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: 0.6;
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--mist); }
+    .footer-contact-item {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(232,223,200,0.45);
+      line-height: 1.8;
+    }
+    .footer-contact-item strong {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(201,125,46,0.5);
+      margin-bottom: 3px;
+      font-weight: 400;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: rgba(232,223,200,0.25);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-legal a {
+      font-size: 10px;
+      color: rgba(232,223,200,0.25);
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(232,223,200,0.55); }
+
+    /* ─── 11. WhatsApp FAB ──────────────────────────────────────── */
+    .wa-fab {
+      position: fixed;
+      bottom: 36px;
+      right: 36px;
+      z-index: 9000;
+      width: 56px;
+      height: 56px;
+      background: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s, transform 0.4s, background 0.2s;
+      border: none;
+    }
+    .wa-fab.visible { opacity: 1; transform: translateY(0); }
+    .wa-fab:hover { background: var(--gold); }
+    .wa-fab::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border: 2px solid var(--amber);
+      opacity: 0;
+      animation: waPulse 2.5s ease-out infinite;
+    }
+    @keyframes waPulse {
+      0%   { transform: scale(0.9); opacity: 0.7; }
+      70%  { transform: scale(1.5); opacity: 0; }
+      100% { opacity: 0; }
+    }
+    .wa-fab svg { width: 28px; height: 28px; }
+
+    /* ─── Scroll Reveal Base ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .section { padding: 80px 32px; }
+      .dataroom-section { padding: 80px 32px; }
+      .trust-section { padding: 80px 32px; }
+      .footer { padding: 64px 32px 0; }
+      .nav { padding: 0 32px; }
+      .nav-links { gap: 24px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .zones-grid { grid-template-columns: repeat(3, 2fr); }
+      .trust-grid { grid-template-columns: 1fr; gap: 48px; }
+      .dataroom-inner { gap: 48px; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+      .section { padding: 64px 20px; }
+      .dataroom-section { padding: 64px 20px; }
+      .trust-section { padding: 64px 20px; }
+      .footer { padding: 48px 20px 0; }
+      .nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-headline { font-size: clamp(36px, 10vw, 64px); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .properties-grid { grid-template-columns: 1fr; }
+      .zones-grid { grid-template-columns: repeat(2, 1fr); }
+      .journal-grid { grid-template-columns: 1fr; }
+      .dataroom-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row-3 { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .banks-row { gap: 24px; }
+    }
+
+    /* ─── Reduced Motion ────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .topo-ellipse,
+      .ticker-track,
+      .scroll-line,
+      .map-dot::after,
+      .wa-fab::before {
+        animation: none !important;
+      }
+      .ticker-track { animation: none; transform: none; }
+      * { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── 1. MARKET STATS TICKER ─────────────────────────────────────── -->
+<div class="ticker-bar" role="marquee" aria-label="Live market data">
+  <div class="ticker-track" id="ticker">
+    <div class="ticker-item">Tulum average: $420/m²</div>
+    <div class="ticker-item">Playa del Carmen: $280/m²</div>
+    <div class="ticker-item">Bacalar: $180/m²</div>
+    <div class="ticker-item">Akumal: $650/m²</div>
+    <div class="ticker-item">Costa Maya: $95/m²</div>
+    <div class="ticker-item">Cobá Road: $140/m²</div>
+    <div class="ticker-item">Last updated: June 2025</div>
+    <div class="ticker-item">AMPI Member · Fiduciary Grade Transactions</div>
+    <div class="ticker-item">$2.4B+ Total Land Transacted</div>
+    <div class="ticker-item">Tulum average: $420/m²</div>
+    <div class="ticker-item">Playa del Carmen: $280/m²</div>
+    <div class="ticker-item">Bacalar: $180/m²</div>
+    <div class="ticker-item">Akumal: $650/m²</div>
+    <div class="ticker-item">Costa Maya: $95/m²</div>
+    <div class="ticker-item">Cobá Road: $140/m²</div>
+    <div class="ticker-item">Last updated: June 2025</div>
+    <div class="ticker-item">AMPI Member · Fiduciary Grade Transactions</div>
+    <div class="ticker-item">$2.4B+ Total Land Transacted</div>
+  </div>
+</div>
+
+<!-- ── 2. NAVIGATION ─────────────────────────────────────────────── -->
+<nav class="nav" id="mainNav" aria-label="Main navigation">
+  <a href="#" class="nav-logo">Tierras<span>·</span>Mayas</a>
+  <ul class="nav-links">
+    <li><a href="#properties">Properties</a></li>
+    <li><a href="#zones">Zones</a></li>
+    <li><a href="#journal">Journal</a></li>
+    <li><a href="#dataroom">Legal Guide</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-lang">EN | ES</span>
+    <button class="nav-cta" onclick="document.getElementById('dataroom').scrollIntoView({behavior:'smooth'})">
+      Request DataRoom
+    </button>
+  </div>
+</nav>
+
+<!-- ── 3. HERO ────────────────────────────────────────────────────── -->
+<section class="hero" aria-label="Hero">
+  <!-- Topographic SVG background -->
+  <svg class="hero-topo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="topoGrad" cx="50%" cy="50%" r="55%">
+        <stop offset="0%" stop-color="#C97D2E" stop-opacity="0.12"/>
+        <stop offset="100%" stop-color="#1A120A" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1440" height="900" fill="#1A120A"/>
+    <rect width="1440" height="900" fill="url(#topoGrad)"/>
+    <!-- Topo contour ellipses -->
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="60"  ry="36"  fill="none" stroke="#D4A843" stroke-width="1.2" opacity="0.40"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="130" ry="80"  fill="none" stroke="#C97D2E" stroke-width="1.0" opacity="0.34"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="210" ry="130" fill="none" stroke="#D4A843" stroke-width="0.9" opacity="0.28"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="300" ry="186" fill="none" stroke="#C97D2E" stroke-width="0.8" opacity="0.24"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="390" ry="242" fill="none" stroke="#D4A843" stroke-width="0.8" opacity="0.20"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="480" ry="298" fill="none" stroke="#C97D2E" stroke-width="0.7" opacity="0.17"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="580" ry="360" fill="none" stroke="#D4A843" stroke-width="0.6" opacity="0.14"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="680" ry="422" fill="none" stroke="#C97D2E" stroke-width="0.6" opacity="0.11"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="780" ry="484" fill="none" stroke="#D4A843" stroke-width="0.5" opacity="0.08"/>
+    <ellipse class="topo-ellipse" cx="720" cy="450" rx="880" ry="546" fill="none" stroke="#C97D2E" stroke-width="0.5" opacity="0.06"/>
+    <!-- Secondary offset ring set for complexity -->
+    <ellipse cx="480" cy="300" rx="90"  ry="54"  fill="none" stroke="#3B6B28" stroke-width="0.6" opacity="0.10"/>
+    <ellipse cx="480" cy="300" rx="160" ry="96"  fill="none" stroke="#3B6B28" stroke-width="0.4" opacity="0.07"/>
+    <ellipse cx="960" cy="600" rx="110" ry="66"  fill="none" stroke="#3B6B28" stroke-width="0.6" opacity="0.08"/>
+    <ellipse cx="960" cy="600" rx="200" ry="120" fill="none" stroke="#3B6B28" stroke-width="0.4" opacity="0.05"/>
+    <!-- Cross-hatch survey lines -->
+    <line x1="0" y1="450" x2="1440" y2="450" stroke="#C97D2E" stroke-width="0.3" opacity="0.08"/>
+    <line x1="720" y1="0" x2="720" y2="900" stroke="#C97D2E" stroke-width="0.3" opacity="0.08"/>
+  </svg>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Quintana Roo · Mexico</div>
+    <h1 class="hero-headline">
+      Where Land Is Still<br/>
+      The Scarcest Asset<br/>
+      in the <em>Caribbean</em>
+    </h1>
+    <p class="hero-sub">
+      Exclusive access to macro parcels, beachfront lots, and cenote estates across Quintana Roo's most capital-efficient corridors. Fiduciary-grade transactions. AMPI member.
+    </p>
+    <div class="hero-ctas">
+      <a href="#properties" class="btn-primary">View Properties</a>
+      <a href="#dataroom" class="btn-outline">Request Market Report</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- ── 4. MARKET DATA CARDS ──────────────────────────────────────── -->
+<section class="section" aria-labelledby="market-heading">
+  <div class="section-label" id="market-heading">Market Overview — Q2 2025</div>
+  <div class="stats-grid">
+
+    <div class="stat-card" data-target="2.4" data-suffix="B" data-prefix="$">
+      <svg class="stat-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M4 28L12 18l7 5 7-10 6 8"/>
+        <circle cx="4" cy="28" r="2" fill="currentColor" stroke="none"/>
+        <circle cx="30" cy="21" r="2" fill="currentColor" stroke="none"/>
+      </svg>
+      <div class="stat-number" id="stat-0">$2.4B</div>
+      <div class="stat-label">Total Land Transacted</div>
+      <div class="stat-sub">Quintana Roo · 2019–2025</div>
+    </div>
+
+    <div class="stat-card">
+      <svg class="stat-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <rect x="5" y="5" width="10" height="10"/>
+        <rect x="21" y="5" width="10" height="10"/>
+        <rect x="5" y="21" width="10" height="10"/>
+        <rect x="21" y="21" width="10" height="10"/>
+      </svg>
+      <div class="stat-number" id="stat-1">38</div>
+      <div class="stat-label">Active Listings</div>
+      <div class="stat-sub">Pre-qualified · Verified title</div>
+    </div>
+
+    <div class="stat-card">
+      <svg class="stat-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <polygon points="3,33 18,3 33,33"/>
+        <line x1="10" y1="21" x2="26" y2="21"/>
+        <line x1="7" y1="27" x2="29" y2="27"/>
+      </svg>
+      <div class="stat-number" id="stat-2">12.4</div>
+      <div class="stat-label">Avg. Lot Size (ha)</div>
+      <div class="stat-sub">Median portfolio parcel</div>
+    </div>
+
+    <div class="stat-card">
+      <svg class="stat-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <circle cx="18" cy="18" r="14"/>
+        <path d="M18 4 A14 14 0 0 1 32 18" stroke-dasharray="3 3"/>
+        <line x1="18" y1="4" x2="18" y2="18"/>
+        <line x1="32" y1="18" x2="18" y2="18"/>
+      </svg>
+      <div class="stat-number" id="stat-3">6</div>
+      <div class="stat-label">Markets Covered</div>
+      <div class="stat-sub">Investment zones active</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 5. FEATURED PROPERTIES ────────────────────────────────────── -->
+<section class="section section-alt" id="properties" aria-labelledby="prop-heading">
+  <div class="section-header">
+    <div>
+      <div class="section-label" id="prop-heading">Available Now</div>
+      <h2 class="section-title">Featured <em>Land Positions</em></h2>
+    </div>
+    <a href="#" class="section-link">View all 38 listings →</a>
+  </div>
+  <div class="properties-grid">
+
+    <!-- Property 1 -->
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <div class="prop-placeholder" style="background: linear-gradient(135deg, #0d2218 0%, #1a3a28 35%, #0a1a10 60%, #1A120A 100%);">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.18" viewBox="0 0 600 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path d="M0 200 Q150 140 300 180 Q450 220 600 160" fill="none" stroke="#D4A843" stroke-width="1"/>
+            <path d="M0 220 Q150 165 300 200 Q450 235 600 180" fill="none" stroke="#D4A843" stroke-width="0.7"/>
+            <path d="M0 240 Q150 195 300 220 Q450 248 600 200" fill="none" stroke="#C97D2E" stroke-width="0.6"/>
+            <line x1="0" y1="140" x2="600" y2="140" stroke="#C97D2E" stroke-width="0.3" stroke-dasharray="4 6"/>
+          </svg>
+          <div style="position:absolute;bottom:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(212,168,67,0.5)">AKUMAL · AERIAL</div>
+        </div>
+        <span class="status-badge">AVAILABLE</span>
+        <span class="type-badge">BEACHFRONT</span>
+      </div>
+      <div class="property-body">
+        <div class="property-zone">Akumal Norte · Quintana Roo</div>
+        <div class="property-name">Frente de Playa 3.2 ha</div>
+        <div class="property-price">$9.8M</div>
+        <div class="property-specs">
+          <div class="spec-item">
+            <span class="spec-val">32,000 m²</span>
+            <span class="spec-key">Total Area</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">3.2 ha</span>
+            <span class="spec-key">Hectares</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">$306/m²</span>
+            <span class="spec-key">Price / m²</span>
+          </div>
+        </div>
+        <a href="#dataroom" class="property-cta">Request DataRoom →</a>
+      </div>
+    </div>
+
+    <!-- Property 2 -->
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <div class="prop-placeholder" style="background: linear-gradient(145deg, #0a1a10 0%, #122a18 30%, #1a2a10 55%, #2C1A0E 100%);">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.20" viewBox="0 0 600 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <circle cx="300" cy="140" r="60" fill="none" stroke="#C97D2E" stroke-width="1.2"/>
+            <circle cx="300" cy="140" r="90" fill="none" stroke="#D4A843" stroke-width="0.7"/>
+            <circle cx="300" cy="140" r="120" fill="none" stroke="#C97D2E" stroke-width="0.5"/>
+            <circle cx="300" cy="140" r="30" fill="rgba(10,26,20,0.8)" stroke="#D4A843" stroke-width="1"/>
+            <text x="300" y="145" text-anchor="middle" fill="#D4A843" font-size="9" font-family="JetBrains Mono" opacity="0.7">CENOTE</text>
+          </svg>
+          <div style="position:absolute;bottom:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(212,168,67,0.5)">COBÁ · CENOTE</div>
+        </div>
+        <span class="status-badge">AVAILABLE</span>
+        <span class="type-badge">CENOTE</span>
+      </div>
+      <div class="property-body">
+        <div class="property-zone">Cobá Road · Quintana Roo</div>
+        <div class="property-name">Finca con Cenote Privado</div>
+        <div class="property-price">$2.4M</div>
+        <div class="property-specs">
+          <div class="spec-item">
+            <span class="spec-val">18,000 m²</span>
+            <span class="spec-key">Total Area</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">1.8 ha</span>
+            <span class="spec-key">Hectares</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">$133/m²</span>
+            <span class="spec-key">Price / m²</span>
+          </div>
+        </div>
+        <a href="#dataroom" class="property-cta">Request DataRoom →</a>
+      </div>
+    </div>
+
+    <!-- Property 3 -->
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <div class="prop-placeholder" style="background: linear-gradient(155deg, #180e06 0%, #2C1A0E 40%, #1a1208 70%, #0e0804 100%);">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.18" viewBox="0 0 600 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect x="80" y="40" width="440" height="200" fill="none" stroke="#C97D2E" stroke-width="0.8"/>
+            <rect x="120" y="70" width="160" height="80" fill="none" stroke="#D4A843" stroke-width="0.6"/>
+            <rect x="320" y="70" width="160" height="80" fill="none" stroke="#D4A843" stroke-width="0.6"/>
+            <rect x="120" y="180" width="360" height="40" fill="none" stroke="#C97D2E" stroke-width="0.5"/>
+            <line x1="80" y1="140" x2="520" y2="140" stroke="#D4A843" stroke-width="0.3" stroke-dasharray="3 5"/>
+            <text x="300" y="255" text-anchor="middle" fill="#C97D2E" font-size="8" font-family="JetBrains Mono" opacity="0.5">CARRETERA 307 · PLAYA DEL CARMEN</text>
+          </svg>
+          <div style="position:absolute;bottom:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(212,168,67,0.5)">307 · COMMERCIAL</div>
+        </div>
+        <span class="status-badge">AVAILABLE</span>
+        <span class="type-badge">COMMERCIAL</span>
+      </div>
+      <div class="property-body">
+        <div class="property-zone">Carretera 307 · Playa del Carmen</div>
+        <div class="property-name">Macro Lote Comercial 307</div>
+        <div class="property-price">$5.6M</div>
+        <div class="property-specs">
+          <div class="spec-item">
+            <span class="spec-val">20,000 m²</span>
+            <span class="spec-key">Total Area</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">2.0 ha</span>
+            <span class="spec-key">Hectares</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">$280/m²</span>
+            <span class="spec-key">Price / m²</span>
+          </div>
+        </div>
+        <a href="#dataroom" class="property-cta">Request DataRoom →</a>
+      </div>
+    </div>
+
+    <!-- Property 4 -->
+    <div class="property-card">
+      <div class="property-img-wrap">
+        <div class="prop-placeholder" style="background: linear-gradient(130deg, #0a1408 0%, #0e1c0a 30%, #3B6B28 60%, #1a2a12 100%);">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15" viewBox="0 0 600 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path d="M0 280 Q100 160 200 200 Q300 240 400 140 Q500 40 600 80" fill="none" stroke="#D4A843" stroke-width="1"/>
+            <path d="M0 260 Q100 145 200 185 Q300 225 400 120 Q500 15 600 55" fill="none" stroke="#C97D2E" stroke-width="0.7"/>
+            <path d="M0 300 Q100 180 200 215 Q300 260 400 155 Q500 60 600 100" fill="none" stroke="#D4A843" stroke-width="0.5"/>
+            <circle cx="300" cy="190" r="50" fill="rgba(10,50,30,0.4)" stroke="rgba(212,168,67,0.3)" stroke-width="0.8"/>
+            <text x="300" y="270" text-anchor="middle" fill="#D4A843" font-size="8" font-family="JetBrains Mono" opacity="0.5">BACALAR · SELVA 48 HA</text>
+          </svg>
+          <div style="position:absolute;bottom:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;color:rgba(212,168,67,0.5)">BACALAR · JUNGLE</div>
+        </div>
+        <span class="status-badge">AVAILABLE</span>
+        <span class="type-badge">JUNGLE</span>
+      </div>
+      <div class="property-body">
+        <div class="property-zone">Bacalar · Quintana Roo</div>
+        <div class="property-name">Terreno Selva 48 ha</div>
+        <div class="property-price">$1.2M</div>
+        <div class="property-specs">
+          <div class="spec-item">
+            <span class="spec-val">480,000 m²</span>
+            <span class="spec-key">Total Area</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">48 ha</span>
+            <span class="spec-key">Hectares</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">$2.50/m²</span>
+            <span class="spec-key">Price / m²</span>
+          </div>
+        </div>
+        <a href="#dataroom" class="property-cta">Request DataRoom →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 6. ZONES ──────────────────────────────────────────────────── -->
+<section class="section" id="zones" aria-labelledby="zones-heading">
+  <div class="section-header">
+    <div>
+      <div class="section-label" id="zones-heading">Investment Map</div>
+      <h2 class="section-title">The Quintana Roo <em>Corridors</em></h2>
+    </div>
+  </div>
+  <div class="zones-grid">
+
+    <div class="zone-card">
+      <div class="zone-name">Tulum</div>
+      <div class="zone-country">Quintana Roo · MX</div>
+      <div class="zone-price">$420</div>
+      <div class="zone-unit">avg per m²</div>
+      <div class="zone-attr">International airport operational. Highest velocity growth corridor in the Yucatán Peninsula.</div>
+      <div class="zone-hover-detail">
+        <div class="zone-hover-title">Tulum</div>
+        <div class="zone-hover-text">Tulum's new international airport (TQO) has catalysed institutional capital flows since 2024. Average land appreciation: 18% CAGR over the last five years. Ecotourism and boutique hotel development dominate. Fideicomiso and SAS structures available for foreign buyers.</div>
+      </div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-name">Playa del Carmen</div>
+      <div class="zone-country">Quintana Roo · MX</div>
+      <div class="zone-price">$280</div>
+      <div class="zone-unit">avg per m²</div>
+      <div class="zone-attr">Established infrastructure, high rental yield, proximity to Cancún International Airport.</div>
+      <div class="zone-hover-detail">
+        <div class="zone-hover-title">Playa del Carmen</div>
+        <div class="zone-hover-text">The most liquid sub-market in Quintana Roo. Commercial parcels along Carretera 307 command premium pricing. Residential land in Playacar and Villas del Mar remains in constrained supply. Best suited for mixed-use and commercial development mandates.</div>
+      </div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-name">Akumal</div>
+      <div class="zone-country">Quintana Roo · MX</div>
+      <div class="zone-price">$650</div>
+      <div class="zone-unit">avg per m²</div>
+      <div class="zone-attr">Highest per-m² pricing in the portfolio. Marine reserve adjacency. Ultra-limited beachfront supply.</div>
+      <div class="zone-hover-detail">
+        <div class="zone-hover-title">Akumal</div>
+        <div class="zone-hover-text">Akumal represents the pinnacle of Caribbean beachfront scarcity. Protected marine reserve restricts new coastal supply permanently. Average beachfront lot transaction: $4.2M–$12M. Primary buyer base: European and North American family offices. Fideicomiso trust mandatory for coastal zone acquisitions.</div>
+      </div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-name">Bacalar</div>
+      <div class="zone-country">Quintana Roo · MX</div>
+      <div class="zone-price">$180</div>
+      <div class="zone-unit">avg per m²</div>
+      <div class="zone-attr">Emerging luxury lacustrine market. UNESCO-cited Laguna de Bacalar. 5-year runway for appreciation.</div>
+      <div class="zone-hover-detail">
+        <div class="zone-hover-title">Bacalar</div>
+        <div class="zone-hover-text">Bacalar is where sophisticated capital is positioning today for 10-year horizon returns. The "Lake of Seven Colors" commands growing international attention, yet infrastructure constraints have held pricing below intrinsic value. Ideal for land banking and eco-resort development strategies. Sub-$200/m² entry still available.</div>
+      </div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-name">Costa Maya</div>
+      <div class="zone-country">Quintana Roo · MX</div>
+      <div class="zone-price">$95</div>
+      <div class="zone-unit">avg per m²</div>
+      <div class="zone-attr">Lowest entry point in the portfolio. Deep-water port proximity. Government infrastructure investment incoming.</div>
+      <div class="zone-hover-detail">
+        <div class="zone-hover-title">Costa Maya</div>
+        <div class="zone-hover-text">Costa Maya offers the most asymmetric risk/return profile in the portfolio. At sub-$100/m², institutional-scale land positions remain accessible. Federal investment in Mahahual port expansion and the Maya Train terminus is projected to compress land pricing significantly over the 2025–2030 window. Macro parcels of 100–500 ha available.</div>
+      </div>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-name">Cobá</div>
+      <div class="zone-country">Quintana Roo · MX</div>
+      <div class="zone-price">$140</div>
+      <div class="zone-unit">avg per m²</div>
+      <div class="zone-attr">Archaeological zone buffer. Jungle cenote estates. Spiritual tourism and wellness resort demand.</div>
+      <div class="zone-hover-detail">
+        <div class="zone-hover-title">Cobá Corridor</div>
+        <div class="zone-hover-text">The Cobá Road corridor between Tulum and Cobá ruins is experiencing rapid interest from wellness resort developers and luxury eco-lodge operators. Properties with private cenotes trade at significant premium. Environmental permitting via SEMARNAT is essential — we provide full guidance. Entry pricing still well below Tulum benchmarks.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 7. INVESTMENT JOURNAL ─────────────────────────────────────── -->
+<section class="section section-alt" id="journal" aria-labelledby="journal-heading">
+  <div class="section-header">
+    <div>
+      <div class="section-label" id="journal-heading">Intelligence</div>
+      <h2 class="section-title">For <em>Informed Investors</em></h2>
+    </div>
+    <a href="#" class="section-link">View all articles →</a>
+  </div>
+  <div class="journal-grid">
+
+    <div class="article-card">
+      <div class="article-img-wrap">
+        <div style="background: linear-gradient(145deg, #0e1a0a 0%, #1a2a10 40%, #2C1A0E 100%); width:100%; height:100%; position:relative;">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15" viewBox="0 0 400 220" aria-hidden="true">
+            <rect x="20" y="20" width="360" height="180" fill="none" stroke="#C97D2E" stroke-width="0.6"/>
+            <line x1="20" y1="110" x2="380" y2="110" stroke="#D4A843" stroke-width="0.4" stroke-dasharray="4 6"/>
+            <path d="M20 160 Q100 80 200 120 Q300 155 380 70" fill="none" stroke="#D4A843" stroke-width="0.9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="article-body">
+        <div class="article-meta">
+          <span class="tag-badge">Legal</span>
+          <span class="article-date">May 12, 2025</span>
+        </div>
+        <h3 class="article-title">How to Buy Land in Mexico as a Foreigner: 2025 Guide</h3>
+        <p class="article-excerpt">Foreigners cannot directly hold title within the Restricted Zone — 50 km from the coast and 100 km from borders. This guide explains the two primary structures: Fideicomiso (bank trust) and the Mexican corporation (SAS/SA de CV), with costs, timelines, and tax implications for 2025.</p>
+        <a href="#" class="article-link">Read guide →</a>
+      </div>
+    </div>
+
+    <div class="article-card">
+      <div class="article-img-wrap">
+        <div style="background: linear-gradient(155deg, #100a04 0%, #2C1A0E 45%, #1a1208 100%); width:100%; height:100%; position:relative;">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15" viewBox="0 0 400 220" aria-hidden="true">
+            <circle cx="200" cy="110" r="70" fill="none" stroke="#C97D2E" stroke-width="0.8"/>
+            <circle cx="200" cy="110" r="45" fill="none" stroke="#D4A843" stroke-width="0.6"/>
+            <circle cx="200" cy="110" r="20" fill="none" stroke="#C97D2E" stroke-width="0.5"/>
+            <text x="200" y="115" text-anchor="middle" fill="#D4A843" font-size="8" font-family="JetBrains Mono" opacity="0.6">FIDEICOMISO</text>
+          </svg>
+        </div>
+      </div>
+      <div class="article-body">
+        <div class="article-meta">
+          <span class="tag-badge">Legal</span>
+          <span class="article-date">April 3, 2025</span>
+        </div>
+        <h3 class="article-title">Fideicomiso Explained: The Foreigner's Trust for Mexican Property</h3>
+        <p class="article-excerpt">The Fideicomiso is a 50-year renewable bank trust that grants foreign nationals beneficial rights over Mexican coastal land. We break down the authorised trustee banks, annual fees ($500–$700 USD), permit timelines with the Secretaría de Relaciones Exteriores, and renewal procedures.</p>
+        <a href="#" class="article-link">Read guide →</a>
+      </div>
+    </div>
+
+    <div class="article-card">
+      <div class="article-img-wrap">
+        <div style="background: linear-gradient(140deg, #0a1408 0%, #122010 35%, #3B6B28 65%, #1a200a 100%); width:100%; height:100%; position:relative;">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.15" viewBox="0 0 400 220" aria-hidden="true">
+            <line x1="40" y1="20" x2="40" y2="200" stroke="#D4A843" stroke-width="0.5"/>
+            <line x1="40" y1="200" x2="360" y2="200" stroke="#D4A843" stroke-width="0.5"/>
+            <path d="M40 160 Q100 100 180 140 Q260 180 360 60" fill="none" stroke="#D4A843" stroke-width="1"/>
+            <path d="M40 170 Q100 130 180 155 Q260 175 360 95" fill="none" stroke="#C97D2E" stroke-width="0.7" stroke-dasharray="3 4"/>
+          </svg>
+        </div>
+      </div>
+      <div class="article-body">
+        <div class="article-meta">
+          <span class="tag-badge">Strategy</span>
+          <span class="article-date">March 18, 2025</span>
+        </div>
+        <h3 class="article-title">Tulum vs Bacalar: Where to Invest in Land in 2025?</h3>
+        <p class="article-excerpt">Two divergent risk profiles, both compelling. Tulum offers liquidity and proven appreciation with compression risk at current valuations. Bacalar offers early-cycle asymmetry, lower entry, and a 5-to-7-year value creation runway — at the cost of lower near-term liquidity. A comparative analysis for capital allocation.</p>
+        <a href="#" class="article-link">Read analysis →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 8. DATAROOM REQUEST FORM ──────────────────────────────────── -->
+<section class="dataroom-section" id="dataroom" aria-labelledby="dataroom-heading">
+  <div class="dataroom-inner">
+    <div class="dataroom-left">
+      <div class="section-label">Qualified Access</div>
+      <h2 class="dataroom-headline" id="dataroom-heading">Request Access to Our<br/><em>Investment DataRoom</em></h2>
+      <p class="dataroom-desc">Our DataRoom is made available to pre-qualified investors upon completion of this form and execution of a mutual NDA. All information is provided in strict confidence and governed by applicable Mexican and international real estate regulations.</p>
+      <p style="font-size:13px;font-weight:500;letter-spacing:0.06em;color:rgba(232,223,200,0.5);margin-bottom:20px;text-transform:uppercase">What's Included</p>
+      <ul class="dataroom-contents">
+        <li>Cadastral surveys and topographic plans (CAD/PDF)</li>
+        <li>Legal opinion letters from registered notario público</li>
+        <li>Comparable sales data — 24-month transaction records</li>
+        <li>Development potential plans and zoning certificates</li>
+        <li>Clean title reports and encumbrance status</li>
+        <li>Environmental permits (MIA) and SEMARNAT status</li>
+        <li>Appraisal reports (avalúo bancario)</li>
+        <li>Fideicomiso cost projections and bank comparisons</li>
+      </ul>
+    </div>
+
+    <div class="dataroom-right">
+      <form id="dataroomForm" novalidate>
+        <div class="form-row form-row-3">
+          <div class="form-field">
+            <label class="form-label" for="f-name">Full Name <span>*</span></label>
+            <input class="form-input" type="text" id="f-name" name="name" placeholder="Alexander von Stein" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-email">Email <span>*</span></label>
+            <input class="form-input" type="email" id="f-email" name="email" placeholder="a@family-office.com" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-phone">Phone / WhatsApp</label>
+            <input class="form-input" type="tel" id="f-phone" name="phone" placeholder="+1 212 555 0100" />
+          </div>
+        </div>
+
+        <div class="form-row form-row-3">
+          <div class="form-field">
+            <label class="form-label" for="f-country">Country of Residence <span>*</span></label>
+            <input class="form-input" type="text" id="f-country" name="country" placeholder="Germany" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-buyer">Buyer Type <span>*</span></label>
+            <select class="form-select" id="f-buyer" name="buyer_type" required>
+              <option value="" disabled selected>Select type</option>
+              <option value="individual">Individual</option>
+              <option value="company">Company</option>
+              <option value="fund">Fund / Institutional</option>
+              <option value="family-office">Family Office</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-budget">Budget Range <span>*</span></label>
+            <select class="form-select" id="f-budget" name="budget" required>
+              <option value="" disabled selected>Select range</option>
+              <option value="500k-2m">$500K – $2M</option>
+              <option value="2m-10m">$2M – $10M</option>
+              <option value="10m-50m">$10M – $50M</option>
+              <option value="50m+">$50M+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row form-row-1">
+          <div class="form-field">
+            <label class="form-label" for="f-funding">Funding Source <span>*</span></label>
+            <select class="form-select" id="f-funding" name="funding" required>
+              <option value="" disabled selected>Select funding source</option>
+              <option value="own">Own Funds / Equity</option>
+              <option value="financing">Bank Financing / Credit</option>
+              <option value="mixed">Mixed (Equity + Debt)</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row form-row-1">
+          <div class="form-field">
+            <label class="form-label" for="f-property">Property of Interest</label>
+            <input class="form-input" type="text" id="f-property" name="property" placeholder="e.g. Frente de Playa Akumal, or open to recommendations" />
+          </div>
+        </div>
+
+        <div class="form-row form-row-1">
+          <div class="form-field">
+            <label class="form-label" for="f-message">Additional Notes</label>
+            <textarea class="form-textarea" id="f-message" name="message" placeholder="Investment thesis, timeline, specific requirements or questions…"></textarea>
+          </div>
+        </div>
+
+        <div class="nda-row">
+          <input class="nda-check" type="checkbox" id="f-nda" name="nda" required />
+          <label class="nda-text" for="f-nda">
+            <strong>Confidentiality Agreement Required.</strong> I agree to maintain strict confidentiality of all materials, surveys, legal documents, pricing data, and transactional information provided within the DataRoom. I understand this agreement is legally binding and governed by applicable Mexican civil law.
+          </label>
+        </div>
+
+        <button type="submit" class="form-submit">Request DataRoom Access</button>
+        <p class="form-note">We qualify all DataRoom requests. Response within 4 business hours during Mexico City business hours (GMT-6). All information held in strict confidence.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── 9. TRUST SIGNALS ──────────────────────────────────────────── -->
+<section class="trust-section" aria-labelledby="trust-heading">
+  <div class="section-label" id="trust-heading">Due Diligence</div>
+  <div class="trust-grid">
+    <div class="trust-counter">
+      <div class="counter-num" id="trustCounter" data-target="2400000000" data-display="$2.4B">$2.4B</div>
+      <div class="counter-label">
+        Total land value transacted across Quintana Roo since 2019. All transactions executed through licensed notarios públicos and AMPI-registered agents.
+      </div>
+    </div>
+    <div class="map-placeholder" aria-label="Transaction heat map — Quintana Roo">
+      <div class="map-grid" aria-hidden="true"></div>
+      <div class="map-dots" aria-hidden="true">
+        <!-- Simulated transaction dots for Tulum, Playa, Akumal, Bacalar, Costa Maya, Coba -->
+        <div class="map-dot" style="top:38%;left:52%" title="Tulum"></div>
+        <div class="map-dot" style="top:28%;left:36%" title="Playa del Carmen"></div>
+        <div class="map-dot" style="top:32%;left:44%" title="Akumal"></div>
+        <div class="map-dot" style="top:72%;left:48%" title="Bacalar"></div>
+        <div class="map-dot" style="top:60%;left:58%" title="Costa Maya"></div>
+        <div class="map-dot" style="top:42%;left:42%" title="Cobá"></div>
+        <div class="map-dot" style="top:35%;left:50%" style="width:4px;height:4px;opacity:0.5"></div>
+        <div class="map-dot" style="top:45%;left:54%;width:4px;height:4px;opacity:0.4"></div>
+        <div class="map-dot" style="top:25%;left:38%;width:4px;height:4px;opacity:0.4"></div>
+      </div>
+      <span class="map-label">Transaction Heat Map — Quintana Roo · 2019–2025</span>
+    </div>
+  </div>
+
+  <div class="ampi-badge" aria-label="AMPI member badge">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <polygon points="10,2 12.9,7.4 19,8.2 14.5,12.6 15.6,18.7 10,15.7 4.4,18.7 5.5,12.6 1,8.2 7.1,7.4" stroke="#C97D2E" stroke-width="1.2" fill="none"/>
+    </svg>
+    <span>AMPI Member · Asociación Mexicana de Profesionales Inmobiliarios · Registro No. 4821</span>
+  </div>
+
+  <div class="banks-row" aria-label="Fiduciary bank partners">
+    <span class="banks-label">Fiduciary Banks</span>
+    <span class="bank-name">Santander</span>
+    <span class="bank-name">BBVA</span>
+    <span class="bank-name">Banorte</span>
+    <span class="bank-name">Scotiabank</span>
+    <span class="bank-name">HSBC México</span>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">"The depth of legal documentation in the DataRoom exceeded what we receive from institutional intermediaries in Europe. The fideicomiso structuring advice from their notario partner was precise and actionable. Transaction closed in 74 days from first contact — a record for our Mexican portfolio."</p>
+      <div class="testimonial-attr">— German Family Office · Q4 2024 · €8.4M beachfront acquisition, Akumal</div>
+    </div>
+    <div class="testimonial-card reveal">
+      <p class="testimonial-text">"We evaluated sixteen land positions across four agencies before engaging Tierras Mayas. Their comparable sales data was the only set verified against actual notarial records. The macro parcel we acquired on the Bacalar corridor is already up 22% on paper within six months. The thesis was sound."</p>
+      <div class="testimonial-attr">— US Institutional Fund · Q1 2025 · $14.2M macro parcel acquisition, Costa Maya</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 10. FOOTER ────────────────────────────────────────────────── -->
+<footer class="footer" id="contact" aria-label="Footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Tierras<span>·</span>Mayas</div>
+      <p class="footer-brand-desc">An exclusive land sales agency specialising in high-value parcels across the Quintana Roo investment corridor. Fiduciary-grade. AMPI registered. Serving family offices, institutional funds, and qualified private buyers since 2012.</p>
+      <div class="footer-ampi">AMPI Member · Registro 4821 · RFC TMA120615XXX</div>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Properties</div>
+      <ul class="footer-links">
+        <li><a href="#">Beachfront Land</a></li>
+        <li><a href="#">Cenote Estates</a></li>
+        <li><a href="#">Commercial Parcels</a></li>
+        <li><a href="#">Jungle & Interior</a></li>
+        <li><a href="#">Macro Portfolios (100+ ha)</a></li>
+        <li><a href="#">Off-Market Listings</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Investment Zones</div>
+      <ul class="footer-links">
+        <li><a href="#">Tulum Corridor</a></li>
+        <li><a href="#">Playa del Carmen</a></li>
+        <li><a href="#">Akumal Norte</a></li>
+        <li><a href="#">Bacalar</a></li>
+        <li><a href="#">Costa Maya</a></li>
+        <li><a href="#">Cobá Road</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-contact-item">
+        <strong>Office</strong>
+        Av. Constituyentes 45, Col. Ejidal<br/>
+        Playa del Carmen, Q.R. 77710<br/>
+        México
+      </div>
+      <div class="footer-contact-item" style="margin-top:16px">
+        <strong>DataRoom Inquiries</strong>
+        dataroom@tierrasmayas.mx
+      </div>
+      <div class="footer-contact-item" style="margin-top:12px">
+        <strong>WhatsApp</strong>
+        +52 984 100 4821
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Tierras Mayas S.A. de C.V. · All rights reserved · AMPI 4821</div>
+    <div class="footer-legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">NDA Template</a>
+      <a href="#">Legal Disclosures</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── 11. WHATSAPP FAB ──────────────────────────────────────────── -->
+<button class="wa-fab" id="waFab" aria-label="Contact via WhatsApp" onclick="window.open('https://wa.me/529841004821?text=Hello%2C%20I%27m%20interested%20in%20land%20investment%20opportunities%20in%20Quintana%20Roo.','_blank')">
+  <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</button>
+
+<!-- ── JAVASCRIPT ─────────────────────────────────────────────────── -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Nav scroll behaviour ──────────────────────────────────────────
+  var nav = document.getElementById('mainNav');
+  var lastScroll = 0;
+  function handleNavScroll() {
+    var scrollY = window.pageYOffset;
+    if (scrollY > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastScroll = scrollY;
+  }
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  handleNavScroll();
+
+  // ── IntersectionObserver scroll reveals ─────────────────────────
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.stat-card, .property-card, .zone-card, .article-card, .reveal').forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  // ── Staggered reveal delays for grid children ─────────────────
+  document.querySelectorAll('.stats-grid .stat-card').forEach(function(el, i) {
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+  document.querySelectorAll('.zones-grid .zone-card').forEach(function(el, i) {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+  document.querySelectorAll('.journal-grid .article-card').forEach(function(el, i) {
+    el.style.transitionDelay = (i * 0.12) + 's';
+  });
+  document.querySelectorAll('.properties-grid .property-card').forEach(function(el, i) {
+    el.style.transitionDelay = (i * 0.12) + 's';
+  });
+
+  // ── Counter animation for stats ──────────────────────────────────
+  function animateCounter(el, displayVal) {
+    // Already showing the final display value — just apply a count-up visual effect
+    var prefix = el.dataset.prefix || '';
+    var suffix = el.dataset.suffix || '';
+    var target = parseFloat(el.dataset.target) || 0;
+    var duration = 1800;
+    var start = performance.now();
+    function step(ts) {
+      var elapsed = ts - start;
+      var progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = target * eased;
+      var display;
+      if (suffix === 'B') {
+        display = prefix + (current / 1e9).toFixed(1) + 'B';
+        if (current < 1e9) display = prefix + (current / 1e6).toFixed(0) + 'M';
+      } else if (target >= 1) {
+        display = prefix + Math.round(current) + suffix;
+      } else {
+        display = prefix + current.toFixed(1) + suffix;
+      }
+      el.textContent = display;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = displayVal || (prefix + target + suffix);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var statCards = document.querySelectorAll('.stat-card');
+  var statObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var card = entry.target;
+        var numEl = card.querySelector('.stat-number');
+        if (numEl && card.dataset.target) {
+          var display = numEl.textContent;
+          animateCounter(numEl, display);
+        }
+        statObserver.unobserve(card);
+      }
+    });
+  }, { threshold: 0.5 });
+  statCards.forEach(function(c) {
+    statObserver.observe(c);
+  });
+
+  // ── DataRoom form: NDA validation + submit ───────────────────────
+  var form = document.getElementById('dataroomForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var nda = document.getElementById('f-nda');
+      if (!nda.checked) {
+        // Style NDA row to indicate error
+        var ndaRow = nda.closest('.nda-row');
+        ndaRow.style.borderColor = '#C97D2E';
+        ndaRow.style.background = 'rgba(201,125,46,0.10)';
+        nda.focus();
+        alert('Please confirm the confidentiality agreement before requesting DataRoom access. All materials are provided under NDA.');
+        return;
+      }
+      var name = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var country = document.getElementById('f-country').value.trim();
+      var buyer = document.getElementById('f-buyer').value;
+      var budget = document.getElementById('f-budget').value;
+      var funding = document.getElementById('f-funding').value;
+      if (!name || !email || !country || !buyer || !budget || !funding) {
+        alert('Please complete all required fields (marked with *) before submitting.');
+        return;
+      }
+      var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(email)) {
+        alert('Please enter a valid email address.');
+        document.getElementById('f-email').focus();
+        return;
+      }
+      // Success state
+      var submitBtn = form.querySelector('.form-submit');
+      submitBtn.textContent = 'Request Received — Expect a Response Within 4 Hours';
+      submitBtn.disabled = true;
+      submitBtn.style.background = 'rgba(59,107,40,0.80)';
+      submitBtn.style.color = 'rgba(232,223,200,0.85)';
+      form.style.opacity = '0.7';
+    });
+  }
+
+  // ── WhatsApp FAB: show after 3 seconds ──────────────────────────
+  var waFab = document.getElementById('waFab');
+  if (waFab) {
+    setTimeout(function() {
+      waFab.classList.add('visible');
+    }, 3000);
+  }
+
+  // ── Smooth nav link scrolling ────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = target.getBoundingClientRect().top + window.pageYOffset
+                     - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10)
+                     - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--ticker-h'), 10);
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Ticker pause on hover (handled via CSS, JS fallback) ─────────
+  // CSS handles animation-play-state: paused on hover natively.
+  // Accessibility: allow reduced-motion users to opt out completely.
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq.matches) {
+    var ticker = document.querySelector('.ticker-track');
+    if (ticker) ticker.style.animationPlayState = 'paused';
+  }
+
+})();
+</script>
+
+</body>
+</html>

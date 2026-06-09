@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riviera Maya · Concierge — Private Luxury Travel</title>
+  <meta name="description" content="The Riviera Maya's most discreet luxury concierge. Private cenotes, curated dining, bespoke itineraries. Since 2013." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --deep: #0A1A22;
+      --cenote: #1C3F4E;
+      --sand: #C9AC7A;
+      --seafoam: #8FC4BB;
+      --salt: #F2EFE8;
+      --gap: 1px;
+      --nav-h: 72px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--deep);
+      color: var(--salt);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ─── TYPOGRAPHY ─── */
+    .display { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+    .display-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+      transition: background 0.3s var(--ease), color 0.3s var(--ease), opacity 0.3s;
+    }
+    .btn-primary {
+      background: var(--sand);
+      color: var(--deep);
+    }
+    .btn-primary:hover { background: var(--salt); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--salt);
+      border: 1px solid rgba(242,239,232,0.4);
+    }
+    .btn-ghost:hover {
+      background: rgba(242,239,232,0.08);
+      border-color: var(--salt);
+    }
+
+    /* ─── STICKY NAV ─── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      transition: background 0.4s, border-bottom 0.4s, backdrop-filter 0.4s;
+    }
+    #nav.scrolled {
+      background: rgba(10,26,34,0.72);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      border-bottom: 1px solid rgba(201,172,122,0.18);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--sand);
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(242,239,232,0.7);
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--sand); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .lang-switch {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: rgba(242,239,232,0.5);
+      cursor: pointer;
+    }
+    .lang-switch span { transition: color 0.25s; }
+    .lang-switch span.active { color: var(--sand); }
+    .lang-switch:hover span { color: var(--seafoam); }
+    #nav-cta {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+      font-size: 0.72rem;
+      padding: 0.65rem 1.4rem;
+    }
+    #nav-cta.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 6rem;
+      overflow: hidden;
+    }
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10,26,34,0.82) 0%,
+        rgba(10,26,34,0.5) 60%,
+        rgba(28,63,78,0.3) 100%
+      );
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+    .hero-label {
+      color: var(--sand);
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s var(--ease) 0.1s forwards;
+    }
+    .hero-headline {
+      font-size: clamp(3.2rem, 6vw, 6.5rem);
+      line-height: 1.0;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.8s var(--ease) 0.3s forwards;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--seafoam);
+    }
+    .hero-subhead {
+      font-size: 1.0rem;
+      font-weight: 300;
+      color: rgba(242,239,232,0.72);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s var(--ease) 0.5s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.7s var(--ease) 0.7s forwards;
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 6rem;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s var(--ease) 1.1s forwards;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: var(--sand);
+      transform-origin: top;
+      animation: scrollPulse 2s ease-in-out 1.5s infinite;
+    }
+    .scroll-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: rgba(201,172,122,0.7);
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(0.7); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ─── SECTIONS SHARED ─── */
+    section { position: relative; }
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+    .section-eyebrow {
+      color: var(--sand);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.05;
+    }
+    .section-desc {
+      margin-top: 1rem;
+      max-width: 480px;
+      color: rgba(242,239,232,0.65);
+      font-size: 0.95rem;
+    }
+
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: var(--cenote);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+    .service-card {
+      background: rgba(10,26,34,0.55);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--sand);
+      transition: width 0.5s var(--ease);
+    }
+    .service-card:hover::after { width: 100%; }
+    .service-card:hover { background: rgba(10,26,34,0.75); }
+    .card-tier {
+      color: var(--sand);
+      margin-bottom: 2rem;
+    }
+    .card-name {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-price {
+      font-size: 1.5rem;
+      color: var(--seafoam);
+      margin-bottom: 0.4rem;
+    }
+    .card-min {
+      font-size: 0.75rem;
+      color: rgba(242,239,232,0.5);
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+    }
+    .card-features {
+      margin-bottom: 2.5rem;
+    }
+    .card-features li {
+      font-size: 0.9rem;
+      color: rgba(242,239,232,0.72);
+      padding: 0.55rem 0;
+      border-top: 1px solid rgba(242,239,232,0.1);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .card-features li::before {
+      content: '—';
+      color: var(--sand);
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .popular-badge {
+      display: inline-block;
+      background: var(--sand);
+      color: var(--deep);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ─── JOURNAL ─── */
+    #journal {
+      background: var(--deep);
+    }
+    .journal-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--gap);
+      min-height: 520px;
+    }
+    .journal-article {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      min-height: 380px;
+      transition: opacity 0.3s;
+    }
+    .journal-article::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      transition: transform 0.6s var(--ease);
+    }
+    .journal-article:nth-child(1)::before {
+      background: linear-gradient(160deg, #0d2e3a 0%, #1a5466 35%, #8FC4BB 70%, #C9AC7A 100%);
+    }
+    .journal-article:nth-child(2)::before {
+      background: linear-gradient(200deg, #0A1A22 0%, #1C3F4E 50%, #166366 100%);
+    }
+    .journal-article:nth-child(3)::before {
+      background: linear-gradient(180deg, #0e2535 0%, #164552 40%, #2b7a6e 100%);
+    }
+    .journal-article::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 70%;
+      background: linear-gradient(to top, rgba(10,26,34,0.95) 0%, transparent 100%);
+      z-index: 1;
+    }
+    .journal-content {
+      position: relative;
+      z-index: 2;
+    }
+    .journal-cat {
+      color: var(--sand);
+      margin-bottom: 0.6rem;
+    }
+    .journal-title {
+      font-size: 1.25rem;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      transition: color 0.25s;
+    }
+    .journal-article:first-child .journal-title {
+      font-size: 1.9rem;
+    }
+    .journal-article:hover .journal-title { color: var(--sand); }
+    .journal-excerpt {
+      font-size: 0.88rem;
+      color: rgba(242,239,232,0.6);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .journal-article:nth-child(2) .journal-excerpt,
+    .journal-article:nth-child(3) .journal-excerpt {
+      -webkit-line-clamp: 2;
+    }
+    .journal-read {
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--seafoam);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.25s;
+    }
+    .journal-article:hover .journal-read { gap: 0.8rem; }
+    .journal-article:hover::before { transform: scale(1.04); }
+
+    /* ─── DESTINATIONS ─── */
+    #destinations {
+      background: var(--deep);
+    }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap);
+    }
+    .dest-card {
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .dest-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.7s var(--ease);
+    }
+    .dest-card:nth-child(1) .dest-bg {
+      background: linear-gradient(170deg, #0c2d3f 0%, #1a5e6b 40%, #2e9b8f 80%, #C9AC7A 100%);
+    }
+    .dest-card:nth-child(2) .dest-bg {
+      background: linear-gradient(180deg, #071a23 0%, #0e4258 45%, #1d8a80 90%);
+    }
+    .dest-card:nth-child(3) .dest-bg {
+      background: linear-gradient(165deg, #0e1f2d 0%, #1b4a5e 50%, #3e9fa0 100%);
+    }
+    .dest-card:nth-child(4) .dest-bg {
+      background: linear-gradient(175deg, #071222 0%, #113a52 35%, #0e6e7a 65%, #5fb3a0 100%);
+    }
+    .dest-card:hover .dest-bg { transform: scale(1.08); }
+    .dest-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 55%;
+      background: linear-gradient(to top, rgba(10,26,34,0.93) 0%, transparent 100%);
+      z-index: 1;
+    }
+    .dest-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.6rem 1.4rem;
+      z-index: 2;
+    }
+    .dest-name {
+      font-size: 1.5rem;
+      margin-bottom: 0.35rem;
+    }
+    .dest-desc {
+      font-size: 0.8rem;
+      color: rgba(242,239,232,0.6);
+      line-height: 1.55;
+    }
+
+    /* ─── NEWS FEED ─── */
+    #news {
+      background: var(--cenote);
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+    .news-card {
+      background: rgba(10,26,34,0.5);
+      padding: 2.2rem;
+      border-top: 1px solid rgba(201,172,122,0.2);
+      transition: background 0.3s;
+    }
+    .news-card:hover { background: rgba(10,26,34,0.75); }
+    .news-source {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .source-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .source-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(242,239,232,0.55);
+    }
+    .news-title {
+      font-size: 1.1rem;
+      line-height: 1.3;
+      margin-bottom: 0.9rem;
+      transition: color 0.25s;
+    }
+    .news-card:hover .news-title { color: var(--sand); }
+    .news-excerpt {
+      font-size: 0.85rem;
+      color: rgba(242,239,232,0.58);
+      line-height: 1.65;
+      margin-bottom: 1.4rem;
+    }
+    .news-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      color: rgba(242,239,232,0.35);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── CONSULTATION FORM ─── */
+    #consultation {
+      background: var(--deep);
+    }
+    .consult-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .consult-left .section-title { margin-bottom: 1.5rem; }
+    .promise-list {
+      margin-top: 2.5rem;
+    }
+    .promise-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1.1rem 0;
+      border-top: 1px solid rgba(242,239,232,0.1);
+    }
+    .promise-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--sand);
+      opacity: 0.7;
+      padding-top: 0.1rem;
+      flex-shrink: 0;
+      width: 1.5rem;
+    }
+    .promise-text {
+      font-size: 0.9rem;
+      color: rgba(242,239,232,0.65);
+      line-height: 1.6;
+    }
+    .promise-text strong {
+      display: block;
+      color: var(--salt);
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+    }
+    .consult-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      background: rgba(28,63,78,0.3);
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(242,239,232,0.45);
+      padding: 0.9rem 1rem 0;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--salt);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      padding: 0.4rem 1rem 0.9rem;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    .form-group:focus-within {
+      background: rgba(28,63,78,0.6);
+      outline: 1px solid var(--sand);
+    }
+    .form-group select option { background: var(--deep); }
+    .form-group textarea {
+      resize: none;
+      height: 110px;
+      line-height: 1.6;
+    }
+    .form-submit {
+      grid-column: 1 / -1;
+      margin-top: var(--gap);
+    }
+    .form-submit .btn {
+      width: 100%;
+      text-align: center;
+    }
+    #form-success {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    #form-success .success-icon {
+      font-size: 2rem;
+      color: var(--seafoam);
+      margin-bottom: 1rem;
+    }
+    #form-success h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+    #form-success p {
+      color: rgba(242,239,232,0.6);
+      font-size: 0.9rem;
+    }
+
+    /* ─── TRUST SECTION ─── */
+    #trust {
+      background: var(--cenote);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap);
+      margin-bottom: 5rem;
+    }
+    .stat-card {
+      background: rgba(10,26,34,0.45);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(242,239,232,0.55);
+      letter-spacing: 0.08em;
+    }
+    .press-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(242,239,232,0.1);
+    }
+    .press-label-tag {
+      color: rgba(242,239,232,0.35);
+      margin-right: 1rem;
+    }
+    .press-logos {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .press-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: rgba(242,239,232,0.28);
+      letter-spacing: 0.04em;
+      transition: color 0.25s;
+      cursor: default;
+      white-space: nowrap;
+    }
+    .press-name:hover { color: rgba(242,239,232,0.55); }
+
+    /* ─── FOOTER ─── */
+    #footer {
+      background: #060f14;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5rem 3rem 2.5rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand .nav-logo {
+      display: block;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(242,239,232,0.45);
+      line-height: 1.75;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      opacity: 0.7;
+      margin-bottom: 1.4rem;
+    }
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: rgba(242,239,232,0.45);
+      transition: color 0.25s;
+    }
+    .footer-col ul li a:hover { color: var(--salt); }
+    .footer-contact p {
+      font-size: 0.88rem;
+      color: rgba(242,239,232,0.45);
+      line-height: 1.8;
+    }
+    .footer-contact a {
+      color: var(--seafoam);
+      transition: color 0.25s;
+    }
+    .footer-contact a:hover { color: var(--sand); }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(242,239,232,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: rgba(242,239,232,0.25);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-legal a {
+      font-size: 0.75rem;
+      color: rgba(242,239,232,0.25);
+      transition: color 0.25s;
+    }
+    .footer-legal a:hover { color: rgba(242,239,232,0.55); }
+
+    /* ─── WHATSAPP FAB ─── */
+    #whatsapp-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px; height: 52px;
+      background: #25D366;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), background 0.25s;
+    }
+    #whatsapp-fab.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    #whatsapp-fab:hover { background: #1ebe5a; }
+    #whatsapp-fab svg { width: 26px; height: 26px; }
+    .fab-ring {
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(37,211,102,0.5);
+      animation: fabPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes fabPulse {
+      0%, 100% { opacity: 0; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      #hero { padding: 0 3.5rem; }
+      .scroll-indicator { left: 3.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .journal-grid { grid-template-columns: 1fr 1fr; }
+      .journal-article:first-child { grid-column: 1 / -1; min-height: 320px; }
+      .dest-grid { grid-template-columns: repeat(2, 1fr); }
+      .consult-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      #nav { padding: 0 2rem; }
+    }
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+      #hero { padding: 0 1.5rem; }
+      .scroll-indicator { left: 1.5rem; }
+      .section-inner { padding: 4rem 1.5rem; }
+      .nav-links { display: none; }
+      #nav { padding: 0 1.5rem; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { text-align: center; }
+      .journal-grid { grid-template-columns: 1fr; }
+      .journal-article:first-child { grid-column: unset; }
+      .dest-grid { grid-template-columns: repeat(2, 1fr); }
+      .news-grid { grid-template-columns: 1fr; }
+      .consult-form { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .press-logos { gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ─── REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .hero-label, .hero-headline, .hero-subhead, .hero-ctas, .scroll-indicator {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal { opacity: 1; transform: none; }
+      #hero-canvas { display: none; }
+      .hero-overlay {
+        background: rgba(10,26,34,0.9);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Riviera Maya·Concierge</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#consultation">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch" role="button" tabindex="0" aria-label="Language switch">
+        <span class="active" id="lang-en">EN</span>
+        <span style="opacity:0.3;margin:0 0.3rem">|</span>
+        <span id="lang-es">ES</span>
+      </div>
+      <a href="#consultation" class="btn btn-primary" id="nav-cta">Reserve</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="label hero-label">Since 2013 · Tulum, México</span>
+      <h1 class="display hero-headline">
+        Where the Caribbean<br>Meets the <em>Cenote</em>
+      </h1>
+      <p class="hero-subhead">
+        A private concierge for those who require more than a hotel can offer. Bespoke itineraries, undisclosed access, and a decade of cultivated trust on the Riviera Maya.
+      </p>
+      <div class="hero-ctas">
+        <a href="#consultation" class="btn btn-primary">Request Consultation</a>
+        <a href="#services" class="btn btn-ghost">Explore Services</a>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="label section-eyebrow">Our Tiers</span>
+        <h2 class="display section-title">Crafted for Every<br>Level of Intention</h2>
+        <p class="section-desc">Three service architectures. One promise: total privacy, zero compromise, and access that simply cannot be bought elsewhere.</p>
+      </div>
+      <div class="services-grid">
+        <!-- Tier I -->
+        <div class="service-card reveal reveal-delay-1">
+          <span class="label card-tier">Tier I</span>
+          <h3 class="display card-name">Palapa</h3>
+          <div class="card-price display">$850<span style="font-size:0.9rem;opacity:0.6"> /day</span></div>
+          <p class="card-min label">3 nights minimum</p>
+          <ul class="card-features">
+            <li>Airport arrival coordination &amp; private transfer</li>
+            <li>Curated restaurant reservations &amp; exclusive access</li>
+            <li>Daily itinerary curation with local insight</li>
+            <li>24/7 on-call concierge via WhatsApp</li>
+            <li>Cenote half-day private experience</li>
+            <li>Welcome amenity &amp; branded welcome kit</li>
+          </ul>
+          <a href="#consultation" class="btn btn-ghost" style="width:100%;text-align:center">Inquire</a>
+        </div>
+        <!-- Tier II -->
+        <div class="service-card reveal reveal-delay-2">
+          <span class="popular-badge">Most Popular</span>
+          <span class="label card-tier">Tier II</span>
+          <h3 class="display card-name">Cenote</h3>
+          <div class="card-price display">$3,200<span style="font-size:0.9rem;opacity:0.6"> /day</span></div>
+          <p class="card-min label">5 nights minimum</p>
+          <ul class="card-features">
+            <li>Everything in Palapa, elevated</li>
+            <li>Private villa curation &amp; full rental management</li>
+            <li>Dedicated concierge resident on property</li>
+            <li>Private chef sourcing &amp; menu design</li>
+            <li>Exclusive access to unpublished cenotes</li>
+            <li>Helicopter or seaplane day transfers</li>
+            <li>Whale shark private encounter coordination</li>
+          </ul>
+          <a href="#consultation" class="btn btn-primary" style="width:100%;text-align:center">Inquire</a>
+        </div>
+        <!-- Tier III -->
+        <div class="service-card reveal reveal-delay-3">
+          <span class="label card-tier">Tier III</span>
+          <h3 class="display card-name">Jaguar</h3>
+          <div class="card-price display">$8,500<span style="font-size:0.9rem;opacity:0.6"> /day</span></div>
+          <p class="card-min label">Ultra — minimum 7 nights</p>
+          <ul class="card-features">
+            <li>Full white-glove estate takeover coordination</li>
+            <li>Security advance team &amp; NDA-bound staff</li>
+            <li>Private archaeological site access (MX permit)</li>
+            <li>Biosphere Sian Ka'an exclusive immersion</li>
+            <li>Celebrity chef partnership dinners</li>
+            <li>Charter yacht provisioned for coastal passage</li>
+            <li>Bespoke content &amp; privacy-first photography</li>
+          </ul>
+          <a href="#consultation" class="btn btn-ghost" style="width:100%;text-align:center">Inquire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── JOURNAL ─── -->
+  <section id="journal">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="label section-eyebrow">Dispatches</span>
+        <h2 class="display section-title">From the Journal</h2>
+      </div>
+      <div class="journal-grid reveal">
+        <!-- Article 1: Featured -->
+        <a href="#" class="journal-article" target="_blank" rel="noopener noreferrer">
+          <div class="journal-content">
+            <span class="label journal-cat" style="color:var(--seafoam)">Experiences</span>
+            <h3 class="display journal-title">7 Private Cenotes Only the Locals Know</h3>
+            <p class="journal-excerpt">Beneath the Yucatán Peninsula lies one of the world's most complex underground river systems — and within it, chambers of turquoise water so pristine that coordinates are shared only in whispers. We spent three years cataloguing the ones worth keeping quiet.</p>
+            <span class="journal-read">Read the full dispatch →</span>
+          </div>
+        </a>
+        <!-- Article 2 -->
+        <a href="#" class="journal-article" target="_blank" rel="noopener noreferrer">
+          <div class="journal-content">
+            <span class="label journal-cat" style="color:var(--sand)">Dining</span>
+            <h3 class="display journal-title">How to Get a Table at Hartwood</h3>
+            <p class="journal-excerpt">Tulum's most coveted dining room has no phone number and no reservations page. What it does have is a woodfire, a mythology, and exactly 36 covers. Here is what actually works.</p>
+            <span class="journal-read">Read →</span>
+          </div>
+        </a>
+        <!-- Article 3 -->
+        <a href="#" class="journal-article" target="_blank" rel="noopener noreferrer">
+          <div class="journal-content">
+            <span class="label journal-cat" style="color:var(--seafoam)">Marine</span>
+            <h3 class="display journal-title">Whale Shark Season 2025: Private Encounter Guide</h3>
+            <p class="journal-excerpt">From June through September, the world's largest fish congregate off Isla Holbox. We explain how to meet them without a hundred other tourists in the water.</p>
+            <span class="journal-read">Read →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DESTINATIONS ─── -->
+  <section id="destinations">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="label section-eyebrow">The Coast</span>
+        <h2 class="display section-title">Four Territories,<br>One Thread</h2>
+        <p class="section-desc">Each place holds its own character. We know them all with the granularity of a local and the perspective of a well-travelled editor.</p>
+      </div>
+      <div class="dest-grid">
+        <div class="dest-card reveal reveal-delay-1">
+          <div class="dest-bg"></div>
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <h3 class="display dest-name">Tulum</h3>
+            <p class="dest-desc">Clifftop ruins, underground rivers, and the most deliberate culinary scene in the Americas.</p>
+          </div>
+        </div>
+        <div class="dest-card reveal reveal-delay-2">
+          <div class="dest-bg"></div>
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <h3 class="display dest-name">Akumal</h3>
+            <p class="dest-desc">Sea turtle habitat, secluded reef systems, and unhurried coastal living away from the tourist circuit.</p>
+          </div>
+        </div>
+        <div class="dest-card reveal reveal-delay-3">
+          <div class="dest-bg"></div>
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <h3 class="display dest-name">Playa del Carmen</h3>
+            <p class="dest-desc">Urban density and Bohemian texture. The best base for those who want the city and the sea in equal measure.</p>
+          </div>
+        </div>
+        <div class="dest-card reveal reveal-delay-4">
+          <div class="dest-bg"></div>
+          <div class="dest-overlay"></div>
+          <div class="dest-info">
+            <h3 class="display dest-name">Bacalar</h3>
+            <p class="dest-desc">The Lake of Seven Colours. A floating world of ancient cenotes and iridescent lagoon water three hours south of everything else.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NEWS FEED ─── -->
+  <section id="news">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="label section-eyebrow">Intelligence</span>
+        <h2 class="display section-title">Caribbean Travel<br>Intelligence</h2>
+        <p class="section-desc">Curated signals from the publications that shape how the world's most discerning travellers move.</p>
+      </div>
+      <div class="news-grid">
+        <div class="news-card reveal reveal-delay-1">
+          <div class="news-source">
+            <span class="source-dot" style="background:#E83333"></span>
+            <span class="source-name">Condé Nast Traveler</span>
+          </div>
+          <a href="#" class="news-title display" target="_blank" rel="noopener noreferrer">
+            Tulum Was Named the World's Best Emerging Destination — What That Means for Private Travel
+          </a>
+          <p class="news-excerpt">As mainstream arrivals surge, the most exclusive corners of the Riviera Maya are quietly contracting. What was available to any well-connected concierge two years ago now requires relationships cultivated over a decade.</p>
+          <span class="news-date">June 2025</span>
+        </div>
+        <div class="news-card reveal reveal-delay-2">
+          <div class="news-source">
+            <span class="source-dot" style="background:#C9AC7A"></span>
+            <span class="source-name">Virtuoso</span>
+          </div>
+          <a href="#" class="news-title display" target="_blank" rel="noopener noreferrer">
+            The Riviera Maya's Ultra-Luxury Tier Is Quietly Outpacing the Caribbean's Legacy Islands
+          </a>
+          <p class="news-excerpt">Driven by direct international routes, a new class of eco-conscious estate villa, and a dining culture that rivals Mexico City, the Yucatán's coastal corridor has shifted the geography of aspirational travel.</p>
+          <span class="news-date">May 2025</span>
+        </div>
+        <div class="news-card reveal reveal-delay-3">
+          <div class="news-source">
+            <span class="source-dot" style="background:#8FC4BB"></span>
+            <span class="source-name">Lonely Planet</span>
+          </div>
+          <a href="#" class="news-title display" target="_blank" rel="noopener noreferrer">
+            Bacalar Is Having a Moment — And the Smart Money Is Getting There Before Everyone Notices
+          </a>
+          <p class="news-excerpt">An hour past Tulum's radius of familiarity, Bacalar's Lagoon of Seven Colours remains one of the last genuinely undiscovered luxury frontiers in North America. The casitas that exist there will not exist there forever.</p>
+          <span class="news-date">April 2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONSULTATION FORM ─── -->
+  <section id="consultation">
+    <div class="section-inner">
+      <div class="consult-grid">
+        <!-- Left -->
+        <div class="consult-left reveal">
+          <span class="label section-eyebrow">Get in Touch</span>
+          <h2 class="display section-title" style="margin-top:0.75rem">Begin Your<br>Consultation</h2>
+          <p style="margin-top:1rem;color:rgba(242,239,232,0.6);font-size:0.95rem;line-height:1.75">
+            Every engagement begins with a conversation. Tell us when you are arriving, and we will take care of everything else. Response within four working hours — guaranteed.
+          </p>
+          <div class="promise-list">
+            <div class="promise-item">
+              <span class="promise-num">01</span>
+              <div class="promise-text">
+                <strong>Absolute Discretion</strong>
+                All client information is held under strict confidentiality. We do not disclose, aggregate, or sell any data.
+              </div>
+            </div>
+            <div class="promise-item">
+              <span class="promise-num">02</span>
+              <div class="promise-text">
+                <strong>No Commitment to Inquire</strong>
+                A consultation is precisely that. We outline what is possible; you decide if we are the right fit.
+              </div>
+            </div>
+            <div class="promise-item">
+              <span class="promise-num">03</span>
+              <div class="promise-text">
+                <strong>Itinerary Within 48 Hours</strong>
+                Once you confirm, a fully customised itinerary with accommodation, dining, and experiences arrives within two business days.
+              </div>
+            </div>
+            <div class="promise-item">
+              <span class="promise-num">04</span>
+              <div class="promise-text">
+                <strong>24/7 On-the-Ground Support</strong>
+                From the moment your flight lands to the moment it departs, a dedicated concierge is available on your line.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Form -->
+        <div class="reveal reveal-delay-2">
+          <form class="consult-form" id="consult-form" novalidate>
+            <div class="form-group">
+              <label for="f-name">Full Name</label>
+              <input type="text" id="f-name" name="name" placeholder="Alexandra Moreau" required />
+            </div>
+            <div class="form-group">
+              <label for="f-email">Email Address</label>
+              <input type="email" id="f-email" name="email" placeholder="alex@domain.com" required />
+            </div>
+            <div class="form-group">
+              <label for="f-phone">Phone / WhatsApp</label>
+              <input type="tel" id="f-phone" name="phone" placeholder="+1 212 555 0182" />
+            </div>
+            <div class="form-group">
+              <label for="f-arrival">Arrival Date</label>
+              <input type="date" id="f-arrival" name="arrival" />
+            </div>
+            <div class="form-group">
+              <label for="f-nights">Number of Nights</label>
+              <input type="number" id="f-nights" name="nights" placeholder="7" min="1" />
+            </div>
+            <div class="form-group">
+              <label for="f-guests">Guests</label>
+              <input type="number" id="f-guests" name="guests" placeholder="2" min="1" />
+            </div>
+            <div class="form-group full">
+              <label for="f-tier">Service Tier</label>
+              <select id="f-tier" name="tier">
+                <option value="" disabled selected>Select a tier</option>
+                <option value="palapa">Tier I — Palapa ($850/day)</option>
+                <option value="cenote">Tier II — Cenote ($3,200/day)</option>
+                <option value="jaguar">Tier III — Jaguar ($8,500/day)</option>
+                <option value="bespoke">Bespoke — Let's discuss</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="f-message">Tell Us About Your Vision</label>
+              <textarea id="f-message" name="message" placeholder="Private villa near the Sian Ka'an biosphere, a dinner at the ruins, a morning in a private cenote — I want to feel like a local who happens to have extraordinary taste..."></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary" id="form-btn">Send Inquiry</button>
+            </div>
+          </form>
+          <div id="form-success">
+            <div class="success-icon">✦</div>
+            <h3 class="display">Inquiry Received</h3>
+            <p>Your request has been submitted with care. Expect a personal response from our team within four hours. Until then — begin dreaming.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST ─── -->
+  <section id="trust">
+    <div class="section-inner">
+      <div class="section-header reveal" style="text-align:center;margin-bottom:3rem">
+        <span class="label section-eyebrow">By the Numbers</span>
+        <h2 class="display section-title">A Decade of<br>Earned Trust</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="display stat-number" data-target="2800" data-suffix="+">0</div>
+          <p class="label stat-label">Curated Trips</p>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="display stat-number" data-target="11" data-suffix="">0</div>
+          <p class="label stat-label">Years in Practice</p>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="display stat-number" data-target="94" data-suffix="%">0</div>
+          <p class="label stat-label">Return Rate</p>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <div class="display stat-number" data-target="47" data-suffix="">0</div>
+          <p class="label stat-label">Cenote Partners</p>
+        </div>
+      </div>
+      <div class="press-row reveal">
+        <span class="label press-label-tag">As seen in</span>
+        <div class="press-logos">
+          <span class="press-name">Condé Nast Traveler</span>
+          <span class="press-name">Forbes</span>
+          <span class="press-name">Virtuoso</span>
+          <span class="press-name">Monocle</span>
+          <span class="press-name">Financial Times</span>
+          <span class="press-name">Wall Street Journal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">Riviera Maya·Concierge</span>
+          <p>An independent luxury concierge operating along the full length of Mexico's Quintana Roo coast since 2013. Private, discreet, and deeply local.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Tier I — Palapa</a></li>
+            <li><a href="#services">Tier II — Cenote</a></li>
+            <li><a href="#services">Tier III — Jaguar</a></li>
+            <li><a href="#consultation">Bespoke Inquiry</a></li>
+            <li><a href="#journal">The Journal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Destinations</h4>
+          <ul>
+            <li><a href="#destinations">Tulum</a></li>
+            <li><a href="#destinations">Akumal</a></li>
+            <li><a href="#destinations">Playa del Carmen</a></li>
+            <li><a href="#destinations">Bacalar</a></li>
+            <li><a href="#destinations">Isla Holbox</a></li>
+            <li><a href="#destinations">Cobá</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact">
+          <h4>Contact</h4>
+          <p>
+            <a href="mailto:hello@rivieramayaconcierge.com">hello@rivieramayaconcierge.com</a><br />
+            <a href="https://wa.me/529841234567" target="_blank" rel="noopener noreferrer">WhatsApp: +52 984 123 4567</a><br /><br />
+            Tulum, Quintana Roo<br />
+            México 77760
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Riviera Maya Concierge. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Preferences</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── WHATSAPP FAB ─── -->
+  <a href="https://wa.me/529841234567" id="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+    <div class="fab-ring"></div>
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.105.543 4.087 1.494 5.817L.057 23.743a.5.5 0 00.609.62l6.11-1.585C8.295 23.545 10.109 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.844 0-3.602-.484-5.13-1.343l-.368-.214-3.813.99 1.016-3.712-.234-.381C2.482 15.724 2 13.916 2 12 2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+  </a>
+
+  <!-- ─── SCRIPTS ─── -->
+  <script>
+    /* ── REDUCED MOTION CHECK ── */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── CANVAS WAVE ANIMATION ── */
+    (function () {
+      if (prefersReducedMotion) return;
+
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, t = 0;
+
+      /* Wave config */
+      const waves = [
+        { color: 'rgba(28,63,78,0.55)',   amp: 0.04, freq: 0.0014, speed: 0.0008, phase: 0 },
+        { color: 'rgba(143,196,187,0.28)', amp: 0.025, freq: 0.0022, speed: 0.0013, phase: 2.1 },
+        { color: 'rgba(201,172,122,0.14)', amp: 0.015, freq: 0.0035, speed: 0.0018, phase: 4.5 }
+      ];
+
+      /* Particles */
+      const PARTICLE_COUNT = 80;
+      const particles = [];
+
+      function initParticles() {
+        particles.length = 0;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          particles.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: Math.random() * 1.8 + 0.4,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.22,
+            alpha: Math.random() * 0.5 + 0.1,
+            twinkle: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+        initParticles();
+      }
+
+      function drawWave(wave, t) {
+        ctx.beginPath();
+        ctx.moveTo(0, H);
+        for (let x = 0; x <= W; x += 4) {
+          const y = H * 0.5 + Math.sin(x * wave.freq + t * wave.speed + wave.phase) * H * wave.amp
+                                + Math.sin(x * wave.freq * 2.3 + t * wave.speed * 1.5 + wave.phase) * H * wave.amp * 0.4;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(W, H);
+        ctx.closePath();
+        ctx.fillStyle = wave.color;
+        ctx.fill();
+      }
+
+      function animate(ts) {
+        t = ts;
+        ctx.clearRect(0, 0, W, H);
+
+        /* Background gradient */
+        const grad = ctx.createLinearGradient(0, 0, W, H);
+        grad.addColorStop(0, '#071420');
+        grad.addColorStop(0.45, '#0d2535');
+        grad.addColorStop(1, '#143040');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+
+        /* Waves */
+        waves.forEach(w => drawWave(w, t));
+
+        /* Particles */
+        particles.forEach(p => {
+          p.twinkle += 0.02;
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = W;
+          if (p.x > W) p.x = 0;
+          if (p.y < 0) p.y = H;
+          if (p.y > H) p.y = 0;
+          const a = p.alpha * (0.6 + 0.4 * Math.sin(p.twinkle));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(201,172,122,${a})`;
+          ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      requestAnimationFrame(animate);
+    })();
+
+    /* ── NAV SCROLL BEHAVIOR ── */
+    (function () {
+      const nav = document.getElementById('nav');
+      const cta = document.getElementById('nav-cta');
+
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > 60) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+        if (y > 200) cta.classList.add('visible');
+        else cta.classList.remove('visible');
+      }, { passive: true });
+    })();
+
+    /* ── LANGUAGE SWITCH ── */
+    (function () {
+      const enBtn = document.getElementById('lang-en');
+      const esBtn = document.getElementById('lang-es');
+      document.querySelector('.lang-switch').addEventListener('click', () => {
+        enBtn.classList.toggle('active');
+        esBtn.classList.toggle('active');
+      });
+    })();
+
+    /* ── INTERSECTION OBSERVER REVEALS ── */
+    (function () {
+      if (prefersReducedMotion) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    })();
+
+    /* ── COUNTER ANIMATION ── */
+    (function () {
+      const counters = document.querySelectorAll('[data-target]');
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseInt(el.dataset.target, 10);
+          const suffix = el.dataset.suffix || '';
+          const duration = prefersReducedMotion ? 0 : 1600;
+          const start = performance.now();
+
+          function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(ease * target);
+            el.textContent = current.toLocaleString() + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+            else el.textContent = target.toLocaleString() + suffix;
+          }
+
+          requestAnimationFrame(tick);
+          counterObserver.unobserve(el);
+        });
+      }, { threshold: 0.4 });
+
+      counters.forEach(el => counterObserver.observe(el));
+    })();
+
+    /* ── FORM SUBMIT ── */
+    (function () {
+      const form = document.getElementById('consult-form');
+      const success = document.getElementById('form-success');
+      const btn = document.getElementById('form-btn');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        btn.style.opacity = '0.65';
+
+        setTimeout(() => {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        }, 1200);
+      });
+    })();
+
+    /* ── WHATSAPP FAB ── */
+    (function () {
+      setTimeout(() => {
+        document.getElementById('whatsapp-fab').classList.add('visible');
+      }, 3000);
+    })();
+  </script>
+</body>
+</html>
