@@ -79,14 +79,6 @@ jobs:
           git commit -m "chore(report): refresh Wildberries TV report ${stamp}"
           git push
 
-      - name: Post to Telegram
-        run: |
-          node apify-wb-tv-scraper/scripts/notify-telegram.mjs \
-            --models    "$OUT_DIR/MODELS.json" \
-            --report    "$OUT_DIR/REPORT.json" \
-            --anomalies "$OUT_DIR/ANOMALIES.json" \
-            --repo-url  "$REPO_URL"
-
       - name: Post to Facebook
         run: |
           node apify-wb-tv-scraper/scripts/notify-facebook.mjs \
