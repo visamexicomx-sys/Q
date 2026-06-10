@@ -1,0 +1,47 @@
+name: WB TV — post to Facebook (no scrape)
+
+# Manually-triggered workflow that re-posts the latest committed
+# REPORT.json / MODELS.json / ANOMALIES.json to a Facebook Page.
+# Useful when:
+#   - Apify budget is exhausted and you can't re-scrape
+#   - You want to test the Facebook integration without using compute
+#   - You changed notify-facebook.mjs and want to preview a real post
+#
+# Required secrets:
+#   FB_PAGE_ACCESS_TOKEN  — long-lived page access token (Graph API)
+#   FB_PAGE_ID            — numeric page ID (optional; auto-detected from token)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      OUT_DIR: apify-wb-tv-scraper/report
+      REPO_URL: ${{ format('{0}/{1}/tree/{2}', github.server_url, github.repository, github.ref_name) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify secrets
+        run: |
+          [ -n "${FB_PAGE_ACCESS_TOKEN:-}" ] || { echo "::error::FB_PAGE_ACCESS_TOKEN secret is missing"; exit 1; }
+          [ -f "$OUT_DIR/MODELS.json" ] || { echo "::error::$OUT_DIR/MODELS.json not found — run the scrape workflow first"; exit 1; }
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Post to Facebook
+        run: |
+          node apify-wb-tv-scraper/scripts/notify-facebook.mjs \
+            --models    "$OUT_DIR/MODELS.json" \
+            --report    "$OUT_DIR/REPORT.json" \
+            --anomalies "$OUT_DIR/ANOMALIES.json" \
+            --repo-url  "$REPO_URL"
