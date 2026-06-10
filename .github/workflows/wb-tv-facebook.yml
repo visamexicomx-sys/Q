@@ -24,6 +24,7 @@ jobs:
     env:
       FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
       FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      IG_POST_IMAGE_URL: ${{ secrets.IG_POST_IMAGE_URL }}
       OUT_DIR: apify-wb-tv-scraper/report
       REPO_URL: ${{ format('{0}/{1}/tree/{2}', github.server_url, github.repository, github.ref_name) }}
     steps:

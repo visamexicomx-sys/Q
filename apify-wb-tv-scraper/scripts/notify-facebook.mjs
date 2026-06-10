@@ -1,9 +1,14 @@
 #!/usr/bin/env node
-// Post a WB TV scrape summary to a Facebook Page via the Graph API.
+// Post a WB TV scrape summary to a Facebook Page and Instagram Business account
+// via the Meta Graph API.
 //
 // Required env vars:
 //   FB_PAGE_ACCESS_TOKEN  — long-lived page access token from Graph API
 //   FB_PAGE_ID            — numeric page ID (optional; auto-detected from token)
+//
+// Optional env vars:
+//   IG_POST_IMAGE_URL     — publicly accessible image URL to attach to Instagram post
+//                           (Instagram API requires media; skipped if not set)
 //
 // Usage:
 //   node notify-facebook.mjs \
@@ -27,17 +32,18 @@ const anomaliesPath = arg('anomalies',  'apify-wb-tv-scraper/report/ANOMALIES.js
 const repoUrl       = arg('repo-url',   '');
 const dryRun        = has('dry-run');
 
-const token  = env.FB_PAGE_ACCESS_TOKEN;
-const pageId = env.FB_PAGE_ID || null;
+const token      = env.FB_PAGE_ACCESS_TOKEN;
+const pageId     = env.FB_PAGE_ID || null;
+const igImageUrl = env.IG_POST_IMAGE_URL || null;
 
 const FB_API = 'https://graph.facebook.com/v21.0';
 
 if (!dryRun && !token) {
-    console.log('facebook: FB_PAGE_ACCESS_TOKEN not set — skipping');
+    console.log('facebook/instagram: FB_PAGE_ACCESS_TOKEN not set — skipping');
     exit(0);
 }
 if (!existsSync(modelsPath) || !existsSync(reportPath)) {
-    console.error('facebook: required input files missing — skipping');
+    console.error('facebook/instagram: required input files missing — skipping');
     exit(0);
 }
 
@@ -48,7 +54,7 @@ const anomalies = existsSync(anomaliesPath) ? JSON.parse(readFileSync(anomaliesP
 const fmt  = (n) => Math.round(n).toLocaleString('ru-RU');
 const trim = (s, n) => s.length > n ? s.slice(0, n - 1) + '…' : s;
 
-// Strip HTML tags and decode common entities for Facebook plain-text posts.
+// Strip HTML tags and decode common entities for plain-text posts.
 function htmlToText(html = '') {
     return html
         .replace(/<\/?(b|i|code|a)[^>]*>/gi, '')
@@ -72,7 +78,8 @@ const dropped = allModels
     .sort((a, b) => a.dropPct - b.dropPct);
 const stamp = (models.generatedAt || new Date().toISOString()).slice(0, 16).replace('T', ' ');
 
-// ---------- message 1: SUMMARY ----------
+// ---------- message builders ----------
+
 function buildSummary() {
     const byBrand = (report.byBrand || []).slice(0, 12);
     const lines = [];
@@ -97,7 +104,6 @@ function buildSummary() {
     return lines.join('\n');
 }
 
-// ---------- message 2: NEW ATL ----------
 function buildAtl() {
     if (!newAtls.length) return null;
     const lines = [];
@@ -107,14 +113,12 @@ function buildAtl() {
     const top = [...newAtls].sort((a, b) => b.sellers - a.sellers || a.min - b.min).slice(0, 25);
     for (const r of top) {
         const cheap = r.items[0];
-        const diag  = r.diagonals.join('/') + '"';
-        lines.push(`• ${r.model} · ${r.brand} ${diag} · ${fmt(r.min)} ₽ · ${cheap.url}`);
+        lines.push(`• ${r.model} · ${r.brand} ${r.diagonals.join('/')}" · ${fmt(r.min)} ₽ · ${cheap.url}`);
     }
     if (newAtls.length > top.length) lines.push(`…и ещё ${newAtls.length - top.length} моделей.`);
     return lines.join('\n');
 }
 
-// ---------- message 3: DEALS WITHIN MODEL ----------
 function buildDeals() {
     if (!dealsWithin.length) return null;
     const lines = [];
@@ -123,14 +127,12 @@ function buildDeals() {
     lines.push('');
     for (const d of dealsWithin.slice(0, 25)) {
         const diff = Math.round((1 - d.price / d.model.median) * 100);
-        const diag = d.model.diagonals.join('/') + '"';
-        lines.push(`• -${diff}% · ${d.model.model} · ${d.model.brand} ${diag} · ${fmt(d.price)} ₽ (медиана ${fmt(d.model.median)}) · ${d.url}`);
+        lines.push(`• -${diff}% · ${d.model.model} · ${d.model.brand} ${d.model.diagonals.join('/')}" · ${fmt(d.price)} ₽ (медиана ${fmt(d.model.median)}) · ${d.url}`);
     }
     if (dealsWithin.length > 25) lines.push(`…и ещё ${dealsWithin.length - 25} предложений.`);
     return lines.join('\n');
 }
 
-// ---------- message 4: BIG DROPS vs prev snapshot ----------
 function buildDrops() {
     if (!dropped.length) return null;
     const lines = [];
@@ -138,28 +140,37 @@ function buildDrops() {
     lines.push('');
     for (const r of dropped.slice(0, 20)) {
         const cheap = r.items[0];
-        const diag  = r.diagonals.join('/') + '"';
-        lines.push(`• ${r.dropPct}% · ${r.model} · ${r.brand} ${diag} · ${fmt(r.min)} ₽ · ${cheap.url}`);
+        lines.push(`• ${r.dropPct}% · ${r.model} · ${r.brand} ${r.diagonals.join('/')}" · ${fmt(r.min)} ₽ · ${cheap.url}`);
     }
     return lines.join('\n');
 }
 
-// ---------- resolve the page id ----------
+// ---------- resolve IDs ----------
+
 async function resolvePageId() {
     if (pageId) return pageId;
     const resp = await fetch(`${FB_API}/me?fields=id,name&access_token=${token}`);
     const body = await resp.json();
-    if (!resp.ok || body.error) {
-        throw new Error(`facebook: /me failed — ${body.error?.message ?? resp.status}`);
-    }
+    if (!resp.ok || body.error) throw new Error(`/me failed — ${body.error?.message ?? resp.status}`);
     console.log(`facebook: resolved page "${body.name}" (id=${body.id})`);
     return body.id;
 }
 
-// ---------- post one message ----------
-async function post(pid, message) {
+async function resolveIgUserId(pid) {
+    const resp = await fetch(`${FB_API}/${pid}?fields=instagram_business_account&access_token=${token}`);
+    const body = await resp.json();
+    if (!resp.ok || body.error) throw new Error(`/page/instagram failed — ${body.error?.message ?? resp.status}`);
+    const igId = body.instagram_business_account?.id;
+    if (!igId) throw new Error('No Instagram Business Account linked to this Facebook Page');
+    console.log(`instagram: resolved ig_user_id=${igId}`);
+    return igId;
+}
+
+// ---------- Facebook post ----------
+
+async function postToFacebook(pid, message) {
     if (dryRun) {
-        console.log('---DRY RUN---');
+        console.log('---DRY RUN Facebook---');
         console.log(message);
         console.log('');
         return;
@@ -174,16 +185,73 @@ async function post(pid, message) {
         console.error(`facebook: post failed: ${resp.status} ${JSON.stringify(body)}`);
         exit(1);
     }
-    console.log(`facebook: posted message id=${body.id}`);
-    // Be polite to rate limits
+    console.log(`facebook: posted id=${body.id}`);
     await new Promise((r) => setTimeout(r, 500));
 }
+
+// ---------- Instagram post ----------
+// Instagram requires an image URL. Posts the first (summary) message as caption.
+
+async function postToInstagram(igId, caption) {
+    if (dryRun) {
+        console.log('---DRY RUN Instagram---');
+        console.log(`image: ${igImageUrl}`);
+        console.log(caption);
+        console.log('');
+        return;
+    }
+
+    // Step 1: create media container
+    const createResp = await fetch(`${FB_API}/${igId}/media`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            image_url: igImageUrl,
+            caption,
+            access_token: token,
+        }),
+    });
+    const createBody = await createResp.json().catch(() => ({}));
+    if (!createResp.ok || createBody.error) {
+        console.error(`instagram: create media failed: ${createResp.status} ${JSON.stringify(createBody)}`);
+        exit(1);
+    }
+    const creationId = createBody.id;
+    console.log(`instagram: media container created id=${creationId}`);
+
+    // Step 2: publish
+    const pubResp = await fetch(`${FB_API}/${igId}/media_publish`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ creation_id: creationId, access_token: token }),
+    });
+    const pubBody = await pubResp.json().catch(() => ({}));
+    if (!pubResp.ok || pubBody.error) {
+        console.error(`instagram: publish failed: ${pubResp.status} ${JSON.stringify(pubBody)}`);
+        exit(1);
+    }
+    console.log(`instagram: published id=${pubBody.id}`);
+}
+
+// ---------- main ----------
 
 const messages = [buildSummary(), buildDrops(), buildDeals(), buildAtl()].filter(Boolean);
 
 const pid = dryRun ? 'dry-run' : await resolvePageId();
-for (const m of messages) {
-    await post(pid, m);
-}
 
+// Post all messages to Facebook
+for (const m of messages) {
+    await postToFacebook(pid, m);
+}
 console.log(`facebook: posted ${messages.length} message(s)${dryRun ? ' (dry-run)' : ''}`);
+
+// Post summary to Instagram (requires image URL)
+if (igImageUrl) {
+    const igId = dryRun ? 'dry-run' : await resolveIgUserId(pid);
+    // Instagram caption limit is 2200 chars; use first message (summary)
+    const caption = messages[0].slice(0, 2200);
+    await postToInstagram(igId, caption);
+    console.log(`instagram: posted${dryRun ? ' (dry-run)' : ''}`);
+} else {
+    console.log('instagram: IG_POST_IMAGE_URL not set — skipping Instagram post');
+}
