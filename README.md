@@ -3,7 +3,7 @@
 The CLI for the open agent skills ecosystem.
 
 <!-- agent-list:start -->
-Supports **OpenCode**, **Claude Code**, **Codex**, **Cursor**, and [37 more](#available-agents).
+Supports **OpenCode**, **Claude Code**, **Codex**, **Cursor**, and [38 more](#available-agents).
 <!-- agent-list:end -->
 
 ## Install a Skill
@@ -247,6 +247,7 @@ Skills can be installed to any of these agents:
 | Neovate | `neovate` | `.neovate/skills/` | `~/.neovate/skills/` |
 | Pochi | `pochi` | `.pochi/skills/` | `~/.pochi/skills/` |
 | AdaL | `adal` | `.adal/skills/` | `~/.adal/skills/` |
+| Marketing Agent | `marketing-agent` | `.marketing-agent/skills/` | `~/.marketing-agent/skills/` |
 <!-- supported-agents:end -->
 
 > [!NOTE]
@@ -347,6 +348,7 @@ The CLI searches for skills in these locations within a repository:
 - `.neovate/skills/`
 - `.pochi/skills/`
 - `.adal/skills/`
+- `.marketing-agent/skills/`
 <!-- skill-discovery:end -->
 
 ### Plugin Manifest Discovery
