@@ -1,15 +1,10 @@
 #!/usr/bin/env node
-// Daily content poster for Cancún Hub Telegram channel.
-//
-// Posts a morning digest to the channel with:
-//   - Weather summary
-//   - Beach conditions
-//   - Today's deals & events
-//   - Tips of the day
+// Daily morning digest for Playa del Carmen Hub Telegram channel.
+// Posts at 8:00 AM CST (UTC-5 = 13:00 UTC) via GitHub Actions.
 //
 // Required env vars:
 //   TELEGRAM_BOT_TOKEN
-//   TELEGRAM_CHANNEL_ID   — e.g. @cancun_hub  or -100xxxxxxxx
+//   TELEGRAM_CHANNEL_ID   — @pdchub or -100xxxxxxxx
 
 import { argv, env, exit } from 'node:process';
 
@@ -26,10 +21,7 @@ const esc  = (s = '') => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').re
 const link = (text, url) => `<a href="${esc(url)}">${esc(text)}</a>`;
 
 async function tg(method, body) {
-    if (DRY_RUN) {
-        console.log(`[DRY RUN] ${method}:`, JSON.stringify(body, null, 2));
-        return { ok: true };
-    }
+    if (DRY_RUN) { console.log(`[DRY] ${method}:`, JSON.stringify(body, null, 2)); return { ok: true }; }
     const r = await fetch(`https://api.telegram.org/bot${TOKEN}/${method}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -40,24 +32,21 @@ async function tg(method, body) {
     return json;
 }
 
-async function sendMessage(text, extra = {}) {
+async function send(text, extra = {}) {
     return tg('sendMessage', {
-        chat_id: CHANNEL,
-        text,
-        parse_mode: 'HTML',
-        disable_web_page_preview: true,
-        ...extra,
+        chat_id: CHANNEL, text, parse_mode: 'HTML',
+        disable_web_page_preview: true, ...extra,
     });
 }
 
-// ---------- weather via OpenWeatherMap ----------
+// ---------- weather ----------
 
 async function fetchWeather() {
     const key = env.OPENWEATHER_API_KEY;
     if (!key) return null;
     try {
         const r = await fetch(
-            `https://api.openweathermap.org/data/2.5/forecast?q=Cancun,MX&cnt=8&units=metric&lang=es&appid=${key}`
+            `https://api.openweathermap.org/data/2.5/forecast?q=Playa+del+Carmen,MX&cnt=8&units=metric&lang=en&appid=${key}`
         );
         return r.ok ? r.json() : null;
     } catch { return null; }
@@ -67,159 +56,165 @@ function weatherIcon(id) {
     if (id >= 200 && id < 300) return '⛈';
     if (id >= 300 && id < 400) return '🌦';
     if (id >= 500 && id < 600) return '🌧';
-    if (id >= 700 && id < 800) return '🌫';
     if (id === 800) return '☀️';
     if (id <= 802) return '🌤';
     return '⛅';
 }
 
-// ---------- day-of-week helpers ----------
+// ---------- daily content ----------
 
-const DAYS_ES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-const DAYS_RU = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+const DAYS_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAYS_ES = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const DAYS_RU = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
 
 const DAILY_TIPS = [
-    // Воскресенье
+    // Sunday
     [
-        '🌅 Воскресенье идеально для неспешного бранча в Zona Hotelera.',
-        '🚌 Mercado 28 закрывается раньше — успей до 18:00.',
-        '🏖 Волны в воскресенье обычно спокойнее — хорошо для снорклинга.',
+        '🌅 Sunday is perfect for a slow brunch on 5th Ave.',
+        '🐢 Great day for the Akumal turtle snorkel — fewer crowds on Sundays.',
+        '🎭 Voladores de Papantla show in Parque Los Fundadores — free, check times.',
     ],
-    // Понедельник
+    // Monday
     [
-        '💸 Понедельник — лучший день для бюджетных ресторанов: меньше туристов.',
-        '🤿 Fat Tuesday: Daiquiri 2x1 весь день!',
-        '🏖 Delfines — народу меньше, флаги спокойнее после выходных.',
+        '💸 Best day for budget dining — locals go back to work, restaurants less crowded.',
+        '🤿 Monday dive trips have smaller groups — great for first-timers.',
+        '🌴 Perfect low-season vibe: explore side streets off 5th Ave.',
     ],
-    // Вторник
+    // Tuesday
     [
-        '🎵 Taco Tuesday по всему Канкуну — ищи акции в барах!',
-        '🌴 Хороший день для поездки в Ч Чичен-Ицу: меньше автобусов.',
-        '🛍 Plaza Las Américas — средняя загрузка, комфортный шопинг.',
+        '🌮 Taco Tuesday! Many bars and taquerías have special promos.',
+        '🏛 Good day for Chichén Itzá day trip — less traffic on roads.',
+        '🧘 Yoga on the beach — check local studios for morning classes.',
     ],
-    // Среда
+    // Wednesday
     [
-        '🍹 Happy Wednesday во многих барах ZH — проверь Instagram заведений.',
-        '🤿 Снорклинг-туры: спрос ниже — можно торговаться за цену.',
-        '✈️ Авиабилеты в среду часто дешевле — следи за ценами!',
+        '🍹 Mid-week happy hours kick in — check Zenzi and Dirty Martini.',
+        '🤿 Cozumel day trip: midweek ferries are less crowded.',
+        '📸 Best photography light is Wednesday morning at Punta Esmeralda.',
     ],
-    // Четверг
+    // Thursday
     [
-        '🎭 Coco Bongo по четвергам — акционный вход до 22:00.',
-        '🌊 Пик заезда туристов — выходи на пляж пораньше (7–9am).',
-        '🏃 Reggae Night в некоторых барах — проверь афишу!',
+        '🎵 Live music starts ramping up — check Mambo Café for salsa night.',
+        '🌊 Surf check: Punta Brava has best swells Thu–Sat.',
+        '🛍 Thursday shopping on 5th Ave: avoid the weekend rush.',
     ],
-    // Пятница
+    // Friday
     [
-        '🎉 TGIF! Лучшие вечеринки Канкуна начинаются сегодня.',
-        '⚠️ Пробки на бульваре Куколькан с 17:00 — закладывай время.',
-        '🍽 Бронируй рестораны заранее — пятница очень загружена!',
+        '🎉 TGIF! PDC nightlife is legendary on Fridays.',
+        '⚠️ Traffic on Av. Constituyentes 5–8pm — plan ahead.',
+        '🍽 Book restaurants in advance — Friday is packed!',
     ],
-    // Суббота
+    // Saturday
     [
-        '🏖 Самый оживлённый день на пляжах — приходи до 9am.',
-        '🚨 Максимум туристов = максимум карманников. Будь внимателен!',
-        '🌅 Закат на Delfines в субботу — одно из лучших зрелищ Канкуна.',
+        '🏖 Busiest beach day — arrive at Mamitas or Coco before 9am.',
+        '🛡 Saturday = max tourists = watch your belongings.',
+        '🌅 Sunset at Playa Coco on Saturday is spectacular.',
     ],
 ];
 
-const WEEKLY_EVENTS = {
-    0: '🎭 Xoximilco Cancún — fiesta mexicana tradicional cada noche',
-    1: '🎵 Live Jazz @ La Habichuela Sunset (lunes)',
-    2: '🎸 Taco & Rock night @ varios bares',
-    3: '🎤 Open Mic @ La Taberna (miércoles)',
-    4: '💃 Salsa Night @ Roots Bar (jueves)',
-    5: '🎆 Salida de sol party @ Mandala (viernes noche)',
-    6: '🎊 Party principal en Coco Bongo (sábado)',
+const WEEKLY_HIGHLIGHT = {
+    0: '🎭 Xcaret Night Festival — traditional Mexican show every Sunday',
+    1: '🎵 Live acoustic set @ La Cueva del Chango (Monday evenings)',
+    2: '🌮 Taco Tuesday @ El Fogón — best pastor tacos in PDC',
+    3: '🎤 Open Mic Night @ Dirty Martini Rooftop (Wednesday)',
+    4: '💃 Salsa Night @ Mambo Café — free dance lessons 8pm (Thursday)',
+    5: '🎆 DJ Night @ Zenzi Beach — starts at 9pm (Friday)',
+    6: '🎊 Main party @ Coco Bongo Playa (Saturday) — best show in town',
 };
+
+const FERRY_REMINDER = `⛴️ <b>Ferry to Cozumel:</b> Departs every 60–90 min from 6am. Round trip ~$300 MXN. Book at UltraMar terminal (5th Ave & Constituyentes).`;
 
 // ---------- MAIN ----------
 
 async function run() {
     const now = new Date();
-    const dowIdx = now.getDay();
-    const dayES = DAYS_ES[dowIdx];
-    const dayRU = DAYS_RU[dowIdx];
-    const dateStr = now.toLocaleDateString('es-MX', {
-        day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Cancun',
+    const dow = now.getDay();
+    const dayEN = DAYS_EN[dow];
+    const dayES = DAYS_ES[dow];
+    const dayRU = DAYS_RU[dow];
+    const dateStr = now.toLocaleDateString('en-US', {
+        month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/Cancun',
     });
 
-    console.log(`Posting daily digest for ${dayES}, ${dateStr}`);
+    console.log(`Posting digest: ${dayEN}, ${dateStr}`);
 
-    // 1. Weather block
     const weather = await fetchWeather();
     let weatherBlock;
+
     if (weather) {
         const cur = weather.list[0];
         const temp = Math.round(cur.main.temp);
-        const icon = weatherIcon(cur.weather[0].id);
-        const desc = cur.weather[0].description;
+        const feels = Math.round(cur.main.feels_like);
         const wind = Math.round(cur.wind.speed * 3.6);
+        const icon = weatherIcon(cur.weather[0].id);
         const forecast = weather.list.slice(1, 4).map(f => {
-            const d = new Date(f.dt * 1000).toLocaleDateString('es-MX', {
+            const d = new Date(f.dt * 1000).toLocaleDateString('en-US', {
                 weekday: 'short', timeZone: 'America/Cancun',
             });
-            return `${d}: ${weatherIcon(f.weather[0].id)} ${Math.round(f.main.temp)}°C`;
-        }).join(' | ');
-        weatherBlock = `${icon} <b>${temp}°C</b> — ${esc(desc)}\n🌬 ${wind} km/h  |  💧 ${cur.main.humidity}%\n📅 ${forecast}`;
+            return `${d} ${weatherIcon(f.weather[0].id)} ${Math.round(f.main.temp)}°C`;
+        }).join('  |  ');
+        weatherBlock = [
+            `${icon} <b>${temp}°C</b> (feels ${feels}°C)`,
+            `💧 Humidity: ${cur.main.humidity}%  |  🌬 Wind: ${wind} km/h`,
+            `🌊 Sea: ~29°C  |  ☀️ UV: 11 (extreme)`,
+            `📅 ${forecast}`,
+        ].join('\n');
     } else {
-        weatherBlock = '☀️ <b>~30°C</b> — Típico día caribeño\n🌬 ~15 km/h SE  |  🌊 Mar ~28°C';
+        weatherBlock = '☀️ <b>~30°C</b> | Sea: 29°C | UV: 11 (extreme) | 💧 80% humidity';
     }
 
-    // 2. Tips del día
-    const tips = DAILY_TIPS[dowIdx];
+    const tips = DAILY_TIPS[dow];
     const tipBlock = tips.map((t, i) => `${i + 1}. ${t}`).join('\n');
 
-    // 3. Event del día
-    const eventOfDay = WEEKLY_EVENTS[dowIdx];
-
-    // Compose morning digest
     const digest = [
-        `🌴 <b>BUENOS DÍAS CANCÚN! / ДОБРОЕ УТРО, КАНКУН!</b>`,
-        `📅 ${dayES} / ${dayRU}, ${esc(dateStr)}`,
+        `🌴 <b>GOOD MORNING PDC! / ¡BUENOS DÍAS! / ДОБРОЕ УТРО!</b>`,
+        `📅 ${dayEN} / ${dayES} / ${dayRU} — ${esc(dateStr)}`,
         '',
-        `🌤 <b>CLIMA HOY / ПОГОДА СЕГОДНЯ</b>`,
+        `🌤 <b>WEATHER TODAY / CLIMA HOY / ПОГОДА:</b>`,
         weatherBlock,
         '',
-        `🎯 <b>CONSEJOS DEL DÍA / СОВЕТЫ ДНЯ</b>`,
+        `🧴 UV extreme — SPF 50+ every 2h! Reapply after swimming.`,
+        '',
+        `🎯 <b>TIPS OF THE DAY / CONSEJOS / СОВЕТЫ:</b>`,
         tipBlock,
         '',
-        `🎭 <b>EVENTO DESTACADO</b>`,
-        eventOfDay,
+        `🌟 <b>TONIGHT'S HIGHLIGHT / ESTA NOCHE:</b>`,
+        WEEKLY_HIGHLIGHT[dow],
         '',
-        `🏖 <b>PLAYAS / ПЛЯЖИ</b>`,
-        `Verifica banderas antes de nadar. 🟦=seguro 🟡=precaución 🔴=peligro`,
-        link('Forecast olas', 'https://www.surf-forecast.com/breaks/Cancun/forecasts/latest'),
+        FERRY_REMINDER,
         '',
-        `💬 Dudas y chat: @cancun_hub_chat`,
-        `🤖 Bot: /help — todo lo que necesitas saber de Cancún`,
+        `🏖 Check beach flags before swimming! 🟦 Safe  🟡 Caution  🔴 Danger`,
+        '',
+        `💬 Chat & questions: @pdchub_chat`,
+        `🤖 Bot commands: /help`,
     ].join('\n');
 
-    await sendMessage(digest);
+    await send(digest);
     console.log('Morning digest sent.');
 
-    // Afternoon deals post (if Friday)
-    if (dowIdx === 5) {
+    // Friday evening bonus post
+    if (dow === 5) {
         await new Promise(r => setTimeout(r, 3000));
-        const fridayDeals = [
-            `🎉 <b>¡ES VIERNES! / ПЯТНИЦА! VAMOS!</b>`,
+        const fridayPost = [
+            `🎉 <b>FRIDAY NIGHT IN PDC! / ¡NOCHE DE VIERNES! / ПЯТНИЦА!</b>`,
             '',
-            `🍹 <b>HAPPY HOURS ACTIVOS:</b>`,
-            `• Señor Frog's: 2x1 cócteles hasta 6pm`,
-            `• Fat Tuesday: Daiquiri especial viernes`,
-            `• Coco Bongo: entrada anticipada -30% hasta 10pm`,
-            `• Mandala: Pre-party entrada libre hasta 11pm`,
+            `🍹 <b>HAPPY HOURS RIGHT NOW:</b>`,
+            `• Zenzi Beach: 2x1 cocktails until 7pm`,
+            `• Dirty Martini Rooftop: 2x1 5–8pm`,
+            `• Mambo Café: 2x1 mojitos until 9pm`,
+            `• El Fogón: Michelada promo ongoing`,
             '',
-            `🎆 <b>ESTA NOCHE / ESTA NOITE:</b>`,
-            `• Salida de sol after party @ Mandala (viernes noche)`,
-            `• DJ Internacional @ Coco Bongo`,
-            `• Roof party @ Hotel Krystal`,
+            `🎆 <b>TONIGHT:</b>`,
+            `• DJ Night @ Zenzi from 9pm`,
+            `• Live Latin music @ Mambo Café from 9pm`,
+            `• Alux Cenote cocktails from 5pm`,
+            `• 5th Ave at 10pm = electric atmosphere`,
             '',
-            `⚠️ Tráfico pesado en Kukulcán 5–8pm.`,
-            `🚕 Usa inDriver para comparar precios de taxis.`,
+            `🚕 Tip: book your inDriver/Cabify in advance after midnight — surge pricing!`,
+            `🏖 Beach clubs close at sunset — switch to rooftop bars.`,
         ].join('\n');
-        await sendMessage(fridayDeals);
-        console.log('Friday deals posted.');
+        await send(fridayPost);
+        console.log('Friday night post sent.');
     }
 
     console.log('Done.');

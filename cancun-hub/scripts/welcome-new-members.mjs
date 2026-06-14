@@ -1,10 +1,6 @@
 #!/usr/bin/env node
-// Standalone welcome script — can run in polling mode via GitHub Actions
-// or be triggered manually to welcome recent new members.
-//
-// The main welcome logic lives in the Cloudflare Worker (webhook-based),
-// this script is a fallback for channels where new_chat_members events
-// might be missed.
+// Posts and pins the welcome message for Playa del Carmen Hub channel.
+// Run manually from GitHub Actions → "Post welcome message".
 //
 // Required env vars:
 //   TELEGRAM_BOT_TOKEN
@@ -15,62 +11,60 @@ import { env, exit } from 'node:process';
 const TOKEN = env.TELEGRAM_BOT_TOKEN;
 const CHANNEL = env.TELEGRAM_CHANNEL_ID;
 
-if (!TOKEN || !CHANNEL) {
-    console.log('welcome: missing env vars — skipping');
-    exit(0);
-}
+if (!TOKEN || !CHANNEL) { console.log('welcome: missing env vars'); exit(0); }
 
 async function tg(method, body = {}) {
     const r = await fetch(`https://api.telegram.org/bot${TOKEN}/${method}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
     });
     return r.json();
 }
 
-// Post a periodic "pin" welcome message to keep it visible for new members
-async function postPinnedWelcome() {
+async function run() {
     const text = [
-        `🌴 <b>BIENVENIDOS A CANCÚN HUB / ДОБРО ПОЖАЛОВАТЬ В CANCÚN HUB!</b>`,
+        `🌴 <b>WELCOME TO PLAYA DEL CARMEN HUB!</b>`,
+        `🌴 <b>¡BIENVENIDOS AL PDC HUB!</b>`,
+        `🌴 <b>ДОБРО ПОЖАЛОВАТЬ В PDC HUB!</b>`,
         '',
-        `🇲🇽 La comunidad #1 de Cancún en Telegram.`,
-        `🇷🇺 Сообщество №1 Канкуна в Telegram.`,
+        `The #1 Playa del Carmen community — in English 🇬🇧, Spanish 🇲🇽 and Russian 🇷🇺.`,
+        `La comunidad #1 de PDC — en inglés, español y ruso.`,
+        `Сообщество №1 PDC — на английском, испанском и русском.`,
         '',
-        `<b>✅ Что есть в боте / Qué tiene el bot:</b>`,
-        `🌤 /weather — погода / clima`,
-        `🏖 /beach — пляжи / playas`,
-        `🎉 /events — события / eventos`,
-        `💰 /deals — скидки / ofertas`,
-        `🚨 /emergency — экстренные / emergencias`,
-        `🚕 /taxi — трансферы / traslados`,
-        `🍽 /restaurants — рестораны`,
-        `🏠 /realestate — недвижимость`,
+        `<b>🤖 What the bot can do / Qué puede el bot / Что умеет бот:</b>`,
+        `🌤 /weather — live weather & forecast / clima en vivo / погода`,
+        `🏖 /beach — beach conditions for 6 spots / playas / пляжи`,
+        `🎉 /events — upcoming events by category`,
+        `💰 /deals — today's happy hours & deals`,
+        `⛴ /ferry — Cozumel ferry schedule & tips`,
+        `🚨 /emergency — all emergency numbers`,
+        `🚌 /taxi — transport prices & options`,
+        `🛍 /quinta — complete 5th Avenue guide`,
+        `🏠 /realestate — rentals & sales PDC`,
+        `📩 /report — send a tip to admins`,
         '',
-        `📢 Канал: @cancun_hub`,
-        `💬 Чат: @cancun_hub_chat`,
+        `📌 Type /help for the full command list`,
+        `📌 Escribe /help para todos los comandos`,
+        `📌 Нажми /help для всех команд`,
         '',
-        `📌 Нажми /help чтобы начать | Escribe /help para comenzar`,
+        `💬 Group chat: @pdchub_chat`,
+        `📢 Channel: @pdchub`,
     ].join('\n');
 
     const res = await tg('sendMessage', {
-        chat_id: CHANNEL,
-        text,
-        parse_mode: 'HTML',
-        disable_web_page_preview: true,
+        chat_id: CHANNEL, text, parse_mode: 'HTML', disable_web_page_preview: true,
     });
 
     if (res.ok && res.result?.message_id) {
-        // Pin the welcome message
         await tg('pinChatMessage', {
             chat_id: CHANNEL,
             message_id: res.result.message_id,
             disable_notification: true,
         });
-        console.log('Welcome message posted and pinned:', res.result.message_id);
+        console.log('Welcome posted & pinned:', res.result.message_id);
     } else {
-        console.error('Failed to post welcome:', res);
+        console.error('Failed:', res);
     }
 }
 
-postPinnedWelcome().catch(err => { console.error(err); exit(1); });
+run().catch(err => { console.error(err); exit(1); });

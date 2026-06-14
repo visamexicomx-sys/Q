@@ -1,148 +1,166 @@
-# 🌴 Cancún Hub — Telegram Community System
+# 🌴 Playa del Carmen Hub — Telegram Community System
 
-> Лучший Telegram-бот и канал о Канкуне. Better than cancun_live in every way.
+> The #1 PDC Telegram bot — trilingual (English + Spanish + Russian), fully automated, 24/7.
 
-## Что это
+## What it does
 
-Полноценная система управления Telegram-сообществом для Канкуна:
+| Feature | Description |
+|---|---|
+| 🤖 Cloudflare Worker bot | 24/7 webhook — zero server cost |
+| 🌤 Live weather | OpenWeatherMap, PDC coordinates |
+| 🏖 6 beaches | Mamitas, Coco, Esmeralda, Xcacel, Akumal, Cozumel |
+| ⛴️ Cozumel ferry | Schedule, prices, tips |
+| 🎉 Events | 6 categories with inline navigation |
+| 🌀 Hurricane alerts | NHC + CONAGUA, every hour via GH Actions |
+| 📅 Daily digest | 8:00 AM CST, auto-posted to channel |
+| 🍽 Restaurants | Best spots by cuisine and budget |
+| 🏠 Real estate | PDC rentals + sales with current prices |
+| 🚨 Emergency | All PDC emergency numbers |
+| 🚌 Transport | ADO, colectivos, taxis, airport transfers |
+| 🛍 5th Ave guide | Complete Quinta Avenida breakdown |
+| 📩 Admin reports | Users send tips/incidents directly to admins |
 
-- **🤖 Cloudflare Worker** — 24/7 webhook-бот без сервера
-- **📅 GitHub Actions** — автопостинг ежедневных дайджестов
-- **🌀 Weather Alerts** — алерты о штормах и ураганах в реальном времени
-- **📊 Умный контент** — рестораны, пляжи, трансферы, недвижимость, события
+## Why it's better
 
-## Преимущества перед cancun_live
-
-| Параметр | cancun_live | Cancún Hub |
+| Metric | cancun_live | **PDC Hub** |
 |---|---|---|
-| Язык | Только испанский | 🇷🇺 Русский + 🇲🇽 Испанский |
-| Бот | Нет | ✅ 24/7 интерактивный |
-| Погода | Нет | ✅ Real-time + uraganы |
-| Пляжи | Иногда | ✅ 6 пляжей + флаги безопасности |
-| Дайджест | Нет | ✅ Ежедневно в 8:00 |
-| Экстренные | Нет | ✅ /emergency со всеми номерами |
-| Трансфер | Нет | ✅ Цены на такси, ADO, Uber |
-| Недвижимость | Нет | ✅ Цены аренды и покупки |
-| Модерация | Ручная | ✅ Авто-приветствие новых |
-| Events | Вручную | ✅ По категориям + расписание |
+| City | Cancún | ✅ Playa del Carmen |
+| Languages | Spanish only | ✅ English + Spanish + Russian |
+| Bot | None | ✅ 24/7 Cloudflare Worker |
+| Live weather | No | ✅ OpenWeatherMap API |
+| Beach details | Rarely | ✅ 6 locations + safety flags |
+| Storm alerts | No | ✅ NHC + CONAGUA, hourly |
+| Daily digest | No | ✅ Every morning 8am CST |
+| Emergency numbers | No | ✅ All PDC services |
+| Ferry guide | No | ✅ Cozumel ferry complete |
+| Real estate | No | ✅ Current market prices |
+| 5th Ave guide | No | ✅ Full breakdown by zone |
 
-## Быстрый старт
+## Quick Start
 
-### 1. Создай бота
+### 1. Create the bot
 
-1. Открой [@BotFather](https://t.me/BotFather) в Telegram
-2. `/newbot` → имя: **Cancún Hub Bot** → юзернейм: **CancunHubBot**
-3. Сохрани токен
+Open [@BotFather](https://t.me/BotFather):
+```
+/newbot
+Name: Playa del Carmen Hub
+Username: PDCHubBot
+```
+Save the token.
 
-### 2. Задай команды бота (через BotFather)
+### 2. Set bot commands via BotFather
 
 ```
-weather - 🌤 Погода/Clima
-beach - 🏖 Пляжи/Playas  
-events - 🎉 События/Eventos
-deals - 💰 Скидки/Ofertas
-emergency - 🚨 Экстренные/Emergencias
-taxi - 🚕 Трансфер/Traslados
-help - ℹ️ Помощь/Ayuda
-report - 📩 Репорт/Reporte
+weather - 🌤 Live weather / Clima / Погода
+beach - 🏖 Beach conditions / Playas / Пляжи
+events - 🎉 Events / Eventos / События
+deals - 💰 Deals & happy hours
+ferry - ⛴ Cozumel ferry info
+emergency - 🚨 Emergency numbers
+taxi - 🚌 Transport & prices
+quinta - 🛍 5th Avenue guide
+help - ℹ️ Full command list
+report - 📩 Report to admins
 ```
 
-### 3. Создай канал и группу
+### 3. Create channel + group
 
-- Канал: `@cancun_hub` (публичный)
-- Чат: `@cancun_hub_chat` (публичный)
-- Добавь бота в оба как **администратора**
+- Channel: `@pdchub` (public)
+- Chat: `@pdchub_chat` (public, linked to channel)
+- Add the bot to both as **admin**
 
-### 4. Деплой Cloudflare Worker
+### 4. Deploy Cloudflare Worker
 
 ```bash
 cd cancun-hub/worker
-# Установи wrangler если нет:
+
+# Install wrangler if needed:
 npm i -g wrangler
 
-# Залогинься в Cloudflare:
+# Login to Cloudflare:
 wrangler login
 
-# Заполни account_id в wrangler.toml (из cloudflare.com/dashboard)
+# Fill in your account_id in wrangler.toml
 
-# Загрузи секреты:
+# Upload secrets:
 wrangler secret put TELEGRAM_BOT_TOKEN
-wrangler secret put TELEGRAM_ADMIN_IDS   # твои Telegram user ID через запятую
-wrangler secret put OPENWEATHER_API_KEY  # опционально
+wrangler secret put TELEGRAM_ADMIN_IDS   # your Telegram user IDs, comma-separated
+wrangler secret put OPENWEATHER_API_KEY  # optional, free at openweathermap.org
 
-# Деплой:
+# Deploy:
 wrangler deploy
 ```
 
-### 5. Установи webhook
+### 5. Set webhook
 
 ```bash
-# После деплоя получишь URL вида:
-# https://cancun-hub-bot.YOUR-SUBDOMAIN.workers.dev
-
-curl "https://api.telegram.org/bot$TOKEN/setWebhook?url=https://cancun-hub-bot.YOUR-SUBDOMAIN.workers.dev/webhook"
+curl "https://api.telegram.org/bot$TOKEN/setWebhook?url=https://pdc-hub-bot.YOUR-SUBDOMAIN.workers.dev/webhook"
 ```
 
-### 6. Настрой GitHub Actions
+### 6. Configure GitHub Secrets
 
-В настройках репозитория → Settings → Secrets → New repository secret:
+In repo → Settings → Secrets → New repository secret:
 
-| Secret | Значение |
+| Secret | Value |
 |---|---|
-| `CANCUN_HUB_BOT_TOKEN` | Токен от BotFather |
-| `CANCUN_HUB_CHANNEL_ID` | `@cancun_hub` или `-100xxxxxxxx` |
-| `OPENWEATHER_API_KEY` | Ключ с [openweathermap.org](https://openweathermap.org/api) (бесплатно) |
+| `PDC_HUB_BOT_TOKEN` | BotFather token |
+| `PDC_HUB_CHANNEL_ID` | `@pdchub` or `-100xxxxxxxx` |
+| `OPENWEATHER_API_KEY` | Free key from [openweathermap.org](https://openweathermap.org/api) |
 
-### 7. Запости приветствие
+### 7. Post welcome message
 
-В GitHub Actions → **Cancún Hub — Daily Digest** → Run workflow → `welcome`
+GitHub Actions → **PDC Hub — Daily Digest & Alerts** → Run workflow → select `welcome`
 
-## Архитектура
+## Architecture
 
 ```
 cancun-hub/
 ├── worker/
-│   ├── index.mjs        ← Cloudflare Worker (24/7 webhook-бот)
-│   └── wrangler.toml    ← конфиг деплоя
+│   ├── index.mjs           ← Cloudflare Worker (24/7 webhook bot)
+│   └── wrangler.toml       ← deploy config
 ├── scripts/
-│   ├── post-daily.mjs        ← утренний дайджест (8am CST)
-│   ├── weather-alert.mjs     ← алерты о штормах (каждый час)
-│   └── welcome-new-members.mjs ← пиннованное приветствие
+│   ├── post-daily.mjs      ← morning digest (8am CST)
+│   ├── weather-alert.mjs   ← storm/hurricane alerts (hourly)
+│   └── welcome-new-members.mjs ← pinned welcome post
 └── data/
-    └── weather-state.json    ← стейт алертов (не слать дважды)
+    └── weather-state.json  ← tracks sent alerts (no duplicates)
 
 .github/workflows/
-└── cancun-hub-daily.yml  ← GitHub Actions для автоматизации
+└── cancun-hub-daily.yml    ← automation: digest + alerts
 ```
 
-## Команды бота
+## Bot commands
 
-| Команда | Описание |
-|---|---|
-| `/start` или `/help` | Приветствие + меню |
-| `/weather` | Текущая погода + прогноз 7 дней |
-| `/beach [nombre]` | Состояние пляжа + флаги безопасности |
-| `/events` | События по категориям |
-| `/deals` | Сегодняшние скидки и happy hours |
-| `/emergency` | Все экстренные телефоны |
-| `/taxi` | Цены на такси и транспорт |
-| `/report [тип] [текст]` | Репорт администраторам |
+| Command | EN | ES | RU |
+|---|---|---|---|
+| `/start` | Welcome + menu | Bienvenida | Приветствие |
+| `/help` | Full command list | Lista de comandos | Все команды |
+| `/weather` | Live weather + forecast | Clima en vivo | Погода |
+| `/beach [name]` | Beach conditions | Condiciones playa | Пляж |
+| `/events` | Events by category | Eventos | События |
+| `/deals` | Today's deals | Ofertas hoy | Скидки |
+| `/ferry` | Cozumel ferry | Ferry Cozumel | Паром |
+| `/emergency` | All emergency #s | Emergencias | Экстренные |
+| `/taxi` | Transport prices | Transporte | Транспорт |
+| `/quinta` | 5th Ave guide | Guía La Quinta | Путеводитель |
+| `/report` | Report to admins | Reporte | Репорт |
 
-## Переменные окружения
+## Environment variables
 
-| Переменная | Где | Обязательна |
+| Variable | Where | Required |
 |---|---|---|
 | `TELEGRAM_BOT_TOKEN` | Worker secret + GH secret | ✅ |
-| `TELEGRAM_CHANNEL_ID` | GH secret | ✅ для постинга |
-| `TELEGRAM_ADMIN_IDS` | Worker secret | Рекомендуется |
-| `OPENWEATHER_API_KEY` | Worker + GH secret | Опционально |
+| `PDC_HUB_CHANNEL_ID` | GH secret | ✅ for posting |
+| `TELEGRAM_ADMIN_IDS` | Worker secret | Recommended |
+| `OPENWEATHER_API_KEY` | Worker secret + GH secret | Optional |
 
-## Roadmap (следующие фичи)
+## Roadmap
 
-- [ ] Scraper новостей (Por Esto!, Noticaribe) для авто-постинга
-- [ ] Интеграция с Google Maps API для поиска ресторанов
-- [ ] Airbnb/Inmuebles24 парсер для горящих предложений
-- [ ] Telegram Mini App — интерактивная карта Канкуна
-- [ ] AI-модерация чата (блокировка спама/рекламы)
-- [ ] Еженедельные опросы сообщества
-- [ ] Интеграция с Tripadvisor API для рейтингов
+- [ ] Auto-scrape PDC news (Noticaribe, Playa News Room)
+- [ ] Airbnb price tracker for PDC rentals
+- [ ] Google Maps integration for restaurant search
+- [ ] AI chat moderation (spam/promo detection)
+- [ ] Weekly community poll
+- [ ] Tide & surf forecast integration
+- [ ] Telegram Mini App — interactive PDC map
+- [ ] Tripadvisor integration for restaurant ratings
