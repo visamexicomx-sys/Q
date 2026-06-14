@@ -1,0 +1,85 @@
+name: Cancún Hub — Daily Digest
+
+# Posts morning digest every day at 8:00 AM Cancún time (UTC-5 = 13:00 UTC)
+# Plus: weather alerts checked every hour
+
+on:
+  schedule:
+    - cron: "0 13 * * *"        # 8:00 AM CST (Cancún) — morning digest
+    - cron: "0 * * * *"          # Every hour — weather/hurricane alerts
+  workflow_dispatch:
+    inputs:
+      post_type:
+        description: "What to post"
+        required: true
+        default: "digest"
+        type: choice
+        options:
+          - digest
+          - weather-alert
+          - welcome
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cancun-hub-poster
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.CANCUN_HUB_BOT_TOKEN }}
+      TELEGRAM_CHANNEL_ID: ${{ secrets.CANCUN_HUB_CHANNEL_ID }}
+      OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gate — check secrets
+        id: gate
+        run: |
+          if [ -z "${TELEGRAM_BOT_TOKEN:-}" ] || [ -z "${TELEGRAM_CHANNEL_ID:-}" ]; then
+            echo "::warning::Cancún Hub secrets missing — skipping"
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.skip == '0'
+        with:
+          node-version: 20
+
+      - name: Run morning digest (8 AM trigger)
+        if: steps.gate.outputs.skip == '0' && (github.event.schedule == '0 13 * * *' || inputs.post_type == 'digest')
+        run: node cancun-hub/scripts/post-daily.mjs
+
+      - name: Run weather alert check (hourly trigger)
+        if: steps.gate.outputs.skip == '0' && (github.event.schedule == '0 * * * *' || inputs.post_type == 'weather-alert')
+        env:
+          STATE_PATH: cancun-hub/data/weather-state.json
+        run: node cancun-hub/scripts/weather-alert.mjs
+
+      - name: Post welcome message (manual only)
+        if: steps.gate.outputs.skip == '0' && inputs.post_type == 'welcome'
+        run: node cancun-hub/scripts/welcome-new-members.mjs
+
+      - name: Commit state changes
+        if: steps.gate.outputs.skip == '0'
+        run: |
+          git config user.name "cancun-hub-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cancun-hub/data/ 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore(cancun-hub): update alert state"
+          for delay in 2 4 8 16; do
+            if git push -u origin HEAD; then exit 0; fi
+            sleep "$delay"
+          done
+          echo "::warning::push failed after retries"

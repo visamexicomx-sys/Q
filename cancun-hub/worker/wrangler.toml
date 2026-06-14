@@ -1,0 +1,18 @@
+name = "cancun-hub-bot"
+main = "index.mjs"
+compatibility_date = "2025-01-01"
+account_id = ""   # Fill in your Cloudflare account ID
+
+# Deployed worker URL (after deploy):
+#   https://cancun-hub-bot.<your-subdomain>.workers.dev/webhook
+#
+# Set webhook:
+#   curl "https://api.telegram.org/bot$TOKEN/setWebhook?url=https://cancun-hub-bot.<sub>.workers.dev/webhook"
+#
+# Secrets (wrangler secret put — NOT stored here):
+#   TELEGRAM_BOT_TOKEN     — @BotFather token for @CancunHubBot
+#   TELEGRAM_ADMIN_IDS     — comma-separated Telegram user IDs for admins
+#   OPENWEATHER_API_KEY    — optional, from openweathermap.org (free tier OK)
+
+[vars]
+# Add non-secret vars here if needed
